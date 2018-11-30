@@ -11,16 +11,16 @@ package configurafácil;
  */
 public class Utilizador {
     private String nome;
-    private String tipo; // 0-> administrador 1-> funcionario do stand 2-> funcionario da fabrica
+    private int tipo; // 0-> administrador 1-> funcionario do stand 2-> funcionario da fabrica
     private String password;
     
     public Utilizador(){
         this.nome = "";
-        this.tipo = "";
+        this.tipo = -1;
         this.password = "";
     }
     
-    public Utilizador(String nome, String tipo, String password){
+    public Utilizador(String nome, int tipo, String password){
         this.nome = nome;
         this.tipo = tipo;
         this.password = password;
@@ -36,7 +36,7 @@ public class Utilizador {
         return this.nome;
     }
     
-    public String getTipo(){
+    public int getTipo(){
         return this.tipo;
     }
     
@@ -48,7 +48,7 @@ public class Utilizador {
         this.nome = nome;
     }
     
-    public void setTipo(String tipo){
+    public void setTipo(int tipo){
         this.tipo = tipo;
     }
     
@@ -73,7 +73,7 @@ public class Utilizador {
         if ((o == null) || (this.getClass() != o.getClass()))
             return false;
         Utilizador u = (Utilizador) o;
-        return u.getNome().equals(this.nome) && u.getTipo().equals(this.tipo) 
+        return u.getNome().equals(this.nome) && u.getTipo() == this.tipo
                 && u.getPassword().equals(this.password);
     }
 }
