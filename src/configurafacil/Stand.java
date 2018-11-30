@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package configurafácil;
+package configurafacil;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -17,6 +17,10 @@ public class Stand {
     
     public Stand() {
         this.clientes = new HashMap<String,Cliente>();
+    }
+    
+    public Stand(Stand s){
+        this.clientes = s.getClientes();
     }
 
     public Map<String,Cliente> getClientes(){
@@ -34,5 +38,11 @@ public class Stand {
     public void addCliente(Cliente c){
         this.clientes.put(c.getNif(),c);
     }
+    
+    public Stand clone(){
+        return new Stand(this);
+    }
+
+   
     
 }
