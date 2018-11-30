@@ -14,23 +14,31 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Encomenda {
+    private int id;
     private String carro;
     private List <String> configuração;
     
     public Encomenda() {
+        this.id = 0;
         this.carro = "";
         this.configuração = new ArrayList<String>();
     }
     
-    public Encomenda(String carro, List<String> quotas){
+    public Encomenda(int id, String carro, List<String> quotas){
+        this.id = id;
         this.carro = carro;
         this.configuração = new ArrayList<String>();
         if (configuração != null) this.configuração = quotas.stream().collect(Collectors.toList());
     }
     
     public Encomenda(Encomenda e){
+        this.id = e.getId();
         this.carro = e.getCarro();
         this.configuração = e.getConfig();
+    }
+    
+    public int getId(){
+        return this.id;
     }
     
     public String getCarro(){
