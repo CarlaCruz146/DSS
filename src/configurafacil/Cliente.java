@@ -7,10 +7,6 @@ package configurafácil;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author carlacruz
- */
 public class Cliente {
     private String nome;
     private int nif;
