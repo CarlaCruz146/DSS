@@ -3,29 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package configurafácil;
+package configurafacil;
 
 import java.util.ArrayList;
 
 public class Cliente {
     private String nome;
-    private int nif;
-    private int contacto;
+    private String nif;
+    private String contacto;
     private ArrayList<Encomenda> encomendas;
     
     public Cliente(){
         this.nome = "";
-        this.nif = 0;
-        this.contacto = 0;
+        this.nif = ""; 
+        this.contacto = "";
         this.encomendas = new ArrayList<>();
     }
     
-    public Cliente(String nome, int nif, int contacto, ArrayList enc){
+    public Cliente(String nome, String nif, String contacto, ArrayList enc){
         this.nome = nome;
         this.nif = nif;
         this.contacto = contacto;
         this.encomendas = new ArrayList<>();
-        enc.forEach(a->this.encomendas.add((Encomenda) a));
+        if (enc == null) this.encomendas = null;
+        else enc.forEach(a->this.encomendas.add((Encomenda) a));
     }
     
     public Cliente(Cliente c){
@@ -39,11 +40,11 @@ public class Cliente {
         return this.nome;
     }
     
-    public int getNif(){
+    public String getNif(){
         return this.nif;
     }
     
-    public int getContacto(){
+    public String getContacto(){
         return this.contacto;
     }
     
@@ -55,11 +56,11 @@ public class Cliente {
         this.nome = nome;
     }
     
-    public void setNif(int nif){
+    public void setNif(String nif){
         this.nif = nif;
     }
     
-    public void setContacto(int contacto){
+    public void setContacto(String contacto){
         this.contacto = contacto;
     }
     
@@ -87,6 +88,6 @@ public class Cliente {
         if ((o == null) || (this.getClass() != o.getClass()))
             return false;
         Cliente c = (Cliente) o;
-        return c.getNome().equals(this.nome);
+        return c.getNome().equals(this.nome) && c.getNif().equals(this.nif);
     }
 }

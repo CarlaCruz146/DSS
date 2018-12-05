@@ -10,7 +10,8 @@ package configurafacil;
  * @author jessica
  */
 public class Login extends javax.swing.JFrame {
-
+    ConfiguraFacil configura = new ConfiguraFacil();
+    
     /**
      * Creates new form Login
      */
@@ -92,6 +93,7 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        new DadosCliente(this, true).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
