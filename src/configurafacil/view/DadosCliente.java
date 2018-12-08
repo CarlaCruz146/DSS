@@ -25,7 +25,7 @@ public class DadosCliente extends javax.swing.JFrame {
         setLocationRelativeTo(this);
     }
     
-        private boolean validaDados() {
+    private boolean validaDados() {
         boolean vazio = this.nome.getText().equals("") || 
                 this.nif.getText().equals("")
                 || this.contacto.getText().equals("") || 

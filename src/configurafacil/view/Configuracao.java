@@ -275,10 +275,12 @@ public class Configuracao extends javax.swing.JDialog {
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
+        new SugestaoConfiguracao(newe,true).setVisible(true);
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
+        new ConfiguracaoFinal(newe,true).setVisible(true);
     }//GEN-LAST:event_jButton12ActionPerformed
 
     /**
