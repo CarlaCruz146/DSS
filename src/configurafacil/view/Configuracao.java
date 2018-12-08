@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package configurafacil;
+package configurafacil.view;
 
-import static configurafacil.EscolherCarro.newe;
+import static configurafacil.view.EscolherCarro.newe;
 
 /**
  *
