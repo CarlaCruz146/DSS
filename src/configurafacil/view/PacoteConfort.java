@@ -122,7 +122,7 @@ public class PacoteConfort extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        c.encomenda.addToConfiguração("Pacot Comfort");
+        c.encomenda.addToConfiguração("Pacote Comfort");
         this.setVisible(false);
     }//GEN-LAST:event_jButton1MouseClicked
 

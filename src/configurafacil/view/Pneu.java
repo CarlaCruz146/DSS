@@ -160,8 +160,8 @@ public class Pneu extends javax.swing.JDialog {
         }
         else {
             c.encomenda.addToConfiguração(this.pneu);
+            this.setVisible(false);
         }
-        this.setVisible(false);
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**

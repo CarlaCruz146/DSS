@@ -144,8 +144,8 @@ public class Motor extends javax.swing.JDialog {
         }
         else {
             c.encomenda.addToConfiguração(this.motor);
+            this.setVisible(false);
         }
-        this.setVisible(false);
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**
