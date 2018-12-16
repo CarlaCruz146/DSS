@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package configurafacil.Model;
+package configurafacil.Business;
 
 import java.util.ArrayList;
 

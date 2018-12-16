@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package configurafacil.view;
+package configurafacil.Presentation;
 
-import configurafacil.Model.Cliente;
+import configurafacil.Business.Cliente;
 
 /**
  *

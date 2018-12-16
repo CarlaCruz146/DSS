@@ -3,20 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package configurafacil.view;
+package configurafacil.Presentation;
+
+import java.util.ArrayList;
 
 /**
  *
  * @author mercy
  */
 public class SugestaoConfiguracao extends javax.swing.JDialog {
-
+    public static EscolherCarro c;
     /**
      * Creates new form SugestaoConfiguracao2
      */
-    public SugestaoConfiguracao(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
+    public SugestaoConfiguracao(EscolherCarro parent, boolean modal) {
+       this.c = parent;
+       this.setModal(modal);
+       initComponents();
+       setLocationRelativeTo(this);
     }
 
     /**
@@ -133,6 +137,9 @@ public class SugestaoConfiguracao extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        ArrayList<String> s = new ArrayList<>();
+        //copiaSugestao();
+        this.c.encomenda.setConfig(s);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -171,7 +178,7 @@ public class SugestaoConfiguracao extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                SugestaoConfiguracao dialog = new SugestaoConfiguracao(new javax.swing.JFrame(), true);
+                SugestaoConfiguracao dialog = new SugestaoConfiguracao(c, true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

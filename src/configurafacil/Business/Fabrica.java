@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package configurafacil.Model;
+package configurafacil.Business;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 /**
  *
  * @author mercy
@@ -13,15 +15,15 @@ import java.util.HashMap;
 public class Fabrica {
 
     private HashMap<Integer,Encomenda> encomendas;
-    private int stock;
+    private Map<String,Integer> stock;
     
     public Fabrica(){
         this.encomendas = new HashMap<>();
-        this.stock = 0;
+        this.stock = new HashMap<>();
     }
     
-    public Fabrica(int s, HashMap<Integer,Encomenda> encs){
-        this.stock = s;
+    public Fabrica(Map<String,Integer> s, HashMap<Integer,Encomenda> encs){
+        setStock(s);
         setEncomendas(encs);
     }
     
@@ -34,23 +36,20 @@ public class Fabrica {
         return new Fabrica(this);
     }
     
-    public int getStock(){
-        return this.stock;
+    public Map<String, Integer> getStock(){
+        return this.stock.entrySet().stream().collect(Collectors.toMap(e->e.getKey(), e->e.getValue()));    
     }
     
     public HashMap<Integer,Encomenda> getEncomendas(){
-        // return this.encomendas.values()
-        //                      .stream()
-        //                      .map(Encomenda:: clone)
-        //                      .collect(Collectors.toMap(e->e.getId(), e->e.clone()));
         HashMap<Integer,Encomenda> res = new HashMap<>();
         for(Encomenda e : this.encomendas.values())
-            res.put(e.getId(), (Encomenda) e.clone()); //pus assim pq o collect estava a dar erros
+            res.put(e.getId(), (Encomenda) e.clone());
         return res;
     }
         
-    public void setStock(int s){
-        this.stock = s;
+    public void setStock(Map<String, Integer> s){
+        this.stock = new HashMap<>();
+        this.stock = s.entrySet().stream().collect(Collectors.toMap(e->e.getKey(), e->e.getValue())); 
     }
     
     public void setEncomendas(HashMap<Integer,Encomenda> novasEncs){

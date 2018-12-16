@@ -3,20 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package configurafacil.view;
+package configurafacil.Presentation;
 
 /**
  *
  * @author mercy
  */
 public class MenuFuncionario extends javax.swing.JDialog {
-    public static Login newe; // aqui é mm do login??
+    public static Login newe;
     /**
-     * Creates new form MenuFuncionario2
+     * Creates new form MenuFuncionario
      */
-    public MenuFuncionario(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public MenuFuncionario(Login parent, boolean modal) {
+        this.newe = parent;
+        this.setModal(modal);
         initComponents();
+        setLocationRelativeTo(this);
     }
 
     /**
@@ -94,6 +96,7 @@ public class MenuFuncionario extends javax.swing.JDialog {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -132,7 +135,7 @@ public class MenuFuncionario extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                MenuFuncionario dialog = new MenuFuncionario(new javax.swing.JFrame(), true);
+                MenuFuncionario dialog = new MenuFuncionario(newe, true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

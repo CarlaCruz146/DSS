@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package configurafacil.view;
+package configurafacil.Presentation;
 
-import static configurafacil.view.EscolherCarro.newe;
+import static configurafacil.Presentation.EscolherCarro.newe;
 
 /**
  *
@@ -192,8 +192,7 @@ public class Configuracao extends javax.swing.JDialog {
                                         .addGap(4, 4, 4)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 127, Short.MAX_VALUE))
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(6, 6, 6)

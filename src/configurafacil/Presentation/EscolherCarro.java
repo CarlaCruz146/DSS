@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package configurafacil.view;
-import configurafacil.Model.Encomenda;
+package configurafacil.Presentation;
+import configurafacil.Business.Encomenda;
 
 /**
  *

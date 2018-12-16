@@ -3,20 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package configurafacil.view;
+package configurafacil.Presentation;
 
 /**
  *
  * @author mercy
  */
 public class ConfiguracaoFinal extends javax.swing.JDialog {
-
+    public static EscolherCarro c;
     /**
      * Creates new form ConfiguracaoFinal2
      */
-    public ConfiguracaoFinal(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
+    public ConfiguracaoFinal(EscolherCarro parent, boolean modal) {
+       this.c = parent;
+       this.setModal(modal);
+       initComponents();
+       setLocationRelativeTo(this);
     }
 
     /**
@@ -114,6 +116,10 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        String componente = "";
+        //componenteSelecionada();
+        this.c.encomenda.removeDaConfiguração(componente);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -152,7 +158,7 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ConfiguracaoFinal dialog = new ConfiguracaoFinal(new javax.swing.JFrame(), true);
+                ConfiguracaoFinal dialog = new ConfiguracaoFinal(c, true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

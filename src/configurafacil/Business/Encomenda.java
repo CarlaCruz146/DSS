@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package configurafacil.Model;
+package configurafacil.Business;
 
 /**
  *
@@ -53,8 +53,17 @@ public class Encomenda {
         this.configuração.add(c);
     }
     
+    public void removeDaConfiguração(String c){
+        this.configuração.remove(c);
+    }
+    
+    
     public void addCarro(String carro){
         this.carro = carro;
+    }
+    
+    public void setConfig(ArrayList<String> c){
+        this.configuração = c.stream().collect(Collectors.toList());
     }
     
     public boolean equals(Object o) {

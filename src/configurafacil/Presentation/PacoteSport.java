@@ -3,20 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package configurafacil.view;
+package configurafacil.Presentation;
 
 /**
  *
  * @author mercy
  */
 public class PacoteSport extends javax.swing.JDialog {
-
+    public static EscolherCarro c;
     /**
-     * Creates new form PacoteSport2
+     * Creates new form PacoteSport
      */
-    public PacoteSport(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public PacoteSport(EscolherCarro parent, boolean modal) {
+        this.c = parent;
+        this.setModal(modal);
         initComponents();
+        setLocationRelativeTo(this);
     }
 
     /**
@@ -38,6 +40,11 @@ public class PacoteSport extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jButton1.setText("Guardar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -115,6 +122,12 @@ public class PacoteSport extends javax.swing.JDialog {
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        c.encomenda.addToConfiguração("Pacote Sport");
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -146,7 +159,7 @@ public class PacoteSport extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                PacoteSport dialog = new PacoteSport(new javax.swing.JFrame(), true);
+                PacoteSport dialog = new PacoteSport(c, true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
