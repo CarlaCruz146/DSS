@@ -62,7 +62,7 @@ public class Encomenda {
         this.carro = carro;
     }
     
-    public void setConfig(ArrayList<String> c){
+    public void setConfig(List<String> c){
         this.configuração = c.stream().collect(Collectors.toList());
     }
     

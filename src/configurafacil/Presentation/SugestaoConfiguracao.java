@@ -6,6 +6,8 @@
 package configurafacil.Presentation;
 
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,6 +15,9 @@ import java.util.ArrayList;
  */
 public class SugestaoConfiguracao extends javax.swing.JDialog {
     public static EscolherCarro c;
+    DefaultTableModel model;
+    String componente = ""; 
+    private int row = 0;
     /**
      * Creates new form SugestaoConfiguracao2
      */
@@ -23,6 +28,16 @@ public class SugestaoConfiguracao extends javax.swing.JDialog {
        setLocationRelativeTo(this);
     }
 
+    public List<String> leConfiguracao(){
+        model =  (DefaultTableModel) jTable1.getModel();
+        List<String> config = new ArrayList<>();
+        while(model.getValueAt(row,0) != null){
+            componente = (String) model.getValueAt(row, 0);
+            config.add(componente);
+            row++;
+        }
+        return config;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -137,16 +152,16 @@ public class SugestaoConfiguracao extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        ArrayList<String> s = new ArrayList<>();
-        //copiaSugestao();
-        this.c.encomenda.setConfig(s);
+        List<String> sugestao = leConfiguracao();
+        this.c.encomenda.setConfig(sugestao);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    
+    
     /**
      * @param args the command line arguments
      */
