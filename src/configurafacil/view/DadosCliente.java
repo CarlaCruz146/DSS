@@ -65,6 +65,7 @@ public class DadosCliente extends javax.swing.JFrame {
         });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jButton1.setText("Escolher carro");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -175,6 +176,7 @@ public class DadosCliente extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -215,8 +217,8 @@ public class DadosCliente extends javax.swing.JFrame {
             Cliente c = new Cliente(nome,nif,contacto,null);
             newa.configura.getStand().addCliente(c);
             this.setVisible(false);
-         }
-        new EscolherCarro(this, true).setVisible(true);
+            new EscolherCarro(this, true).setVisible(true); 
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

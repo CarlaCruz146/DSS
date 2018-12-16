@@ -53,6 +53,10 @@ public class Encomenda {
         this.configuração.add(c);
     }
     
+    public void addCarro(String carro){
+        this.carro = carro;
+    }
+    
     public boolean equals(Object o) {
         boolean b=false;
 

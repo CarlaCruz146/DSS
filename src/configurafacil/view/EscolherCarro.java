@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package configurafacil.view;
+import configurafacil.Model.Encomenda;
 
 /**
  *
@@ -11,6 +12,8 @@ package configurafacil.view;
  */
 public class EscolherCarro extends javax.swing.JDialog {
     public static DadosCliente newe;
+    private String carro = "";
+    Encomenda encomenda = new Encomenda();
     /**
      * Creates new form EscolherCarro
      */
@@ -31,12 +34,12 @@ public class EscolherCarro extends javax.swing.JDialog {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jRadioButton6 = new javax.swing.JRadioButton();
+        Carro1 = new javax.swing.JRadioButton();
+        Carro2 = new javax.swing.JRadioButton();
+        Carro3 = new javax.swing.JRadioButton();
+        Carro4 = new javax.swing.JRadioButton();
+        Carro5 = new javax.swing.JRadioButton();
+        Carro6 = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -46,52 +49,53 @@ public class EscolherCarro extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("Mazda CX-5");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(Carro1);
+        Carro1.setText("Mazda CX-5");
+        Carro1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                Carro1ActionPerformed(evt);
             }
         });
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("Seat Ibiza");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(Carro2);
+        Carro2.setText("Seat Ibiza");
+        Carro2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                Carro2ActionPerformed(evt);
             }
         });
 
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setText("Mercedes Benz");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(Carro3);
+        Carro3.setText("Mercedes Benz");
+        Carro3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
+                Carro3ActionPerformed(evt);
             }
         });
 
-        buttonGroup1.add(jRadioButton4);
-        jRadioButton4.setText("Volvo V40");
-        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(Carro4);
+        Carro4.setText("Volvo V40");
+        Carro4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton4ActionPerformed(evt);
+                Carro4ActionPerformed(evt);
             }
         });
 
-        buttonGroup1.add(jRadioButton5);
-        jRadioButton5.setText("Opel SUV");
-        jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(Carro5);
+        Carro5.setText("Opel SUV");
+        Carro5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton5ActionPerformed(evt);
+                Carro5ActionPerformed(evt);
             }
         });
 
-        buttonGroup1.add(jRadioButton6);
-        jRadioButton6.setText("Renault Clio");
-        jRadioButton6.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(Carro6);
+        Carro6.setText("Renault Clio");
+        Carro6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton6ActionPerformed(evt);
+                Carro6ActionPerformed(evt);
             }
         });
 
@@ -130,9 +134,9 @@ public class EscolherCarro extends javax.swing.JDialog {
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton3))
+                    .addComponent(Carro2)
+                    .addComponent(Carro1)
+                    .addComponent(Carro3))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
@@ -141,13 +145,13 @@ public class EscolherCarro extends javax.swing.JDialog {
                             .addComponent(jLabel3))
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton5)
-                            .addComponent(jRadioButton4)))
+                            .addComponent(Carro5)
+                            .addComponent(Carro4)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButton6)))
+                        .addComponent(Carro6)))
                 .addContainerGap(85, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -163,13 +167,13 @@ public class EscolherCarro extends javax.swing.JDialog {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(68, 68, 68)
-                        .addComponent(jRadioButton1))
+                        .addComponent(Carro1))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel4))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(64, 64, 64)
-                        .addComponent(jRadioButton4)))
+                        .addComponent(Carro4)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,51 +190,64 @@ public class EscolherCarro extends javax.swing.JDialog {
                                     .addComponent(jLabel5)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(59, 59, 59)
-                                .addComponent(jRadioButton2)
+                                .addComponent(Carro2)
                                 .addGap(95, 95, 95)
-                                .addComponent(jRadioButton3)))
+                                .addComponent(Carro3)))
                         .addContainerGap(54, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(58, 58, 58)
-                        .addComponent(jRadioButton5)
+                        .addComponent(Carro5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jRadioButton6)
+                        .addComponent(Carro6)
                         .addGap(42, 42, 42)
                         .addComponent(jButton1)
                         .addGap(23, 23, 23))))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void Carro2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Carro2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_Carro2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-         new Configuracao(newe, true).setVisible(true);
+        if(Carro1.isSelected()) this.carro = "Mazda CX-5";
+        if(Carro2.isSelected()) this.carro = "Seat Ibiza";
+        if(Carro3.isSelected()) this.carro = "Mercedes Benz";
+        if(Carro4.isSelected()) this.carro = "Volvo V40";
+        if(Carro5.isSelected()) this.carro = "Opel SUV";
+        if(Carro6.isSelected()) this.carro = "Renault Clio";
+        if(this.carro.equals("")){
+            javax.swing.JOptionPane.showMessageDialog(this, "Por favor escolha um carro","Carro não selecionado", 0);
+        }
+        else {
+            encomenda.addCarro(carro);
+            new Configuracao(newe, true).setVisible(true);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void Carro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Carro1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_Carro1ActionPerformed
 
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+    private void Carro3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Carro3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
+    }//GEN-LAST:event_Carro3ActionPerformed
 
-    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+    private void Carro4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Carro4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton4ActionPerformed
+    }//GEN-LAST:event_Carro4ActionPerformed
 
-    private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
+    private void Carro5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Carro5ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton5ActionPerformed
+    }//GEN-LAST:event_Carro5ActionPerformed
 
-    private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
+    private void Carro6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Carro6ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton6ActionPerformed
+    }//GEN-LAST:event_Carro6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -275,6 +292,12 @@ public class EscolherCarro extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton Carro1;
+    private javax.swing.JRadioButton Carro2;
+    private javax.swing.JRadioButton Carro3;
+    private javax.swing.JRadioButton Carro4;
+    private javax.swing.JRadioButton Carro5;
+    private javax.swing.JRadioButton Carro6;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -283,11 +306,5 @@ public class EscolherCarro extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
     // End of variables declaration//GEN-END:variables
 }
