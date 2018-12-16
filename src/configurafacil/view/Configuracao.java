@@ -12,14 +12,16 @@ import static configurafacil.view.EscolherCarro.newe;
  * @author jessica
  */
 public class Configuracao extends javax.swing.JDialog {
-    public static DadosCliente newe;
+    public static EscolherCarro newe;
     
     /**
      * Creates new form Configuracao
      */
-    public Configuracao(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
+    public Configuracao(EscolherCarro parent, boolean modal) {
+       this.newe = parent;
+       this.setModal(modal);
+       initComponents();
+       setLocationRelativeTo(this);
     }
 
     /**
@@ -396,7 +398,7 @@ public class Configuracao extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Configuracao dialog = new Configuracao(new javax.swing.JFrame(), true);
+                Configuracao dialog = new Configuracao(newe, true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

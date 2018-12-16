@@ -10,13 +10,16 @@ package configurafacil.view;
  * @author utilizador
  */
 public class Estofos extends javax.swing.JDialog {
-
+    public static EscolherCarro c;
+    private String estofo = "";
     /**
      * Creates new form Estofos
      */
-    public Estofos(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
+    public Estofos(EscolherCarro parent, boolean modal) {
+       this.c = parent;
+       this.setModal(modal);
+       initComponents();
+       setLocationRelativeTo(this);
     }
 
     /**
@@ -28,10 +31,10 @@ public class Estofos extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
+        Estofo1 = new javax.swing.JRadioButton();
+        Estofo2 = new javax.swing.JRadioButton();
+        Estofo3 = new javax.swing.JRadioButton();
+        Estofo4 = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -39,35 +42,40 @@ public class Estofos extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        jRadioButton1.setText("Couro comfort carvão");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        Estofo1.setText("Couro comfort carvão");
+        Estofo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                Estofo1ActionPerformed(evt);
             }
         });
 
-        jRadioButton2.setText("Couro comfort âmbar");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        Estofo2.setText("Couro comfort âmbar");
+        Estofo2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                Estofo2ActionPerformed(evt);
             }
         });
 
-        jRadioButton3.setText("Couro comfort maroon brown ");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+        Estofo3.setText("Couro comfort maroon brown ");
+        Estofo3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
+                Estofo3ActionPerformed(evt);
             }
         });
 
-        jRadioButton4.setText("Couro comfort blond");
-        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+        Estofo4.setText("Couro comfort blond");
+        Estofo4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton4ActionPerformed(evt);
+                Estofo4ActionPerformed(evt);
             }
         });
 
         jButton1.setText("Guardar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -90,10 +98,10 @@ public class Estofos extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(57, 57, 57)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton2)
-                            .addComponent(jRadioButton3)
-                            .addComponent(jRadioButton4)
-                            .addComponent(jRadioButton1)))
+                            .addComponent(Estofo2)
+                            .addComponent(Estofo3)
+                            .addComponent(Estofo4)
+                            .addComponent(Estofo1)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(155, 155, 155)
                         .addComponent(jLabel1)))
@@ -107,13 +115,13 @@ public class Estofos extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1)
                 .addGap(18, 18, 18)
-                .addComponent(jRadioButton1)
+                .addComponent(Estofo1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRadioButton2)
+                .addComponent(Estofo2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRadioButton3)
+                .addComponent(Estofo3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRadioButton4)
+                .addComponent(Estofo4)
                 .addGap(31, 31, 31)
                 .addComponent(jButton1)
                 .addContainerGap())
@@ -123,25 +131,39 @@ public class Estofos extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void Estofo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Estofo1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_Estofo1ActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void Estofo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Estofo2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_Estofo2ActionPerformed
 
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+    private void Estofo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Estofo3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
+    }//GEN-LAST:event_Estofo3ActionPerformed
 
-    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+    private void Estofo4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Estofo4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton4ActionPerformed
+    }//GEN-LAST:event_Estofo4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        if(Estofo1.isSelected()) this.estofo = "Couro comfort carvão";
+        if(Estofo2.isSelected()) this.estofo = "Couro comfort âmbar";
+        if(Estofo3.isSelected()) this.estofo = "Couro comfort maroon brown";
+        if(Estofo4.isSelected()) this.estofo = "Couro comfort blond";
+        if(this.estofo.equals("")){
+            javax.swing.JOptionPane.showMessageDialog(this, "Por favor escolha um estofo","Estofo não selecionado", 0);
+        }
+        else {
+            c.encomenda.addToConfiguração(this.estofo);
+        }
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -173,7 +195,7 @@ public class Estofos extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Estofos dialog = new Estofos(new javax.swing.JFrame(), true);
+                Estofos dialog = new Estofos(c, true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -186,12 +208,12 @@ public class Estofos extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton Estofo1;
+    private javax.swing.JRadioButton Estofo2;
+    private javax.swing.JRadioButton Estofo3;
+    private javax.swing.JRadioButton Estofo4;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }

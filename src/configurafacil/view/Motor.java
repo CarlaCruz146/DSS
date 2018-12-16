@@ -10,13 +10,16 @@ package configurafacil.view;
  * @author utilizador
  */
 public class Motor extends javax.swing.JDialog {
-
+    public static EscolherCarro c;
+    private String motor = "";
     /**
      * Creates new form Motor
      */
-    public Motor(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
+    public Motor(EscolherCarro parent, boolean modal) {
+       this.c = parent;
+       this.setModal(modal);
+       initComponents();
+       setLocationRelativeTo(this);
     }
 
     /**
@@ -28,37 +31,42 @@ public class Motor extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
+        Motor1 = new javax.swing.JRadioButton();
+        Motor2 = new javax.swing.JRadioButton();
+        Motor3 = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jRadioButton2.setText("D4 190cv Man. 6 Vel.");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        Motor1.setText("D4 190cv Man. 6 Vel.");
+        Motor1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                Motor1ActionPerformed(evt);
             }
         });
 
-        jRadioButton3.setText("D4 190cv Geatronic 8 Vel.");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+        Motor2.setText("D4 190cv Geatronic 8 Vel.");
+        Motor2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
+                Motor2ActionPerformed(evt);
             }
         });
 
-        jRadioButton4.setText("D5 235cv Geatronic 8 Vel.");
-        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+        Motor3.setText("D5 235cv Geatronic 8 Vel.");
+        Motor3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton4ActionPerformed(evt);
+                Motor3ActionPerformed(evt);
             }
         });
 
         jButton1.setText("Guardar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -75,9 +83,9 @@ public class Motor extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton4)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton2))
+                    .addComponent(Motor3)
+                    .addComponent(Motor2)
+                    .addComponent(Motor1))
                 .addContainerGap(158, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -97,11 +105,11 @@ public class Motor extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(jRadioButton2)
+                .addComponent(Motor1)
                 .addGap(36, 36, 36)
-                .addComponent(jRadioButton3)
+                .addComponent(Motor2)
                 .addGap(36, 36, 36)
-                .addComponent(jRadioButton4)
+                .addComponent(Motor3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
@@ -115,17 +123,30 @@ public class Motor extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void Motor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Motor1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_Motor1ActionPerformed
 
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+    private void Motor2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Motor2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
+    }//GEN-LAST:event_Motor2ActionPerformed
 
-    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+    private void Motor3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Motor3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton4ActionPerformed
+    }//GEN-LAST:event_Motor3ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        if(Motor1.isSelected()) this.motor = "D4 190cv Man. 6 Vel.";
+        if(Motor2.isSelected()) this.motor = "D4 190cv Geatronic 8 Vel.";
+        if(Motor3.isSelected()) this.motor = "D5 235cv Geatronic 8 Vel.";
+        if(this.motor.equals("")){
+            javax.swing.JOptionPane.showMessageDialog(this, "Por favor escolha um motor","Motor não selecionado", 0);
+        }
+        else {
+            c.encomenda.addToConfiguração(this.motor);
+        }
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -157,7 +178,7 @@ public class Motor extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Motor dialog = new Motor(new javax.swing.JFrame(), true);
+                Motor dialog = new Motor(c, true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -170,11 +191,11 @@ public class Motor extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton Motor1;
+    private javax.swing.JRadioButton Motor2;
+    private javax.swing.JRadioButton Motor3;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }

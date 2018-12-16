@@ -10,13 +10,16 @@ package configurafacil.view;
  * @author utilizador
  */
 public class Jantes extends javax.swing.JDialog {
-
+    public static EscolherCarro c;
+    private String jante = "";
     /**
      * Creates new form Jantes
      */
-    public Jantes(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
+    public Jantes(EscolherCarro parent, boolean modal) {
+       this.c = parent;
+       this.setModal(modal);
+       initComponents();
+       setLocationRelativeTo(this);
     }
 
     /**
@@ -28,9 +31,9 @@ public class Jantes extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        Jante1 = new javax.swing.JRadioButton();
+        Jante2 = new javax.swing.JRadioButton();
+        Jante3 = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
@@ -38,28 +41,33 @@ public class Jantes extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        jRadioButton1.setText("Jantes em liga leve 17''");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        Jante1.setText("Jantes em liga leve 17''");
+        Jante1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                Jante1ActionPerformed(evt);
             }
         });
 
-        jRadioButton2.setText("Jantes em liga leve 18'' 245/45  R18");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        Jante2.setText("Jantes em liga leve 18'' 245/45  R18");
+        Jante2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                Jante2ActionPerformed(evt);
             }
         });
 
-        jRadioButton3.setText("Jantes em liga leve 19'' 255/40 R19");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+        Jante3.setText("Jantes em liga leve 19'' 255/40 R19");
+        Jante3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
+                Jante3ActionPerformed(evt);
             }
         });
 
         jButton1.setText("Guardar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -82,9 +90,9 @@ public class Jantes extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton3)
-                            .addComponent(jRadioButton2)
-                            .addComponent(jRadioButton1)))
+                            .addComponent(Jante3)
+                            .addComponent(Jante2)
+                            .addComponent(Jante1)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(151, 151, 151)
                         .addComponent(jLabel1)))
@@ -98,11 +106,11 @@ public class Jantes extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jRadioButton1)
+                .addComponent(Jante1)
                 .addGap(18, 18, 18)
-                .addComponent(jRadioButton2)
+                .addComponent(Jante2)
                 .addGap(18, 18, 18)
-                .addComponent(jRadioButton3)
+                .addComponent(Jante3)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -116,17 +124,30 @@ public class Jantes extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void Jante1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jante1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_Jante1ActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void Jante2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jante2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_Jante2ActionPerformed
 
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+    private void Jante3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jante3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
+    }//GEN-LAST:event_Jante3ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        if(Jante1.isSelected()) this.jante = "Jantes em liga leve 17''";
+        if(Jante2.isSelected()) this.jante = "Jantes em liga leve 18'' 245/45  R18";
+        if(Jante3.isSelected()) this.jante = "Jantes em liga leve 19'' 255/40 R19";
+        if(this.jante.equals("")){
+            javax.swing.JOptionPane.showMessageDialog(this, "Por favor escolha uma jantes","Jantes não selecionado", 0);
+        }
+        else {
+            c.encomenda.addToConfiguração(this.jante);
+        }
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -158,7 +179,7 @@ public class Jantes extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Jantes dialog = new Jantes(new javax.swing.JFrame(), true);
+                Jantes dialog = new Jantes(c, true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -171,11 +192,11 @@ public class Jantes extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton Jante1;
+    private javax.swing.JRadioButton Jante2;
+    private javax.swing.JRadioButton Jante3;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }

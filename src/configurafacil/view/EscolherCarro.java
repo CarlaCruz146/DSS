@@ -225,7 +225,7 @@ public class EscolherCarro extends javax.swing.JDialog {
         }
         else {
             encomenda.addCarro(carro);
-            new Configuracao(newe, true).setVisible(true);
+            new Configuracao(this, true).setVisible(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
