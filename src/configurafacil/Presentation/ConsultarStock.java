@@ -7,6 +7,8 @@ package configurafacil.Presentation;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -14,6 +16,10 @@ import java.util.Map;
  */
 public class ConsultarStock extends javax.swing.JDialog {
     public static Login newe;
+    DefaultTableModel model;
+    private int row = 0;
+    private String componente= "";
+    private int valor = 0;
     /**
      * Creates new form ConsultarStock2
      */
@@ -21,9 +27,31 @@ public class ConsultarStock extends javax.swing.JDialog {
         this.newe = parent;
         this.setModal(modal);
         initComponents();
+        insereStockTabela();
         setLocationRelativeTo(this);
     }
-
+    public void insereStockTabela(){
+        model =  (DefaultTableModel) jTable1.getModel();
+        Map<String,Integer> stockDisponivel = newe.configura.getFabrica().getStock();
+        Object rowData[] = new Object[stockDisponivel.size()];
+        for(Map.Entry s : stockDisponivel.entrySet()){
+            rowData[0] = s.getKey();
+            rowData[1] = s.getValue();
+            model.addRow(rowData);
+        }
+    }
+    
+    public Map<String,Integer> leStock(){
+        model =  (DefaultTableModel) jTable1.getModel();
+        Map<String,Integer> stockAtualizado = new HashMap<>();
+        while(model.getValueAt(row,0) != null){
+            componente = (String) model.getValueAt(row, 0);
+            valor = (Integer) model.getValueAt(row,1);
+            stockAtualizado.put(componente, valor);
+            row++;
+        }
+        return stockAtualizado;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,6 +87,11 @@ public class ConsultarStock extends javax.swing.JDialog {
                 "Componente", "Quantidade"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Guardar Alterações");
@@ -118,7 +151,7 @@ public class ConsultarStock extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Map<String, Integer> s = new HashMap<>();
-        //s = novoStock();
+        s = leStock();
         newe.configura.getFabrica().setStock(s);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -126,6 +159,13 @@ public class ConsultarStock extends javax.swing.JDialog {
         // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        row = jTable1.getSelectedRow();
+        valor = (Integer) model.getValueAt(row, 1);
+        model.setValueAt(valor, row, 1);
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
