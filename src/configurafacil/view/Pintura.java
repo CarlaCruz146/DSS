@@ -10,13 +10,16 @@ package configurafacil.view;
  * @author jessica
  */
 public class Pintura extends javax.swing.JDialog {
-
+    public static EscolherCarro c;
+    private String pintura = "";
     /**
      * Creates new form Pintura
      */
-    public Pintura(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
+    public Pintura(EscolherCarro parent, boolean modal) {
+       this.c = parent;
+       this.setModal(modal);
+       initComponents();
+       setLocationRelativeTo(this);
     }
 
     /**
@@ -28,41 +31,41 @@ public class Pintura extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
+        Cor3 = new javax.swing.JRadioButton();
+        Cor1 = new javax.swing.JRadioButton();
+        Cor2 = new javax.swing.JRadioButton();
+        Cor4 = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jRadioButton1.setText("Branco");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        Cor3.setText("Branco");
+        Cor3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                Cor3ActionPerformed(evt);
             }
         });
 
-        jRadioButton2.setText("Cinzento");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        Cor1.setText("Cinzento");
+        Cor1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                Cor1ActionPerformed(evt);
             }
         });
 
-        jRadioButton3.setText("Preto");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+        Cor2.setText("Preto");
+        Cor2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
+                Cor2ActionPerformed(evt);
             }
         });
 
-        jRadioButton4.setText("Azul");
-        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+        Cor4.setText("Azul");
+        Cor4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton4ActionPerformed(evt);
+                Cor4ActionPerformed(evt);
             }
         });
 
@@ -88,10 +91,10 @@ public class Pintura extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(67, 67, 67)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton4)
-                            .addComponent(jRadioButton1)
-                            .addComponent(jRadioButton3)
-                            .addComponent(jRadioButton2))))
+                            .addComponent(Cor4)
+                            .addComponent(Cor3)
+                            .addComponent(Cor2)
+                            .addComponent(Cor1))))
                 .addContainerGap(186, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -106,13 +109,13 @@ public class Pintura extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton2)
+                .addComponent(Cor1)
                 .addGap(18, 18, 18)
-                .addComponent(jRadioButton3)
+                .addComponent(Cor2)
                 .addGap(18, 18, 18)
-                .addComponent(jRadioButton1)
+                .addComponent(Cor3)
                 .addGap(18, 18, 18)
-                .addComponent(jRadioButton4)
+                .addComponent(Cor4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
                 .addContainerGap(18, Short.MAX_VALUE))
@@ -122,24 +125,35 @@ public class Pintura extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void Cor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cor1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_Cor1ActionPerformed
 
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+    private void Cor2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cor2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
+    }//GEN-LAST:event_Cor2ActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void Cor3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cor3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_Cor3ActionPerformed
 
-    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+    private void Cor4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cor4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton4ActionPerformed
+    }//GEN-LAST:event_Cor4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        if(Cor1.isSelected()) this.pintura = "Cizento";
+        if(Cor2.isSelected()) this.pintura = "Preto";
+        if(Cor3.isSelected()) this.pintura = "Branco";
+        if(Cor4.isSelected()) this.pintura = "Azul";
+        if(this.pintura.equals("")){
+            javax.swing.JOptionPane.showMessageDialog(this, "Por favor escolha a pintura","Pintura não selecionada", 0);
+        }
+        else {
+            c.encomenda.addToConfiguração(this.pintura);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -172,7 +186,7 @@ public class Pintura extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Pintura dialog = new Pintura(new javax.swing.JFrame(), true);
+                 Pintura dialog = new Pintura(c, true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -185,12 +199,12 @@ public class Pintura extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton Cor1;
+    private javax.swing.JRadioButton Cor2;
+    private javax.swing.JRadioButton Cor3;
+    private javax.swing.JRadioButton Cor4;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }
