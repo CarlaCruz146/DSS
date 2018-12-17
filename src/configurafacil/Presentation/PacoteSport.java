@@ -124,7 +124,7 @@ public class PacoteSport extends javax.swing.JDialog {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        c.encomenda.addToConfiguração("Pacote Sport");
+        c.encomenda.addToConfiguracao("Pacote Sport");
         this.setVisible(false);
     }//GEN-LAST:event_jButton1MouseClicked
 

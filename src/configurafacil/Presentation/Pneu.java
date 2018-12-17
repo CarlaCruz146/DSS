@@ -164,7 +164,7 @@ public class Pneu extends javax.swing.JDialog {
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor escolha um pneu","Pneu não selecionado", 0);
         }
         else {
-            c.encomenda.addToConfiguração(this.pneu);
+            c.encomenda.addToConfiguracao(this.pneu);
             this.setVisible(false);
         }
     }//GEN-LAST:event_jButton1MouseClicked

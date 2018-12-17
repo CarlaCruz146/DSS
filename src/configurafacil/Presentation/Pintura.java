@@ -156,7 +156,7 @@ public class Pintura extends javax.swing.JDialog {
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor escolha a pintura","Pintura não selecionada", 0);
         }
         else {
-            c.encomenda.addToConfiguração(this.pintura);
+            c.encomenda.addToConfiguracao(this.pintura);
             this.setVisible(false);
         }
     }//GEN-LAST:event_jButton1ActionPerformed

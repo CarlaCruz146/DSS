@@ -148,7 +148,7 @@ public class Jantes extends javax.swing.JDialog {
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor escolha uma jantes","Jantes não selecionado", 0);
         }
         else {
-            c.encomenda.addToConfiguração(this.jante);
+            c.encomenda.addToConfiguracao(this.jante);
             this.setVisible(false);
         }
     }//GEN-LAST:event_jButton1MouseClicked

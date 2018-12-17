@@ -56,11 +56,11 @@ public class Encomenda {
         return this.configuração.stream().collect(Collectors.toList());
     }
     
-    public void addToConfiguração(String c){
+    public void addToConfiguracao(String c){
         this.configuração.add(c);
     }
     
-    public void removeDaConfiguração(String c){
+    public void removeDaConfiguracao(String c){
         this.configuração.remove(c);
     }
     
