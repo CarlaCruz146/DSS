@@ -118,9 +118,8 @@ public class ListaEncomendas extends javax.swing.JDialog {
   
     public void addRowQToJTable(){
         model =  (DefaultTableModel) jTable1.getModel();
-        int n = (Integer) newe.model.getValueAt(newe.row,0);
         HashMap<Integer,Encomenda> encomendas = newe.configura.getFabrica().getEncomendas();
-        Object rowData[] = new Object[2];
+        Object rowData[] = new Object[encomendas.size()];
         for(Encomenda a: encomendas.values()){
             rowData[0] = a.getId();
             rowData[1] = a.getCarro();
@@ -163,7 +162,7 @@ public class ListaEncomendas extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ListaEncomendas dialog = new ListaEncomendas(new javax.swing.JFrame(), true);
+                ListaEncomendas dialog = new ListaEncomendas(newe, true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

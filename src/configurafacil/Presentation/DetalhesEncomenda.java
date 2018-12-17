@@ -5,6 +5,8 @@
  */
 package configurafacil.Presentation;
 
+import configurafacil.Business.Encomenda;
+import java.util.HashMap;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,7 +24,7 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
         this.setModal(modal);
         initComponents();
         setLocationRelativeTo(this);
-        addRowQToJTable();
+       // addRowQToJTable();
     }
 
     /**
@@ -116,16 +118,16 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /*
     public void addRowQToJTable(){
         model =  (DefaultTableModel) jTable1.getModel();
-        int n = (Integer) newa.model.getValueAt(newa.row,0);
-        HashMap<Integer,Encomenda>
-        Object rowData[] = new Object[1];
-        for(E u: utilizadores){
-            rowData[0] = u.getNome();
+        int n = (Integer) newe.model.getValueAt(newe.row,0);
+        HashMap<Integer,Encomenda> encomendas = newe.getFabrica().getEncomendas();
+        Object rowData[] = new Object[2];
+        for(Encomenda a: encomendas.values){
             model.addRow(rowData);
         }
-    }
+    }*/
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -162,7 +164,7 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                DetalhesEncomenda dialog = new DetalhesEncomenda(new javax.swing.JFrame(), true);
+                DetalhesEncomenda dialog = new DetalhesEncomenda(newe, true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

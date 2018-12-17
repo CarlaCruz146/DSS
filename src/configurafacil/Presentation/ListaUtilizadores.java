@@ -5,6 +5,7 @@
  */
 package configurafacil.Presentation;
 
+import configurafacil.Business.ConfiguraFacil;
 import configurafacil.Business.Utilizador;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -13,10 +14,11 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author jessica
  */
-public class ListaUtilizadores extends javax.swing.JFrame {
+public class ListaUtilizadores extends javax.swing.JDialog {
     public static Login newa;
-        DefaultTableModel model;
-
+    DefaultTableModel model;
+    private int row = 0;
+    private String nomeSel = "";
     /**
      * Creates new form ListaUtilizadores
      */
@@ -25,7 +27,7 @@ public class ListaUtilizadores extends javax.swing.JFrame {
         this.setModal(modal);
         initComponents();
         setLocationRelativeTo(this);
-        addRowQToJTable();
+        addFunc();
     }
 
     /**
@@ -128,10 +130,9 @@ public class ListaUtilizadores extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    public void addRowQToJTable(){
+    public void addFunc(){
         model =  (DefaultTableModel) jTable1.getModel();
-        int n = (Integer) newa.model.getValueAt(newa.row,0);
-        List<Utilizador> utilizadores = newe.configura.getUtilizadores();
+        List<Utilizador> utilizadores = newa.configura.getUtilizadores();
         Object rowData[] = new Object[1];
         for(Utilizador u: utilizadores){
             rowData[0] = u.getNome();
@@ -149,10 +150,25 @@ public class ListaUtilizadores extends javax.swing.JFrame {
         new InserirUtilizador(newa, true).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        row = jTable1.getSelectedRow();
+        nomeSel = (String) model.getValueAt(row, 1);
+        List<Utilizador> utilizadores = newa.configura.getUtilizadores();
+        for(Utilizador u: utilizadores){
+            if(u.getNome().equals(nomeSel)){
+                utilizadores.remove(u);
+                break;
+            }
+        }
+        if(row != -1) {
+        int modelIndex = jTable1.convertRowIndexToModel(row); // converts the row index in the view to the appropriate index in the model
+        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+        model.removeRow(modelIndex);
+    }       
 
+    }//GEN-LAST:event_jButton2ActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -183,7 +199,7 @@ public class ListaUtilizadores extends javax.swing.JFrame {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ListaUtilizadores dialog = new ListaUtilizadores(new javax.swing.JFrame(), true);
+                ListaUtilizadores dialog = new ListaUtilizadores(newa, true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
