@@ -15,21 +15,27 @@ import java.util.stream.Collectors;
  */
 public class Stand {
     Map<String,Cliente> clientes;
+    Map<String,Componente> componentes;
     
     public Stand() {
         this.clientes = new HashMap<String,Cliente>();
-    }
-    
-    public Stand(Stand s){
-        this.clientes = s.getClientes();
+        this.componentes = new HashMap<String,Componente>();
     }
 
     public Map<String,Cliente> getClientes(){
         return this.clientes.entrySet().stream().collect(Collectors.toMap(e->e.getKey(), e->e.getValue()));
     }
     
+    public Map<String,Componente> getComponentes(){
+        return this.componentes.entrySet().stream().collect(Collectors.toMap(e->e.getKey(), e->e.getValue()));
+    }
+    
     public Cliente getCliente(String nif){
         return this.clientes.get(nif);
+    }
+    
+    public Componente getComponente(String nome){
+        return this.componentes.get(nome);
     }
    
    public void setCliente(String nif, Cliente c){
@@ -40,10 +46,7 @@ public class Stand {
         this.clientes.put(c.getNif(),c);
     }
     
-    public Stand clone(){
-        return new Stand(this);
+    public void addComponente(Componente c){
+        this.componentes.put(c.getNome(),c);
     }
-
-   
-    
 }

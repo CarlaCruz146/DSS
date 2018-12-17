@@ -5,6 +5,8 @@
  */
 package configurafacil.Presentation;
 
+import configurafacil.Business.Componente;
+
 /**
  *
  * @author mercy
@@ -124,7 +126,8 @@ public class PacoteSport extends javax.swing.JDialog {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        c.encomenda.addToConfiguracao("Pacote Sport");
+        Componente comp = c.newe.newa.configura.getStand().getComponente("Pacote Comfort");
+        c.encomenda.addToConfiguração(comp);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1MouseClicked
 

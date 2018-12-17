@@ -5,6 +5,8 @@
  */
 package configurafacil.Presentation;
 
+import configurafacil.Business.Componente;
+
 /**
  *
  * @author utilizador
@@ -148,7 +150,8 @@ public class Jantes extends javax.swing.JDialog {
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor escolha uma jantes","Jantes não selecionado", 0);
         }
         else {
-            c.encomenda.addToConfiguracao(this.jante);
+            Componente comp = c.newe.newa.configura.getStand().getComponente(this.jante);
+            c.encomenda.addToConfiguração(comp);
             this.setVisible(false);
         }
     }//GEN-LAST:event_jButton1MouseClicked

@@ -5,6 +5,8 @@
  */
 package configurafacil.Presentation;
 
+import configurafacil.Business.Componente;
+
 /**
  *
  * @author jessica
@@ -156,7 +158,8 @@ public class Pintura extends javax.swing.JDialog {
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor escolha a pintura","Pintura não selecionada", 0);
         }
         else {
-            c.encomenda.addToConfiguracao(this.pintura);
+            Componente comp = c.newe.newa.configura.getStand().getComponente(this.pintura);
+            c.encomenda.addToConfiguração(comp);
             this.setVisible(false);
         }
     }//GEN-LAST:event_jButton1ActionPerformed

@@ -5,6 +5,8 @@
  */
 package configurafacil.Presentation;
 
+import configurafacil.Business.Componente;
+
 /**
  *
  * @author utilizador
@@ -122,7 +124,8 @@ public class PacoteConfort extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        c.encomenda.addToConfiguracao("Pacote Comfort");
+        Componente comp = c.newe.newa.configura.getStand().getComponente("Pacote Comfort");
+        c.encomenda.addToConfiguração(comp);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1MouseClicked
 

@@ -5,6 +5,8 @@
  */
 package configurafacil.Presentation;
 
+import configurafacil.Business.Componente;
+
 /**
  *
  * @author utilizador
@@ -147,7 +149,8 @@ public class Motor extends javax.swing.JDialog {
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor escolha um motor","Motor não selecionado", 0);
         }
         else {
-            c.encomenda.addToConfiguracao(this.motor);
+            Componente comp = c.newe.newa.configura.getStand().getComponente(this.motor);
+            c.encomenda.addToConfiguração(comp);
             this.setVisible(false);
         }
     }//GEN-LAST:event_jButton1MouseClicked

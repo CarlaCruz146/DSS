@@ -17,21 +17,21 @@ public class Encomenda {
     private int id;
     private String carro;
     private int estado;
-    private List <String> configuracao;
+    private List <Componente> configuracao;
     
     public Encomenda() {
         this.id = 0;
         this.carro = "";
         this.estado = 0; // 0 em espera
-        this.configuracao = new ArrayList<String>();
+        this.configuracao = new ArrayList<Componente>();
     }
     
     public Encomenda(int id, String carro, int estado, List<String> quotas){
         this.id = id;
         this.carro = carro;
         this.estado = estado;
-        this.configuracao = new ArrayList<String>();
-        if (configuracao != null) this.configuracao = quotas.stream().collect(Collectors.toList());
+        this.configuracao = new ArrayList<Componente>();
+        if (configuracao != null) this.configuracao = configuracao.stream().collect(Collectors.toList());
     }
     
     public Encomenda(Encomenda e){
@@ -52,18 +52,17 @@ public class Encomenda {
     public int getEstado(){
         return this.estado;
     }
-    public List<String> getConfig(){
+    public List<Componente> getConfig(){
         return this.configuracao.stream().collect(Collectors.toList());
     }
     
-    public void addToConfiguracao(String c){
+    public void addToConfiguração(Componente c){
         this.configuracao.add(c);
     }
     
-    public void removeDaConfiguracao(String c){
+    public void removeDaConfiguração(Componente c){
         this.configuracao.remove(c);
     }
-    
     
     public void addCarro(String carro){
         this.carro = carro;
@@ -77,7 +76,7 @@ public class Encomenda {
         this.estado = e;
     }
     
-    public void setConfig(List<String> c){
+    public void setConfig(List<Componente> c){
         this.configuracao = c.stream().collect(Collectors.toList());
     }
     
@@ -89,10 +88,6 @@ public class Encomenda {
             b = this.carro.equals(e.getCarro());
         }
         return b;
-    }
-    
-    public Object clone() {
-        return new Encomenda(this);
     }
 
     //Falta imprimir a lista dos arrays

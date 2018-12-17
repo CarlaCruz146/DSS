@@ -5,6 +5,8 @@
  */
 package configurafacil.Presentation;
 
+import configurafacil.Business.Componente;
+
 /**
  *
  * @author utilizador
@@ -164,7 +166,8 @@ public class Pneu extends javax.swing.JDialog {
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor escolha um pneu","Pneu não selecionado", 0);
         }
         else {
-            c.encomenda.addToConfiguracao(this.pneu);
+            Componente comp = c.newe.newa.configura.getStand().getComponente(this.pneu);
+            c.encomenda.addToConfiguração(comp);
             this.setVisible(false);
         }
     }//GEN-LAST:event_jButton1MouseClicked

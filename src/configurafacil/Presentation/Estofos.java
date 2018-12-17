@@ -5,6 +5,8 @@
  */
 package configurafacil.Presentation;
 
+import configurafacil.Business.Componente;
+
 /**
  *
  * @author utilizador
@@ -165,7 +167,8 @@ public class Estofos extends javax.swing.JDialog {
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor escolha um estofo","Estofo não selecionado", 0);
         }
         else {
-            c.encomenda.addToConfiguracao(this.estofo);
+             Componente comp = c.newe.newa.configura.getStand().getComponente(this.estofo);
+            c.encomenda.addToConfiguração(comp);
             this.setVisible(false);
         }
     }//GEN-LAST:event_jButton1MouseClicked
