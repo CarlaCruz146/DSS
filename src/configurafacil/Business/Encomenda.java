@@ -16,17 +16,20 @@ import java.util.stream.Collectors;
 public class Encomenda {
     private int id;
     private String carro;
+    private int estado;
     private List <String> configuração;
     
     public Encomenda() {
         this.id = 0;
         this.carro = "";
+        this.estado = 0; // 0 em espera
         this.configuração = new ArrayList<String>();
     }
     
-    public Encomenda(int id, String carro, List<String> quotas){
+    public Encomenda(int id, String carro, int estado, List<String> quotas){
         this.id = id;
         this.carro = carro;
+        this.estado = estado;
         this.configuração = new ArrayList<String>();
         if (configuração != null) this.configuração = quotas.stream().collect(Collectors.toList());
     }
@@ -34,6 +37,7 @@ public class Encomenda {
     public Encomenda(Encomenda e){
         this.id = e.getId();
         this.carro = e.getCarro();
+        this.estado = e.getEstado();
         this.configuração = e.getConfig();
     }
     
@@ -45,6 +49,9 @@ public class Encomenda {
         return this.carro;
     }
     
+    public int getEstado(){
+        return this.estado;
+    }
     public List<String> getConfig(){
         return this.configuração.stream().collect(Collectors.toList());
     }
@@ -60,6 +67,14 @@ public class Encomenda {
     
     public void addCarro(String carro){
         this.carro = carro;
+    }
+    
+    public void setCarro(String c){
+        this.carro = c;
+    }
+    
+    public void setEstado(int e){
+        this.estado = e;
     }
     
     public void setConfig(List<String> c){
