@@ -5,18 +5,27 @@
  */
 package configurafacil.Presentation;
 
+import configurafacil.Business.Utilizador;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author jessica
  */
-public class ListaUtilizadores extends javax.swing.JDialog {
-    public static Login newe; // ta mal
+public class ListaUtilizadores extends javax.swing.JFrame {
+    public static Login newa;
+        DefaultTableModel model;
+
     /**
      * Creates new form ListaUtilizadores
      */
-    public ListaUtilizadores(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public ListaUtilizadores(Login parent, boolean modal) {
+        this.newa = parent;
+        this.setModal(modal);
         initComponents();
+        setLocationRelativeTo(this);
+        addRowQToJTable();
     }
 
     /**
@@ -90,14 +99,14 @@ public class ListaUtilizadores extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2)
                         .addGap(15, 15, 15)
                         .addComponent(jButton3))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 12, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -119,6 +128,17 @@ public class ListaUtilizadores extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    public void addRowQToJTable(){
+        model =  (DefaultTableModel) jTable1.getModel();
+        int n = (Integer) newa.model.getValueAt(newa.row,0);
+        List<Utilizador> utilizadores = newe.configura.getUtilizadores();
+        Object rowData[] = new Object[1];
+        for(Utilizador u: utilizadores){
+            rowData[0] = u.getNome();
+            model.addRow(rowData);
+        }
+    }
+    
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
@@ -126,7 +146,7 @@ public class ListaUtilizadores extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        new InserirUtilizador(newe, true).setVisible(true);
+        new InserirUtilizador(newa, true).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

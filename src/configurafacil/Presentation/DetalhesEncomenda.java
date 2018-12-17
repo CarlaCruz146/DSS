@@ -5,18 +5,24 @@
  */
 package configurafacil.Presentation;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author jessica
  */
 public class DetalhesEncomenda extends javax.swing.JDialog {
-
+    public static ListaEncomendas newe;
+    DefaultTableModel model;
     /**
      * Creates new form DetalhesEncomenda
      */
-    public DetalhesEncomenda(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public DetalhesEncomenda(ListaEncomendas parent, boolean modal) {
+        this.newe = parent;
+        this.setModal(modal);
         initComponents();
+        setLocationRelativeTo(this);
+        addRowQToJTable();
     }
 
     /**
@@ -110,8 +116,20 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    public void addRowQToJTable(){
+        model =  (DefaultTableModel) jTable1.getModel();
+        int n = (Integer) newa.model.getValueAt(newa.row,0);
+        HashMap<Integer,Encomenda>
+        Object rowData[] = new Object[1];
+        for(E u: utilizadores){
+            rowData[0] = u.getNome();
+            model.addRow(rowData);
+        }
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

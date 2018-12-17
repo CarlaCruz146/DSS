@@ -5,18 +5,27 @@
  */
 package configurafacil.Presentation;
 
+import java.util.HashMap;
+import configurafacil.Business.Encomenda;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author jessica
  */
 public class ListaEncomendas extends javax.swing.JDialog {
-
+    public static Login newe;
+    DefaultTableModel model;
+ 
     /**
-     * Creates new form ListaEncomendas
+     * Creates new form ConsultarStock2
      */
-    public ListaEncomendas(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public ListaEncomendas(Login parent, boolean modal) {
+        this.newe = parent;
+        this.setModal(modal);
         initComponents();
+        setLocationRelativeTo(this);
+        addRowQToJTable();
     }
 
     /**
@@ -106,7 +115,19 @@ public class ListaEncomendas extends javax.swing.JDialog {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+  
+    public void addRowQToJTable(){
+        model =  (DefaultTableModel) jTable1.getModel();
+        int n = (Integer) newe.model.getValueAt(newe.row,0);
+        HashMap<Integer,Encomenda> encomendas = newe.configura.getFabrica().getEncomendas();
+        Object rowData[] = new Object[2];
+        for(Encomenda a: encomendas.values()){
+            rowData[0] = a.getId();
+            rowData[1] = a.getCarro();
+            model.addRow(rowData);
+        }
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);

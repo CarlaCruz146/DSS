@@ -5,18 +5,24 @@
  */
 package configurafacil.Presentation;
 
+
+import configurafacil.Business.ConfiguraFacil;
+import configurafacil.Business.Utilizador;
+
 /**
  *
  * @author jessica
  */
 public class InserirUtilizador extends javax.swing.JDialog {
-
+    public static Login newe;
     /**
      * Creates new form InserirUtilizador
      */
-    public InserirUtilizador(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public InserirUtilizador(Login parent, boolean modal) {
+        this.newe = parent;
+        this.setModal(modal);
         initComponents();
+        setLocationRelativeTo(this);
     }
 
     /**
@@ -30,10 +36,10 @@ public class InserirUtilizador extends javax.swing.JDialog {
 
         Nome = new javax.swing.JLabel();
         Password = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        nome = new javax.swing.JTextField();
+        pass = new javax.swing.JPasswordField();
+        checkStand = new javax.swing.JRadioButton();
+        checkFabrica = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
@@ -45,29 +51,29 @@ public class InserirUtilizador extends javax.swing.JDialog {
 
         Password.setText("Password");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        nome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                nomeActionPerformed(evt);
             }
         });
 
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+        pass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
+                passActionPerformed(evt);
             }
         });
 
-        jRadioButton1.setText("Funcionário do Stand");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        checkStand.setText("Funcionário do Stand");
+        checkStand.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                checkStandActionPerformed(evt);
             }
         });
 
-        jRadioButton2.setText("Funcionário da Fábrica");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        checkFabrica.setText("Funcionário da Fábrica");
+        checkFabrica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                checkFabricaActionPerformed(evt);
             }
         });
 
@@ -92,11 +98,11 @@ public class InserirUtilizador extends javax.swing.JDialog {
                     .addComponent(Password))
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton1)
+                    .addComponent(checkFabrica)
+                    .addComponent(checkStand)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextField1)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)))
+                        .addComponent(nome)
+                        .addComponent(pass, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)))
                 .addContainerGap(36, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -117,15 +123,15 @@ public class InserirUtilizador extends javax.swing.JDialog {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Nome)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Password)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
-                .addComponent(jRadioButton1)
+                .addComponent(checkStand)
                 .addGap(18, 18, 18)
-                .addComponent(jRadioButton2)
+                .addComponent(checkFabrica)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addContainerGap(15, Short.MAX_VALUE))
@@ -135,25 +141,46 @@ public class InserirUtilizador extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_nomeActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void checkStandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkStandActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_checkStandActionPerformed
 
+    
+    private boolean validaDados() {
+        boolean vazio = this.nome.equals("") || 
+                this.pass.equals("")|| (checkStand.isSelected() && checkStand.isSelected());
+        if (vazio)
+            javax.swing.JOptionPane.showMessageDialog(this, "Por favor preencha os dados.", "Dados incompletos", 0);
+               
+        return !vazio;
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+            String nome = this.nome.getText();
+            String pass = this.pass.getText();
+            int tipo=0;
+            if (checkStand.isSelected()) tipo = 1;
+            if (checkFabrica.isSelected()) tipo = 2;
+            
+            if (validaDados()){
+            Utilizador u = new Utilizador(nome,tipo,pass);
+            newe.configura.addUtilizador(u);
+            this.setVisible(false);
+            }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void checkFabricaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkFabricaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_checkFabricaActionPerformed
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+    private void passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
+    }//GEN-LAST:event_passActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,7 +212,7 @@ public class InserirUtilizador extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                InserirUtilizador dialog = new InserirUtilizador(new javax.swing.JFrame(), true);
+                InserirUtilizador dialog = new InserirUtilizador((Login) new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -200,12 +227,12 @@ public class InserirUtilizador extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Nome;
     private javax.swing.JLabel Password;
+    private javax.swing.JRadioButton checkFabrica;
+    private javax.swing.JRadioButton checkStand;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField nome;
+    private javax.swing.JPasswordField pass;
     // End of variables declaration//GEN-END:variables
 }
