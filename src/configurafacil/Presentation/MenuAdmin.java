@@ -14,9 +14,11 @@ public class MenuAdmin extends javax.swing.JDialog {
     /**
      * Creates new form MenuAdmin
      */
-    public MenuAdmin(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public MenuAdmin(Login parent, boolean modal) {
+        this.newe = parent;
+        this.setModal(modal);
         initComponents();
+        setLocationRelativeTo(this);
     }
 
     /**
@@ -117,7 +119,7 @@ public class MenuAdmin extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                MenuAdmin dialog = new MenuAdmin(new javax.swing.JFrame(), true);
+                MenuAdmin dialog = new MenuAdmin(newe, true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
