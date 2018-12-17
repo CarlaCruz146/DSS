@@ -31,6 +31,7 @@ public class Pintura extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         Cor3 = new javax.swing.JRadioButton();
         Cor1 = new javax.swing.JRadioButton();
         Cor2 = new javax.swing.JRadioButton();
@@ -41,6 +42,7 @@ public class Pintura extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        buttonGroup1.add(Cor3);
         Cor3.setText("Branco");
         Cor3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -48,6 +50,7 @@ public class Pintura extends javax.swing.JDialog {
             }
         });
 
+        buttonGroup1.add(Cor1);
         Cor1.setText("Cinzento");
         Cor1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -55,6 +58,7 @@ public class Pintura extends javax.swing.JDialog {
             }
         });
 
+        buttonGroup1.add(Cor2);
         Cor2.setText("Preto");
         Cor2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,6 +66,7 @@ public class Pintura extends javax.swing.JDialog {
             }
         });
 
+        buttonGroup1.add(Cor4);
         Cor4.setText("Azul");
         Cor4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -203,6 +208,7 @@ public class Pintura extends javax.swing.JDialog {
     private javax.swing.JRadioButton Cor2;
     private javax.swing.JRadioButton Cor3;
     private javax.swing.JRadioButton Cor4;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;

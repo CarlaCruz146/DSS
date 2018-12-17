@@ -31,6 +31,7 @@ public class Motor extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         Motor1 = new javax.swing.JRadioButton();
         Motor2 = new javax.swing.JRadioButton();
         Motor3 = new javax.swing.JRadioButton();
@@ -40,6 +41,7 @@ public class Motor extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        buttonGroup1.add(Motor1);
         Motor1.setText("D4 190cv Man. 6 Vel.");
         Motor1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -47,6 +49,7 @@ public class Motor extends javax.swing.JDialog {
             }
         });
 
+        buttonGroup1.add(Motor2);
         Motor2.setText("D4 190cv Geatronic 8 Vel.");
         Motor2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,6 +57,7 @@ public class Motor extends javax.swing.JDialog {
             }
         });
 
+        buttonGroup1.add(Motor3);
         Motor3.setText("D5 235cv Geatronic 8 Vel.");
         Motor3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -194,6 +198,7 @@ public class Motor extends javax.swing.JDialog {
     private javax.swing.JRadioButton Motor1;
     private javax.swing.JRadioButton Motor2;
     private javax.swing.JRadioButton Motor3;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;

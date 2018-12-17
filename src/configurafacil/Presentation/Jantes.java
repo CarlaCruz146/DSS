@@ -31,6 +31,7 @@ public class Jantes extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         Jante1 = new javax.swing.JRadioButton();
         Jante2 = new javax.swing.JRadioButton();
         Jante3 = new javax.swing.JRadioButton();
@@ -41,6 +42,7 @@ public class Jantes extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
+        buttonGroup1.add(Jante1);
         Jante1.setText("Jantes em liga leve 17''");
         Jante1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -48,6 +50,7 @@ public class Jantes extends javax.swing.JDialog {
             }
         });
 
+        buttonGroup1.add(Jante2);
         Jante2.setText("Jantes em liga leve 18'' 245/45  R18");
         Jante2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -55,6 +58,7 @@ public class Jantes extends javax.swing.JDialog {
             }
         });
 
+        buttonGroup1.add(Jante3);
         Jante3.setText("Jantes em liga leve 19'' 255/40 R19");
         Jante3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -195,6 +199,7 @@ public class Jantes extends javax.swing.JDialog {
     private javax.swing.JRadioButton Jante1;
     private javax.swing.JRadioButton Jante2;
     private javax.swing.JRadioButton Jante3;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;

@@ -31,6 +31,7 @@ public class Pneu extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         Pneu1 = new javax.swing.JRadioButton();
         Pneu2 = new javax.swing.JRadioButton();
         Pneu3 = new javax.swing.JRadioButton();
@@ -41,6 +42,7 @@ public class Pneu extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        buttonGroup1.add(Pneu1);
         Pneu1.setText("Bridgestone Turanza T005 205/55 R16 91V");
         Pneu1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -48,6 +50,7 @@ public class Pneu extends javax.swing.JDialog {
             }
         });
 
+        buttonGroup1.add(Pneu2);
         Pneu2.setText("Continental ContiEcoContact 5 205/55 R16 91V");
         Pneu2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -55,6 +58,7 @@ public class Pneu extends javax.swing.JDialog {
             }
         });
 
+        buttonGroup1.add(Pneu3);
         Pneu3.setText("Continental PremiumContact 6 205/55 R16 91H");
         Pneu3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,6 +66,7 @@ public class Pneu extends javax.swing.JDialog {
             }
         });
 
+        buttonGroup1.add(Pneu4);
         Pneu4.setText("Firestone Roadhawk 205/55  R16 91H");
         Pneu4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,6 +216,7 @@ public class Pneu extends javax.swing.JDialog {
     private javax.swing.JRadioButton Pneu2;
     private javax.swing.JRadioButton Pneu3;
     private javax.swing.JRadioButton Pneu4;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;

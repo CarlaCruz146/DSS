@@ -31,6 +31,7 @@ public class Estofos extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         Estofo1 = new javax.swing.JRadioButton();
         Estofo2 = new javax.swing.JRadioButton();
         Estofo3 = new javax.swing.JRadioButton();
@@ -42,6 +43,7 @@ public class Estofos extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
+        buttonGroup1.add(Estofo1);
         Estofo1.setText("Couro comfort carvão");
         Estofo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -49,6 +51,7 @@ public class Estofos extends javax.swing.JDialog {
             }
         });
 
+        buttonGroup1.add(Estofo2);
         Estofo2.setText("Couro comfort âmbar");
         Estofo2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,6 +59,7 @@ public class Estofos extends javax.swing.JDialog {
             }
         });
 
+        buttonGroup1.add(Estofo3);
         Estofo3.setText("Couro comfort maroon brown ");
         Estofo3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,6 +67,7 @@ public class Estofos extends javax.swing.JDialog {
             }
         });
 
+        buttonGroup1.add(Estofo4);
         Estofo4.setText("Couro comfort blond");
         Estofo4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -212,6 +217,7 @@ public class Estofos extends javax.swing.JDialog {
     private javax.swing.JRadioButton Estofo2;
     private javax.swing.JRadioButton Estofo3;
     private javax.swing.JRadioButton Estofo4;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
