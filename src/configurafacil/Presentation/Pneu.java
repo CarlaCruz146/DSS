@@ -167,7 +167,7 @@ public class Pneu extends javax.swing.JDialog {
         }
         else {
             Componente comp = c.newe.newa.configura.getStand().getComponente(this.pneu);
-            c.encomenda.addToConfiguração(comp);
+            c.encomenda.addToConfiguracao(comp);
             this.setVisible(false);
         }
     }//GEN-LAST:event_jButton1MouseClicked

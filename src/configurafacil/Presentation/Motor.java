@@ -150,7 +150,7 @@ public class Motor extends javax.swing.JDialog {
         }
         else {
             Componente comp = c.newe.newa.configura.getStand().getComponente(this.motor);
-            c.encomenda.addToConfiguração(comp);
+            c.encomenda.addToConfiguracao(comp);
             this.setVisible(false);
         }
     }//GEN-LAST:event_jButton1MouseClicked

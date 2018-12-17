@@ -127,7 +127,7 @@ public class PacoteSport extends javax.swing.JDialog {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
         Componente comp = c.newe.newa.configura.getStand().getComponente("Pacote Comfort");
-        c.encomenda.addToConfiguração(comp);
+        c.encomenda.addToConfiguracao(comp);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1MouseClicked
 

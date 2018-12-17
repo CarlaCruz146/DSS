@@ -5,6 +5,7 @@
  */
 package configurafacil.Presentation;
 
+import configurafacil.Business.Componente;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -16,7 +17,8 @@ import javax.swing.table.DefaultTableModel;
 public class SugestaoConfiguracao extends javax.swing.JDialog {
     public static EscolherCarro c;
     DefaultTableModel model;
-    String componente = ""; 
+    Componente componente; 
+    String nomeComponente = "";
     private int row = 0;
     /**
      * Creates new form SugestaoConfiguracao2
@@ -28,16 +30,21 @@ public class SugestaoConfiguracao extends javax.swing.JDialog {
        setLocationRelativeTo(this);
     }
 
-    public List<String> leConfiguracao(){
+    public List<Componente> leConfiguracao(){
         model =  (DefaultTableModel) jTable1.getModel();
-        List<String> config = new ArrayList<>();
+        List<Componente> config = new ArrayList<>();
         while(model.getValueAt(row,0) != null){
-            componente = (String) model.getValueAt(row, 0);
+            nomeComponente = (String) model.getValueAt(row, 0);
+            //criar a componente, arranjar maneira de a criar
             config.add(componente);
             row++;
         }
         return config;
     }
+    
+    //fazer metodo para ler os preços todos e por no textField do preço total
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -148,7 +155,7 @@ public class SugestaoConfiguracao extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        List<String> sugestao = leConfiguracao();
+        List<Componente> sugestao = leConfiguracao();
         this.c.encomenda.setConfig(sugestao);
     }//GEN-LAST:event_jButton1ActionPerformed
 
