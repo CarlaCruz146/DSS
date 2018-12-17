@@ -363,13 +363,13 @@ public class Configuracao extends javax.swing.JDialog {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
            Componente comp = newe.newe.newa.configura.getStand().getComponente("Vidro Escurecido");
-           newe.encomenda.addToConfiguração(comp);
+           newe.encomenda.addToConfiguracao(comp);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
         Componente comp = newe.newe.newa.configura.getStand().getComponente("Pára-choques");
-        newe.encomenda.addToConfiguração(comp);
+        newe.encomenda.addToConfiguracao(comp);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
@@ -385,13 +385,13 @@ public class Configuracao extends javax.swing.JDialog {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
         Componente comp = newe.newe.newa.configura.getStand().getComponente("Teto de abrir");
-        newe.encomenda.addToConfiguração(comp);
+        newe.encomenda.addToConfiguracao(comp);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
         Componente comp = newe.newe.newa.configura.getStand().getComponente("Pacotes de luz");
-        newe.encomenda.addToConfiguração(comp);
+        newe.encomenda.addToConfiguracao(comp);
     }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
