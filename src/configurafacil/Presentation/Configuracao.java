@@ -105,6 +105,11 @@ public class Configuracao extends javax.swing.JDialog {
         });
 
         jButton7.setText("Teto de abrir");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("Estofos");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -114,6 +119,11 @@ public class Configuracao extends javax.swing.JDialog {
         });
 
         jButton9.setText("Pacotes de luz");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jButton10.setText("Confort");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -192,7 +202,7 @@ public class Configuracao extends javax.swing.JDialog {
                                         .addGap(4, 4, 4)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 127, Short.MAX_VALUE))
+                                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(6, 6, 6)
@@ -210,7 +220,7 @@ public class Configuracao extends javax.swing.JDialog {
                                                     .addGroup(layout.createSequentialGroup()
                                                         .addGap(44, 44, 44)
                                                         .addComponent(jLabel6)
-                                                        .addGap(0, 19, Short.MAX_VALUE))))))
+                                                        .addGap(0, 0, Short.MAX_VALUE))))))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(layout.createSequentialGroup()
@@ -351,10 +361,12 @@ public class Configuracao extends javax.swing.JDialog {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        newe.encomenda.addToConfiguracao("Vidro Escurecido");
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+        newe.encomenda.addToConfiguracao("Pára-choques");
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
@@ -366,6 +378,16 @@ public class Configuracao extends javax.swing.JDialog {
         // TODO add your handling code here:
         new ConfiguracaoFinal(newe,true).setVisible(true);
     }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        newe.encomenda.addToConfiguracao("Teto de abrir");
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        newe.encomenda.addToConfiguracao("Pacotes de luz");
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments
