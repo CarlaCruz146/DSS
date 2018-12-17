@@ -15,21 +15,24 @@ import java.util.stream.Collectors;
 public class ConfiguraFacil {
     private Stand stand;
     private Fabrica fabrica;
-    private List<Utilizador> utilizadores;
+    private Utilizador utilizador;
+    private GestaoUtilizadores gestaoU;
     
     public ConfiguraFacil(){
         this.stand = new Stand();
         this.fabrica = new Fabrica();
-        this.utilizadores = new ArrayList<>();
+        this.utilizador = null;
+        this.gestaoU = new GestaoUtilizadores();
+        addFunc();
     }
-    
-    
-    public ConfiguraFacil(Stand s, Fabrica f, List<Utilizador> u){
-        this.stand = s.clone();
-        this.fabrica = f.clone();
-        this.utilizadores = u.stream().collect(Collectors.toList());
+    public void addFunc() {
+        Utilizador stand = new Utilizador("João Silva",1,"joao");
+        gestaoU.addUtilizador(stand);
+        Utilizador fabrica = new Utilizador("Carlos Costa",2,"carlos");
+        gestaoU.addUtilizador(fabrica);
+        Utilizador admin = new Utilizador("Admin",0,"admin");
+        gestaoU.addUtilizador(admin);
     }
-    
     public Stand getStand(){
         return this.stand;
     }
@@ -38,8 +41,12 @@ public class ConfiguraFacil {
         return this.fabrica;
     }
     
-    public List<Utilizador> getUtilizadores(){
-        return this.utilizadores.stream().collect(Collectors.toList());
+    public Utilizador getUtilizador(){
+        return this.utilizador;
+    }
+    
+    public GestaoUtilizadores getGestaoU(){
+        return this.gestaoU;
     }
     
     public void setStand(Stand s){
@@ -50,12 +57,14 @@ public class ConfiguraFacil {
         this.fabrica = f.clone();
     }
     
-    public void setUtilizadores(List<Utilizador> u){
-        this.utilizadores = u.stream().map(Utilizador :: clone).collect(Collectors.toList());
+    public void login(String nome, String password){
+        try{
+            this.utilizador = gestaoU.verificaUtilizador(nome, password);
+        }
+        catch(Exception e){}
     }
     
-    public void addUtilizador(Utilizador u){
-        this.utilizadores.add((Utilizador) u.clone());
+    public void logout(){
+        this.utilizador = null;
     }
-    
 }

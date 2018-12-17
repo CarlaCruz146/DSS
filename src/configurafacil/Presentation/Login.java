@@ -15,28 +15,11 @@ import configurafacil.Business.Utilizador;
 public class Login extends javax.swing.JFrame {
     ConfiguraFacil configura = new ConfiguraFacil();
     
-     public void addFunc() {
-        Utilizador stand = new Utilizador("João Silva",1,"joao");
-        configura.addUtilizador(stand);
-        Utilizador fabrica = new Utilizador("Carlos Costa",2,"carlos");
-        configura.addUtilizador(fabrica);
-        Utilizador admin = new Utilizador("Admin",0,"admin");
-        configura.addUtilizador(admin);
-    }
     /**
      * Creates new form Login
      */
     public Login() {
-        addFunc();
         initComponents();
-    }
-    
-        private int tipoFuncionario() {
-        for(Utilizador u : configura.getUtilizadores()){
-            if(u.getNome().equals(this.nome.getText()) && u.getPassword().equals(this.password.getText()))
-                return u.getTipo();
-        }
-        return -1;
     }
     
     private boolean validaDados() {
@@ -137,26 +120,31 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         if(this.validaDados()) {
-            if (this.tipoFuncionario() == 1){
+            String nome = this.nome.getText();
+            String password = this.password.getText();
+            try{
+                configura.login(nome, password);
+            }
+            catch (Exception e){}
+            if (configura.getGestaoU().tipoFuncionario(nome, password) == 1){
+                this.setVisible(false);
                 new DadosCliente(this, true).setVisible(true);
-                this.setVisible(false);
             }
-            else if (this.tipoFuncionario() == 2){
+            else if (configura.getGestaoU().tipoFuncionario(nome, password) == 2){
+                this.setVisible(false);
                 new MenuFuncionario(this, true).setVisible(true);
-                this.setVisible(false);
             }
-            else if (this.tipoFuncionario() == 0) {
-                new MenuAdmin(this, true).setVisible(true);
+            else if (configura.getGestaoU().tipoFuncionario(nome, password) == 0) {
                 this.setVisible(false);
+                new MenuAdmin(this, true).setVisible(true);
             }
             else{
                 javax.swing.JOptionPane.showMessageDialog(this, "Por favor preencha os dados.", "Dados incorretos", 0);
                 this.nome.setText("");
                 this.password.setText("");
             }
-        }               
+        }                  
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeActionPerformed
