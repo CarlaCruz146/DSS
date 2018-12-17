@@ -19,6 +19,7 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
     DefaultTableModel model;
     private int row = 0;
     private String componente= "";
+    //Encomenda novo = new Encomenda();
     /**
      * Creates new form ConfiguracaoFinal
      */
@@ -26,16 +27,18 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
        this.c = parent;
        this.setModal(modal);
        initComponents();
+       //novo = teste();
        insereConfigTabela();
        setLocationRelativeTo(this);
+       
     }
     /*
     public Encomenda teste(){
         Encomenda e = new Encomenda(132,"Mercedes",0, new ArrayList<>());
         List<String> comps = new ArrayList<>();
-        comps.add("Motor lala");
-        comps.add("Jantes xixixi");
-        comps.add("Rodas wleelle");
+        comps.add("Motor A");
+        comps.add("Jantes B");
+        comps.add("Rodas C");
         e.setConfig(comps);
         return e;
     }*/
@@ -43,6 +46,7 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
     public void insereConfigTabela(){
         model =  (DefaultTableModel) jTable1.getModel();
         List<String> configFinal = c.encomenda.getConfig();
+       // List<String> configFinal = novo.getConfig();
         Object rowData[] = new Object[configFinal.size()];
         for(String s : configFinal){
             rowData[0] = s;
@@ -142,7 +146,15 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        this.c.encomenda.removeDaConfiguracao(componente);
+        model =  (DefaultTableModel) jTable1.getModel();
+        c.encomenda.removeDaConfiguracao(componente);
+        //this.novo.removeDaConfiguracao(componente);
+        model.removeRow(row);
+        /*
+        List<String> configFinal = novo.getConfig();
+        for(String s : configFinal)
+            System.out.println(s);
+         */
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
