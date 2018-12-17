@@ -7,6 +7,7 @@ package configurafacil.Business;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -40,4 +41,12 @@ public class GestaoUtilizadores {
     public void addUtilizador(Utilizador u){
         utilizadores.put(u.getNome(),u);
     }
+    
+    public Map<String,Utilizador> getUtilizadores(){
+        return this.utilizadores.entrySet().stream().collect(Collectors.toMap(e->e.getKey(), e->e.getValue()));
+    }
+    
+    public void setUtilizador(String nome, Utilizador u){
+       this.utilizadores.replace(nome,u);
+   }
 }

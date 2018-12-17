@@ -8,6 +8,7 @@ package configurafacil.Presentation;
 import configurafacil.Business.ConfiguraFacil;
 import configurafacil.Business.Utilizador;
 import java.util.List;
+import java.util.Map;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -27,7 +28,7 @@ public class ListaUtilizadores extends javax.swing.JDialog {
         this.setModal(modal);
         initComponents();
         setLocationRelativeTo(this);
-        addFunc();
+        apresentaFunc();
     }
 
     /**
@@ -130,11 +131,10 @@ public class ListaUtilizadores extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    public void addFunc(){
+    public void apresentaFunc(){
         model =  (DefaultTableModel) jTable1.getModel();
-        List<Utilizador> utilizadores = newa.configura.getUtilizadores();
         Object rowData[] = new Object[1];
-        for(Utilizador u: utilizadores){
+        for(Utilizador u: newa.configura.getGestaoU().getUtilizadores().values()){
             rowData[0] = u.getNome();
             model.addRow(rowData);
         }
@@ -155,8 +155,8 @@ public class ListaUtilizadores extends javax.swing.JDialog {
         // TODO add your handling code here:
         row = jTable1.getSelectedRow();
         nomeSel = (String) model.getValueAt(row, 1);
-        List<Utilizador> utilizadores = newa.configura.getUtilizadores();
-        for(Utilizador u: utilizadores){
+        Map<String,Utilizador> utilizadores = newa.configura.getGestaoU().getUtilizadores();
+        for(Utilizador u: utilizadores.values()){
             if(u.getNome().equals(nomeSel)){
                 utilizadores.remove(u);
                 break;

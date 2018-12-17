@@ -3,10 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/utilizador/ConfiguraFacil/src/configurafacil/Presentation/DadosCliente.java</file>
-            <file>file:/home/utilizador/ConfiguraFacil/src/configurafacil/Presentation/MenuFuncionario.java</file>
-            <file>file:/home/utilizador/ConfiguraFacil/src/configurafacil/Presentation/Login.java</file>
-            <file>file:/home/utilizador/ConfiguraFacil/src/configurafacil/Presentation/MenuAdmin.java</file>
+            <file>file:/Users/carlacruz/Desktop/DSS/ConfiguraFacil/src/configurafacil/Presentation/InserirUtilizador.java</file>
+            <file>file:/Users/carlacruz/Desktop/DSS/ConfiguraFacil/src/configurafacil/Presentation/Login.java</file>
+            <file>file:/Users/carlacruz/Desktop/DSS/ConfiguraFacil/src/configurafacil/Presentation/ListaUtilizadores.java</file>
         </group>
     </open-files>
 </project-private>
