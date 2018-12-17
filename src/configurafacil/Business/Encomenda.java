@@ -17,28 +17,28 @@ public class Encomenda {
     private int id;
     private String carro;
     private int estado;
-    private List <String> configuração;
+    private List <String> configuracao;
     
     public Encomenda() {
         this.id = 0;
         this.carro = "";
         this.estado = 0; // 0 em espera
-        this.configuração = new ArrayList<String>();
+        this.configuracao = new ArrayList<String>();
     }
     
     public Encomenda(int id, String carro, int estado, List<String> quotas){
         this.id = id;
         this.carro = carro;
         this.estado = estado;
-        this.configuração = new ArrayList<String>();
-        if (configuração != null) this.configuração = quotas.stream().collect(Collectors.toList());
+        this.configuracao = new ArrayList<String>();
+        if (configuracao != null) this.configuracao = quotas.stream().collect(Collectors.toList());
     }
     
     public Encomenda(Encomenda e){
         this.id = e.getId();
         this.carro = e.getCarro();
         this.estado = e.getEstado();
-        this.configuração = e.getConfig();
+        this.configuracao = e.getConfig();
     }
     
     public int getId(){
@@ -53,15 +53,15 @@ public class Encomenda {
         return this.estado;
     }
     public List<String> getConfig(){
-        return this.configuração.stream().collect(Collectors.toList());
+        return this.configuracao.stream().collect(Collectors.toList());
     }
     
     public void addToConfiguracao(String c){
-        this.configuração.add(c);
+        this.configuracao.add(c);
     }
     
     public void removeDaConfiguracao(String c){
-        this.configuração.remove(c);
+        this.configuracao.remove(c);
     }
     
     
@@ -78,7 +78,7 @@ public class Encomenda {
     }
     
     public void setConfig(List<String> c){
-        this.configuração = c.stream().collect(Collectors.toList());
+        this.configuracao = c.stream().collect(Collectors.toList());
     }
     
     public boolean equals(Object o) {

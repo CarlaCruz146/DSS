@@ -7,7 +7,6 @@ package configurafacil.Presentation;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -30,9 +29,19 @@ public class ConsultarStock extends javax.swing.JDialog {
         insereStockTabela();
         setLocationRelativeTo(this);
     }
+    /*
+    public Map<String,Integer> testeStock(){
+       Map<String,Integer> stock = new HashMap<>();
+       stock.put("Jantes Y", 43);
+       stock.put("Motor AXL", 21);
+       return stock;
+    }*/
+    
+    
     public void insereStockTabela(){
         model =  (DefaultTableModel) jTable1.getModel();
         Map<String,Integer> stockDisponivel = newe.configura.getFabrica().getStock();
+        //Map<String,Integer> stockDisponivel = testeStock();
         Object rowData[] = new Object[stockDisponivel.size()];
         for(Map.Entry s : stockDisponivel.entrySet()){
             rowData[0] = s.getKey();
@@ -72,16 +81,7 @@ public class ConsultarStock extends javax.swing.JDialog {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Componente", "Quantidade"
@@ -192,6 +192,12 @@ public class ConsultarStock extends javax.swing.JDialog {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ConsultarStock.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

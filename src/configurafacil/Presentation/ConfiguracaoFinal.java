@@ -5,6 +5,8 @@
  */
 package configurafacil.Presentation;
 
+import configurafacil.Business.Encomenda;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,6 +29,16 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
        insereConfigTabela();
        setLocationRelativeTo(this);
     }
+    /*
+    public Encomenda teste(){
+        Encomenda e = new Encomenda(132,"Mercedes",0, new ArrayList<>());
+        List<String> comps = new ArrayList<>();
+        comps.add("Motor lala");
+        comps.add("Jantes xixixi");
+        comps.add("Rodas wleelle");
+        e.setConfig(comps);
+        return e;
+    }*/
     
     public void insereConfigTabela(){
         model =  (DefaultTableModel) jTable1.getModel();
@@ -36,6 +48,7 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
             rowData[0] = s;
            // rowData[1] = preco; com a config assim nao se poe o preço na tabela
             model.addRow(rowData);
+            
         }
     }
     /**
@@ -58,16 +71,7 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Componente", "Preço"
