@@ -33,6 +33,9 @@ public class SugestaoConfiguracao extends javax.swing.JDialog {
         this.configura = c;
         this.parent2 = (EscolherCarro) parent2;
         //sugestao = leConfiguracao();
+        //depois quando tivermos o metodo de criar uma sugestao com o preço limite, 
+        //n vai ser preciso o leConfiguracao
+        
         jTextField1.setText(Double.toString(precoTotal));
         jTextField1.setEditable(false);
     }
@@ -40,7 +43,7 @@ public class SugestaoConfiguracao extends javax.swing.JDialog {
     public List<Componente> leConfiguracao(){
         model =  (DefaultTableModel) jTable1.getModel();
         List<Componente> config = new ArrayList<>();
-        while(model.getValueAt(row,0) != null){
+        while(row < model.getRowCount()){
             nomeComponente = (String) model.getValueAt(row, 0);
             componente = configura.getStand().getComponente(nomeComponente);
             config.add(componente);
