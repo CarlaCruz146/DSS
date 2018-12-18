@@ -19,7 +19,7 @@ public class ConsultarStock extends javax.swing.JDialog {
     DefaultTableModel model;
     private int row = 0;
     private String componente= "";
-    private int valor = 0;
+    private String valor;
     /**
      * Creates new form ConsultarStock
      */
@@ -46,11 +46,11 @@ public class ConsultarStock extends javax.swing.JDialog {
         model =  (DefaultTableModel) jTable1.getModel();
         Map<String,Integer> stockAtualizado = new HashMap<>();
         row = 0;
-        while(model.getValueAt(row,0) != null){
+        while(row < model.getRowCount()){
             componente = (String) model.getValueAt(row, 0);
-            valor = (Integer) model.getValueAt(row,1);
-            //valor = Integer.valueOf(v);
-            stockAtualizado.put(componente, valor);
+            Object v = model.getValueAt(row,1);
+            valor = v.toString();
+            stockAtualizado.put(componente, Integer.parseInt(valor));
             row++;
         }
         return stockAtualizado;
@@ -84,6 +84,9 @@ public class ConsultarStock extends javax.swing.JDialog {
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jTable1MouseExited(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -145,7 +148,7 @@ public class ConsultarStock extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Map<String, Integer> s;
+        Map<String, Integer> s = new HashMap<>();
         s = leStock();
         configura.getFabrica().setStock(s);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -157,10 +160,11 @@ public class ConsultarStock extends javax.swing.JDialog {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        row = jTable1.getSelectedRow();
-        valor = (Integer) model.getValueAt(row, 1);
-        model.setValueAt(valor, row, 1);
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTable1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable1MouseExited
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
