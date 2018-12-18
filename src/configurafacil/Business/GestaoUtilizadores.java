@@ -49,4 +49,7 @@ public class GestaoUtilizadores {
     public void setUtilizador(String nome, Utilizador u){
        this.utilizadores.replace(nome,u);
    }
+    public void removeUtilizador(String nome){
+        this.utilizadores.remove(nome);
+    }
 }

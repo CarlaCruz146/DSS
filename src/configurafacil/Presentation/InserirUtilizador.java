@@ -14,12 +14,12 @@ import configurafacil.Business.Utilizador;
  * @author jessica
  */
 public class InserirUtilizador extends javax.swing.JDialog {
-    public static Login newe;
+    public static ListaUtilizadores lu;
     /**
      * Creates new form InserirUtilizador
      */
-    public InserirUtilizador(Login parent, boolean modal) {
-        this.newe = parent;
+    public InserirUtilizador(ListaUtilizadores parent, boolean modal) {
+        this.lu = parent;
         this.setModal(modal);
         initComponents();
         setLocationRelativeTo(this);
@@ -34,7 +34,6 @@ public class InserirUtilizador extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
         Nome = new javax.swing.JLabel();
         Password = new javax.swing.JLabel();
         nome = new javax.swing.JTextField();
@@ -64,7 +63,6 @@ public class InserirUtilizador extends javax.swing.JDialog {
             }
         });
 
-        buttonGroup1.add(checkStand);
         checkStand.setText("Funcionário do Stand");
         checkStand.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,7 +70,6 @@ public class InserirUtilizador extends javax.swing.JDialog {
             }
         });
 
-        buttonGroup1.add(checkFabrica);
         checkFabrica.setText("Funcionário da Fábrica");
         checkFabrica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,7 +169,7 @@ public class InserirUtilizador extends javax.swing.JDialog {
             
             if (validaDados()){
             Utilizador u = new Utilizador(nome,tipo,pass);
-            newe.configura.addUtilizador(u);
+            lu.newa.configura.getGestaoU().addUtilizador(u);
             this.setVisible(false);
             }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -215,7 +212,7 @@ public class InserirUtilizador extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                InserirUtilizador dialog = new InserirUtilizador((Login) new javax.swing.JFrame(), true);
+                InserirUtilizador dialog = new InserirUtilizador(lu, true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -230,7 +227,6 @@ public class InserirUtilizador extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Nome;
     private javax.swing.JLabel Password;
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JRadioButton checkFabrica;
     private javax.swing.JRadioButton checkStand;
     private javax.swing.JButton jButton1;

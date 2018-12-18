@@ -9,6 +9,7 @@ import configurafacil.Business.ConfiguraFacil;
 import configurafacil.Business.Utilizador;
 import java.util.List;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -51,11 +52,7 @@ public class ListaUtilizadores extends javax.swing.JDialog {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null},
-                {null}
+
             },
             new String [] {
                 "Funcionários"
@@ -147,27 +144,21 @@ public class ListaUtilizadores extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        new InserirUtilizador(newa, true).setVisible(true);
+        new InserirUtilizador(this, true).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        row = jTable1.getSelectedRow();
-        nomeSel = (String) model.getValueAt(row, 1);
-        Map<String,Utilizador> utilizadores = newa.configura.getGestaoU().getUtilizadores();
-        for(Utilizador u: utilizadores.values()){
-            if(u.getNome().equals(nomeSel)){
-                utilizadores.remove(u);
-                break;
-            }
-        }
-        if(row != -1) {
-        int modelIndex = jTable1.convertRowIndexToModel(row); // converts the row index in the view to the appropriate index in the model
-        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
-        model.removeRow(modelIndex);
-    }       
+        model = (DefaultTableModel)jTable1.getModel();
+        try{
+            row = jTable1.getSelectedRow();
+            nomeSel = (String)model.getValueAt(row, 0);
+            newa.configura.getGestaoU().removeUtilizador(nomeSel);
+            model.removeRow(row);       
 
+        } catch (Exception ex){
+            JOptionPane.showMessageDialog(null,ex);
+        }      
     }//GEN-LAST:event_jButton2ActionPerformed
     /**
      * @param args the command line arguments
