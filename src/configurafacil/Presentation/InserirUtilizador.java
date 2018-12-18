@@ -34,6 +34,7 @@ public class InserirUtilizador extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         Nome = new javax.swing.JLabel();
         Password = new javax.swing.JLabel();
         nome = new javax.swing.JTextField();
@@ -63,6 +64,7 @@ public class InserirUtilizador extends javax.swing.JDialog {
             }
         });
 
+        buttonGroup1.add(checkStand);
         checkStand.setText("Funcionário do Stand");
         checkStand.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,6 +72,7 @@ public class InserirUtilizador extends javax.swing.JDialog {
             }
         });
 
+        buttonGroup1.add(checkFabrica);
         checkFabrica.setText("Funcionário da Fábrica");
         checkFabrica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,6 +230,7 @@ public class InserirUtilizador extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Nome;
     private javax.swing.JLabel Password;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JRadioButton checkFabrica;
     private javax.swing.JRadioButton checkStand;
     private javax.swing.JButton jButton1;

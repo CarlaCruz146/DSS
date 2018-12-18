@@ -49,4 +49,8 @@ public class Stand {
     public void addComponente(Componente c){
         this.componentes.put(c.getNome(),c);
     }
+    
+    public void addEncomendaCliente(Cliente c, Encomenda e) {
+        this.clientes.get(c.getNif()).addEncomenda(e);
+    }
 }

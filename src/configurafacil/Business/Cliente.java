@@ -69,6 +69,11 @@ public class Cliente {
         enc.forEach(a->this.encomendas.add(a));
     }
     
+    public void addEncomenda(Encomenda e){
+        if (this.encomendas == null) this.encomendas = new ArrayList<>();
+        this.encomendas.add(e);
+    }
+    
      public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append("O utilizador ");

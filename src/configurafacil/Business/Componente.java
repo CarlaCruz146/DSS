@@ -67,13 +67,13 @@ public class Componente {
     
     public void setIncompativeis(List<String> incomp){
         this.compIncompativeis = new ArrayList<>();
-        for(String s : incomp)
+        for(String s : compIncompativeis)
             this.compIncompativeis.add(s);
     }
     
     public void setObrigatorias(List<String> obrig){
         this.compObrigatorias = new ArrayList<>();
-        for(String s : obrig)
+        for(String s : compObrigatorias)
             this.compObrigatorias.add(s);
     }
     

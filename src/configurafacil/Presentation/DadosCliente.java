@@ -13,6 +13,7 @@ import configurafacil.Business.Cliente;
  */
 public class DadosCliente extends javax.swing.JFrame {
     public static Login newa;
+    public static String cliente;
     
     /**
      * Creates new form DadosCliente
@@ -212,6 +213,7 @@ public class DadosCliente extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         if (this.validaDados()) {
+            this.cliente = this.nif.getText();
             String nome = this.nome.getText();
             String nif = this.nif.getText();
             String contacto = this.contacto.getText();

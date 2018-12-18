@@ -6,7 +6,8 @@
 package configurafacil.Presentation;
 
 import configurafacil.Business.Componente;
-import static configurafacil.Presentation.EscolherCarro.newe;
+import configurafacil.Business.Cliente;
+import static configurafacil.Presentation.DadosCliente.cliente;
 
 /**
  *
@@ -163,6 +164,11 @@ public class Configuracao extends javax.swing.JDialog {
         });
 
         jButton14.setText("Guardar");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/configurafacil/pneu.png"))); // NOI18N
 
@@ -393,6 +399,14 @@ public class Configuracao extends javax.swing.JDialog {
         Componente comp = newe.newe.newa.configura.getStand().getComponente("Pacotes de luz");
         newe.encomenda.addToConfiguracao(comp);
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+        Cliente c = newe.newe.newa.configura.getStand().getClientes().get(cliente);
+        newe.newe.newa.configura.getStand().addEncomendaCliente(c,newe.encomenda);
+        this.setVisible(false);
+        new DadosCliente(newe.newe.newa, true).setVisible(true);
+    }//GEN-LAST:event_jButton14ActionPerformed
 
     /**
      * @param args the command line arguments
