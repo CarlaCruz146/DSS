@@ -25,6 +25,7 @@ public class ConfiguraFacil {
         this.gestaoU = new GestaoUtilizadores();
         addFunc();
         addComp();
+        addEnc();
     }
     
     public void addFunc() {
@@ -43,6 +44,14 @@ public class ConfiguraFacil {
         stand.addComponente(c2);
         Componente c3 = new Componente("D4 190cv Man. 6 Vel.",2,null, null);
         stand.addComponente(c3);
+    }
+        public void addEnc() {
+        Encomenda e1 = new Encomenda(1,"BMW", 1, null);
+        fabrica.getGestaoE().addEncomenda(e1);
+        Encomenda e2 = new Encomenda(1,"Mercedes", 0, null);
+        fabrica.getGestaoE().addEncomenda(e2);
+        Encomenda e3 = new Encomenda(1,"Volvo", 1, null);
+        fabrica.getGestaoE().addEncomenda(e3);
     }
         
     public Stand getStand(){

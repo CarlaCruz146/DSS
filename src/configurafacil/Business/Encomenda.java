@@ -26,7 +26,7 @@ public class Encomenda {
         this.configuracao = new ArrayList<Componente>();
     }
     
-    public Encomenda(int id, String carro, int estado, List<String> quotas){
+    public Encomenda(int id, String carro, int estado, List<Componente> configuracao){
         this.id = id;
         this.carro = carro;
         this.estado = estado;

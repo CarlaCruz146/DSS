@@ -8,6 +8,7 @@ package configurafacil.Presentation;
 import configurafacil.Business.ConfiguraFacil;
 import java.util.HashMap;
 import configurafacil.Business.Encomenda;
+import java.util.Map;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,7 +26,7 @@ public class ListaEncomendas extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.configura = c;
-        addRowQToJTable();
+        apresentaEnc();
     }
 
     /**
@@ -47,16 +48,7 @@ public class ListaEncomendas extends javax.swing.JDialog {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Carro", "Estado"
@@ -116,13 +108,12 @@ public class ListaEncomendas extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
   
-    public void addRowQToJTable(){
+    public void apresentaEnc(){
         model =  (DefaultTableModel) jTable1.getModel();
-        HashMap<Integer,Encomenda> encomendas = configura.getFabrica().getEncomendas();
-        Object rowData[] = new Object[encomendas.size()];
-        for(Encomenda a: encomendas.values()){
+        Object rowData[] = new Object[2];
+        for(Encomenda a: configura.getFabrica().getGestaoE().getEncomendas().values()){
             rowData[0] = a.getId();
-            rowData[1] = a.getCarro();
+            rowData[1] = a.getEstado();
             model.addRow(rowData);
         }
     }
