@@ -21,27 +21,20 @@ public class ConsultarStock extends javax.swing.JDialog {
     private String componente= "";
     private int valor = 0;
     /**
-     * Creates new form ConsultarStock2
+     * Creates new form ConsultarStock
      */
     public ConsultarStock(javax.swing.JDialog parent, boolean modal, ConfiguraFacil c) {
         super(parent, modal);
         initComponents();
         this.configura = c;
+        insereStockTabela();
     }
-    /*
-    public Map<String,Integer> testeStock(){
-       Map<String,Integer> stock = new HashMap<>();
-       stock.put("Jantes Y", 43);
-       stock.put("Motor AXL", 21);
-       return stock;
-    }*/
-    
+
     
     public void insereStockTabela(){
         model =  (DefaultTableModel) jTable1.getModel();
         Map<String,Integer> stockDisponivel = configura.getFabrica().getStock();
-        //Map<String,Integer> stockDisponivel = testeStock();
-        Object rowData[] = new Object[stockDisponivel.size()];
+        Object rowData[] = new Object[2];
         for(Map.Entry s : stockDisponivel.entrySet()){
             rowData[0] = s.getKey();
             rowData[1] = s.getValue();
@@ -52,9 +45,11 @@ public class ConsultarStock extends javax.swing.JDialog {
     public Map<String,Integer> leStock(){
         model =  (DefaultTableModel) jTable1.getModel();
         Map<String,Integer> stockAtualizado = new HashMap<>();
+        row = 0;
         while(model.getValueAt(row,0) != null){
             componente = (String) model.getValueAt(row, 0);
             valor = (Integer) model.getValueAt(row,1);
+            //valor = Integer.valueOf(v);
             stockAtualizado.put(componente, valor);
             row++;
         }
@@ -150,7 +145,7 @@ public class ConsultarStock extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Map<String, Integer> s = new HashMap<>();
+        Map<String, Integer> s;
         s = leStock();
         configura.getFabrica().setStock(s);
     }//GEN-LAST:event_jButton1ActionPerformed

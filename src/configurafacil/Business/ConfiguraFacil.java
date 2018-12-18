@@ -5,7 +5,9 @@
  */
 package configurafacil.Business;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -26,6 +28,7 @@ public class ConfiguraFacil {
         addFunc();
         addComp();
         addEnc();
+        addStock();
     }
     
     public void addFunc() {
@@ -64,6 +67,13 @@ public class ConfiguraFacil {
         Encomenda e3 = new Encomenda(1,"Volvo", 1, null);
         fabrica.getGestaoE().addEncomenda(e3);
     }
+    
+    public void addStock() {
+        fabrica.adicionaStock("D4 190cv Man. 6 Vel.", 45);
+        fabrica.adicionaStock("Jantes em liga leve 17''", 32);
+        fabrica.adicionaStock("Bridgestone Turanza T005 205/55 R16 91V", 30);
+    }
+    
         
     public Stand getStand(){
         return this.stand;

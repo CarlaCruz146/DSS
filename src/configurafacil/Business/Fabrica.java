@@ -34,4 +34,8 @@ public class Fabrica {
         this.stock = new HashMap<>();
         this.stock = s.entrySet().stream().collect(Collectors.toMap(e->e.getKey(), e->e.getValue())); 
     }
+    
+    public void adicionaStock(String c, int valor){
+        this.stock.put(c, valor);
+    }
 }
