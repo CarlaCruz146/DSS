@@ -94,10 +94,27 @@ public class Componente {
     }
     
     public void insereObrigatoria(String c){
+        if (this.compObrigatorias == null) this.compObrigatorias = new ArrayList<>();
         this.compObrigatorias.add(c);
     }
     
     public void insereIncompativel(String c){
+        if (this.compIncompativeis == null) this.compIncompativeis = new ArrayList<>();
         this.compIncompativeis.add(c);
+    }
+    
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("A componente ");
+        sb.append(this.nome);
+        sb.append(" custa ");
+        sb.append(this.preco);
+        sb.append(" euros.");
+        sb.append(" Componentes Incompativeis: ");
+        sb.append(this.compIncompativeis);
+        sb.append(" Componentes Obrigatorias: ");
+        sb.append(this.compObrigatorias);
+        sb.append(" .\n");
+        return sb.toString();
     }
 }

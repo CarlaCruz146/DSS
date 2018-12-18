@@ -18,8 +18,8 @@ public class Stand {
     Map<String,Componente> componentes;
     
     public Stand() {
-        this.clientes = new HashMap<String,Cliente>();
-        this.componentes = new HashMap<String,Componente>();
+        this.clientes = new HashMap<>();
+        this.componentes = new HashMap<>();
     }
 
     public Map<String,Cliente> getClientes(){

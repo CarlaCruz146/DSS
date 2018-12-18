@@ -23,15 +23,15 @@ public class Encomenda {
         this.id = 0;
         this.carro = "";
         this.estado = 0; // 0 em espera
-        this.configuracao = new ArrayList<Componente>();
+        this.configuracao = new ArrayList<>();
     }
     
-    public Encomenda(int id, String carro, int estado, List<Componente> configuracao){
+    public Encomenda(int id, String carro, int estado, List<Componente> config){
         this.id = id;
         this.carro = carro;
         this.estado = estado;
-        this.configuracao = new ArrayList<Componente>();
-        if (configuracao != null) this.configuracao = configuracao.stream().collect(Collectors.toList());
+        this.configuracao = new ArrayList<>();
+        if (config != null) this.configuracao = config.stream().collect(Collectors.toList());
     }
     
     public Encomenda(Encomenda e){
