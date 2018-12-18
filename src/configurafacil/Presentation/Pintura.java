@@ -14,6 +14,7 @@ import configurafacil.Business.ConfiguraFacil;
  */
 public class Pintura extends javax.swing.JDialog {
     private ConfiguraFacil configura;
+    private Configuracao parent;
     private EscolherCarro parent2;
     private String pintura = "";
     /**
@@ -23,6 +24,7 @@ public class Pintura extends javax.swing.JDialog {
        super(parent, modal);
        initComponents();
        this.configura = c;
+       this.parent = (Configuracao) parent;
        this.parent2 = (EscolherCarro) parent2;
     }
 
@@ -152,7 +154,7 @@ public class Pintura extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if(Cor1.isSelected()) this.pintura = "Cizento";
+        if(Cor1.isSelected()) this.pintura = "Cinzento";
         if(Cor2.isSelected()) this.pintura = "Preto";
         if(Cor3.isSelected()) this.pintura = "Branco";
         if(Cor4.isSelected()) this.pintura = "Azul";
@@ -161,6 +163,10 @@ public class Pintura extends javax.swing.JDialog {
         }
         else {
             Componente comp = configura.getStand().getComponente(this.pintura);
+            Componente c = this.parent.verificaTipo(this.parent2.encomenda, "Pintura");
+            if(c != null){
+                this.parent2.encomenda.removeDaConfiguracao(c);
+            }
             this.parent2.encomenda.addToConfiguracao(comp);
             this.setVisible(false);
         }

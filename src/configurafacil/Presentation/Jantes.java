@@ -15,6 +15,7 @@ import configurafacil.Business.ConfiguraFacil;
 public class Jantes extends javax.swing.JDialog {
     private ConfiguraFacil configura;
     private String jante = "";
+    private Configuracao parent;
     private EscolherCarro parent2;
     
     /**
@@ -24,6 +25,7 @@ public class Jantes extends javax.swing.JDialog {
        super(parent, modal);
        initComponents();
        this.configura = c;
+       this.parent = (Configuracao) parent;
        this.parent2 = (EscolherCarro) parent2;
     }
 
@@ -154,6 +156,10 @@ public class Jantes extends javax.swing.JDialog {
         }
         else {
             Componente comp = configura.getStand().getComponente(this.jante);
+            Componente c = this.parent.verificaTipo(this.parent2.encomenda, "Jante");
+            if(c != null){
+                this.parent2.encomenda.removeDaConfiguracao(c);
+            }
             this.parent2.encomenda.addToConfiguracao(comp);
             this.setVisible(false);
         }

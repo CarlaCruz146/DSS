@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
  */
 public class Componente {
     private String nome;
+    private String tipo;
     private double preco;
     private List<String> compIncompativeis;
     private List<String> compObrigatorias;
@@ -22,13 +23,15 @@ public class Componente {
     
     public Componente(){
         this.nome = "";
+        this.tipo = "";
         this.preco = 0;
         this.compIncompativeis = new ArrayList<>();
         this.compObrigatorias = new ArrayList<>();  
     }
     
-    public Componente(String nome, double preco, List<String> incompativeis, List<String> obrigatorias){
+    public Componente(String nome, String tipo, double preco, List<String> incompativeis, List<String> obrigatorias){
         this.nome = nome;
+        this.tipo = tipo;
         this.preco = preco;
         setIncompativeis(incompativeis);
         setObrigatorias(obrigatorias);
@@ -36,6 +39,7 @@ public class Componente {
     
     public Componente(Componente c){
         this.nome = c.getNome();
+        this.tipo = c.getTipo();
         this.preco = c.getPreco();
         this.compIncompativeis = c.getIncompativeis();
         this.compObrigatorias =  c.getObrigatorias();
@@ -45,6 +49,10 @@ public class Componente {
         return this.nome;
     }
    
+    public String getTipo(){
+        return this.tipo;
+    }
+    
     public double getPreco(){
         return this.preco;
     }
@@ -59,6 +67,10 @@ public class Componente {
     
     public void setNome(String nome){
         this.nome = nome;
+    }
+    
+    public void setTipo(String tipo){
+        this.tipo = tipo;
     }
     
     public void setPreco(double p){
@@ -77,10 +89,6 @@ public class Componente {
             this.compObrigatorias.add(s);
     }
     
-    public Componente clone(){
-        return new Componente(this);
-    }
-    
     public boolean equals (Object o) {
         if (this == o)
             return true;
@@ -94,27 +102,10 @@ public class Componente {
     }
     
     public void insereObrigatoria(String c){
-        if (this.compObrigatorias == null) this.compObrigatorias = new ArrayList<>();
         this.compObrigatorias.add(c);
     }
     
     public void insereIncompativel(String c){
-        if (this.compIncompativeis == null) this.compIncompativeis = new ArrayList<>();
         this.compIncompativeis.add(c);
-    }
-    
-    public String toString(){
-        StringBuilder sb = new StringBuilder();
-        sb.append("A componente ");
-        sb.append(this.nome);
-        sb.append(" custa ");
-        sb.append(this.preco);
-        sb.append(" euros.");
-        sb.append(" Componentes Incompativeis: ");
-        sb.append(this.compIncompativeis);
-        sb.append(" Componentes Obrigatorias: ");
-        sb.append(this.compObrigatorias);
-        sb.append(" .\n");
-        return sb.toString();
     }
 }

@@ -37,15 +37,26 @@ public class ConfiguraFacil {
         gestaoU.addUtilizador(admin);
     }
     
-        public void addComp() {
-        Componente c1 = new Componente("Couro comfort carvão",15, null, null);
+    public void addComp() {
+        Componente c1 = new Componente("Couro comfort carvão","Estofo",15, null, null);
         stand.addComponente(c1);
-        Componente c2 = new Componente("Jantes em liga leve 17''",2,null, null);
+        Componente c2 = new Componente("Jantes em liga leve 17''","Jante",2,null, null);
         stand.addComponente(c2);
-        Componente c3 = new Componente("D4 190cv Man. 6 Vel.",2,null, null);
+        Componente c3 = new Componente("D4 190cv Man. 6 Vel.","Motor",2,null, null);
         stand.addComponente(c3);
+        Componente c4 = new Componente("Preto","Pintura",2,null, null);
+        stand.addComponente(c4);
+        Componente c5 = new Componente("Bridgestone Turanza T005 205/55 R16 91V","Pneu",2,null, null);
+        stand.addComponente(c5);
+        Componente c6 = new Componente("Branco","Pintura",2,null, null);
+        stand.addComponente(c6);
+        Componente c7 = new Componente("Vidro Escurecido","Vidro",2,null, null);
+        stand.addComponente(c7);
+        Componente c8 = new Componente("Pacote Comfort","Pacote",2,null, null);
+        stand.addComponente(c8);
     }
-        public void addEnc() {
+        
+    public void addEnc() {
         Encomenda e1 = new Encomenda(1,"BMW", 1, null);
         fabrica.getGestaoE().addEncomenda(e1);
         Encomenda e2 = new Encomenda(1,"Mercedes", 0, null);

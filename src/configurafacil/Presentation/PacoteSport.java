@@ -14,6 +14,7 @@ import configurafacil.Business.ConfiguraFacil;
  */
 public class PacoteSport extends javax.swing.JDialog {
     private ConfiguraFacil configura;
+    private Configuracao parent;
     private EscolherCarro parent2;
     
     /**
@@ -23,6 +24,7 @@ public class PacoteSport extends javax.swing.JDialog {
        super(parent, modal);
        initComponents();
        this.configura = c;
+       this.parent = (Configuracao) parent;
        this.parent2 = (EscolherCarro) parent2;
     }
 

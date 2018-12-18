@@ -9,6 +9,7 @@ import configurafacil.Business.Componente;
 import configurafacil.Business.Cliente;
 import static configurafacil.Presentation.DadosCliente.cliente;
 import configurafacil.Business.ConfiguraFacil;
+import configurafacil.Business.Encomenda;
 
 /**
  *
@@ -27,6 +28,27 @@ public class Configuracao extends javax.swing.JDialog {
        initComponents();
        this.parent = (EscolherCarro) parent;
     }
+    
+        public boolean verificaComponentes(Encomenda e){
+        int i = 0;
+        for(Componente c: e.getConfig()){
+            if(c.getTipo().equals("Pintura") || c.getTipo().equals("Motor") || c.getTipo().equals("Pneu") || c.getTipo().equals("Jante"))
+                i++;
+        }
+        boolean n = i == 4;
+        return n;
+    }
+    
+    public Componente verificaTipo(Encomenda e, String tipo){
+        Componente comp = null;
+        for(Componente c: e.getConfig()){
+            if(c.getTipo().equals(tipo)){
+                comp = c;
+                return comp;
+            }       
+        }
+        return comp;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,13 +63,13 @@ public class Configuracao extends javax.swing.JDialog {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        Vidro = new javax.swing.JButton();
+        Parachoques = new javax.swing.JButton();
+        Teto = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
+        Luz = new javax.swing.JButton();
+        Comfort = new javax.swing.JButton();
+        Sport = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -94,24 +116,24 @@ public class Configuracao extends javax.swing.JDialog {
             }
         });
 
-        jButton5.setText("Vidro Escurecido");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        Vidro.setText("Vidro Escurecido");
+        Vidro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                VidroActionPerformed(evt);
             }
         });
 
-        jButton6.setText("Pára-choques");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        Parachoques.setText("Pára-choques");
+        Parachoques.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                ParachoquesActionPerformed(evt);
             }
         });
 
-        jButton7.setText("Teto de abrir");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        Teto.setText("Teto de abrir");
+        Teto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                TetoActionPerformed(evt);
             }
         });
 
@@ -122,24 +144,24 @@ public class Configuracao extends javax.swing.JDialog {
             }
         });
 
-        jButton9.setText("Pacotes de luz");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        Luz.setText("Pacotes de luz");
+        Luz.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                LuzActionPerformed(evt);
             }
         });
 
-        jButton10.setText("Confort");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        Comfort.setText("Confort");
+        Comfort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                ComfortActionPerformed(evt);
             }
         });
 
-        jButton11.setText("Sport");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
+        Sport.setText("Sport");
+        Sport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
+                SportActionPerformed(evt);
             }
         });
 
@@ -214,7 +236,7 @@ public class Configuracao extends javax.swing.JDialog {
                                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(17, 17, 17))
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(Vidro, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(4, 4, 4)))
                                         .addGap(41, 41, 41)
                                         .addComponent(jLabel11)
@@ -224,7 +246,7 @@ public class Configuracao extends javax.swing.JDialog {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE))
+                                            .addComponent(Comfort, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(102, 102, 102)
@@ -233,9 +255,9 @@ public class Configuracao extends javax.swing.JDialog {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(Parachoques, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(18, 18, 18)
-                                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(Teto, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -245,8 +267,8 @@ public class Configuracao extends javax.swing.JDialog {
                                             .addGap(41, 41, 41)
                                             .addComponent(jLabel9)))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jButton11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)))
+                                        .addComponent(Sport, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(Luz, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 20, Short.MAX_VALUE)))
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26))
@@ -300,10 +322,11 @@ public class Configuracao extends javax.swing.JDialog {
                             .addComponent(jLabel6)
                             .addComponent(jLabel11))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton6)
-                            .addComponent(jButton5)
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Parachoques)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(Vidro)
+                                .addComponent(Teto, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(9, 9, 9)
@@ -312,9 +335,9 @@ public class Configuracao extends javax.swing.JDialog {
                                 .addGap(40, 40, 40)
                                 .addComponent(jLabel9)))
                         .addGap(24, 24, 24)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton8)
-                    .addComponent(jButton9))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Luz)
+                    .addComponent(jButton8))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(97, 97, 97)
@@ -328,8 +351,8 @@ public class Configuracao extends javax.swing.JDialog {
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton10)
-                            .addComponent(jButton11))
+                            .addComponent(Comfort)
+                            .addComponent(Sport))
                         .addGap(66, 66, 66))))
         );
 
@@ -347,15 +370,23 @@ public class Configuracao extends javax.swing.JDialog {
         new Estofos(this,this.parent, true, configura).setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void ComfortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComfortActionPerformed
         // TODO add your handling code here:
         new PacoteConfort(this,this.parent, true, configura).setVisible(true);
-    }//GEN-LAST:event_jButton10ActionPerformed
+        if(verificaTipo(this.parent.encomenda,"Pacote")!=null) {
+            this.Comfort.setEnabled(false);
+            this.Sport.setEnabled(false);
+        }
+    }//GEN-LAST:event_ComfortActionPerformed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+    private void SportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SportActionPerformed
         // TODO add your handling code here:
         new PacoteSport(this,this.parent, true, configura).setVisible(true);
-    }//GEN-LAST:event_jButton11ActionPerformed
+        if(verificaTipo(this.parent.encomenda,"Pacote")!=null) {
+            this.Comfort.setEnabled(false);
+            this.Sport.setEnabled(false);
+        }
+    }//GEN-LAST:event_SportActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -372,17 +403,19 @@ public class Configuracao extends javax.swing.JDialog {
         new Jantes(this,this.parent, true, configura).setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void VidroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VidroActionPerformed
         // TODO add your handling code here:
            Componente comp = configura.getStand().getComponente("Vidro Escurecido");
            this.parent.encomenda.addToConfiguracao(comp);
-    }//GEN-LAST:event_jButton5ActionPerformed
+           this.Vidro.setEnabled(false);
+    }//GEN-LAST:event_VidroActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void ParachoquesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ParachoquesActionPerformed
         // TODO add your handling code here:
         Componente comp = configura.getStand().getComponente("Pára-choques");
         this.parent.encomenda.addToConfiguracao(comp);
-    }//GEN-LAST:event_jButton6ActionPerformed
+        this.Parachoques.setEnabled(false);
+    }//GEN-LAST:event_ParachoquesActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
@@ -394,44 +427,51 @@ public class Configuracao extends javax.swing.JDialog {
         new ConfiguracaoFinal(this, parent, true, configura).setVisible(true);
     }//GEN-LAST:event_jButton12ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void TetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TetoActionPerformed
         // TODO add your handling code here:
         Componente comp = configura.getStand().getComponente("Teto de abrir");
         this.parent.encomenda.addToConfiguracao(comp);
-    }//GEN-LAST:event_jButton7ActionPerformed
+        this.Teto.setEnabled(false);
+    }//GEN-LAST:event_TetoActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void LuzActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LuzActionPerformed
         // TODO add your handling code here:
         Componente comp = configura.getStand().getComponente("Pacotes de luz");
         this.parent.encomenda.addToConfiguracao(comp);
-    }//GEN-LAST:event_jButton9ActionPerformed
+        this.Luz.setEnabled(false);
+    }//GEN-LAST:event_LuzActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
-        Cliente c = configura.getStand().getClientes().get(cliente);
-        configura.getStand().addEncomendaCliente(c,this.parent.encomenda);
-        configura.getFabrica().getGestaoE().addEncomenda(this.parent.encomenda);
-        System.out.println(this.parent.encomenda.getCarro());
-        System.out.println(this.parent.encomenda.getConfig());
-        this.setVisible(false);
-        new DadosCliente(this, true, configura).setVisible(true);
+        if(verificaComponentes(this.parent.encomenda)){
+            Cliente c = configura.getStand().getClientes().get(cliente);
+            configura.getStand().addEncomendaCliente(c,this.parent.encomenda);
+            configura.getFabrica().getGestaoE().addEncomenda(this.parent.encomenda);
+            System.out.println(this.parent.encomenda.getCarro());
+            for(Componente xixi: this.parent.encomenda.getConfig()){
+                 System.out.println(xixi.getNome());
+             }
+            this.setVisible(false);
+            new DadosCliente(this, true, configura).setVisible(true);
+        }
+        else javax.swing.JOptionPane.showMessageDialog(this, "Por favor escolha as componentes obrigatórias","Componente obrigatória não selecionada", 0);
     }//GEN-LAST:event_jButton14ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Comfort;
+    private javax.swing.JButton Luz;
+    private javax.swing.JButton Parachoques;
+    private javax.swing.JButton Sport;
+    private javax.swing.JButton Teto;
+    private javax.swing.JButton Vidro;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
