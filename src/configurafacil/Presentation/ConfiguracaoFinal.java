@@ -7,6 +7,7 @@ package configurafacil.Presentation;
 
 import configurafacil.Business.Componente;
 import configurafacil.Business.ConfiguraFacil;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,10 +19,11 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
     private ConfiguraFacil configura;
     DefaultTableModel model;
     private int row = 0;
+    private EscolherCarro parent2;
     private Componente componente;
     private String nomeComponente;
-    private EscolherCarro parent2;
-    //Encomenda novo;
+    List<Componente> config = new ArrayList<>();
+    
     /**
      * Creates new form ConfiguracaoFinal
      */
@@ -30,31 +32,19 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
         initComponents();
         this.configura = c;
         this.parent2 = (EscolherCarro) parent2;
+        config = this.parent2.encomenda.getConfig();
         System.out.println(this.parent2.encomenda);
         insereConfigTabela();
         
     }
-    /*
-    public Encomenda teste(){
-        Encomenda e = new Encomenda(132,"Mercedes",0, new ArrayList<>());
-        List<Componente> comps = new ArrayList<>();
-        comps.add(new Componente("Motor A",2000,new ArrayList<>(),new ArrayList<>()));
-        comps.add(new Componente("Jantes B",490,new ArrayList<>(),new ArrayList<>()));
-        comps.add(new Componente("Rodas C",750,new ArrayList<>(),new ArrayList<>()));
-        e.setConfig(comps);
-        return e;
-    }*/
-    
+
     public void insereConfigTabela(){
         model =  (DefaultTableModel) jTable1.getModel();
-        List<Componente> configFinal = this.parent2.encomenda.getConfig();
-        //List<Componente> configFinal = novo.getConfig();
-        Object rowData[] = new Object[configFinal.size()];
-        for(Componente s : configFinal){
+        Object rowData[] = new Object[2];
+        for(Componente s : config){
             rowData[0] = s.getNome();
             rowData[1] = s.getPreco();
             model.addRow(rowData);
-            
         }
     }
     /**
@@ -150,13 +140,7 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
         // TODO add your handling code here:
         model =  (DefaultTableModel) jTable1.getModel();
         this.parent2.encomenda.removeDaConfiguracao(componente);
-        //this.novo.removeDaConfiguracao(componente);
         model.removeRow(row);
-        /*
-        List<Componente> configFinal = novo.getConfig();
-        for(Componente s : configFinal)
-            System.out.println(s.getNome());*/
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -168,8 +152,6 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
         // TODO add your handling code here:
         row = jTable1.getSelectedRow();
         nomeComponente = (String)model.getValueAt(row, 0);
-        List<Componente> config = this.parent2.encomenda.getConfig();
-        //List<Componente> config = novo.getConfig();
         for(Componente c : config)
             if(c.getNome().equals(nomeComponente))
                 componente = c;
