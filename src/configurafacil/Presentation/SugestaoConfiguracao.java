@@ -16,12 +16,14 @@ import javax.swing.table.DefaultTableModel;
  * @author mercy
  */
 public class SugestaoConfiguracao extends javax.swing.JDialog {
-    DefaultTableModel model;
-    Componente componente; 
-    String nomeComponente = "";
-    private int row = 0;
     private ConfiguraFacil configura;
     private EscolherCarro parent2;
+    DefaultTableModel model;
+    private Componente componente; 
+    private String nomeComponente = "";
+    private double precoTotal = 0;
+    private List<Componente> sugestao = new ArrayList<>();
+    private int row = 0;
     /**
      * Creates new form SugestaoConfiguracao2
      */
@@ -30,6 +32,9 @@ public class SugestaoConfiguracao extends javax.swing.JDialog {
         initComponents();
         this.configura = c;
         this.parent2 = (EscolherCarro) parent2;
+        //sugestao = leConfiguracao();
+        jTextField1.setText(Double.toString(precoTotal));
+        jTextField1.setEditable(false);
     }
 
     public List<Componente> leConfiguracao(){
@@ -37,15 +42,13 @@ public class SugestaoConfiguracao extends javax.swing.JDialog {
         List<Componente> config = new ArrayList<>();
         while(model.getValueAt(row,0) != null){
             nomeComponente = (String) model.getValueAt(row, 0);
-            //criar a componente, arranjar maneira de a criar
+            componente = configura.getStand().getComponente(nomeComponente);
             config.add(componente);
+            this.precoTotal += componente.getPreco();
             row++;
         }
         return config;
-    }
-    
-    //fazer metodo para ler os preços todos e por no textField do preço total
-    
+    }    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -157,7 +160,6 @@ public class SugestaoConfiguracao extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        List<Componente> sugestao = leConfiguracao();
         this.parent2.encomenda.setConfig(sugestao);
     }//GEN-LAST:event_jButton1ActionPerformed
 

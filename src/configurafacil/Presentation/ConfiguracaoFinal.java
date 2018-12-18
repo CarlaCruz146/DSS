@@ -7,8 +7,6 @@ package configurafacil.Presentation;
 
 import configurafacil.Business.Componente;
 import configurafacil.Business.ConfiguraFacil;
-import configurafacil.Business.Encomenda;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -31,8 +29,10 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.configura = c;
-        insereConfigTabela();
         this.parent2 = (EscolherCarro) parent2;
+        System.out.println(this.parent2.encomenda);
+        insereConfigTabela();
+        
     }
     /*
     public Encomenda teste(){

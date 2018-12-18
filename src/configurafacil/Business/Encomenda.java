@@ -58,6 +58,7 @@ public class Encomenda {
     
     public void addToConfiguracao(Componente c){
         this.configuracao.add(c);
+        System.out.println("Adicionei à configuracao!!");
     }
     
     public void removeDaConfiguracao(Componente c){
@@ -94,6 +95,7 @@ public class Encomenda {
     public String toString() {
         StringBuffer sb = new StringBuffer("Encomenda(");
         sb.append(this.carro);
+        sb.append(this.configuracao.toString());
         return sb.toString();
     }
 }
