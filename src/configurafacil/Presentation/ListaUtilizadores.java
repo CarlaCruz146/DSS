@@ -17,18 +17,17 @@ import javax.swing.table.DefaultTableModel;
  * @author jessica
  */
 public class ListaUtilizadores extends javax.swing.JDialog {
-    public static Login newa;
+    public ConfiguraFacil configura;
     DefaultTableModel model;
     private int row = 0;
     private String nomeSel = "";
     /**
      * Creates new form ListaUtilizadores
      */
-    public ListaUtilizadores(Login parent, boolean modal) {
-        this.newa = parent;
-        this.setModal(modal);
+    public ListaUtilizadores(javax.swing.JDialog parent, boolean modal, ConfiguraFacil c) {
+        super(parent, modal);
         initComponents();
-        setLocationRelativeTo(this);
+        this.configura = c;
         apresentaFunc();
     }
 
@@ -131,7 +130,7 @@ public class ListaUtilizadores extends javax.swing.JDialog {
     public void apresentaFunc(){
         model =  (DefaultTableModel) jTable1.getModel();
         Object rowData[] = new Object[1];
-        for(Utilizador u: newa.configura.getGestaoU().getUtilizadores().values()){
+        for(Utilizador u: configura.getGestaoU().getUtilizadores().values()){
             rowData[0] = u.getNome();
             model.addRow(rowData);
         }
@@ -144,7 +143,7 @@ public class ListaUtilizadores extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        new InserirUtilizador(this, true).setVisible(true);
+        new InserirUtilizador(this, true, configura).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -153,54 +152,13 @@ public class ListaUtilizadores extends javax.swing.JDialog {
         try{
             row = jTable1.getSelectedRow();
             nomeSel = (String)model.getValueAt(row, 0);
-            newa.configura.getGestaoU().removeUtilizador(nomeSel);
+            configura.getGestaoU().removeUtilizador(nomeSel);
             model.removeRow(row);       
 
         } catch (Exception ex){
             JOptionPane.showMessageDialog(null,ex);
         }      
     }//GEN-LAST:event_jButton2ActionPerformed
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListaUtilizadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListaUtilizadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListaUtilizadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListaUtilizadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                ListaUtilizadores dialog = new ListaUtilizadores(newa, true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

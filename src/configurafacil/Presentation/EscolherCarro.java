@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package configurafacil.Presentation;
+import configurafacil.Business.ConfiguraFacil;
 import configurafacil.Business.Encomenda;
 
 /**
@@ -11,17 +12,16 @@ import configurafacil.Business.Encomenda;
  * @author jessica
  */
 public class EscolherCarro extends javax.swing.JDialog {
-    public static DadosCliente newe;
+    private ConfiguraFacil configura;
     private String carro = "";
     Encomenda encomenda = new Encomenda();
     /**
      * Creates new form EscolherCarro
      */
-    public EscolherCarro(DadosCliente parent, boolean modal) {
-        this.newe = parent;
-        //super(parent, modal);
+    public EscolherCarro(javax.swing.JDialog parent, boolean modal, ConfiguraFacil c) {
+        super(parent, modal);
         initComponents();
-        setLocationRelativeTo(this);
+        this.configura = c;
     }
 
     /**
@@ -226,7 +226,7 @@ public class EscolherCarro extends javax.swing.JDialog {
         else {
             encomenda.addCarro(carro);
             this.setVisible(false);
-            new Configuracao(this, true).setVisible(true);
+            new Configuracao(this, true, configura).setVisible(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -249,48 +249,6 @@ public class EscolherCarro extends javax.swing.JDialog {
     private void Carro6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Carro6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Carro6ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EscolherCarro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EscolherCarro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EscolherCarro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EscolherCarro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                EscolherCarro dialog = new EscolherCarro(newe, true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton Carro1;

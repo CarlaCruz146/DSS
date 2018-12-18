@@ -11,7 +11,7 @@ public class Cliente {
     private String nome;
     private String nif;
     private String contacto;
-    private ArrayList<Encomenda> encomendas;
+    private ArrayList<Integer> encomendas;
     
     public Cliente(){
         this.nome = "";
@@ -20,13 +20,13 @@ public class Cliente {
         this.encomendas = new ArrayList<>();
     }
     
-    public Cliente(String nome, String nif, String contacto, ArrayList enc){
+    public Cliente(String nome, String nif, String contacto, ArrayList<Integer> enc){
         this.nome = nome;
         this.nif = nif;
         this.contacto = contacto;
         this.encomendas = new ArrayList<>();
         if (enc == null) this.encomendas = null;
-        else enc.forEach(a->this.encomendas.add((Encomenda) a));
+        else enc.forEach(a->this.encomendas.add((Integer) a));
     }
     
     public Cliente(Cliente c){
@@ -48,7 +48,7 @@ public class Cliente {
         return this.contacto;
     }
     
-    public ArrayList<Encomenda> getEncomendas(){
+    public ArrayList<Integer> getEncomendas(){
         return this.encomendas;
     }
     
@@ -64,14 +64,14 @@ public class Cliente {
         this.contacto = contacto;
     }
     
-    public void setEncomendas(ArrayList<Encomenda> enc){
+    public void setEncomendas(ArrayList<Integer> enc){
         this.encomendas = new ArrayList<>();
         enc.forEach(a->this.encomendas.add(a));
     }
     
     public void addEncomenda(Encomenda e){
         if (this.encomendas == null) this.encomendas = new ArrayList<>();
-        this.encomendas.add(e);
+        this.encomendas.add(e.getId());
     }
     
      public String toString(){

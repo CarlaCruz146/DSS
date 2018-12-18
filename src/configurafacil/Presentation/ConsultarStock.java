@@ -5,6 +5,7 @@
  */
 package configurafacil.Presentation;
 
+import configurafacil.Business.ConfiguraFacil;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.table.DefaultTableModel;
@@ -14,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
  * @author mercy
  */
 public class ConsultarStock extends javax.swing.JDialog {
-    public static Login newe;
+    private ConfiguraFacil configura;
     DefaultTableModel model;
     private int row = 0;
     private String componente= "";
@@ -22,12 +23,10 @@ public class ConsultarStock extends javax.swing.JDialog {
     /**
      * Creates new form ConsultarStock2
      */
-    public ConsultarStock(Login parent, boolean modal) {
-        this.newe = parent;
-        this.setModal(modal);
+    public ConsultarStock(javax.swing.JDialog parent, boolean modal, ConfiguraFacil c) {
+        super(parent, modal);
         initComponents();
-        insereStockTabela();
-        setLocationRelativeTo(this);
+        this.configura = c;
     }
     /*
     public Map<String,Integer> testeStock(){
@@ -40,7 +39,7 @@ public class ConsultarStock extends javax.swing.JDialog {
     
     public void insereStockTabela(){
         model =  (DefaultTableModel) jTable1.getModel();
-        Map<String,Integer> stockDisponivel = newe.configura.getFabrica().getStock();
+        Map<String,Integer> stockDisponivel = configura.getFabrica().getStock();
         //Map<String,Integer> stockDisponivel = testeStock();
         Object rowData[] = new Object[stockDisponivel.size()];
         for(Map.Entry s : stockDisponivel.entrySet()){
@@ -146,13 +145,14 @@ public class ConsultarStock extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Map<String, Integer> s = new HashMap<>();
         s = leStock();
-        newe.configura.getFabrica().setStock(s);
+        configura.getFabrica().setStock(s);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -166,55 +166,6 @@ public class ConsultarStock extends javax.swing.JDialog {
         valor = (Integer) model.getValueAt(row, 1);
         model.setValueAt(valor, row, 1);
     }//GEN-LAST:event_jTable1MouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultarStock.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultarStock.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultarStock.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConsultarStock.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                ConsultarStock dialog = new ConsultarStock(newe, true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

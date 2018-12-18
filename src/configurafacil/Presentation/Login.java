@@ -6,21 +6,22 @@
 package configurafacil.Presentation;
 
 import configurafacil.Business.ConfiguraFacil;
-import configurafacil.Business.Utilizador;
 
 /**
  *
  * @author jessica
  */
 public class Login extends javax.swing.JFrame {
-    ConfiguraFacil configura = new ConfiguraFacil();
+    private ConfiguraFacil configura;
     
     /**
      * Creates new form Login
      */
-    public Login() {
+    public Login(ConfiguraFacil c) {
+        this.configura = c;
         initComponents();
     }
+    
     
     private boolean validaDados() {
         boolean vazio = this.nome.getText().equals("") || 
@@ -129,15 +130,15 @@ public class Login extends javax.swing.JFrame {
             catch (Exception e){}
             if (configura.getGestaoU().tipoFuncionario(nome, password) == 1){
                 this.setVisible(false);
-                new DadosCliente(this, true).setVisible(true);
+                new DadosCliente(this, true, configura).setVisible(true);
             }
             else if (configura.getGestaoU().tipoFuncionario(nome, password) == 2){
                 this.setVisible(false);
-                new MenuFuncionario(this, true).setVisible(true);
+                new MenuFuncionario(this, true, configura).setVisible(true);
             }
             else if (configura.getGestaoU().tipoFuncionario(nome, password) == 0) {
                 this.setVisible(false);
-                new MenuAdmin(this, true).setVisible(true);
+                new MenuAdmin(this, true, configura).setVisible(true);
             }
             else{
                 javax.swing.JOptionPane.showMessageDialog(this, "Por favor preencha os dados.", "Dados incorretos", 0);
@@ -150,41 +151,6 @@ public class Login extends javax.swing.JFrame {
     private void nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nomeActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
