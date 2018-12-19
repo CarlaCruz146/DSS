@@ -155,18 +155,113 @@ public class ConfiguraFacil {
     }
     
     public void addEnc() {
-        Encomenda e1 = new Encomenda(1,"BMW", 1, null,null);
+        List<Componente> config1 = new ArrayList<>();
+        List<Componente> config2 = new ArrayList<>();
+        List<Componente> config3 = new ArrayList<>();
+        //ENCOMENDA 1
+        Componente c1 = stand.getComponente("Azul");
+        Componente c2 = stand.getComponente("D4 190cv Man. 6 Vel.");
+        Componente c3 = stand.getComponente("Firestone Roadhawk 205/55 R16 91H");
+        Componente c4 = stand.getComponente("Jantes em liga leve 17''");
+        Componente c5 = stand.getComponente("Couro comfort carvão");
+        Componente c6 = stand.getComponente("Pára-choques");
+        config1.add(c1);
+        config1.add(c2);
+        config1.add(c3);
+        config1.add(c4);
+        config1.add(c5);
+        config1.add(c6);
+        //ENCOMENDA 2
+        Componente c7 = stand.getComponente("Preto");
+        Componente c8 = stand.getComponente("D4 190cv Geatronic 8 Vel.");
+        Componente c9 = stand.getComponente("Continental ContiEcoContact 5 205/55 R16 91V");
+        Componente c10 = stand.getComponente("Jantes em liga leve 19'' 255/40 R19");
+        Componente c11 = stand.getComponente("Couro comfort blond");
+        Componente c12 = stand.getComponente("Pacotes de luz");
+        Componente c13 = stand.getComponente("Teto de abrir");
+        
+        config2.add(c7);
+        config2.add(c8);
+        config2.add(c9);
+        config2.add(c10);
+        config2.add(c11);
+        config2.add(c12);
+        config2.add(c13);
+        
+        //ENCOMENDA 3
+        Componente c14 = stand.getComponente("Branco");
+        Componente c15 = stand.getComponente("D5 235cv Geatronic 8 Vel.");
+        Componente c16 = stand.getComponente("Continental PremiumContact 6 205/55 R16 91H");
+        Componente c17 = stand.getComponente("Jantes em liga leve 18'' 245/45 R18");
+        Componente c18 = stand.getComponente("Couro comfort maroon brown");
+        Componente c19 = stand.getComponente("Vidro Escurecido");
+        Pacote p = stand.getPacote("Pacote Comfort");
+        
+        config3.add(c14);
+        config3.add(c15);
+        config3.add(c16);
+        config3.add(c17);
+        config3.add(c18);
+        config3.add(c19);
+        
+        Encomenda e1 = new Encomenda(1,"BMW", 1, config1,null);
         fabrica.getGestaoE().addEncomenda(e1);
-        Encomenda e2 = new Encomenda(2,"Mercedes", 0, null,null);
+        Encomenda e2 = new Encomenda(2,"Mercedes", 0, config2,null);
         fabrica.getGestaoE().addEncomenda(e2);
-        Encomenda e3 = new Encomenda(3,"Volvo", 1, null,null);
+        Encomenda e3 = new Encomenda(3,"Volvo", 1, config3,p);
         fabrica.getGestaoE().addEncomenda(e3);
     }
     
     public void addStock() {
-        fabrica.adicionaStock("D4 190cv Man. 6 Vel.", 45);
-        fabrica.adicionaStock("Jantes em liga leve 17''", 32);
+        
+        //PINTURA
+        fabrica.adicionaStock("Branco", 60);
+        fabrica.adicionaStock("Cinzento", 60);
+        fabrica.adicionaStock("Preto", 60);
+        fabrica.adicionaStock("Azul", 60);
+        
+        //MOTOR
+        fabrica.adicionaStock("D4 190cv Man. 6 Vel.", 50);
+        fabrica.adicionaStock("D4 190cv Geatronic 8 Vel.", 45);
+        fabrica.adicionaStock("D5 235cv Geatronic 8 Vel.", 48);
+        
+        //PNEU
         fabrica.adicionaStock("Bridgestone Turanza T005 205/55 R16 91V", 30);
+        fabrica.adicionaStock("Continental ContiEcoContact 5 205/55 R16 91V", 30);
+        fabrica.adicionaStock("Continental PremiumContact 6 205/55 R16 91H", 32);
+        fabrica.adicionaStock("Firestone Roadhawk 205/55 R16 91H", 25);
+        
+        //JANTE
+        fabrica.adicionaStock("Jantes em liga leve 17''", 20);
+        fabrica.adicionaStock("Jantes em liga leve 18'' 245/45 R18", 20);
+        fabrica.adicionaStock("Jantes em liga leve 19'' 255/40 R19", 28);
+        
+        //ESTOFOS
+        fabrica.adicionaStock("Couro comfort carvão", 22);
+        fabrica.adicionaStock("Couro comfort âmbar", 20);
+        fabrica.adicionaStock("Couro comfort maroon brown", 18);
+        fabrica.adicionaStock("Couro comfort blond", 25);
+        
+        //PARA-CHOQUES
+        fabrica.adicionaStock("Pára-choques", 30);
+        //VIDRO
+        fabrica.adicionaStock("Vidro Escurecido", 10);
+        //TETO
+        fabrica.adicionaStock("Teto de abrir", 5);
+        //LUZES
+        fabrica.adicionaStock("Pacotes de luz", 12);
+        
+         //PACOTE COMFORT
+        fabrica.adicionaStock("Bancos elétricos", 5);
+        fabrica.adicionaStock("Ar condicionado de 4 Zonas", 3);
+        fabrica.adicionaStock("Pacotes de Luzes Interiores", 9);
+        fabrica.adicionaStock("Espelhos Retrovisores com Mecanismo Anti-Encadeamento", 4);
+        
+        //PACOTE SPORT
+        fabrica.adicionaStock("Jantes personalizadas", 15);
+        fabrica.adicionaStock("Amortecedores Resistentes", 15);
+        fabrica.adicionaStock("Spoilers", 8);
+        fabrica.adicionaStock("Escape com 2 ponteiras", 10);   
     }
     
         
