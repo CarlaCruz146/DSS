@@ -59,7 +59,7 @@ public class ConfiguraFacil {
         //JANTE
         Componente c12 = new Componente("Jantes em liga leve 17''","Jante",270,null, null);
         Componente c13 = new Componente("Jantes em liga leve 18'' 245/45 R18","Jante",340,null, null);
-        Componente c14 = new Componente("Jantes em liga leve 19'' 255/40 R19","Jante",330,null, null);
+        Componente c14 = new Componente("Jantes em liga leve 19'' 255/40 R19","Jante",350,null, null);
         //ESTOFOS
         Componente c15 = new Componente("Couro comfort carvão","Estofo",800, null, null);
         Componente c16 = new Componente("Couro comfort âmbar","Estofo",800, null, null);
