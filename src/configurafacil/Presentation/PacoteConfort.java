@@ -5,8 +5,10 @@
  */
 package configurafacil.Presentation;
 
+import configurafacil.Business.Componente;
 import configurafacil.Business.ConfiguraFacil;
 import configurafacil.Business.Pacote;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -14,7 +16,8 @@ import configurafacil.Business.Pacote;
  */
 public class PacoteConfort extends javax.swing.JDialog {
     private ConfiguraFacil configura;
-      private EscolherCarro parent2;
+    private EscolherCarro parent2;
+    DefaultTableModel model;
       
     /**
      * Creates new form PacotConfort
@@ -24,6 +27,21 @@ public class PacoteConfort extends javax.swing.JDialog {
        initComponents();
        this.configura = c;
        this.parent2 = (EscolherCarro) parent2;
+       inserePacoteC();
+
+       double p = this.configura.getStand().getPacote("PacoteConfort").getPreco();
+       
+       preco.setText(Double.toString(p));
+       preco.setEditable(false);
+    }
+    
+    public void inserePacoteC(){
+        model =  (DefaultTableModel) jTable1.getModel();
+        Object rowData[] = new Object[1];
+        for(Componente c : configura.getStand().getPacote("PacoteConfort").getComponentes()){
+            rowData[0] = c.getNome();
+            model.addRow(rowData);
+        }
     }
 
     /**
@@ -41,6 +59,8 @@ public class PacoteConfort extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        jLabel2 = new javax.swing.JLabel();
+        preco = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -53,10 +73,7 @@ public class PacoteConfort extends javax.swing.JDialog {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {" Bancos Elétricos"},
-                {" Ar Condicionado de 4 Zonas"},
-                {" Pacote de Luzes Interiores"},
-                {" Espelhos Retrovisores com Mecanismo Anti-Encadeamento"}
+
             },
             new String [] {
                 "Componentes"
@@ -78,25 +95,33 @@ public class PacoteConfort extends javax.swing.JDialog {
 
         jLabel1.setText("Pacote Confort");
 
+        jLabel2.setText("Preço");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addGap(24, 24, 24))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
             .addComponent(jSeparator1)
             .addGroup(layout.createSequentialGroup()
                 .addGap(161, 161, 161)
                 .addComponent(jLabel1)
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addContainerGap(163, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(214, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(preco, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)))
+                .addGap(24, 24, 24))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,7 +132,11 @@ public class PacoteConfort extends javax.swing.JDialog {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(preco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -136,8 +165,10 @@ public class PacoteConfort extends javax.swing.JDialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField preco;
     // End of variables declaration//GEN-END:variables
 }
