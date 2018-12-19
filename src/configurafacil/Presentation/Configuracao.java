@@ -29,7 +29,7 @@ public class Configuracao extends javax.swing.JDialog {
        this.parent = (EscolherCarro) parent;
     }
     
-        public boolean verificaComponentes(Encomenda e){
+    public boolean verificaComponentes(Encomenda e){
         int i = 0;
         for(Componente c: e.getConfig()){
             if(c.getTipo().equals("Pintura") || c.getTipo().equals("Motor") || c.getTipo().equals("Pneu") || c.getTipo().equals("Jante"))
@@ -49,7 +49,27 @@ public class Configuracao extends javax.swing.JDialog {
         }
         return comp;
     }
-
+    
+    public void setPacotes(){
+            this.Sport.setEnabled(true);
+            this.Comfort.setEnabled(true);
+    }
+    
+    public void setVidro(){
+            this.Vidro.setEnabled(true);
+    }
+    
+    public void setParaChoques(){
+            this.Parachoques.setEnabled(true);
+    }
+    
+    public void setTeto(){
+            this.Teto.setEnabled(true);
+    }
+    
+    public void setLuz(){
+            this.Luz.setEnabled(true);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -151,7 +171,7 @@ public class Configuracao extends javax.swing.JDialog {
             }
         });
 
-        Comfort.setText("Confort");
+        Comfort.setText("Comfort");
         Comfort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComfortActionPerformed(evt);

@@ -19,6 +19,7 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
     private ConfiguraFacil configura;
     DefaultTableModel model;
     private int row = 0;
+    private Configuracao parent;
     private EscolherCarro parent2;
     private Componente componente;
     private String nomeComponente;
@@ -31,6 +32,7 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.configura = c;
+        this.parent = (Configuracao) parent;
         this.parent2 = (EscolherCarro) parent2;
         config = this.parent2.encomenda.getConfig();
         System.out.println(this.parent2.encomenda);
@@ -140,6 +142,11 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
         // TODO add your handling code here:
         model =  (DefaultTableModel) jTable1.getModel();
         this.parent2.encomenda.removeDaConfiguracao(componente);
+        if(componente.getTipo().equals("Pacote")) this.parent.setPacotes();
+        else if(componente.getTipo().equals("Teto")) this.parent.setTeto();
+        else if(componente.getTipo().equals("Pára-choque")) this.parent.setParaChoques();
+        else if(componente.getTipo().equals("Luzes")) this.parent.setLuz();
+        else if(componente.getTipo().equals("Vidro")) this.parent.setVidro();
         model.removeRow(row);
     }//GEN-LAST:event_jButton1ActionPerformed
 

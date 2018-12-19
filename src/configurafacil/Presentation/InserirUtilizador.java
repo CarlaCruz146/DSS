@@ -142,7 +142,7 @@ public class InserirUtilizador extends javax.swing.JDialog {
     
     private boolean validaDados() {
         boolean vazio = this.nome.equals("") || 
-                this.pass.equals("")|| ((checkStand.isSelected() == false) || (checkFabrica.isSelected() == false));
+                this.pass.equals("")|| ((checkStand.isSelected() == false) && (checkFabrica.isSelected() == false));
         if (vazio)
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor preencha os dados.", "Dados incompletos", 0);
                

@@ -166,7 +166,7 @@ public class Pneu extends javax.swing.JDialog {
         if(Pneu1.isSelected()) this.pneu = "Bridgestone Turanza T005 205/55 R16 91V";
         if(Pneu2.isSelected()) this.pneu = "Continental ContiEcoContact 5 205/55 R16 91V";
         if(Pneu3.isSelected()) this.pneu = "Continental PremiumContact 6 205/55 R16 91H";
-        if(Pneu4.isSelected()) this.pneu = "Firestone Roadhawk 205/55  R16 91H";
+        if(Pneu4.isSelected()) this.pneu = "Firestone Roadhawk 205/55 R16 91H";
         if(this.pneu.equals("")){
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor escolha um pneu","Pneu não selecionado", 0);
         }

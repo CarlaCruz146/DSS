@@ -149,7 +149,7 @@ public class Jantes extends javax.swing.JDialog {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         if(Jante1.isSelected()) this.jante = "Jantes em liga leve 17''";
-        if(Jante2.isSelected()) this.jante = "Jantes em liga leve 18'' 245/45  R18";
+        if(Jante2.isSelected()) this.jante = "Jantes em liga leve 18'' 245/45 R18";
         if(Jante3.isSelected()) this.jante = "Jantes em liga leve 19'' 255/40 R19";
         if(this.jante.equals("")){
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor escolha uma jantes","Jantes não selecionado", 0);
