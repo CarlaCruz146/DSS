@@ -80,7 +80,15 @@ public class SugestaoConfiguracao extends javax.swing.JDialog {
             new String [] {
                 "Componente", "Preço"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setText("Sugestão de Configuração");

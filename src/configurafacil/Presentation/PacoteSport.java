@@ -38,7 +38,7 @@ public class PacoteSport extends javax.swing.JDialog {
 
     
     public void inserePacoteS(){
-        model =  (DefaultTableModel) jTable1.getModel();
+        model = (DefaultTableModel) jTable1.getModel();
         Object rowData[] = new Object[1];
         for(Componente c : configura.getStand().getPacote("Pacote Sport").getComponentes()){
             rowData[0] = c.getNome();
@@ -91,7 +91,16 @@ public class PacoteSport extends javax.swing.JDialog {
             new String [] {
                 "Componentes"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.setEnabled(false);
         jScrollPane2.setViewportView(jTable1);
 
         jLabel1.setText("Pacote Sport");
