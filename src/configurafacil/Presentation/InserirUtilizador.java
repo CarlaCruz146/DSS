@@ -14,11 +14,12 @@ import configurafacil.Business.Utilizador;
  * @author jessica
  */
 public class InserirUtilizador extends javax.swing.JDialog {
+    public static ListaUtilizadores newa;
     private ConfiguraFacil configura;
     /**
      * Creates new form InserirUtilizador
      */
-    public InserirUtilizador(javax.swing.JDialog parent, boolean modal, ConfiguraFacil c) {
+    public InserirUtilizador(ListaUtilizadores parent, boolean modal, ConfiguraFacil c) {
         super(parent, modal);
         initComponents();
         this.configura = c;
@@ -33,12 +34,11 @@ public class InserirUtilizador extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         Nome = new javax.swing.JLabel();
         Password = new javax.swing.JLabel();
         nome = new javax.swing.JTextField();
         pass = new javax.swing.JPasswordField();
-        checkStand = new javax.swing.JRadioButton();
-        checkFabrica = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
@@ -62,20 +62,6 @@ public class InserirUtilizador extends javax.swing.JDialog {
             }
         });
 
-        checkStand.setText("Funcionário do Stand");
-        checkStand.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkStandActionPerformed(evt);
-            }
-        });
-
-        checkFabrica.setText("Funcionário da Fábrica");
-        checkFabrica.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkFabricaActionPerformed(evt);
-            }
-        });
-
         jButton1.setText("Guardar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,12 +82,9 @@ public class InserirUtilizador extends javax.swing.JDialog {
                     .addComponent(Nome)
                     .addComponent(Password))
                 .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(checkFabrica)
-                    .addComponent(checkStand)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(nome)
-                        .addComponent(pass, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(nome)
+                    .addComponent(pass, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE))
                 .addContainerGap(36, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -127,11 +110,7 @@ public class InserirUtilizador extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Password)
                     .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addComponent(checkStand)
-                .addGap(18, 18, 18)
-                .addComponent(checkFabrica)
-                .addGap(18, 18, 18)
+                .addGap(118, 118, 118)
                 .addComponent(jButton1)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
@@ -144,15 +123,10 @@ public class InserirUtilizador extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_nomeActionPerformed
 
-    private void checkStandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkStandActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_checkStandActionPerformed
-
     
     private boolean validaDados() {
         boolean vazio = this.nome.equals("") || 
-                this.pass.equals("")|| ((checkStand.isSelected() == true) && (checkStand.isSelected() == true)) || 
-                ((checkStand.isSelected() != true) && (checkStand.isSelected() != true));
+                this.pass.equals("")|| ((checkStand.isSelected() == false) || (checkStand.isSelected() == false));
         if (vazio)
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor preencha os dados.", "Dados incompletos", 0);
                
@@ -171,12 +145,9 @@ public class InserirUtilizador extends javax.swing.JDialog {
             Utilizador u = new Utilizador(nome,tipo,pass);
             configura.getGestaoU().addUtilizador(u);
             this.setVisible(false);
+            newa.addLine(nome);
             }
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void checkFabricaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkFabricaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_checkFabricaActionPerformed
 
     private void passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passActionPerformed
         // TODO add your handling code here:
@@ -185,8 +156,7 @@ public class InserirUtilizador extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Nome;
     private javax.swing.JLabel Password;
-    private javax.swing.JRadioButton checkFabrica;
-    private javax.swing.JRadioButton checkStand;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;

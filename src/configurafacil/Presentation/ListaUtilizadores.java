@@ -136,6 +136,13 @@ public class ListaUtilizadores extends javax.swing.JDialog {
         }
     }
     
+    public void addLine(String nome){
+        DefaultTableModel model2 = (DefaultTableModel) jTable1.getModel();
+        Object rowData2[] = new Object[2];
+        rowData2[0] = nome;
+        model2.addRow(rowData2);
+    }
+    
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);

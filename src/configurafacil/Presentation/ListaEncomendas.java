@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 public class ListaEncomendas extends javax.swing.JDialog {
     private ConfiguraFacil configura;
     DefaultTableModel model;
+    int row = 0;
  
     /**
      * Creates new form ConsultarStock2
@@ -117,6 +118,12 @@ public class ListaEncomendas extends javax.swing.JDialog {
             model.addRow(rowData);
         }
     }
+    
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {                                     
+        row = jTable1.getSelectedRow();
+        new DetalhesEncomenda (this, true, configura).setVisible(true);
+
+    }     
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:

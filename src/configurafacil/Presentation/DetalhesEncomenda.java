@@ -5,6 +5,8 @@
  */
 package configurafacil.Presentation;
 
+import configurafacil.Business.Componente;
+import configurafacil.Business.ConfiguraFacil;
 import configurafacil.Business.Encomenda;
 import java.util.HashMap;
 import javax.swing.table.DefaultTableModel;
@@ -14,19 +16,30 @@ import javax.swing.table.DefaultTableModel;
  * @author jessica
  */
 public class DetalhesEncomenda extends javax.swing.JDialog {
-    public static ListaEncomendas newe;
+    private static ListaEncomendas newe;
+    private static ConfiguraFacil configura;
     DefaultTableModel model;
+ 
     /**
-     * Creates new form DetalhesEncomenda
+     * Creates new form ConsultarStock2
      */
-    public DetalhesEncomenda(ListaEncomendas parent, boolean modal) {
-        this.newe = parent;
-        this.setModal(modal);
+    public DetalhesEncomenda(ListaEncomendas parent, boolean modal, ConfiguraFacil c) {
+        super(parent, modal);
         initComponents();
+        this.configura = c;
         setLocationRelativeTo(this);
-       // addRowQToJTable();
-    }
+        preencheDetalhes();    }
 
+    private void preencheDetalhes(){
+        int n = (Integer) newe.model.getValueAt(newe.row,0);  
+        Encomenda e = configura.getFabrica().getGestaoE().getEncomendas().get(n);
+        model =  (DefaultTableModel) jTable1.getModel();
+        Object rowData[] = new Object[2];
+        for(Componente c: e.getConfig()){
+            rowData[0] = c.getNome();
+            model.addRow(rowData);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -164,7 +177,7 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                DetalhesEncomenda dialog = new DetalhesEncomenda(newe, true);
+                DetalhesEncomenda dialog = new DetalhesEncomenda(newe, true,configura);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
