@@ -3,12 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Business/ConfiguraFacil.java</file>
-            <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Presentation/Configuracao.java</file>
-            <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Presentation/ConfiguracaoFinal.java</file>
             <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/ConfiguraFacilApp.java</file>
             <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Presentation/InserirUtilizador.java</file>
             <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Presentation/Login.java</file>
+            <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Presentation/ListaEncomendas.java</file>
+            <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Business/ConfiguraFacil.java</file>
+            <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Presentation/Configuracao.java</file>
+            <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Presentation/ConfiguracaoFinal.java</file>
+            <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Presentation/DetalhesEncomenda.java</file>
         </group>
     </open-files>
 </project-private>
