@@ -125,6 +125,15 @@ public class ListaEncomendas extends javax.swing.JDialog {
             model.addRow(rowData);
         }
     }   
+    public void addNovoEstado(Encomenda e){
+        DefaultTableModel model2 = (DefaultTableModel) jTable1.getModel();
+        Object rowData2[] = new Object[2];
+        rowData2[0] = e.getId();
+        if(e.getEstado() == 0)
+                 rowData2[1] = "Em espera";
+            else rowData2[1] = "Em execução";
+        model2.addRow(rowData2);
+    }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:

@@ -8,6 +8,7 @@ package configurafacil.Presentation;
 import configurafacil.Business.Componente;
 import configurafacil.Business.ConfiguraFacil;
 import configurafacil.Business.Encomenda;
+import java.util.Map;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,7 +19,8 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
     private ListaEncomendas parent;
     private static ConfiguraFacil configura;
     DefaultTableModel model;
- 
+    int row = 0;
+    private int carroN=0;
     /**
      * Creates new form ConsultarStock2
      */
@@ -59,16 +61,7 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null}
+
             },
             new String [] {
                 "Detalhes"
@@ -144,7 +137,23 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        int n = (Integer) this.parent.model.getValueAt(this.parent.row,0); 
+        Encomenda e = configura.getFabrica().getGestaoE().getEncomendas().get(n);
+        Map<String,Integer> stockDisponivel = configura.getFabrica().getStock();
+        for(Componente c: e.getConfig()){
+            if(stockDisponivel.get(c.getNome()) == 0){
+               javax.swing.JOptionPane.showMessageDialog(this, "Não há stock suficiente.", "Stock indisponivel", 0);
+               this.setVisible(false);
+            }
+        }
+        e.setEstado(1);
+        model = (DefaultTableModel)jTable1.getModel();
+        row = jTable1.getSelectedRow();
+        carroN = (int)model.getValueAt(row, 0);
+        configura.getFabrica().getGestaoE().removeEncomenda2(carroN);
+        model.removeRow(row);       
         this.setVisible(false);
+        this.parent.addNovoEstado(e);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
