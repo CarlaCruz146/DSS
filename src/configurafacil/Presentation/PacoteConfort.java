@@ -29,7 +29,7 @@ public class PacoteConfort extends javax.swing.JDialog {
        this.parent2 = (EscolherCarro) parent2;
        inserePacoteC();
 
-       double p = this.configura.getStand().getPacote("PacoteConfort").getPreco();
+       double p = this.configura.getStand().getPacote("Pacote Comfort").getPreco();
        
        preco.setText(Double.toString(p));
        preco.setEditable(false);
@@ -38,7 +38,7 @@ public class PacoteConfort extends javax.swing.JDialog {
     public void inserePacoteC(){
         model =  (DefaultTableModel) jTable1.getModel();
         Object rowData[] = new Object[1];
-        for(Componente c : configura.getStand().getPacote("PacoteConfort").getComponentes()){
+        for(Componente c : configura.getStand().getPacote("Pacote Comfort").getComponentes()){
             rowData[0] = c.getNome();
             model.addRow(rowData);
         }

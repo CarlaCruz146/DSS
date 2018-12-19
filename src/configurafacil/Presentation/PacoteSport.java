@@ -31,7 +31,7 @@ public class PacoteSport extends javax.swing.JDialog {
        this.parent2 = (EscolherCarro) parent2;
        inserePacoteS();
   
-       double p = this.configura.getStand().getPacote("PacoteSport").getPreco();
+       double p = this.configura.getStand().getPacote("Pacote Sport").getPreco();
        preco.setText(Double.toString(p));
        preco.setEditable(false);
     }
@@ -40,7 +40,7 @@ public class PacoteSport extends javax.swing.JDialog {
     public void inserePacoteS(){
         model =  (DefaultTableModel) jTable1.getModel();
         Object rowData[] = new Object[1];
-        for(Componente c : configura.getStand().getPacote("PacoteSport").getComponentes()){
+        for(Componente c : configura.getStand().getPacote("Pacote Sport").getComponentes()){
             rowData[0] = c.getNome();
             model.addRow(rowData);
         }
