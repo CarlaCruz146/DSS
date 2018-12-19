@@ -14,8 +14,8 @@ import java.util.stream.Collectors;
  * @author utilizador
  */
 public class Stand {
-    Map<String,Cliente> clientes;
-    Map<String,Componente> componentes;
+    private Map<String,Cliente> clientes;
+    private Map<String,Componente> componentes;
     
     public Stand() {
         this.clientes = new HashMap<>();

@@ -76,8 +76,5 @@ public class Utilizador {
         return u.getNome().equals(this.nome) && u.getTipo() == this.tipo
                 && u.getPassword().equals(this.password);
     }
-    
-    public Utilizador clone(){
-        return new Utilizador(this);
-    }
+   
 }

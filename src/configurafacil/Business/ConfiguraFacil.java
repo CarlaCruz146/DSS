@@ -68,9 +68,6 @@ public class ConfiguraFacil {
         Componente c19 = new Componente("Pára-choques","Pára-choque",270,null, null);
         //VIDRO
         Componente c20 = new Componente("Vidro Escurecido","Vidro",200,null, null);
-        //PACOTES
-        Componente c21 = new Componente("Pacote Comfort","Pacote",1700,null, null);
-        Componente c22 = new Componente("Pacote Sport","Pacote",2100,null, null);
         //TETO
         Componente c23 = new Componente("Teto de abrir","Teto",390,null, null);
         //LUZES
@@ -95,8 +92,6 @@ public class ConfiguraFacil {
         stand.addComponente(c18);
         stand.addComponente(c19);
         stand.addComponente(c20);
-        stand.addComponente(c21);
-        stand.addComponente(c22);
         stand.addComponente(c23);
         stand.addComponente(c24);
        
@@ -104,11 +99,11 @@ public class ConfiguraFacil {
     }
         
     public void addEnc() {
-        Encomenda e1 = new Encomenda(1,"BMW", 1, null);
+        Encomenda e1 = new Encomenda(1,"BMW", 1, null,null);
         fabrica.getGestaoE().addEncomenda(e1);
-        Encomenda e2 = new Encomenda(1,"Mercedes", 0, null);
+        Encomenda e2 = new Encomenda(1,"Mercedes", 0, null,null);
         fabrica.getGestaoE().addEncomenda(e2);
-        Encomenda e3 = new Encomenda(1,"Volvo", 1, null);
+        Encomenda e3 = new Encomenda(1,"Volvo", 1, null,null);
         fabrica.getGestaoE().addEncomenda(e3);
     }
     

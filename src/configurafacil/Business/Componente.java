@@ -108,4 +108,18 @@ public class Componente {
     public void insereIncompativel(String c){
         this.compIncompativeis.add(c);
     }
+    
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("A componente é ");
+        sb.append(this.nome);
+        sb.append(" que é do ");
+        sb.append(this.tipo);
+        sb.append(" com preço");
+        sb.append(this.tipo);
+        sb.append(" .\n");
+
+        return sb.toString();
+    }
+   
 }

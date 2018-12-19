@@ -18,20 +18,23 @@ public class Encomenda {
     private String carro;
     private int estado;
     private List <Componente> configuracao;
+    private Pacote pacote;
     
     public Encomenda() {
         this.id = 0;
         this.carro = "";
         this.estado = 0; // 0 em espera
         this.configuracao = new ArrayList<>();
+        this.pacote = null;
     }
     
-    public Encomenda(int id, String carro, int estado, List<Componente> config){
+    public Encomenda(int id, String carro, int estado, List<Componente> config, Pacote pacote){
         this.id = id;
         this.carro = carro;
         this.estado = estado;
         this.configuracao = new ArrayList<>();
         if (config != null) this.configuracao = config.stream().collect(Collectors.toList());
+        this.pacote = pacote;
     }
     
     public Encomenda(Encomenda e){
@@ -39,6 +42,7 @@ public class Encomenda {
         this.carro = e.getCarro();
         this.estado = e.getEstado();
         this.configuracao = e.getConfig();
+        this.pacote = e.getPacote();
     }
     
     public int getId(){
@@ -52,8 +56,13 @@ public class Encomenda {
     public int getEstado(){
         return this.estado;
     }
+    
     public List<Componente> getConfig(){
         return this.configuracao.stream().collect(Collectors.toList());
+    }
+    
+    public Pacote getPacote(){
+        return this.pacote;
     }
     
     public void addToConfiguracao(Componente c){
@@ -75,6 +84,10 @@ public class Encomenda {
     
     public void setEstado(int e){
         this.estado = e;
+    }
+    
+    public void setPacote(Pacote pacote){
+        this.pacote = pacote;
     }
     
     public void setConfig(List<Componente> c){
