@@ -181,7 +181,7 @@ public class PacoteSport extends javax.swing.JDialog {
         List<String> listObrig = new ArrayList<String>();
         List<String> listInc = new ArrayList<String>();
         for(Componente comp : pacote.getComponentes()){
-            listInc = this.parent.verificaIncomp(comp, this.parent2.encomenda);
+            listInc = this.parent.verificaIncompativel(pacote, this.parent2.encomenda);
             listObrig = this.parent.verificaObrig(comp, this.parent2.encomenda);
         }
         StringBuilder sbInc = new StringBuilder();
@@ -200,7 +200,7 @@ public class PacoteSport extends javax.swing.JDialog {
         if(!listInc.isEmpty()){
             javax.swing.JOptionPane.showMessageDialog(this, "Incompatível com: " + sbInc , "Componentes incompatíveis",0);
         }
-        this.parent2.encomenda.setPacote(pacote);
+        else this.parent2.encomenda.setPacote(pacote);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1MouseClicked
 

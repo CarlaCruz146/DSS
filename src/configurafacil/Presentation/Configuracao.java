@@ -10,6 +10,7 @@ import configurafacil.Business.Cliente;
 import static configurafacil.Presentation.DadosCliente.cliente;
 import configurafacil.Business.ConfiguraFacil;
 import configurafacil.Business.Encomenda;
+import configurafacil.Business.Pacote;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,6 +77,16 @@ public class Configuracao extends javax.swing.JDialog {
             else flag = 0;
         } 
         return obrig;
+    }
+    
+    public List<String> verificaIncompativel(Pacote p, Encomenda e){
+        List<String> incomp = new ArrayList<String>();
+        for(Componente c : p.getComponentes())
+            for(String s : c.getIncompativeis())
+                for(Componente comp : e.getConfig())
+                    if(s.equals(comp.getNome()))
+                        incomp.add(s);
+        return incomp;
     }
     
     public List<String> verficicaObrigatoria(Encomenda e){
@@ -468,15 +479,51 @@ public class Configuracao extends javax.swing.JDialog {
 
     private void VidroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VidroActionPerformed
         // TODO add your handling code here:
-           Componente comp = configura.getStand().getComponente("Vidro Escurecido");
-           this.parent.encomenda.addToConfiguracao(comp);
-           this.Vidro.setEnabled(false);
+        Componente comp = configura.getStand().getComponente("Vidro Escurecido");
+        List<String> listInc = this.verificaIncomp(comp, this.parent.encomenda);
+        List<String> listObrig = this.verificaObrig(comp, this.parent.encomenda);
+        StringBuilder sbInc = new StringBuilder();
+        StringBuilder sbObrig = new StringBuilder();
+        for (String i : listObrig){
+            sbObrig.append(i);
+            sbObrig.append("; ");
+        }
+        if(!listObrig.isEmpty()){
+            javax.swing.JOptionPane.showMessageDialog(this, "Obrigatórias: " + sbObrig , "Componentes obrigatórias",0);
+        }
+        for (String i : listInc){
+            sbInc.append(i);
+            sbInc.append("; ");
+        }
+        if(!listInc.isEmpty()){
+            javax.swing.JOptionPane.showMessageDialog(this, "Incompatível com: " + sbInc , "Componentes incompatíveis",0);
+        }
+        else  this.parent.encomenda.addToConfiguracao(comp);
+        this.Vidro.setEnabled(false);
     }//GEN-LAST:event_VidroActionPerformed
 
     private void ParachoquesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ParachoquesActionPerformed
         // TODO add your handling code here:
         Componente comp = configura.getStand().getComponente("Pára-choques");
-        this.parent.encomenda.addToConfiguracao(comp);
+        List<String> listInc = this.verificaIncomp(comp, this.parent.encomenda);
+        List<String> listObrig = this.verificaObrig(comp, this.parent.encomenda);
+        StringBuilder sbInc = new StringBuilder();
+        StringBuilder sbObrig = new StringBuilder();
+        for (String i : listObrig){
+            sbObrig.append(i);
+            sbObrig.append("; ");
+        }
+        if(!listObrig.isEmpty()){
+            javax.swing.JOptionPane.showMessageDialog(this, "Obrigatórias: " + sbObrig , "Componentes obrigatórias",0);
+        }
+        for (String i : listInc){
+            sbInc.append(i);
+            sbInc.append("; ");
+        }
+        if(!listInc.isEmpty()){
+            javax.swing.JOptionPane.showMessageDialog(this, "Incompatível com: " + sbInc , "Componentes incompatíveis",0);
+        }
+        else  this.parent.encomenda.addToConfiguracao(comp);
         this.Parachoques.setEnabled(false);
     }//GEN-LAST:event_ParachoquesActionPerformed
 
@@ -493,14 +540,50 @@ public class Configuracao extends javax.swing.JDialog {
     private void TetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TetoActionPerformed
         // TODO add your handling code here:
         Componente comp = configura.getStand().getComponente("Teto de abrir");
-        this.parent.encomenda.addToConfiguracao(comp);
+        List<String> listInc = this.verificaIncomp(comp, this.parent.encomenda);
+        List<String> listObrig = this.verificaObrig(comp, this.parent.encomenda);
+        StringBuilder sbInc = new StringBuilder();
+        StringBuilder sbObrig = new StringBuilder();
+        for (String i : listObrig){
+            sbObrig.append(i);
+            sbObrig.append("; ");
+        }
+        if(!listObrig.isEmpty()){
+            javax.swing.JOptionPane.showMessageDialog(this, "Obrigatórias: " + sbObrig , "Componentes obrigatórias",0);
+        }
+        for (String i : listInc){
+            sbInc.append(i);
+            sbInc.append("; ");
+        }
+        if(!listInc.isEmpty()){
+            javax.swing.JOptionPane.showMessageDialog(this, "Incompatível com: " + sbInc , "Componentes incompatíveis",0);
+        }
+        else this.parent.encomenda.addToConfiguracao(comp);
         this.Teto.setEnabled(false);
     }//GEN-LAST:event_TetoActionPerformed
 
     private void LuzActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LuzActionPerformed
         // TODO add your handling code here:
         Componente comp = configura.getStand().getComponente("Pacotes de luz");
-        this.parent.encomenda.addToConfiguracao(comp);
+        List<String> listInc = this.verificaIncomp(comp, this.parent.encomenda);
+        List<String> listObrig = this.verificaObrig(comp, this.parent.encomenda);
+        StringBuilder sbInc = new StringBuilder();
+        StringBuilder sbObrig = new StringBuilder();
+        for (String i : listObrig){
+            sbObrig.append(i);
+            sbObrig.append("; ");
+        }
+        if(!listObrig.isEmpty()){
+            javax.swing.JOptionPane.showMessageDialog(this, "Obrigatórias: " + sbObrig , "Componentes obrigatórias",0);
+        }
+        for (String i : listInc){
+            sbInc.append(i);
+            sbInc.append("; ");
+        }
+        if(!listInc.isEmpty()){
+            javax.swing.JOptionPane.showMessageDialog(this, "Incompatível com: " + sbInc , "Componentes incompatíveis",0);
+        }
+        else  this.parent.encomenda.addToConfiguracao(comp);
         this.Luz.setEnabled(false);
     }//GEN-LAST:event_LuzActionPerformed
 
