@@ -73,24 +73,24 @@ public class ConfiguraFacil {
         //VIDRO
         Componente c20 = new Componente("Vidro Escurecido","Vidro",200,null, null);
         //TETO
-        Componente c23 = new Componente("Teto de abrir","Teto",390,null, null);
+        Componente c21 = new Componente("Teto de abrir","Teto",390,null, null);
         //LUZES
-        Componente c24 = new Componente("Pacotes de luz","Luzes",600, null, null);
-        c24.insereIncompativel("Pacotes de Luzes Interiores");
+        Componente c22 = new Componente("Pacotes de luz","Luzes",600, null, null);
+        c22.insereIncompativel("Pacotes de Luzes Interiores");
         //PACOTE COMFORT
-        Componente c25 = new Componente("Bancos elétricos","Bancos",600, null, null);
-        c25.insereIncompativel("Couro comfort carvão");
-        Componente c26 = new Componente("Ar condicionado de 4 Zonas","Ar Condicionado",600, null, null);
-        Componente c27 = new Componente("Pacotes de Luzes Interiores","Luzes",600, null, null);
-        c27.insereIncompativel("Pacotes de luz");
-        Componente c28 = new Componente("Espelhos Retrovisores com Mecanismo Anti-Encadeamento","Espelhos",600, null, null);
+        Componente c23 = new Componente("Bancos elétricos","Bancos",600, null, null);
+        c23.insereIncompativel("Couro comfort carvão");
+        Componente c24 = new Componente("Ar condicionado de 4 Zonas","Ar Condicionado",600, null, null);
+        Componente c25 = new Componente("Pacotes de Luzes Interiores","Luzes",600, null, null);
+        c25.insereIncompativel("Pacotes de luz");
+        Componente c26 = new Componente("Espelhos Retrovisores com Mecanismo Anti-Encadeamento","Espelhos",600, null, null);
 
         //PACOTE SPORT
-        Componente c29 = new Componente("Jantes personalizadas","Jantes",600, null, null);
-        c29.insereObrigatoria("Continental PremiumContact 6 205/55 R16 91H");
-        Componente c30 = new Componente("Amortecedores Resistentes","Amortecedores",600, null, null);
-        Componente c31 = new Componente("Spoilers","Spoilers",600, null, null);
-        Componente c32 = new Componente("Escape com 2 ponteiras","Escape",600, null, null);
+        Componente c27 = new Componente("Jantes personalizadas","Jantes",600, null, null);
+        c27.insereObrigatoria("Continental PremiumContact 6 205/55 R16 91H");
+        Componente c28 = new Componente("Amortecedores Resistentes","Amortecedores",600, null, null);
+        Componente c29 = new Componente("Spoilers","Spoilers",600, null, null);
+        Componente c30 = new Componente("Escape com 2 ponteiras","Escape",600, null, null);
       
         stand.addComponente(c1);
         stand.addComponente(c2);
@@ -112,6 +112,8 @@ public class ConfiguraFacil {
         stand.addComponente(c18);
         stand.addComponente(c19);
         stand.addComponente(c20);
+        stand.addComponente(c21);
+        stand.addComponente(c22);
         stand.addComponente(c23);
         stand.addComponente(c24);
         stand.addComponente(c25);
@@ -120,8 +122,6 @@ public class ConfiguraFacil {
         stand.addComponente(c28);
         stand.addComponente(c29);
         stand.addComponente(c30);
-        stand.addComponente(c31);
-        stand.addComponente(c32);
        
     }
       

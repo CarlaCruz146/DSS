@@ -170,8 +170,8 @@ public class PacoteConfort extends javax.swing.JDialog {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         Pacote pacote = configura.getStand().getPacote("Pacote Comfort");
-        List<String> listObrig = new ArrayList<String>();
-        List<String> listInc = new ArrayList<String>();
+        List<String> listObrig = new ArrayList<>();
+        List<String> listInc = new ArrayList<>();
         listInc = this.parent.verificaIncompativel(pacote,this.parent2.encomenda);
         listObrig = this.parent.verficicaObrigatoria(this.parent2.encomenda);
         StringBuilder sbInc = new StringBuilder();
