@@ -63,6 +63,11 @@ public class ListaEncomendas extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Fechar");
@@ -119,18 +124,18 @@ public class ListaEncomendas extends javax.swing.JDialog {
             else rowData[1] = "Em execução";
             model.addRow(rowData);
         }
-    }
-    
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {                                     
-        row = jTable1.getSelectedRow();
-        new DetalhesEncomenda (this, true, configura).setVisible(true);
-
-    }     
+    }   
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        row = jTable1.getSelectedRow();
+        new DetalhesEncomenda (this, true, configura).setVisible(true);
+    }//GEN-LAST:event_jTable1MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
