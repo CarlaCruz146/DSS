@@ -29,6 +29,7 @@ public class ConfiguraFacil {
         addComp();
         addEnc();
         addStock();
+        addPacote();
     }
     
     public void addFunc() {
@@ -97,13 +98,43 @@ public class ConfiguraFacil {
        
        
     }
+      
+    public void addPacote() {
+        ArrayList componentes = new ArrayList<>();
+        Componente c1 = new Componente("Preto","Pintura",200,null, null);
+        Componente c2 = new Componente("D4 190cv Geatronic 8 Vel.","Motor",3700,null, null);
+        Componente c3 = new Componente("Firestone Roadhawk 205/55 R16 91H","Pneu",580,null, null);
+        Componente c4 = new Componente("Jantes em liga leve 18'' 245/45 R18","Jante",340,null, null);
+        Componente c5 = new Componente("Couro comfort maroon brown","Estofo",800, null, null);
+        Componente c6 = new Componente("Vidro Escurecido","Vidro",200,null, null);
+
+        componentes.add(0,c1);
+        componentes.add(1,c2);
+        componentes.add(2,c3);
+        componentes.add(3,c4);
+        componentes.add(4,c5);
+        componentes.add(5,c6);
         
+        Pacote p1 = new Pacote("Confort",300,componentes);
+        Encomenda e1 = new Encomenda(4, "Volvo", 1, null, p1);
+        fabrica.getGestaoE().addEncomenda(e1);
+        
+        Pacote p2 = new Pacote("Confort",400,null);
+        Encomenda e2 = new Encomenda(5, "Mercedes", 1, null, p2);
+        fabrica.getGestaoE().addEncomenda(e2);
+        
+        Pacote p3 = new Pacote("Sport",700,null);
+        Encomenda e3 = new Encomenda(6, "BMW", 1, null, p3);
+        fabrica.getGestaoE().addEncomenda(e3);
+        
+    }
+    
     public void addEnc() {
         Encomenda e1 = new Encomenda(1,"BMW", 1, null,null);
         fabrica.getGestaoE().addEncomenda(e1);
-        Encomenda e2 = new Encomenda(1,"Mercedes", 0, null,null);
+        Encomenda e2 = new Encomenda(2,"Mercedes", 0, null,null);
         fabrica.getGestaoE().addEncomenda(e2);
-        Encomenda e3 = new Encomenda(1,"Volvo", 1, null,null);
+        Encomenda e3 = new Encomenda(3,"Volvo", 1, null,null);
         fabrica.getGestaoE().addEncomenda(e3);
     }
     
