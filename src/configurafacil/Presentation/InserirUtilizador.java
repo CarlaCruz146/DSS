@@ -14,15 +14,16 @@ import configurafacil.Business.Utilizador;
  * @author jessica
  */
 public class InserirUtilizador extends javax.swing.JDialog {
-    public static ListaUtilizadores newa;
     private ConfiguraFacil configura;
+    private ListaUtilizadores parent;
     /**
      * Creates new form InserirUtilizador
      */
-    public InserirUtilizador(ListaUtilizadores parent, boolean modal, ConfiguraFacil c) {
+    public InserirUtilizador(javax.swing.JDialog parent, boolean modal, ConfiguraFacil c) {
         super(parent, modal);
         initComponents();
         this.configura = c;
+        this.parent = (ListaUtilizadores) parent;
     }
 
     /**
@@ -42,6 +43,8 @@ public class InserirUtilizador extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
+        checkStand = new javax.swing.JRadioButton();
+        checkFabrica = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -71,29 +74,38 @@ public class InserirUtilizador extends javax.swing.JDialog {
 
         jLabel1.setText("Inserir Utilizador");
 
+        buttonGroup1.add(checkStand);
+        checkStand.setText("Funcionário do Stand");
+
+        buttonGroup1.add(checkFabrica);
+        checkFabrica.setText("Funcionário da Fábrica");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Nome)
-                    .addComponent(Password))
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(nome)
-                    .addComponent(pass, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE))
-                .addContainerGap(36, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 153, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(148, 148, 148))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(22, 22, 22))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Nome)
+                    .addComponent(Password))
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(checkFabrica)
+                    .addComponent(checkStand)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(nome)
+                        .addComponent(pass, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,9 +122,13 @@ public class InserirUtilizador extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Password)
                     .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(118, 118, 118)
+                .addGap(46, 46, 46)
+                .addComponent(checkStand)
+                .addGap(18, 18, 18)
+                .addComponent(checkFabrica)
+                .addGap(25, 25, 25)
                 .addComponent(jButton1)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -142,10 +158,10 @@ public class InserirUtilizador extends javax.swing.JDialog {
             if (checkFabrica.isSelected()) tipo = 2;
             
             if (validaDados()){
-            Utilizador u = new Utilizador(nome,tipo,pass);
-            configura.getGestaoU().addUtilizador(u);
-            this.setVisible(false);
-            newa.addLine(nome);
+                Utilizador u = new Utilizador(nome,tipo,pass);
+                configura.getGestaoU().addUtilizador(u);
+                this.setVisible(false);
+                this.parent.addLine(nome);
             }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -157,6 +173,8 @@ public class InserirUtilizador extends javax.swing.JDialog {
     private javax.swing.JLabel Nome;
     private javax.swing.JLabel Password;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JRadioButton checkFabrica;
+    private javax.swing.JRadioButton checkStand;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
