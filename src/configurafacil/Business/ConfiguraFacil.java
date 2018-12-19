@@ -51,15 +51,18 @@ public class ConfiguraFacil {
         Componente c5 = new Componente("D4 190cv Man. 6 Vel.","Motor",3500,null, null);
         Componente c6 = new Componente("D4 190cv Geatronic 8 Vel.","Motor",3700,null, null);
         Componente c7 = new Componente("D5 235cv Geatronic 8 Vel.","Motor",4200,null, null);
+        c7.insereIncompativel("Bridgestone Turanza T005 205/55 R16 91V");
         //PNEU
         Componente c8 = new Componente("Bridgestone Turanza T005 205/55 R16 91V","Pneu",450,null, null);
         Componente c9 = new Componente("Continental ContiEcoContact 5 205/55 R16 91V","Pneu",450,null, null);
         Componente c10 = new Componente("Continental PremiumContact 6 205/55 R16 91H","Pneu",500,null, null);
         Componente c11 = new Componente("Firestone Roadhawk 205/55 R16 91H","Pneu",580,null, null);
+        c10.insereObrigatoria("Jantes em liga leve 19'' 255/40 R19");
         //JANTE
         Componente c12 = new Componente("Jantes em liga leve 17''","Jante",270,null, null);
         Componente c13 = new Componente("Jantes em liga leve 18'' 245/45 R18","Jante",340,null, null);
         Componente c14 = new Componente("Jantes em liga leve 19'' 255/40 R19","Jante",350,null, null);
+        c12.insereIncompativel("Bridgestone Turanza T005 205/55 R16 91V");
         //ESTOFOS
         Componente c15 = new Componente("Couro comfort carvão","Estofo",800, null, null);
         Componente c16 = new Componente("Couro comfort âmbar","Estofo",800, null, null);

@@ -7,6 +7,7 @@ package configurafacil.Presentation;
 
 import configurafacil.Business.Componente;
 import configurafacil.Business.ConfiguraFacil;
+import java.util.List;
 
 /**
  *
@@ -209,7 +210,7 @@ public class Pneu extends javax.swing.JDialog {
     }//GEN-LAST:event_Pneu4ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        if(Pneu1.isSelected()) this.pneu = "Bridgestone Turanza T005 205/55 R16 91V";
+         if(Pneu1.isSelected()) this.pneu = "Bridgestone Turanza T005 205/55 R16 91V";
         if(Pneu2.isSelected()) this.pneu = "Continental ContiEcoContact 5 205/55 R16 91V";
         if(Pneu3.isSelected()) this.pneu = "Continental PremiumContact 6 205/55 R16 91H";
         if(Pneu4.isSelected()) this.pneu = "Firestone Roadhawk 205/55 R16 91H";
@@ -219,10 +220,30 @@ public class Pneu extends javax.swing.JDialog {
         else {
             Componente comp = configura.getStand().getComponente(this.pneu);
             Componente c = this.parent.verificaTipo(this.parent2.encomenda, "Pneu");
-            if(c != null){
-                this.parent2.encomenda.removeDaConfiguracao(c);
+            List<String> listInc = this.parent.verificaIncomp(comp, this.parent2.encomenda);
+            List<String> listObrig = this.parent.verificaObrig(comp, this.parent2.encomenda);
+            StringBuilder sbInc = new StringBuilder();
+            StringBuilder sbObrig = new StringBuilder();
+            for (String i : listObrig){
+                sbObrig.append(i);
+                sbObrig.append("; ");
             }
-            this.parent2.encomenda.addToConfiguracao(comp);
+            if(!listObrig.isEmpty()){
+                javax.swing.JOptionPane.showMessageDialog(this, "Obrigatórias: " + sbObrig , "Componentes obrigatórias",0);
+            }
+            for (String i : listInc){
+                sbInc.append(i);
+                sbInc.append("; ");
+            }
+            if(!listInc.isEmpty()){
+                javax.swing.JOptionPane.showMessageDialog(this, "Incompatível com: " + sbInc , "Componentes incompatíveis",0);
+            }
+            else {
+                if(c != null){
+                    this.parent2.encomenda.removeDaConfiguracao(c);
+                }
+                this.parent2.encomenda.addToConfiguracao(comp);
+            }
             this.setVisible(false);
         }
     }//GEN-LAST:event_jButton1MouseClicked

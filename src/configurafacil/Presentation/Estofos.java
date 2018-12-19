@@ -7,6 +7,7 @@ package configurafacil.Presentation;
 
 import configurafacil.Business.Componente;
 import configurafacil.Business.ConfiguraFacil;
+import java.util.List;
 
 /**
  *
@@ -220,10 +221,30 @@ public class Estofos extends javax.swing.JDialog {
         else {
             Componente comp = configura.getStand().getComponente(this.estofo);
             Componente c = this.parent.verificaTipo(this.parent2.encomenda, "Estofo");
-            if(c != null){
-                this.parent2.encomenda.removeDaConfiguracao(c);
+            List<String> listInc = this.parent.verificaIncomp(comp, this.parent2.encomenda);
+            List<String> listObrig = this.parent.verificaObrig(comp, this.parent2.encomenda);
+            StringBuilder sbInc = new StringBuilder();
+            StringBuilder sbObrig = new StringBuilder();
+            for (String i : listObrig){
+                sbObrig.append(i);
+                sbObrig.append("; ");
             }
-            this.parent2.encomenda.addToConfiguracao(comp);
+            if(!listObrig.isEmpty()){
+                javax.swing.JOptionPane.showMessageDialog(this, "Obrigatórias: " + sbObrig , "Componentes obrigatórias",0);
+            }
+            for (String i : listInc){
+                sbInc.append(i);
+                sbInc.append("; ");
+            }
+            if(!listInc.isEmpty()){
+                javax.swing.JOptionPane.showMessageDialog(this, "Incompatível com: " + sbInc , "Componentes incompatíveis",0);
+            }
+            else {
+                if(c != null){
+                    this.parent2.encomenda.removeDaConfiguracao(c);
+                }
+                this.parent2.encomenda.addToConfiguracao(comp);
+            }
             this.setVisible(false);
         }
     }//GEN-LAST:event_jButton1MouseClicked

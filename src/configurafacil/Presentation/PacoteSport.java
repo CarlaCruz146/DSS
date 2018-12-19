@@ -8,6 +8,8 @@ package configurafacil.Presentation;
 import configurafacil.Business.Componente;
 import configurafacil.Business.ConfiguraFacil;
 import configurafacil.Business.Pacote;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -175,7 +177,29 @@ public class PacoteSport extends javax.swing.JDialog {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        Pacote pacote = configura.getStand().getPacote("Pacote Sport");
+         Pacote pacote = configura.getStand().getPacote("Pacote Sport");
+        List<String> listObrig = new ArrayList<String>();
+        List<String> listInc = new ArrayList<String>();
+        for(Componente comp : pacote.getComponentes()){
+            listInc = this.parent.verificaIncomp(comp, this.parent2.encomenda);
+            listObrig = this.parent.verificaObrig(comp, this.parent2.encomenda);
+        }
+        StringBuilder sbInc = new StringBuilder();
+        StringBuilder sbObrig = new StringBuilder();
+        for (String i : listObrig){
+            sbObrig.append(i);
+            sbObrig.append("; ");
+        }
+        if(!listObrig.isEmpty()){
+            javax.swing.JOptionPane.showMessageDialog(this, "Obrigatórias: " + sbObrig , "Componentes obrigatórias",0);
+        }
+        for (String i : listInc){
+            sbInc.append(i);
+            sbInc.append("; ");
+        }
+        if(!listInc.isEmpty()){
+            javax.swing.JOptionPane.showMessageDialog(this, "Incompatível com: " + sbInc , "Componentes incompatíveis",0);
+        }
         this.parent2.encomenda.setPacote(pacote);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1MouseClicked

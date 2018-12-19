@@ -7,6 +7,7 @@ package configurafacil.Presentation;
 
 import configurafacil.Business.Componente;
 import configurafacil.Business.ConfiguraFacil;
+import java.util.List;
 
 /**
  *
@@ -180,7 +181,7 @@ public class Jantes extends javax.swing.JDialog {
     }//GEN-LAST:event_Jante3ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        if(Jante1.isSelected()) this.jante = "Jantes em liga leve 17''";
+       if(Jante1.isSelected()) this.jante = "Jantes em liga leve 17''";
         if(Jante2.isSelected()) this.jante = "Jantes em liga leve 18'' 245/45 R18";
         if(Jante3.isSelected()) this.jante = "Jantes em liga leve 19'' 255/40 R19";
         if(this.jante.equals("")){
@@ -189,10 +190,30 @@ public class Jantes extends javax.swing.JDialog {
         else {
             Componente comp = configura.getStand().getComponente(this.jante);
             Componente c = this.parent.verificaTipo(this.parent2.encomenda, "Jante");
-            if(c != null){
-                this.parent2.encomenda.removeDaConfiguracao(c);
+             List<String> listInc = this.parent.verificaIncomp(comp, this.parent2.encomenda);
+            List<String> listObrig = this.parent.verificaObrig(comp, this.parent2.encomenda);
+            StringBuilder sbInc = new StringBuilder();
+            StringBuilder sbObrig = new StringBuilder();
+            for (String i : listObrig){
+                sbObrig.append(i);
+                sbObrig.append("; ");
             }
-            this.parent2.encomenda.addToConfiguracao(comp);
+            if(!listObrig.isEmpty()){
+                javax.swing.JOptionPane.showMessageDialog(this, "Obrigatórias: " + sbObrig , "Componentes obrigatórias",0);
+            }
+            for (String i : listInc){
+                sbInc.append(i);
+                sbInc.append("; ");
+            }
+            if(!listInc.isEmpty()){
+                javax.swing.JOptionPane.showMessageDialog(this, "Incompatível com: " + sbInc , "Componentes incompatíveis",0);
+            }
+            else {
+                if(c != null){
+                    this.parent2.encomenda.removeDaConfiguracao(c);
+                }
+                this.parent2.encomenda.addToConfiguracao(comp);
+            }
             this.setVisible(false);
         }
     }//GEN-LAST:event_jButton1MouseClicked

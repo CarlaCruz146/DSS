@@ -10,6 +10,8 @@ import configurafacil.Business.Cliente;
 import static configurafacil.Presentation.DadosCliente.cliente;
 import configurafacil.Business.ConfiguraFacil;
 import configurafacil.Business.Encomenda;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -48,6 +50,47 @@ public class Configuracao extends javax.swing.JDialog {
             }       
         }
         return comp;
+    }
+    
+    public List<String> verificaIncomp(Componente c, Encomenda e){
+        List<String> incomp = new ArrayList<String>();
+        for(String i : c.getIncompativeis())
+            for(Componente j : e.getConfig()){
+                if(i.equals(j.getNome()))
+                    incomp.add(i);
+                    
+            }
+        return incomp;
+    }
+    
+    public List<String> verificaObrig(Componente c, Encomenda e){
+        List<String> obrig = new ArrayList<String>();
+        int flag = 0;
+        for(String i : c.getObrigatorias()){
+            if(e.getConfig().isEmpty()) obrig.add(i);
+            for(Componente j : e.getConfig()){
+                if(i.equals(j.getNome()))
+                    flag = 1;
+            }
+            if(flag == 0) obrig.add(i);
+            else flag = 0;
+        } 
+        return obrig;
+    }
+    
+    public List<String> verficicaObrigatoria(Encomenda e){
+        List<String> obrigatorio = new ArrayList<>();
+        int flag = 0;
+        for(Componente c : e.getConfig()){
+            for(String s : c.getObrigatorias()){
+                for(Componente comp : e.getConfig())
+                    if(s.equals(comp.getNome()))
+                        flag = 1;
+            if(flag == 0) obrigatorio.add(s);
+            else flag = 0;
+            }
+        }
+        return obrigatorio;
     }
     
     public void setPacotes(){
@@ -465,14 +508,22 @@ public class Configuracao extends javax.swing.JDialog {
         // TODO add your handling code here:
         if(verificaComponentes(this.parent.encomenda)){
             Cliente c = configura.getStand().getClientes().get(cliente);
-            configura.getStand().addEncomendaCliente(c,this.parent.encomenda);
-            configura.getFabrica().getGestaoE().addEncomenda(this.parent.encomenda);
-            System.out.println(this.parent.encomenda.getCarro());
-            for(Componente xixi: this.parent.encomenda.getConfig()){
-                 System.out.println(xixi.getNome());
-             }
-            this.setVisible(false);
-            new DadosCliente(this, true, configura).setVisible(true);
+            List<String> listObrig = new ArrayList<>();
+            for(Componente comp : this.parent.encomenda.getConfig()){
+                listObrig = this.verficicaObrigatoria(this.parent.encomenda);
+            }
+            StringBuilder sb = new StringBuilder();
+            for(String i : listObrig){
+                sb.append(i);
+                sb.append("; ");
+            }
+            if(listObrig.isEmpty()){
+                configura.getStand().addEncomendaCliente(c,this.parent.encomenda);
+                configura.getFabrica().getGestaoE().addEncomenda(this.parent.encomenda);
+                this.setVisible(false);
+                new DadosCliente(this, true, configura).setVisible(true);
+            }
+            else javax.swing.JOptionPane.showMessageDialog(this, "Obrigatória: " + sb,"Componente obrigatória não selecionada", 0);
         }
         else javax.swing.JOptionPane.showMessageDialog(this, "Por favor escolha as componentes obrigatórias","Componente obrigatória não selecionada", 0);
     }//GEN-LAST:event_jButton14ActionPerformed
