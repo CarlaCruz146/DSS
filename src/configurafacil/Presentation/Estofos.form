@@ -40,7 +40,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="preco3" max="32767" attributes="0"/>
                   <Component id="preco2" max="32767" attributes="0"/>
-                  <Component id="preco4" alignment="0" pref="70" max="32767" attributes="0"/>
+                  <Component id="preco4" alignment="0" pref="74" max="32767" attributes="0"/>
                   <Component id="preco1" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
@@ -132,7 +132,7 @@
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="buttonGroup1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Couro comfort maroon brown "/>
+        <Property name="text" type="java.lang.String" value="Couro comfort maroon brown"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Estofo3ActionPerformed"/>
@@ -168,25 +168,21 @@
     <Component class="javax.swing.JTextField" name="preco1">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
-        <Property name="text" type="java.lang.String" value="800.00"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="preco2">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
-        <Property name="text" type="java.lang.String" value="800.00"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="preco3">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
-        <Property name="text" type="java.lang.String" value="800.00"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="preco4">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
-        <Property name="text" type="java.lang.String" value="800.00"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Default Cursor"/>
         </Property>

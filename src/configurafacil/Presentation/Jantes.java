@@ -28,8 +28,21 @@ public class Jantes extends javax.swing.JDialog {
        this.configura = c;
        this.parent = (Configuracao) parent;
        this.parent2 = (EscolherCarro) parent2;
+       escrevePrecos();
     }
 
+    public void escrevePrecos(){
+        String c1 = Jante1.getText();
+        String c2 = Jante2.getText();
+        String c3 = Jante3.getText();
+        
+        Double p1 = configura.getStand().getComponente(c1).getPreco();
+        Double p2 = configura.getStand().getComponente(c2).getPreco();
+        Double p3 = configura.getStand().getComponente(c3).getPreco();
+        preco1.setText(Double.toString(p1));
+        preco2.setText(Double.toString(p2));
+        preco3.setText(Double.toString(p3));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,9 +59,9 @@ public class Jantes extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        preco1 = new javax.swing.JTextField();
+        preco2 = new javax.swing.JTextField();
+        preco3 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -63,7 +76,7 @@ public class Jantes extends javax.swing.JDialog {
         });
 
         buttonGroup1.add(Jante2);
-        Jante2.setText("Jantes em liga leve 18'' 245/45  R18");
+        Jante2.setText("Jantes em liga leve 18'' 245/45 R18");
         Jante2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Jante2ActionPerformed(evt);
@@ -92,14 +105,16 @@ public class Jantes extends javax.swing.JDialog {
 
         jLabel1.setText("Jantes");
 
-        jTextField1.setEditable(false);
-        jTextField1.setText("270.00");
+        preco1.setEditable(false);
+        preco1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                preco1ActionPerformed(evt);
+            }
+        });
 
-        jTextField2.setEditable(false);
-        jTextField2.setText("340.00");
+        preco2.setEditable(false);
 
-        jTextField3.setEditable(false);
-        jTextField3.setText("350.00");
+        preco3.setEditable(false);
 
         jLabel2.setText("Preço");
 
@@ -120,9 +135,9 @@ public class Jantes extends javax.swing.JDialog {
                     .addComponent(Jante3))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-                    .addComponent(jTextField1)
-                    .addComponent(jTextField2))
+                    .addComponent(preco3, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
+                    .addComponent(preco1)
+                    .addComponent(preco2))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -146,15 +161,15 @@ public class Jantes extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Jante1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(preco1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Jante2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(preco2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Jante3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(preco3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -218,6 +233,10 @@ public class Jantes extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private void preco1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_preco1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_preco1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton Jante1;
     private javax.swing.JRadioButton Jante2;
@@ -227,8 +246,8 @@ public class Jantes extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField preco1;
+    private javax.swing.JTextField preco2;
+    private javax.swing.JTextField preco3;
     // End of variables declaration//GEN-END:variables
 }

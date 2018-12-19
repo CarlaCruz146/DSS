@@ -28,6 +28,24 @@ public class Estofos extends javax.swing.JDialog {
        this.configura = c;
        this.parent = (Configuracao) parent;
        this.parent2 = (EscolherCarro) parent2;
+       escrevePrecos();
+    }
+    
+    
+    public void escrevePrecos(){
+        String c1 = Estofo1.getText();
+        String c2 = Estofo2.getText();
+        String c3 = Estofo3.getText();
+        String c4 = Estofo4.getText();
+        
+        Double p1 = configura.getStand().getComponente(c1).getPreco();
+        Double p2 = configura.getStand().getComponente(c2).getPreco();
+        Double p3 = configura.getStand().getComponente(c3).getPreco();
+        Double p4 = configura.getStand().getComponente(c4).getPreco();
+        preco1.setText(Double.toString(p1));
+        preco2.setText(Double.toString(p2));
+        preco3.setText(Double.toString(p3));
+        preco4.setText(Double.toString(p4));
     }
 
     /**
@@ -73,7 +91,7 @@ public class Estofos extends javax.swing.JDialog {
         });
 
         buttonGroup1.add(Estofo3);
-        Estofo3.setText("Couro comfort maroon brown ");
+        Estofo3.setText("Couro comfort maroon brown");
         Estofo3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Estofo3ActionPerformed(evt);
@@ -103,16 +121,12 @@ public class Estofos extends javax.swing.JDialog {
         jLabel1.setText("Estofos");
 
         preco1.setEditable(false);
-        preco1.setText("800.00");
 
         preco2.setEditable(false);
-        preco2.setText("800.00");
 
         preco3.setEditable(false);
-        preco3.setText("800.00");
 
         preco4.setEditable(false);
-        preco4.setText("800.00");
         preco4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         preco4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,7 +151,7 @@ public class Estofos extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(preco3)
                     .addComponent(preco2)
-                    .addComponent(preco4, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+                    .addComponent(preco4, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
                     .addComponent(preco1))
                 .addGap(22, 22, 22))
             .addGroup(layout.createSequentialGroup()

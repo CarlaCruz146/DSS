@@ -27,6 +27,23 @@ public class Pintura extends javax.swing.JDialog {
        this.configura = c;
        this.parent = (Configuracao) parent;
        this.parent2 = (EscolherCarro) parent2;
+       escrevePrecos();
+    }
+    
+    public void escrevePrecos(){
+        String c1 = Cor1.getText();
+        String c2 = Cor2.getText();
+        String c3 = Cor3.getText();
+        String c4 = Cor4.getText();
+        
+        Double p1 = configura.getStand().getComponente(c1).getPreco();
+        Double p2 = configura.getStand().getComponente(c2).getPreco();
+        Double p3 = configura.getStand().getComponente(c3).getPreco();
+        Double p4 = configura.getStand().getComponente(c4).getPreco();
+        preco1.setText(Double.toString(p1));
+        preco2.setText(Double.toString(p2));
+        preco3.setText(Double.toString(p3));
+        preco4.setText(Double.toString(p4));
     }
 
     /**
@@ -47,10 +64,10 @@ public class Pintura extends javax.swing.JDialog {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        preco1 = new javax.swing.JTextField();
+        preco2 = new javax.swing.JTextField();
+        preco3 = new javax.swing.JTextField();
+        preco4 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -97,17 +114,18 @@ public class Pintura extends javax.swing.JDialog {
 
         jLabel2.setText("Preço");
 
-        jTextField1.setEditable(false);
-        jTextField1.setText("200.00");
+        preco1.setEditable(false);
 
-        jTextField2.setEditable(false);
-        jTextField2.setText("200.00");
+        preco2.setEditable(false);
+        preco2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                preco2ActionPerformed(evt);
+            }
+        });
 
-        jTextField3.setEditable(false);
-        jTextField3.setText("200.00");
+        preco3.setEditable(false);
 
-        jTextField4.setEditable(false);
-        jTextField4.setText("200.00");
+        preco4.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -129,13 +147,12 @@ public class Pintura extends javax.swing.JDialog {
                             .addComponent(Cor4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(36, 36, 36))
+                            .addComponent(preco1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING))))
+                                .addComponent(preco4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+                                .addComponent(preco3, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(preco2, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addGap(36, 36, 36))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton1)))
@@ -157,19 +174,19 @@ public class Pintura extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Cor1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(preco1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Cor2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(preco2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Cor3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(preco3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Cor4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(preco4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -235,6 +252,10 @@ public class Pintura extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void preco2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_preco2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_preco2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton Cor1;
     private javax.swing.JRadioButton Cor2;
@@ -245,9 +266,9 @@ public class Pintura extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField preco1;
+    private javax.swing.JTextField preco2;
+    private javax.swing.JTextField preco3;
+    private javax.swing.JTextField preco4;
     // End of variables declaration//GEN-END:variables
 }
