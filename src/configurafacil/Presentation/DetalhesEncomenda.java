@@ -33,10 +33,9 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
 
     private void preencheDetalhes(){
         int n = (Integer) this.parent.model.getValueAt(this.parent.row,0);  
-        Encomenda e = configura.getFabrica().getGestaoE().getEncomendas().get(n);
         model =  (DefaultTableModel) jTable1.getModel();
-        Object rowData[] = new Object[2];
-        for(Componente c: e.getConfig()){
+        Object rowData[] = new Object[1];
+        for(Componente c: configura.getFabrica().getGestaoE().getEncomendas().get(n).getConfig()){
             rowData[0] = c.getNome();
             model.addRow(rowData);
         }

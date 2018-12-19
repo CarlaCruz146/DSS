@@ -114,7 +114,9 @@ public class ListaEncomendas extends javax.swing.JDialog {
         Object rowData[] = new Object[2];
         for(Encomenda a: configura.getFabrica().getGestaoE().getEncomendas().values()){
             rowData[0] = a.getId();
-            rowData[1] = a.getEstado();
+            if(a.getEstado() == 0)
+                    rowData[1] = "Em espera";
+            else rowData[1] = "Em execução";
             model.addRow(rowData);
         }
     }
