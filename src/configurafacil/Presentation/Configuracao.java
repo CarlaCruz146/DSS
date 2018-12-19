@@ -393,7 +393,7 @@ public class Configuracao extends javax.swing.JDialog {
     private void ComfortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComfortActionPerformed
         // TODO add your handling code here:
         new PacoteConfort(this,this.parent, true, configura).setVisible(true);
-        if(verificaTipo(this.parent.encomenda,"Pacote")!=null) {
+        if(this.parent.encomenda.getPacote()!=null) {
             this.Comfort.setEnabled(false);
             this.Sport.setEnabled(false);
         }
@@ -402,7 +402,7 @@ public class Configuracao extends javax.swing.JDialog {
     private void SportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SportActionPerformed
         // TODO add your handling code here:
         new PacoteSport(this,this.parent, true, configura).setVisible(true);
-        if(verificaTipo(this.parent.encomenda,"Pacote")!=null) {
+        if(this.parent.encomenda.getPacote()!=null) {
             this.Comfort.setEnabled(false);
             this.Sport.setEnabled(false);
         }

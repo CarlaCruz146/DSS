@@ -67,7 +67,6 @@ public class Encomenda {
     
     public void addToConfiguracao(Componente c){
         this.configuracao.add(c);
-        System.out.println("Adicionei à configuracao!!");
     }
     
     public void removeDaConfiguracao(Componente c){

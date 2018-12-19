@@ -5,8 +5,8 @@
  */
 package configurafacil.Presentation;
 
-import configurafacil.Business.Componente;
 import configurafacil.Business.ConfiguraFacil;
+import configurafacil.Business.Pacote;
 
 /**
  *
@@ -131,8 +131,8 @@ public class PacoteSport extends javax.swing.JDialog {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        Componente comp = configura.getStand().getComponente("Pacote Comfort");
-        this.parent2.encomenda.addToConfiguracao(comp);
+        Pacote pacote = configura.getStand().getPacote("Pacote Sport");
+        this.parent2.encomenda.setPacote(pacote);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1MouseClicked
 

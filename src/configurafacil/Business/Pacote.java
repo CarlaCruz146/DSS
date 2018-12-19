@@ -15,27 +15,23 @@ import java.util.stream.Collectors;
  */
 public class Pacote {
     private String nome;
-    private String tipo;
     private double preco;
     private List<Componente> componentes;
     
      public Pacote(){
         this.nome = "";
-        this.tipo = "";
         this.preco = 0;
         this.componentes = new ArrayList<>();
     }
     
-    public Pacote(String nome, String tipo, double preco, List<Componente> componentes){
+    public Pacote(String nome, double preco, List<Componente> componentes){
         this.nome = nome;
-        this.tipo = tipo;
         this.preco = preco;
         setComponentes(componentes);
     }
     
     public Pacote(Pacote c){
         this.nome = c.getNome();
-        this.tipo = c.getTipo();
         this.preco = c.getPreco();
         this.componentes = c.getComponentes();
     }
@@ -44,10 +40,6 @@ public class Pacote {
         return this.nome;
     }
    
-    public String getTipo(){
-        return this.tipo;
-    }
-    
     public double getPreco(){
         return this.preco;
     }
@@ -58,10 +50,6 @@ public class Pacote {
     
     public void setNome(String nome){
         this.nome = nome;
-    }
-    
-    public void setTipo(String tipo){
-        this.tipo = tipo;
     }
     
     public void setPreco(double p){
@@ -80,7 +68,7 @@ public class Pacote {
         if ((o == null) || (this.getClass() != o.getClass()))
             return false;
         Pacote u = (Pacote) o;
-        return u.getNome().equals(this.nome) && u.getTipo().equals(this.tipo)
+        return u.getNome().equals(this.nome) 
                 && u.getPreco() == this.preco;
     }
     
@@ -89,10 +77,8 @@ public class Pacote {
         StringBuilder sb = new StringBuilder();
         sb.append("O pacote é ");
         sb.append(this.nome);
-        sb.append(" que é do ");
-        sb.append(this.tipo);
         sb.append(" com preço");
-        sb.append(this.tipo);
+        sb.append(this.preco);
         sb.append(" .\n");
 
         return sb.toString();

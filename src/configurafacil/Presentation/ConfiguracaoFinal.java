@@ -48,6 +48,12 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
             rowData[1] = s.getPreco();
             model.addRow(rowData);
         }
+        if(this.parent2.encomenda.getPacote()!=null) { 
+            System.out.println("eeeeee");
+            rowData[0] = this.parent2.encomenda.getPacote().getNome();
+            rowData[1] = this.parent2.encomenda.getPacote().getPreco();
+            model.addRow(rowData);
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -142,7 +148,7 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
         // TODO add your handling code here:
         model =  (DefaultTableModel) jTable1.getModel();
         this.parent2.encomenda.removeDaConfiguracao(componente);
-        if(componente.getTipo().equals("Pacote")) this.parent.setPacotes();
+        if(this.parent2.encomenda.getPacote()!=null) this.parent.setPacotes();
         else if(componente.getTipo().equals("Teto")) this.parent.setTeto();
         else if(componente.getTipo().equals("Pára-choque")) this.parent.setParaChoques();
         else if(componente.getTipo().equals("Luzes")) this.parent.setLuz();
