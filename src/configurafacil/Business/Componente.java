@@ -33,8 +33,10 @@ public class Componente {
         this.nome = nome;
         this.tipo = tipo;
         this.preco = preco;
-        setIncompativeis(incompativeis);
-        setObrigatorias(obrigatorias);
+        this.compIncompativeis = new ArrayList<String>();
+        if (incompativeis!=null) setIncompativeis(incompativeis);
+        this.compObrigatorias = new ArrayList<String>();
+        if (obrigatorias!=null) setObrigatorias(obrigatorias);
     }
     
     public Componente(Componente c){
@@ -78,14 +80,12 @@ public class Componente {
     }
     
     public void setIncompativeis(List<String> incomp){
-        this.compIncompativeis = new ArrayList<>();
-        for(String s : compIncompativeis)
+        for(String s : incomp)
             this.compIncompativeis.add(s);
     }
     
     public void setObrigatorias(List<String> obrig){
-        this.compObrigatorias = new ArrayList<>();
-        for(String s : compObrigatorias)
+        for(String s : obrig)
             this.compObrigatorias.add(s);
     }
     

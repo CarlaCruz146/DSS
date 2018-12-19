@@ -27,7 +27,8 @@ public class Pacote {
     public Pacote(String nome, double preco, List<Componente> componentes){
         this.nome = nome;
         this.preco = preco;
-        setComponentes(componentes);
+        this.componentes = new ArrayList<Componente>();
+        if(componentes!=null) setComponentes(componentes);
     }
     
     public Pacote(Pacote c){
@@ -57,9 +58,9 @@ public class Pacote {
     }
     
     public void setComponentes(List<Componente> comp){
-        this.componentes = new ArrayList<>();
-        for(Componente s : comp)
-            this.componentes.add(s);
+        for (Componente c : comp){
+           this.componentes.add(c);
+        }
     }  
     
     public boolean equals (Object o) {
