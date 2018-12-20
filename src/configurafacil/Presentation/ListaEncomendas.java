@@ -135,6 +135,18 @@ public class ListaEncomendas extends javax.swing.JDialog {
         model2.addRow(rowData2);
     }
     
+    public void alteraEstadoTab(Encomenda e){
+        model = (DefaultTableModel)jTable1.getModel();
+        row = jTable1.getSelectedRow();
+
+        Object car = model.getValueAt(row, 0);
+        String carroN = car.toString();
+        configura.getFabrica().getGestaoE().removeEncomenda2(Integer.parseInt(carroN));      
+        this.addNovoEstado(e);
+        model.removeRow(row); 
+        //this.setVisible(false);
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);

@@ -20,7 +20,6 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
     private static ConfiguraFacil configura;
     DefaultTableModel model;
     int row = 0;
-    private int carroN=0;
     /**
      * Creates new form ConsultarStock2
      */
@@ -147,13 +146,8 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
             }
         }
         e.setEstado(1);
-        model = (DefaultTableModel)jTable1.getModel();
-        row = jTable1.getSelectedRow();
-        carroN = (int)model.getValueAt(row, 0);
-        configura.getFabrica().getGestaoE().removeEncomenda2(carroN);
-        model.removeRow(row);       
+        this.parent.alteraEstadoTab(e);
         this.setVisible(false);
-        this.parent.addNovoEstado(e);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
