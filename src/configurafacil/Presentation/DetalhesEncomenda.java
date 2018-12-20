@@ -139,15 +139,21 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
         int n = (Integer) this.parent.model.getValueAt(this.parent.row,0); 
         Encomenda e = configura.getFabrica().getGestaoE().getEncomendas().get(n);
         Map<String,Integer> stockDisponivel = configura.getFabrica().getStock();
+        boolean executavel = true;
         for(Componente c: e.getConfig()){
             if(stockDisponivel.get(c.getNome()) == 0){
+               executavel = false;
                javax.swing.JOptionPane.showMessageDialog(this, "Não há stock suficiente.", "Stock indisponivel", 0);
                this.setVisible(false);
+               break;
             }
         }
-        e.setEstado(1);
-        this.parent.alteraEstadoTab(e);
-        this.setVisible(false);
+        if(executavel){
+            e.setEstado(1);
+            this.parent.alteraEstadoTab(e);
+            this.setVisible(false);
+        }
+        else this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
