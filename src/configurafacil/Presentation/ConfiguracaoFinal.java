@@ -35,7 +35,6 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
         this.parent = (Configuracao) parent;
         this.parent2 = (EscolherCarro) parent2;
         config = this.parent2.encomenda.getConfig();
-        System.out.println(this.parent2.encomenda);
         insereConfigTabela();
         
     }
@@ -49,7 +48,6 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
             model.addRow(rowData);
         }
         if(this.parent2.encomenda.getPacote()!=null) { 
-            System.out.println("eeeeee");
             rowData[0] = this.parent2.encomenda.getPacote().getNome();
             rowData[1] = this.parent2.encomenda.getPacote().getPreco();
             model.addRow(rowData);
@@ -156,7 +154,10 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
         // TODO add your handling code here:
         model =  (DefaultTableModel) jTable1.getModel();
         this.parent2.encomenda.removeDaConfiguracao(componente);
-        if(this.parent2.encomenda.getPacote()!=null) this.parent.setPacotes();
+        if(this.parent2.encomenda.getPacote()!=null){
+            this.parent.setPacotes();
+            this.parent2.encomenda.setPacote(null);
+        }
         else if(componente.getTipo().equals("Teto")) this.parent.setTeto();
         else if(componente.getTipo().equals("Pára-choque")) this.parent.setParaChoques();
         else if(componente.getTipo().equals("Luzes")) this.parent.setLuz();

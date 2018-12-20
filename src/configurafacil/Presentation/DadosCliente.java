@@ -13,8 +13,8 @@ import configurafacil.Business.ConfiguraFacil;
  * @author jessica
  */
 public class DadosCliente extends javax.swing.JDialog {
-private ConfiguraFacil configura;
-    public static String cliente;
+    private ConfiguraFacil configura;
+    private String cliente;
     
     /**
      * Creates new form DadosCliente
@@ -29,6 +29,10 @@ private ConfiguraFacil configura;
         super(parent, modal);
         initComponents();
         this.configura = c;
+    }
+    
+    public String getCliente(){
+        return cliente;
     }
     
     private boolean validaDados() {
@@ -149,13 +153,14 @@ private ConfiguraFacil configura;
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        double limite = 0;
         if (this.validaDados()) {
             this.cliente = this.nif.getText();
             String nome = this.nome.getText();
             String nif = this.nif.getText();
             String contacto = this.contacto.getText();
-            String limite = this.limite.getText();
-            Cliente c = new Cliente(nome,nif,contacto,null);
+            if(checkLimite.isSelected()) limite = Double.parseDouble(this.limite.getText());
+            Cliente c = new Cliente(nome,nif,contacto,limite,null);
             configura.getStand().addCliente(c);
             this.setVisible(false);
             new EscolherCarro(this, true, configura).setVisible(true); 

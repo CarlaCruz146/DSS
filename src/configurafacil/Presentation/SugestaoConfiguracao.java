@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5,8 +6,11 @@
  */
 package configurafacil.Presentation;
 
+import configurafacil.Business.Cliente;
 import configurafacil.Business.Componente;
 import configurafacil.Business.ConfiguraFacil;
+import configurafacil.Business.Encomenda;
+import configurafacil.Business.Pacote;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -17,41 +21,55 @@ import javax.swing.table.DefaultTableModel;
  */
 public class SugestaoConfiguracao extends javax.swing.JDialog {
     private ConfiguraFacil configura;
+    private Configuracao parent;
     private EscolherCarro parent2;
+    private DadosCliente parent3;
     DefaultTableModel model;
-    private Componente componente; 
     private String nomeComponente = "";
     private double precoTotal = 0;
     private List<Componente> sugestao = new ArrayList<>();
+    private Pacote pacote;
     private int row = 0;
     /**
      * Creates new form SugestaoConfiguracao2
      */
-    public SugestaoConfiguracao(javax.swing.JDialog parent, javax.swing.JDialog parent2, boolean modal, ConfiguraFacil c) {
+    public SugestaoConfiguracao(javax.swing.JDialog parent, javax.swing.JDialog parent2, javax.swing.JDialog parent3, boolean modal, ConfiguraFacil c) {
         super(parent, modal);
         initComponents();
         this.configura = c;
+        this.parent = (Configuracao) parent;
         this.parent2 = (EscolherCarro) parent2;
-        //sugestao = leConfiguracao();
-        //depois quando tivermos o metodo de criar uma sugestao com o preço limite, 
-        //n vai ser preciso o leConfiguracao
-        
+        this.parent3 = (DadosCliente) parent3;
+        Cliente cliente = this.configura.getStand().getCliente(this.parent3.getCliente());
+        obtemConfig(cliente.getLimite());
+        insereConfigTabela();
         jTextField1.setText(Double.toString(precoTotal));
         jTextField1.setEditable(false);
-    }
-
-    public List<Componente> leConfiguracao(){
+    }   
+    
+    public void insereConfigTabela(){
         model =  (DefaultTableModel) jTable1.getModel();
-        List<Componente> config = new ArrayList<>();
-        while(row < model.getRowCount()){
-            nomeComponente = (String) model.getValueAt(row, 0);
-            componente = configura.getStand().getComponente(nomeComponente);
-            config.add(componente);
-            this.precoTotal += componente.getPreco();
-            row++;
+        Object rowData[] = new Object[2];
+        for(Componente s : sugestao){
+            rowData[0] = s.getNome();
+            rowData[1] = s.getPreco();
+            this.precoTotal += s.getPreco();
+            model.addRow(rowData);
         }
-        return config;
-    }    
+        if(pacote!=null) { 
+            rowData[0] = pacote.getNome();
+            rowData[1] = pacote.getPreco();
+            this.precoTotal += pacote.getPreco();
+            model.addRow(rowData);
+        }
+    }
+    
+    public void obtemConfig(double limite){
+        Encomenda e = this.parent.sugestao(limite);
+        for(Componente c :  e.getConfig())
+            sugestao.add(c);
+        pacote = e.getPacote();
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -171,7 +189,10 @@ public class SugestaoConfiguracao extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        this.parent2.encomenda.setConfig(sugestao);
+        for(Componente c : this.sugestao)
+            this.parent2.encomenda.addToConfiguracao(c);
+        if(this.pacote!=null) this.parent2.encomenda.setPacote(this.pacote);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

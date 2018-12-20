@@ -43,17 +43,17 @@ public class ConfiguraFacil {
     
     public void addComp() {
         //PINTURA
-        Componente c1 = new Componente("Preto","Pintura",200,null, null);
-        Componente c2 = new Componente("Branco","Pintura",200,null, null);
-        Componente c3 = new Componente("Cinzento","Pintura",200,null, null);
-        Componente c4 = new Componente("Azul","Pintura",200,null, null);
+        Componente c1 = new Componente("Preto","Pintura",1500,null, null);
+        Componente c2 = new Componente("Branco","Pintura",1200,null, null);
+        Componente c3 = new Componente("Cinzento","Pintura",1300,null, null);
+        Componente c4 = new Componente("Azul","Pintura",1000,null, null);
         //MOTOR
         Componente c5 = new Componente("D4 190cv Man. 6 Vel.","Motor",3500,null, null);
         Componente c6 = new Componente("D4 190cv Geatronic 8 Vel.","Motor",3700,null, null);
         Componente c7 = new Componente("D5 235cv Geatronic 8 Vel.","Motor",4200,null, null);
         c7.insereIncompativel("Bridgestone Turanza T005 205/55 R16 91V");
         //PNEU
-        Componente c8 = new Componente("Bridgestone Turanza T005 205/55 R16 91V","Pneu",450,null, null);
+        Componente c8 = new Componente("Bridgestone Turanza T005 205/55 R16 91V","Pneu",480,null, null);
         Componente c9 = new Componente("Continental ContiEcoContact 5 205/55 R16 91V","Pneu",450,null, null);
         Componente c10 = new Componente("Continental PremiumContact 6 205/55 R16 91H","Pneu",500,null, null);
         Componente c11 = new Componente("Firestone Roadhawk 205/55 R16 91H","Pneu",580,null, null);
@@ -64,33 +64,33 @@ public class ConfiguraFacil {
         Componente c13 = new Componente("Jantes em liga leve 18'' 245/45 R18","Jante",340,null, null);
         Componente c14 = new Componente("Jantes em liga leve 19'' 255/40 R19","Jante",330,null, null);
         //ESTOFOS
-        Componente c15 = new Componente("Couro comfort carvão","Estofo",800, null, null);
-        Componente c16 = new Componente("Couro comfort âmbar","Estofo",800, null, null);
-        Componente c17 = new Componente("Couro comfort maroon brown","Estofo",800, null, null);
-        Componente c18 = new Componente("Couro comfort blond","Estofo",800, null, null);
+        Componente c15 = new Componente("Couro comfort carvão","Estofo",2800, null, null);
+        Componente c16 = new Componente("Couro comfort âmbar","Estofo",3000, null, null);
+        Componente c17 = new Componente("Couro comfort maroon brown","Estofo",2600, null, null);
+        Componente c18 = new Componente("Couro comfort blond","Estofo",1800, null, null);
+        c15.insereIncompativel("Bancos elétricos");
         //PARA-CHOQUES
         Componente c19 = new Componente("Pára-choques","Pára-choque",270,null, null);
         //VIDRO
-        Componente c20 = new Componente("Vidro Escurecido","Vidro",200,null, null);
+        Componente c20 = new Componente("Vidro Escurecido","Vidro",500,null, null);
         //TETO
         Componente c21 = new Componente("Teto de abrir","Teto",390,null, null);
         //LUZES
         Componente c22 = new Componente("Pacotes de luz","Luzes",600, null, null);
         c22.insereIncompativel("Pacotes de Luzes Interiores");
         //PACOTE COMFORT
-        Componente c23 = new Componente("Bancos elétricos","Bancos",600, null, null);
+        Componente c23 = new Componente("Bancos elétricos","Pacote",650, null, null);
         c23.insereIncompativel("Couro comfort carvão");
-        Componente c24 = new Componente("Ar condicionado de 4 Zonas","Ar Condicionado",600, null, null);
-        Componente c25 = new Componente("Pacotes de Luzes Interiores","Luzes",600, null, null);
+        Componente c24 = new Componente("Ar condicionado de 4 Zonas","Pacote",550, null, null);
+        Componente c25 = new Componente("Pacotes de Luzes Interiores","Pacote",500, null, null);
         c25.insereIncompativel("Pacotes de luz");
-        Componente c26 = new Componente("Espelhos Retrovisores com Mecanismo Anti-Encadeamento","Espelhos",600, null, null);
+        Componente c26 = new Componente("Espelhos Retrovisores com Mecanismo Anti-Encadeamento","Pacote",600, null, null);
 
         //PACOTE SPORT
-        Componente c27 = new Componente("Jantes personalizadas","Jantes",600, null, null);
-        c27.insereObrigatoria("Continental PremiumContact 6 205/55 R16 91H");
-        Componente c28 = new Componente("Amortecedores Resistentes","Amortecedores",600, null, null);
-        Componente c29 = new Componente("Spoilers","Spoilers",600, null, null);
-        Componente c30 = new Componente("Escape com 2 ponteiras","Escape",600, null, null);
+        Componente c27 = new Componente("Jantes personalizadas","Pacote",600, null, null);
+        Componente c28 = new Componente("Amortecedores Resistentes","Pacote",700, null, null);
+        Componente c29 = new Componente("Spoilers","Pacote",1000, null, null);
+        Componente c30 = new Componente("Escape com 2 ponteiras","Pacote",800, null, null);
       
         stand.addComponente(c1);
         stand.addComponente(c2);
@@ -148,8 +148,8 @@ public class ConfiguraFacil {
         componentesS.add(c7);
         componentesS.add(c8);
         
-        Pacote p1 = new Pacote("Pacote Comfort",300,componentesC);
-        Pacote p2 = new Pacote("Pacote Sport",400,componentesS);
+        Pacote p1 = new Pacote("Pacote Comfort",1800,componentesC);
+        Pacote p2 = new Pacote("Pacote Sport",2700,componentesS);
         stand.addPacote(p1);
         stand.addPacote(p2);
     }

@@ -106,7 +106,7 @@ public class PacoteConfort extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setText("Pacote Confort");
+        jLabel1.setText("Pacote Comfort");
 
         jLabel2.setText("Preço");
 
@@ -118,7 +118,7 @@ public class PacoteConfort extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(161, 161, 161)
                 .addComponent(jLabel1)
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addContainerGap(159, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(214, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

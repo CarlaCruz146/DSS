@@ -7,7 +7,6 @@ package configurafacil.Presentation;
 
 import configurafacil.Business.Componente;
 import configurafacil.Business.Cliente;
-import static configurafacil.Presentation.DadosCliente.cliente;
 import configurafacil.Business.ConfiguraFacil;
 import configurafacil.Business.Encomenda;
 import configurafacil.Business.Pacote;
@@ -21,15 +20,17 @@ import java.util.List;
 public class Configuracao extends javax.swing.JDialog {
     private ConfiguraFacil configura;
     private EscolherCarro parent;
+    private DadosCliente parent2;
     
     /**
      * Creates new form Configuracao
      */
-    public Configuracao(javax.swing.JDialog parent, boolean modal, ConfiguraFacil c) {
+    public Configuracao(javax.swing.JDialog parent, javax.swing.JDialog parent2, boolean modal, ConfiguraFacil c) {
        super(parent, modal);
        this.configura = c;
        initComponents();
        this.parent = (EscolherCarro) parent;
+       this.parent2 = (DadosCliente) parent2;
     }
     
     public boolean verificaComponentes(Encomenda e){
@@ -61,6 +62,12 @@ public class Configuracao extends javax.swing.JDialog {
                     incomp.add(i);
                     
             }
+        if(e.getPacote()!=null){
+            for(Componente comp : e.getPacote().getComponentes())
+                for(String i : c.getIncompativeis())
+                    if(i.equals(comp.getNome()))
+                        incomp.add(i);
+        }
         return incomp;
     }
     
@@ -102,6 +109,75 @@ public class Configuracao extends javax.swing.JDialog {
             }
         }
         return obrigatorio;
+    }
+    
+    public Encomenda sugestao(double limite){
+        Encomenda e = new Encomenda();
+        double valor = 0;
+        e.setCarro(this.parent.encomenda.getCarro());
+        if(limite >= 1800 && limite <2700) {
+            Pacote p = configura.getStand().getPacote("Pacote Comfort");
+            valor = p.getPreco();
+            e.setPacote(p);
+            for(Componente c : configura.getStand().getComponentes().values()){
+                boolean b = !c.getTipo().equals("Motor") && !c.getTipo().equals("Pintura") && 
+                        !c.getTipo().equals("Pneu") && !c.getTipo().equals("Jante");
+                double v = c.getPreco();
+                if(!c.getTipo().equals("Pacote") && b && valor + v <= limite && this.verificaIncomp(c,e).isEmpty()){
+                    e.addToConfiguracao(c);
+                    valor += v;
+                }
+            }   
+        }
+        else {
+            if (limite >= 2700) {
+                double max = 0;
+                Componente comp = null;
+                Pacote p = configura.getStand().getPacote("Pacote Sport");
+                valor = p.getPreco();
+                e.setPacote(p);
+                for(Componente c : configura.getStand().getComponentes().values()){
+                    boolean b = !c.getTipo().equals("Motor") && !c.getTipo().equals("Pintura") && 
+                        !c.getTipo().equals("Pneu") && !c.getTipo().equals("Jante");
+                    double v = c.getPreco();
+                    if(!c.getTipo().equals("Pacote") && b && valor + v <= limite && this.verificaIncomp(c,e).isEmpty()){
+                        if(c.getTipo().equals("Estofo")){
+                            if(max < v){
+                                max = v;
+                                if (comp == null){
+                                    e.addToConfiguracao(c);
+                                    comp = c;
+                                    valor += v;
+                                }
+                                else {
+                                    e.removeDaConfiguracao(comp);
+                                    e.addToConfiguracao(c);
+                                    valor -= comp.getPreco();
+                                    valor += v;
+                                    comp = c;
+                                }
+                            }
+                        }  
+                        else {
+                            valor += v;
+                            e.addToConfiguracao(c);
+                        }
+                    }
+                }
+            }
+            else {
+                for(Componente c : configura.getStand().getComponentes().values()){
+                    boolean b = !c.getTipo().equals("Motor") && !c.getTipo().equals("Pintura") && 
+                        !c.getTipo().equals("Pneu") && !c.getTipo().equals("Jante");
+                    double v = c.getPreco();
+                    if(!c.getTipo().equals("Pacote") && b && valor + v <= limite && this.verificaIncomp(c,e).isEmpty()){
+                       e.addToConfiguracao(c);
+                       valor += v;
+                    }
+                }
+            }
+        }
+        return e;
     }
     
     public void setPacotes(){
@@ -498,8 +574,10 @@ public class Configuracao extends javax.swing.JDialog {
         if(!listInc.isEmpty()){
             javax.swing.JOptionPane.showMessageDialog(this, "Incompatível com: " + sbInc , "Componentes incompatíveis",0);
         }
-        else  this.parent.encomenda.addToConfiguracao(comp);
-        this.Vidro.setEnabled(false);
+        else {
+            this.parent.encomenda.addToConfiguracao(comp);
+            this.Vidro.setEnabled(false);
+        }
     }//GEN-LAST:event_VidroActionPerformed
 
     private void ParachoquesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ParachoquesActionPerformed
@@ -523,13 +601,15 @@ public class Configuracao extends javax.swing.JDialog {
         if(!listInc.isEmpty()){
             javax.swing.JOptionPane.showMessageDialog(this, "Incompatível com: " + sbInc , "Componentes incompatíveis",0);
         }
-        else  this.parent.encomenda.addToConfiguracao(comp);
-        this.Parachoques.setEnabled(false);
+        else {
+            this.parent.encomenda.addToConfiguracao(comp);
+            this.Parachoques.setEnabled(false);
+        }
     }//GEN-LAST:event_ParachoquesActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
-        new SugestaoConfiguracao(this, parent, true, configura).setVisible(true);
+        new SugestaoConfiguracao(this, parent, parent2, true, configura).setVisible(true);
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
@@ -558,8 +638,10 @@ public class Configuracao extends javax.swing.JDialog {
         if(!listInc.isEmpty()){
             javax.swing.JOptionPane.showMessageDialog(this, "Incompatível com: " + sbInc , "Componentes incompatíveis",0);
         }
-        else this.parent.encomenda.addToConfiguracao(comp);
-        this.Teto.setEnabled(false);
+        else{
+            this.parent.encomenda.addToConfiguracao(comp);
+            this.Teto.setEnabled(false);
+        }
     }//GEN-LAST:event_TetoActionPerformed
 
     private void LuzActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LuzActionPerformed
@@ -583,14 +665,16 @@ public class Configuracao extends javax.swing.JDialog {
         if(!listInc.isEmpty()){
             javax.swing.JOptionPane.showMessageDialog(this, "Incompatível com: " + sbInc , "Componentes incompatíveis",0);
         }
-        else  this.parent.encomenda.addToConfiguracao(comp);
-        this.Luz.setEnabled(false);
+        else{
+            this.parent.encomenda.addToConfiguracao(comp);
+            this.Luz.setEnabled(false);
+        }
     }//GEN-LAST:event_LuzActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
         if(verificaComponentes(this.parent.encomenda)){
-            Cliente c = configura.getStand().getClientes().get(cliente);
+            Cliente c = configura.getStand().getClientes().get(this.parent2.getCliente());
             List<String> listObrig = new ArrayList<>();
             for(Componente comp : this.parent.encomenda.getConfig()){
                 listObrig = this.verficicaObrigatoria(this.parent.encomenda);

@@ -14,6 +14,7 @@ import configurafacil.Business.Encomenda;
 public class EscolherCarro extends javax.swing.JDialog {
     private ConfiguraFacil configura;
     private String carro = "";
+    private DadosCliente parent;
     Encomenda encomenda = new Encomenda();
     /**
      * Creates new form EscolherCarro
@@ -22,6 +23,7 @@ public class EscolherCarro extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.configura = c;
+        this.parent = (DadosCliente) parent;
     }
 
     /**
@@ -226,7 +228,7 @@ public class EscolherCarro extends javax.swing.JDialog {
         else {
             encomenda.addCarro(carro);
             this.setVisible(false);
-            new Configuracao(this, true, configura).setVisible(true);
+            new Configuracao(this, parent, true, configura).setVisible(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
