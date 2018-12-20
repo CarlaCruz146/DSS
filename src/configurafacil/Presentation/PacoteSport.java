@@ -35,7 +35,6 @@ public class PacoteSport extends javax.swing.JDialog {
   
        double p = this.configura.getStand().getPacote("Pacote Sport").getPreco();
        preco.setText(Double.toString(p));
-       preco.setEditable(false);
     }
 
     
@@ -107,6 +106,7 @@ public class PacoteSport extends javax.swing.JDialog {
 
         jLabel1.setText("Pacote Sport");
 
+        preco.setEditable(false);
         preco.setText(" ");
         preco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -36,7 +36,6 @@ public class PacoteConfort extends javax.swing.JDialog {
        double p = this.configura.getStand().getPacote("Pacote Comfort").getPreco();
        
        preco.setText(Double.toString(p));
-       preco.setEditable(false);
     }
     
     public void inserePacoteC(){
@@ -109,6 +108,8 @@ public class PacoteConfort extends javax.swing.JDialog {
         jLabel1.setText("Pacote Comfort");
 
         jLabel2.setText("Preço");
+
+        preco.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
