@@ -44,7 +44,6 @@ public class SugestaoConfiguracao extends javax.swing.JDialog {
         obtemConfig(cliente.getLimite());
         insereConfigTabela();
         jTextField1.setText(Double.toString(precoTotal));
-        jTextField1.setEditable(false);
     }   
     
     public void insereConfigTabela(){
@@ -111,6 +110,7 @@ public class SugestaoConfiguracao extends javax.swing.JDialog {
 
         jLabel1.setText("Sugestão de Configuração");
 
+        jTextField1.setEditable(false);
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);

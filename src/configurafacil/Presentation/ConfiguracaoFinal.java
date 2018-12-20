@@ -23,6 +23,7 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
     private EscolherCarro parent2;
     private Componente componente;
     private String nomeComponente;
+    private double preco = 0;
     List<Componente> config = new ArrayList<>();
     
     /**
@@ -36,6 +37,7 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
         this.parent2 = (EscolherCarro) parent2;
         config = this.parent2.encomenda.getConfig();
         insereConfigTabela();
+        precoTotal.setText(Double.toString(preco));
         
     }
 
@@ -46,11 +48,13 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
             rowData[0] = s.getNome();
             rowData[1] = s.getPreco();
             model.addRow(rowData);
+            preco += s.getPreco();
         }
         if(this.parent2.encomenda.getPacote()!=null) { 
             rowData[0] = this.parent2.encomenda.getPacote().getNome();
             rowData[1] = this.parent2.encomenda.getPacote().getPreco();
             model.addRow(rowData);
+            preco += this.parent2.encomenda.getPacote().getPreco();
         }
     }
     /**
@@ -62,12 +66,17 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextField1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
+        precoTotal = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+
+        jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -110,6 +119,10 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
 
         jLabel1.setText("Configuração Final");
 
+        precoTotal.setEditable(false);
+
+        jLabel2.setText("Preço Total");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -129,17 +142,27 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
                             .addGap(142, 142, 142)
                             .addComponent(jLabel1))))
                 .addContainerGap(25, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(precoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(precoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -163,6 +186,8 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
         else if(componente.getTipo().equals("Luzes")) this.parent.setLuz();
         else if(componente.getTipo().equals("Vidro")) this.parent.setVidro();
         model.removeRow(row);
+        preco -= componente.getPreco();
+        precoTotal.setText(Double.toString(preco));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -183,8 +208,11 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField precoTotal;
     // End of variables declaration//GEN-END:variables
 }
