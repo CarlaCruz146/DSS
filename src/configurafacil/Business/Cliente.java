@@ -72,6 +72,10 @@ public class Cliente {
         this.contacto = contacto;
     }
     
+    public void setLimite(double l){
+        this.limite = l;
+    }
+    
     public void setEncomendas(ArrayList<Integer> enc){
         this.encomendas = new ArrayList<>();
         enc.forEach(a->this.encomendas.add(a));
