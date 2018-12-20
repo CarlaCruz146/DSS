@@ -93,6 +93,85 @@ public class Encomenda {
         this.configuracao = c.stream().collect(Collectors.toList());
     }
     
+    public boolean verificaComponentes(){
+        int i = 0;
+        for(Componente c: this.configuracao){
+            if(c.getTipo().equals("Pintura") || c.getTipo().equals("Motor") || c.getTipo().equals("Pneu") || c.getTipo().equals("Jante"))
+                i++;
+        }
+        boolean n = i == 4;
+        return n;
+    }
+    
+    public Componente verificaTipo(String tipo){
+        Componente comp = null;
+        for(Componente c: this.configuracao){
+            if(c.getTipo().equals(tipo)){
+                comp = c;
+                return comp;
+            }       
+        }
+        return comp;
+    }
+        
+    public List<String> verificaIncomp(Componente c){
+        List<String> incomp = new ArrayList<String>();
+        for(String i : c.getIncompativeis())
+            for(Componente j : this.configuracao){
+                if(i.equals(j.getNome()))
+                    incomp.add(i);
+                    
+            }
+        if(this.pacote!=null){
+            for(Componente comp : this.pacote.getComponentes())
+                for(String i : c.getIncompativeis())
+                    if(i.equals(comp.getNome()))
+                        incomp.add(i);
+        }
+        return incomp;
+    }
+    
+    public List<String> verificaObrig(Componente c){
+        List<String> obrig = new ArrayList<String>();
+        int flag = 0;
+        for(String i : c.getObrigatorias()){
+            if(this.configuracao.isEmpty()) obrig.add(i);
+            for(Componente j : this.configuracao){
+                if(i.equals(j.getNome()))
+                    flag = 1;
+            }
+            if(flag == 0) obrig.add(i);
+            else flag = 0;
+        } 
+        return obrig;
+    }
+    
+    public List<String> verficicaObrigatoria(){
+        List<String> obrigatorio = new ArrayList<>();
+        int flag = 0;
+        for(Componente c : this.configuracao){
+            for(String s : c.getObrigatorias()){
+                for(Componente comp : this.configuracao)
+                    if(s.equals(comp.getNome()))
+                        flag = 1;
+            if(flag == 0) obrigatorio.add(s);
+            else flag = 0;
+            }
+        }
+        return obrigatorio;
+    }
+    
+    public List<String> verificaIncompativel(Pacote p){
+        List<String> incomp = new ArrayList<String>();
+        for(Componente c : p.getComponentes())
+            for(String s : c.getIncompativeis())
+                for(Componente comp : this.configuracao)
+                    if(s.equals(comp.getNome()))
+                        incomp.add(s);
+        return incomp;
+    }
+
+    
     public boolean equals(Object o) {
         boolean b=false;
 

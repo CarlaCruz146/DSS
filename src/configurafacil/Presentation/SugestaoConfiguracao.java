@@ -65,7 +65,7 @@ public class SugestaoConfiguracao extends javax.swing.JDialog {
     }
     
     public void obtemConfig(double limite){
-        Encomenda e = this.parent.sugestao(limite);
+        Encomenda e = this.configura.sugestao(limite);
         for(Componente c :  e.getConfig())
             sugestao.add(c);
         pacote = e.getPacote();

@@ -202,9 +202,9 @@ public class Motor extends javax.swing.JDialog {
         }
         else {
             Componente comp = configura.getStand().getComponente(this.motor);
-            Componente c = this.parent.verificaTipo(this.parent2.encomenda, "Motor");
-            List<String> listInc = this.parent.verificaIncomp(comp, this.parent2.encomenda);
-            List<String> listObrig = this.parent.verificaObrig(comp, this.parent2.encomenda);
+            Componente c = this.parent2.encomenda.verificaTipo("Motor");
+            List<String> listInc = this.parent2.encomenda.verificaIncomp(comp);
+            List<String> listObrig = this.parent2.encomenda.verificaObrig(comp);
             StringBuilder sbInc = new StringBuilder();
             StringBuilder sbObrig = new StringBuilder();
             for (String i : listObrig){

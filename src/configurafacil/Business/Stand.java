@@ -67,4 +67,72 @@ public class Stand {
     public void addEncomendaCliente(Cliente c, Encomenda e) {
         this.clientes.get(c.getNif()).addEncomenda(e);
     }
+    
+       public Encomenda sugestao(double limite){
+        Encomenda e = new Encomenda();
+        double valor = 0;
+        if(limite >= 1800 && limite <2700) {
+            Pacote p = this.pacotes.get("Pacote Comfort");
+            valor = p.getPreco();
+            e.setPacote(p);
+            for(Componente c : this.componentes.values()){
+                boolean b = !c.getTipo().equals("Motor") && !c.getTipo().equals("Pintura") && 
+                        !c.getTipo().equals("Pneu") && !c.getTipo().equals("Jante");
+                double v = c.getPreco();
+                if(!c.getTipo().equals("Pacote") && b && valor + v <= limite && e.verificaIncomp(c).isEmpty()){
+                    e.addToConfiguracao(c);
+                    valor += v;
+                }
+            }   
+        }
+        else {
+            if (limite >= 2700) {
+                double max = 0;
+                Componente comp = null;
+                Pacote p = this.pacotes.get("Pacote Sport");
+                valor = p.getPreco();
+                e.setPacote(p);
+                for(Componente c : this.componentes.values()){
+                    boolean b = !c.getTipo().equals("Motor") && !c.getTipo().equals("Pintura") && 
+                        !c.getTipo().equals("Pneu") && !c.getTipo().equals("Jante");
+                    double v = c.getPreco();
+                    if(!c.getTipo().equals("Pacote") && b && valor + v <= limite && e.verificaIncomp(c).isEmpty()){
+                        if(c.getTipo().equals("Estofo")){
+                            if(max < v){
+                                max = v;
+                                if (comp == null){
+                                    e.addToConfiguracao(c);
+                                    comp = c;
+                                    valor += v;
+                                }
+                                else {
+                                    e.removeDaConfiguracao(comp);
+                                    e.addToConfiguracao(c);
+                                    valor -= comp.getPreco();
+                                    valor += v;
+                                    comp = c;
+                                }
+                            }
+                        }  
+                        else {
+                            valor += v;
+                            e.addToConfiguracao(c);
+                        }
+                    }
+                }
+            }
+            else {
+                for(Componente c : this.componentes.values()){
+                    boolean b = !c.getTipo().equals("Motor") && !c.getTipo().equals("Pintura") && 
+                        !c.getTipo().equals("Pneu") && !c.getTipo().equals("Jante");
+                    double v = c.getPreco();
+                    if(!c.getTipo().equals("Pacote") && b && valor + v <= limite && e.verificaIncomp(c).isEmpty()){
+                       e.addToConfiguracao(c);
+                       valor += v;
+                    }
+                }
+            }
+        }
+        return e;
+    }
 }

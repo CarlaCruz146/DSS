@@ -234,9 +234,9 @@ public class Estofos extends javax.swing.JDialog {
         }
         else {
             Componente comp = configura.getStand().getComponente(this.estofo);
-            Componente c = this.parent.verificaTipo(this.parent2.encomenda, "Estofo");
-            List<String> listInc = this.parent.verificaIncomp(comp, this.parent2.encomenda);
-            List<String> listObrig = this.parent.verificaObrig(comp, this.parent2.encomenda);
+            Componente c = this.parent2.encomenda.verificaTipo("Estofo");
+            List<String> listInc = this.parent2.encomenda.verificaIncomp(comp);
+            List<String> listObrig = this.parent2.encomenda.verificaObrig(comp);
             StringBuilder sbInc = new StringBuilder();
             StringBuilder sbObrig = new StringBuilder();
             for (String i : listObrig){

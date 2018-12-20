@@ -291,4 +291,8 @@ public class ConfiguraFacil {
     public void logout(){
         this.utilizador = null;
     }
+    
+    public Encomenda sugestao(double limite){
+        return this.stand.sugestao(limite);
+    }
 }

@@ -223,9 +223,9 @@ public class Pintura extends javax.swing.JDialog {
         }
         else {
             Componente comp = configura.getStand().getComponente(this.pintura);
-            Componente c = this.parent.verificaTipo(this.parent2.encomenda, "Pintura");
-            List<String> listInc = this.parent.verificaIncomp(comp, this.parent2.encomenda);
-            List<String> listObrig = this.parent.verificaObrig(comp, this.parent2.encomenda);
+            Componente c = this.parent2.encomenda.verificaTipo("Pintura");
+            List<String> listInc = this.parent2.encomenda.verificaIncomp(comp);
+            List<String> listObrig = this.parent2.encomenda.verificaObrig(comp);
             StringBuilder sbInc = new StringBuilder();
             StringBuilder sbObrig = new StringBuilder();
             for (String i : listObrig){

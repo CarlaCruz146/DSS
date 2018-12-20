@@ -8,8 +8,6 @@ package configurafacil.Presentation;
 import configurafacil.Business.Componente;
 import configurafacil.Business.Cliente;
 import configurafacil.Business.ConfiguraFacil;
-import configurafacil.Business.Encomenda;
-import configurafacil.Business.Pacote;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,153 +29,6 @@ public class Configuracao extends javax.swing.JDialog {
        initComponents();
        this.parent = (EscolherCarro) parent;
        this.parent2 = (DadosCliente) parent2;
-    }
-    
-    public boolean verificaComponentes(Encomenda e){
-        int i = 0;
-        for(Componente c: e.getConfig()){
-            if(c.getTipo().equals("Pintura") || c.getTipo().equals("Motor") || c.getTipo().equals("Pneu") || c.getTipo().equals("Jante"))
-                i++;
-        }
-        boolean n = i == 4;
-        return n;
-    }
-    
-    public Componente verificaTipo(Encomenda e, String tipo){
-        Componente comp = null;
-        for(Componente c: e.getConfig()){
-            if(c.getTipo().equals(tipo)){
-                comp = c;
-                return comp;
-            }       
-        }
-        return comp;
-    }
-    
-    public List<String> verificaIncomp(Componente c, Encomenda e){
-        List<String> incomp = new ArrayList<String>();
-        for(String i : c.getIncompativeis())
-            for(Componente j : e.getConfig()){
-                if(i.equals(j.getNome()))
-                    incomp.add(i);
-                    
-            }
-        if(e.getPacote()!=null){
-            for(Componente comp : e.getPacote().getComponentes())
-                for(String i : c.getIncompativeis())
-                    if(i.equals(comp.getNome()))
-                        incomp.add(i);
-        }
-        return incomp;
-    }
-    
-    public List<String> verificaObrig(Componente c, Encomenda e){
-        List<String> obrig = new ArrayList<String>();
-        int flag = 0;
-        for(String i : c.getObrigatorias()){
-            if(e.getConfig().isEmpty()) obrig.add(i);
-            for(Componente j : e.getConfig()){
-                if(i.equals(j.getNome()))
-                    flag = 1;
-            }
-            if(flag == 0) obrig.add(i);
-            else flag = 0;
-        } 
-        return obrig;
-    }
-    
-    public List<String> verificaIncompativel(Pacote p, Encomenda e){
-        List<String> incomp = new ArrayList<String>();
-        for(Componente c : p.getComponentes())
-            for(String s : c.getIncompativeis())
-                for(Componente comp : e.getConfig())
-                    if(s.equals(comp.getNome()))
-                        incomp.add(s);
-        return incomp;
-    }
-    
-    public List<String> verficicaObrigatoria(Encomenda e){
-        List<String> obrigatorio = new ArrayList<>();
-        int flag = 0;
-        for(Componente c : e.getConfig()){
-            for(String s : c.getObrigatorias()){
-                for(Componente comp : e.getConfig())
-                    if(s.equals(comp.getNome()))
-                        flag = 1;
-            if(flag == 0) obrigatorio.add(s);
-            else flag = 0;
-            }
-        }
-        return obrigatorio;
-    }
-    
-    public Encomenda sugestao(double limite){
-        Encomenda e = new Encomenda();
-        double valor = 0;
-        e.setCarro(this.parent.encomenda.getCarro());
-        if(limite >= 1800 && limite <2700) {
-            Pacote p = configura.getStand().getPacote("Pacote Comfort");
-            valor = p.getPreco();
-            e.setPacote(p);
-            for(Componente c : configura.getStand().getComponentes().values()){
-                boolean b = !c.getTipo().equals("Motor") && !c.getTipo().equals("Pintura") && 
-                        !c.getTipo().equals("Pneu") && !c.getTipo().equals("Jante");
-                double v = c.getPreco();
-                if(!c.getTipo().equals("Pacote") && b && valor + v <= limite && this.verificaIncomp(c,e).isEmpty()){
-                    e.addToConfiguracao(c);
-                    valor += v;
-                }
-            }   
-        }
-        else {
-            if (limite >= 2700) {
-                double max = 0;
-                Componente comp = null;
-                Pacote p = configura.getStand().getPacote("Pacote Sport");
-                valor = p.getPreco();
-                e.setPacote(p);
-                for(Componente c : configura.getStand().getComponentes().values()){
-                    boolean b = !c.getTipo().equals("Motor") && !c.getTipo().equals("Pintura") && 
-                        !c.getTipo().equals("Pneu") && !c.getTipo().equals("Jante");
-                    double v = c.getPreco();
-                    if(!c.getTipo().equals("Pacote") && b && valor + v <= limite && this.verificaIncomp(c,e).isEmpty()){
-                        if(c.getTipo().equals("Estofo")){
-                            if(max < v){
-                                max = v;
-                                if (comp == null){
-                                    e.addToConfiguracao(c);
-                                    comp = c;
-                                    valor += v;
-                                }
-                                else {
-                                    e.removeDaConfiguracao(comp);
-                                    e.addToConfiguracao(c);
-                                    valor -= comp.getPreco();
-                                    valor += v;
-                                    comp = c;
-                                }
-                            }
-                        }  
-                        else {
-                            valor += v;
-                            e.addToConfiguracao(c);
-                        }
-                    }
-                }
-            }
-            else {
-                for(Componente c : configura.getStand().getComponentes().values()){
-                    boolean b = !c.getTipo().equals("Motor") && !c.getTipo().equals("Pintura") && 
-                        !c.getTipo().equals("Pneu") && !c.getTipo().equals("Jante");
-                    double v = c.getPreco();
-                    if(!c.getTipo().equals("Pacote") && b && valor + v <= limite && this.verificaIncomp(c,e).isEmpty()){
-                       e.addToConfiguracao(c);
-                       valor += v;
-                    }
-                }
-            }
-        }
-        return e;
     }
     
     public void setPacotes(){
@@ -556,8 +407,8 @@ public class Configuracao extends javax.swing.JDialog {
     private void VidroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VidroActionPerformed
         // TODO add your handling code here:
         Componente comp = configura.getStand().getComponente("Vidro Escurecido");
-        List<String> listInc = this.verificaIncomp(comp, this.parent.encomenda);
-        List<String> listObrig = this.verificaObrig(comp, this.parent.encomenda);
+        List<String> listInc =  this.parent.encomenda.verificaIncomp(comp);
+        List<String> listObrig =  this.parent.encomenda.verificaObrig(comp);
         StringBuilder sbInc = new StringBuilder();
         StringBuilder sbObrig = new StringBuilder();
         for (String i : listObrig){
@@ -583,8 +434,8 @@ public class Configuracao extends javax.swing.JDialog {
     private void ParachoquesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ParachoquesActionPerformed
         // TODO add your handling code here:
         Componente comp = configura.getStand().getComponente("Pára-choques");
-        List<String> listInc = this.verificaIncomp(comp, this.parent.encomenda);
-        List<String> listObrig = this.verificaObrig(comp, this.parent.encomenda);
+        List<String> listInc =  this.parent.encomenda.verificaIncomp(comp);
+        List<String> listObrig =  this.parent.encomenda.verificaObrig(comp);
         StringBuilder sbInc = new StringBuilder();
         StringBuilder sbObrig = new StringBuilder();
         for (String i : listObrig){
@@ -620,8 +471,8 @@ public class Configuracao extends javax.swing.JDialog {
     private void TetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TetoActionPerformed
         // TODO add your handling code here:
         Componente comp = configura.getStand().getComponente("Teto de abrir");
-        List<String> listInc = this.verificaIncomp(comp, this.parent.encomenda);
-        List<String> listObrig = this.verificaObrig(comp, this.parent.encomenda);
+        List<String> listInc =  this.parent.encomenda.verificaIncomp(comp);
+        List<String> listObrig =  this.parent.encomenda.verificaObrig(comp);
         StringBuilder sbInc = new StringBuilder();
         StringBuilder sbObrig = new StringBuilder();
         for (String i : listObrig){
@@ -647,8 +498,8 @@ public class Configuracao extends javax.swing.JDialog {
     private void LuzActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LuzActionPerformed
         // TODO add your handling code here:
         Componente comp = configura.getStand().getComponente("Pacotes de luz");
-        List<String> listInc = this.verificaIncomp(comp, this.parent.encomenda);
-        List<String> listObrig = this.verificaObrig(comp, this.parent.encomenda);
+        List<String> listInc =  this.parent.encomenda.verificaIncomp(comp);
+        List<String> listObrig =  this.parent.encomenda.verificaObrig(comp);
         StringBuilder sbInc = new StringBuilder();
         StringBuilder sbObrig = new StringBuilder();
         for (String i : listObrig){
@@ -673,11 +524,11 @@ public class Configuracao extends javax.swing.JDialog {
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
-        if(verificaComponentes(this.parent.encomenda)){
+        if(this.parent.encomenda.verificaComponentes()){
             Cliente c = configura.getStand().getClientes().get(this.parent2.getCliente());
             List<String> listObrig = new ArrayList<>();
             for(Componente comp : this.parent.encomenda.getConfig()){
-                listObrig = this.verficicaObrigatoria(this.parent.encomenda);
+                listObrig = this.parent.encomenda.verficicaObrigatoria();
             }
             StringBuilder sb = new StringBuilder();
             for(String i : listObrig){

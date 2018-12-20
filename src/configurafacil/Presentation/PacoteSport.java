@@ -178,21 +178,11 @@ public class PacoteSport extends javax.swing.JDialog {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
          Pacote pacote = configura.getStand().getPacote("Pacote Sport");
-        List<String> listObrig = new ArrayList<String>();
         List<String> listInc = new ArrayList<String>();
         for(Componente comp : pacote.getComponentes()){
-            listInc = this.parent.verificaIncompativel(pacote, this.parent2.encomenda);
-            listObrig = this.parent.verificaObrig(comp, this.parent2.encomenda);
+            listInc = this.parent2.encomenda.verificaIncompativel(pacote);
         }
         StringBuilder sbInc = new StringBuilder();
-        StringBuilder sbObrig = new StringBuilder();
-        for (String i : listObrig){
-            sbObrig.append(i);
-            sbObrig.append("; ");
-        }
-        if(!listObrig.isEmpty()){
-            javax.swing.JOptionPane.showMessageDialog(this, "Obrigatórias: " + sbObrig , "Componentes obrigatórias",0);
-        }
         for (String i : listInc){
             sbInc.append(i);
             sbInc.append("; ");
