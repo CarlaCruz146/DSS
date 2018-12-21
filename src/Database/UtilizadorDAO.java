@@ -5,31 +5,30 @@
  */
 package Database;
 
-import java.util.Map;
-import configurafacil.Business.Cliente;
+import configurafacil.Business.Utilizador;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
  *
  * @author mercy
  */
-public class ClienteDAO implements Map<String,Cliente>{
+public class UtilizadorDAO implements Map<String,Utilizador> {
+    
     private Connection c;
-
+    
     @Override
     public int size() {
-       int s = -1;
+         int s = -1;
         try {
             c = Connect.connect();
-            PreparedStatement stm = c.prepareStatement("SELECT count(*) FROM Cliente");
+            PreparedStatement stm = c.prepareStatement("SELECT count(*) FROM Utilizador");
             ResultSet rs = stm.executeQuery();
             if(rs.next()) {
                s = rs.getInt(1);
@@ -46,7 +45,7 @@ public class ClienteDAO implements Map<String,Cliente>{
 
     @Override
     public boolean isEmpty() {
-        return (this.size() == 0);
+       return (this.size() == 0);
     }
 
     @Override
@@ -54,7 +53,7 @@ public class ClienteDAO implements Map<String,Cliente>{
         boolean res = false;
         try {
             c = Connect.connect();
-            String sql = "SELECT Nif FROM Cliente WHERE Nif = ?";
+            String sql = "SELECT Nome FROM Utilizador WHERE Nome = ?";
             PreparedStatement stm = c.prepareStatement(sql);
             stm.setString(1, (String)o);
             ResultSet rs = stm.executeQuery();
@@ -71,11 +70,11 @@ public class ClienteDAO implements Map<String,Cliente>{
     public boolean containsValue(Object o) {
         boolean res = false;
         
-        if(o.getClass().getName().equals("configuraFacil.Business.Cliente")){
-            Cliente cl = (Cliente) o;
-            String nif = cl.getNif();
-            Cliente cliente = this.get(nif);
-            if(cliente.equals(cl)){
+        if(o.getClass().getName().equals("configuraFacil.Business.Utilizador")){
+            Utilizador u = (Utilizador) o;
+            String nome = u.getNome();
+            Utilizador utilizador = this.get(nome);
+            if(utilizador.equals(u)){
                 res=true;
             }
         }
@@ -83,29 +82,18 @@ public class ClienteDAO implements Map<String,Cliente>{
     }
 
     @Override
-    public Cliente get(Object o) {
-        Cliente cl = new Cliente();
+    public Utilizador get(Object o) {
+        Utilizador u = new Utilizador();
         
         try{
             c = Connect.connect();
-            PreparedStatement ps = c.prepareStatement("SELECT * FROM Cliente WHERE Nif = ?");
+            PreparedStatement ps = c.prepareStatement("SELECT * FROM Utilizador WHERE Nome = ?");
             ps.setString(1,(String) o);
             ResultSet rs = ps.executeQuery();
-            if(rs.next()){ // se existir
-                cl.setNif(rs.getString("Nif"));
-                cl.setNome(rs.getNString("Nome"));
-                cl.setContacto(rs.getNString("Contacto"));
-                cl.setLimite(rs.getDouble("Limite"));
-                ArrayList<Integer> encomendas = new ArrayList();
-                
-                ps = c.prepareStatement("SELECT idEncomenda FROM Encomenda WHERE Nif = ?");
-                ps.setString(1,(String)o);
-                rs = ps.executeQuery();
-                while(rs.next()){
-                    encomendas.add(rs.getInt(1));
-                }
-                
-                cl.setEncomendas(encomendas);
+            if(rs.next()){
+                u.setNome(rs.getNString("Nome"));
+                u.setPassword(rs.getNString("Password"));
+                u.setTipo(rs.getInt("Tipo"));
             } 
         }
         catch(Exception e){
@@ -119,31 +107,25 @@ public class ClienteDAO implements Map<String,Cliente>{
                 System.out.printf(e.getMessage());
             }
         }
-        return cl;
+        return u;
     }
 
     @Override
-    public Cliente put(String k, Cliente v) {
-        Cliente cl;
+    public Utilizador put(String k, Utilizador v) {
+        Utilizador u;
 
         if(this.containsKey(k)){
-            cl = this.get(k);
+            u = this.get(k);
         }
-        else cl = v;
+        else u = v;
         try{
             c = Connect.connect();
             
-            PreparedStatement ps = c.prepareStatement("INSERT INTO Cliente (Nome,Nif,Contacto,Limite) VALUES (?,?,?,?)");
-            ps.setString(1,v.getNome());
-            ps.setString(2,k);
-            ps.setString(3,v.getContacto());
-            ps.setString(4,Double.toString(v.getLimite()));
+            PreparedStatement ps = c.prepareStatement("INSERT INTO Utilizador (Nome,Password,Tipo) VALUES (?,?,?)");
+            ps.setString(1,k);
+            ps.setString(2,v.getPassword());
+            ps.setString(3,Integer.toString(v.getTipo()));
             ps.executeUpdate();
-           
-            ArrayList<Integer> encs = v.getEncomendas();
-            if(encs != null){
-                //n sei se tenho de fazer alguma coisa com as encomendas??
-                }
             
         }
         catch(Exception e){
@@ -157,15 +139,16 @@ public class ClienteDAO implements Map<String,Cliente>{
                 System.out.printf(e.getMessage());
             }
         }
-        return cl;
+        return u;
+        
     }
 
     @Override
-    public Cliente remove(Object o) {
-        Cliente cl = this.get((String) o);
+    public Utilizador remove(Object o) {
+        Utilizador u = this.get((String) o);
         try{
             c = Connect.connect();
-            PreparedStatement ps = c.prepareStatement("DELETE FROM Cliente WHERE Nif = ?");
+            PreparedStatement ps = c.prepareStatement("DELETE FROM Utilizador WHERE Nome = ?");
             ps.setString(1, (String) o);
             ps.executeUpdate();
         }
@@ -180,13 +163,13 @@ public class ClienteDAO implements Map<String,Cliente>{
                 System.out.printf(e.getMessage());
             }
         }
-        return cl;
+        return u;
     }
 
     @Override
-    public void putAll(Map<? extends String, ? extends Cliente> map) {
-        for(Cliente cl : map.values()) {
-            put(cl.getNif(), cl);
+    public void putAll(Map<? extends String, ? extends Utilizador> map) {
+        for(Utilizador u : map.values()) {
+            put(u.getNome(), u);
         }
     }
 
@@ -194,7 +177,7 @@ public class ClienteDAO implements Map<String,Cliente>{
     public void clear() {
         try{
             c = Connect.connect();
-            PreparedStatement ps = c.prepareStatement("DELETE FROM Cliente");
+            PreparedStatement ps = c.prepareStatement("DELETE FROM Utilizador");
             ps.executeUpdate();
         }
         catch(Exception e){
@@ -212,12 +195,12 @@ public class ClienteDAO implements Map<String,Cliente>{
 
     @Override
     public Set<String> keySet() {
-       Set<String> keys = null;
+        Set<String> keys = null;
         
         try{
             c = Connect.connect();
             keys = new HashSet<>();
-            PreparedStatement ps = c.prepareStatement("SELECT Nif FROM Cliente");
+            PreparedStatement ps = c.prepareStatement("SELECT Nome FROM Utilizador");
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 keys.add(rs.getString(1));
@@ -238,27 +221,24 @@ public class ClienteDAO implements Map<String,Cliente>{
     }
 
     @Override
-    public Collection<Cliente> values() {
-        Set<Cliente> clientes = new HashSet<>();
+    public Collection<Utilizador> values() {
+        Set<Utilizador> utilizadores = new HashSet<>();
         Set<String> keys = new HashSet<>(this.keySet());
         for(String k : keys){
-            clientes.add(this.get(k));
+            utilizadores.add(this.get(k));
         }
-        return clientes;
+        return utilizadores;
     }
 
     @Override
-    public Set<Entry<String, Cliente>> entrySet() {
+    public Set<Entry<String, Utilizador>> entrySet() {
         Set<String> keys = new HashSet<>(this.keySet());
-        Map<String,Cliente> map = new HashMap<>();
+        Map<String,Utilizador> map = new HashMap<>();
         
         for(String k : keys){
             map.put(k,this.get(k));
         }
         return map.entrySet();
     }
-    
-    
-    
     
 }

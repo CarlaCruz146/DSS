@@ -141,9 +141,9 @@ public class EncomendaDAO implements Map<Integer,Encomenda> {
             c = Connect.connect();
             
             PreparedStatement ps = c.prepareStatement("INSERT INTO Encomenda (Id,Carro,Estado) VALUES (?,?,?)");
-            ps.setInt(1,k);
+            ps.setString(1,Integer.toString(k));
             ps.setString(2,v.getCarro());
-            ps.setInt(3,v.getEstado());
+            ps.setString(3,Integer.toString(v.getEstado()));
             ps.executeUpdate();
            
             List<Componente> config = v.getConfig();
