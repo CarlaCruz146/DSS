@@ -19,12 +19,14 @@ public class ConfiguraFacil {
     private Fabrica fabrica;
     private Utilizador utilizador;
     private GestaoUtilizadores gestaoU;
+    private GestaoEncomenda gestaoE;
     
     public ConfiguraFacil(){
         this.stand = new Stand();
         this.fabrica = new Fabrica();
         this.utilizador = null;
         this.gestaoU = new GestaoUtilizadores();
+        this.gestaoE = new GestaoEncomenda();
         addFunc();
         addComp();
         addEnc();
@@ -205,11 +207,11 @@ public class ConfiguraFacil {
         config3.add(c19);
         
         Encomenda e1 = new Encomenda(1,"BMW", 1, config1,null);
-        fabrica.getGestaoE().addEncomenda(e1);
+        gestaoE.addEncomenda(e1);
         Encomenda e2 = new Encomenda(2,"Mercedes", 0, config2,null);
-        fabrica.getGestaoE().addEncomenda(e2);
+        gestaoE.addEncomenda(e2);
         Encomenda e3 = new Encomenda(3,"Volvo", 1, config3,p);
-        fabrica.getGestaoE().addEncomenda(e3);
+        gestaoE.addEncomenda(e3);
     }
     
     public void addStock() {
@@ -279,6 +281,10 @@ public class ConfiguraFacil {
     
     public GestaoUtilizadores getGestaoU(){
         return this.gestaoU;
+    }
+    
+    public GestaoEncomenda getGestaoE(){
+        return this.gestaoE;
     }
     
     public void login(String nome, String password){

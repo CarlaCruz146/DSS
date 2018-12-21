@@ -377,10 +377,11 @@ public class Configuracao extends javax.swing.JDialog {
                             .addComponent(vidroPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel13))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Teto, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Parachoques)
-                            .addComponent(Vidro))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(Parachoques)
+                                .addComponent(Vidro)))
                         .addGap(9, 9, 9)))
                 .addComponent(jLabel2)
                 .addGap(9, 9, 9)
@@ -594,7 +595,7 @@ public class Configuracao extends javax.swing.JDialog {
             }
             if(listObrig.isEmpty()){
                 configura.getStand().addEncomendaCliente(c,this.parent.encomenda);
-                configura.getFabrica().getGestaoE().addEncomenda(this.parent.encomenda);
+                configura.getGestaoE().addEncomenda(this.parent.encomenda);
                 this.setVisible(false);
                 new DadosCliente(this, true, configura).setVisible(true);
             }

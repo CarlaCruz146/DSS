@@ -36,7 +36,7 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
         int n = (Integer) this.parent.model.getValueAt(this.parent.row,0);  
         model =  (DefaultTableModel) jTable1.getModel();
         Object rowData[] = new Object[1];
-        for(Componente c: configura.getFabrica().getGestaoE().getEncomendas().get(n).getConfig()){
+        for(Componente c: configura.getGestaoE().getEncomendas().get(n).getConfig()){
             rowData[0] = c.getNome();
             model.addRow(rowData);
         }
@@ -137,7 +137,7 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         int n = (Integer) this.parent.model.getValueAt(this.parent.row,0); 
-        Encomenda e = configura.getFabrica().getGestaoE().getEncomendas().get(n);
+        Encomenda e = configura.getGestaoE().getEncomendas().get(n);
         Map<String,Integer> stockDisponivel = configura.getFabrica().getStock();
         boolean executavel = true;
         for(Componente c: e.getConfig()){

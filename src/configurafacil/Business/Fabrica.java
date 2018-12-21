@@ -14,16 +14,10 @@ import java.util.stream.Collectors;
  */
 public class Fabrica {
 
-    private GestaoEncomenda gestaoE;
     private Map<String,Integer> stock;
     
     public Fabrica(){
-        this.gestaoE = new GestaoEncomenda();
         this.stock = new HashMap<>();
-    }
-    
-    public GestaoEncomenda getGestaoE(){
-        return this.gestaoE;
     }
     
     public Map<String, Integer> getStock(){

@@ -6,6 +6,7 @@
 package Database;
 
 import configurafacil.Business.Utilizador;
+import configurafacil.Business.FuncStand;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -83,7 +84,8 @@ public class UtilizadorDAO implements Map<String,Utilizador> {
 
     @Override
     public Utilizador get(Object o) {
-        Utilizador u; //= new Utilizador();
+        //ta mal, so pus assim para n dar erro a compilar
+        Utilizador u = new FuncStand();
         
         try{
             c = Connect.connect();

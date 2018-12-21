@@ -117,7 +117,7 @@ public class ListaEncomendas extends javax.swing.JDialog {
     public void apresentaEnc(){
         model =  (DefaultTableModel) jTable1.getModel();
         Object rowData[] = new Object[2];
-        for(Encomenda a: configura.getFabrica().getGestaoE().getEncomendas().values()){
+        for(Encomenda a: configura.getGestaoE().getEncomendas().values()){
             rowData[0] = a.getId();
             if(a.getEstado() == 0)
                     rowData[1] = "Em espera";
@@ -141,7 +141,7 @@ public class ListaEncomendas extends javax.swing.JDialog {
 
         Object car = model.getValueAt(row, 0);
         String carroN = car.toString();
-        configura.getFabrica().getGestaoE().removeEncomenda2(Integer.parseInt(carroN));      
+        configura.getGestaoE().removeEncomenda2(Integer.parseInt(carroN));      
         this.addNovoEstado(e);
         model.removeRow(row); 
         //this.setVisible(false);
