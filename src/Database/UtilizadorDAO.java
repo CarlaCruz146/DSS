@@ -83,7 +83,7 @@ public class UtilizadorDAO implements Map<String,Utilizador> {
 
     @Override
     public Utilizador get(Object o) {
-        Utilizador u = new Utilizador();
+        Utilizador u; //= new Utilizador();
         
         try{
             c = Connect.connect();
@@ -93,7 +93,6 @@ public class UtilizadorDAO implements Map<String,Utilizador> {
             if(rs.next()){
                 u.setNome(rs.getNString("Nome"));
                 u.setPassword(rs.getNString("Password"));
-                u.setTipo(rs.getInt("Tipo"));
             } 
         }
         catch(Exception e){
@@ -121,10 +120,9 @@ public class UtilizadorDAO implements Map<String,Utilizador> {
         try{
             c = Connect.connect();
             
-            PreparedStatement ps = c.prepareStatement("INSERT INTO Utilizador (Nome,Password,Tipo) VALUES (?,?,?)");
+            PreparedStatement ps = c.prepareStatement("INSERT INTO Utilizador (Nome,Password) VALUES (?,?)");
             ps.setString(1,k);
             ps.setString(2,v.getPassword());
-            ps.setString(3,Integer.toString(v.getTipo()));
             ps.executeUpdate();
             
         }

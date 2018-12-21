@@ -5,7 +5,10 @@
  */
 package configurafacil.Presentation;
 
+import configurafacil.Business.Administrador;
 import configurafacil.Business.ConfiguraFacil;
+import configurafacil.Business.FuncFabrica;
+import configurafacil.Business.FuncStand;
 
 /**
  *
@@ -128,15 +131,15 @@ public class Login extends javax.swing.JFrame {
                 configura.login(nome, password);
             }
             catch (Exception e){}
-            if (configura.getGestaoU().tipoFuncionario(nome, password) == 1){
+            if ((configura.getGestaoU().getUtilizador(nome)) instanceof FuncStand){
                 this.setVisible(false);
                 new DadosCliente(this, true, configura).setVisible(true);
             }
-            else if (configura.getGestaoU().tipoFuncionario(nome, password) == 2){
+            else if ((configura.getGestaoU().getUtilizador(nome)) instanceof FuncFabrica){
                 this.setVisible(false);
                 new MenuFuncionario(this, true, configura).setVisible(true);
             }
-            else if (configura.getGestaoU().tipoFuncionario(nome, password) == 0) {
+            else if ((configura.getGestaoU().getUtilizador(nome)) instanceof Administrador) {
                 this.setVisible(false);
                 new MenuAdmin(this, true, configura).setVisible(true);
             }

@@ -33,11 +33,11 @@ public class ConfiguraFacil {
     }
     
     public void addFunc() {
-        Utilizador stand = new Utilizador("João Silva",1,"joao");
-        gestaoU.addUtilizador(stand);
-        Utilizador fabrica = new Utilizador("Carlos Costa",2,"carlos");
-        gestaoU.addUtilizador(fabrica);
-        Utilizador admin = new Utilizador("Admin",0,"admin");
+        FuncStand st = new FuncStand("João Silva","joao");
+        gestaoU.addUtilizador(st);
+        FuncFabrica f = new FuncFabrica("Carlos Costa","carlos");
+        gestaoU.addUtilizador(f);
+        Administrador admin = new Administrador("Admin","admin");
         gestaoU.addUtilizador(admin);
     }
     

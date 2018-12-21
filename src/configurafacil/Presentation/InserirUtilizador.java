@@ -7,6 +7,8 @@ package configurafacil.Presentation;
 
 
 import configurafacil.Business.ConfiguraFacil;
+import configurafacil.Business.FuncFabrica;
+import configurafacil.Business.FuncStand;
 import configurafacil.Business.Utilizador;
 
 /**
@@ -158,8 +160,14 @@ public class InserirUtilizador extends javax.swing.JDialog {
             if (checkFabrica.isSelected()) tipo = 2;
             
             if (validaDados()){
-                Utilizador u = new Utilizador(nome,tipo,pass);
-                configura.getGestaoU().addUtilizador(u);
+                if(tipo == 1){
+                    FuncStand u = new FuncStand(nome,pass);
+                    configura.getGestaoU().addUtilizador(u);
+                }
+                else if (tipo == 2) {
+                    FuncFabrica u = new FuncFabrica(nome,pass);
+                    configura.getGestaoU().addUtilizador(u);
+                }
                 this.setVisible(false);
                 this.parent.addLine(nome);
             }

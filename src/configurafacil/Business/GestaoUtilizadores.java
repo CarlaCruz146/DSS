@@ -29,17 +29,21 @@ public class GestaoUtilizadores {
         }
         else throw new UtilizadorInvalidoException("Utilizador inexistente");
     }
-    
+    /*
     public int tipoFuncionario(String nome, String password) {
         for(Utilizador u : this.utilizadores.values()){
             if(u.getNome().equals(nome) && u.getPassword().equals(password))
                 return u.getTipo();
         }
         return -1;
-    }
+    }*/
     
     public void addUtilizador(Utilizador u){
         utilizadores.put(u.getNome(),u);
+    }
+    
+    public Utilizador getUtilizador(String nome){
+       return utilizadores.get(nome);
     }
     
     public Map<String,Utilizador> getUtilizadores(){
