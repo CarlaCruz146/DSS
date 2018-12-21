@@ -77,6 +77,10 @@ public class Encomenda {
         this.carro = carro;
     }
     
+    public void setId(int id){
+        this.id = id;
+    }
+    
     public void setCarro(String c){
         this.carro = c;
     }

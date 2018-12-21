@@ -102,7 +102,7 @@ public class ClienteDAO implements Map<String,Cliente>{
                 ps.setString(1,(String)o);
                 rs = ps.executeQuery();
                 while(rs.next()){
-                    encomendas.add(rs.getInt("idEncomenda"));
+                    encomendas.add(rs.getInt(1));
                 }
                 
                 cl.setEncomendas(encomendas);
@@ -220,7 +220,7 @@ public class ClienteDAO implements Map<String,Cliente>{
             PreparedStatement ps = c.prepareStatement("SELECT Nif FROM Cliente");
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                keys.add(rs.getString("Nif"));
+                keys.add(rs.getString(1));
             }   
         }
         catch(Exception e){
