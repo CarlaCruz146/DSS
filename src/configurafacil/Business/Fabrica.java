@@ -13,11 +13,19 @@ import java.util.stream.Collectors;
  * @author mercy
  */
 public class Fabrica {
-
+    private int id;
     private Map<String,Integer> stock;
     
     public Fabrica(){
         this.stock = new HashMap<>();
+    }
+    
+    public int getId(){
+        return this.id;
+    }
+    
+    public void setId(int id){
+        this.id = id;
     }
     
     public Map<String, Integer> getStock(){

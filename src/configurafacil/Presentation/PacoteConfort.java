@@ -33,7 +33,7 @@ public class PacoteConfort extends javax.swing.JDialog {
        this.parent2 = (EscolherCarro) parent2;
        inserePacoteC();
 
-       double p = this.configura.getStand().getPacote("Pacote Comfort").getPreco();
+       double p = this.configura.getPacote("Pacote Comfort").getPreco();
        
        preco.setText(Double.toString(p));
     }
@@ -41,8 +41,8 @@ public class PacoteConfort extends javax.swing.JDialog {
     public void inserePacoteC(){
         model =  (DefaultTableModel) jTable1.getModel();
         Object rowData[] = new Object[1];
-        for(Componente c : configura.getStand().getPacote("Pacote Comfort").getComponentes()){
-            rowData[0] = c.getNome();
+        for(String c : configura.getPacote("Pacote Comfort").getComponentes()){
+            rowData[0] = c;
             model.addRow(rowData);
         }
     }
@@ -170,9 +170,9 @@ public class PacoteConfort extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        Pacote pacote = configura.getStand().getPacote("Pacote Comfort");
+        Pacote pacote = configura.getPacote("Pacote Comfort");
         List<String> listInc = new ArrayList<>();
-        listInc = this.parent2.encomenda.verificaIncompativel(pacote);
+        listInc = this.configura.verificaIncompativel(pacote, this.parent2.encomenda);
         StringBuilder sbInc = new StringBuilder();
         for (String i : listInc){
             sbInc.append(i);
@@ -181,7 +181,7 @@ public class PacoteConfort extends javax.swing.JDialog {
         if(!listInc.isEmpty()){
             javax.swing.JOptionPane.showMessageDialog(this, "Incompatível com: " + sbInc , "Componentes incompatíveis",0);
         }
-        else this.parent2.encomenda.setPacote(pacote);
+        else this.parent2.encomenda.setPacote(pacote.getNome());
         this.setVisible(false);
     }//GEN-LAST:event_jButton1MouseClicked
 

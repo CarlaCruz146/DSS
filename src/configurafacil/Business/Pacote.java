@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class Pacote {
     private String nome;
     private double preco;
-    private List<Componente> componentes;
+    private List<String> componentes;
     
      public Pacote(){
         this.nome = "";
@@ -24,10 +24,10 @@ public class Pacote {
         this.componentes = new ArrayList<>();
     }
     
-    public Pacote(String nome, double preco, List<Componente> componentes){
+    public Pacote(String nome, double preco, List<String> componentes){
         this.nome = nome;
         this.preco = preco;
-        this.componentes = new ArrayList<Componente>();
+        this.componentes = new ArrayList<String>();
         if(componentes!=null) setComponentes(componentes);
     }
     
@@ -41,11 +41,15 @@ public class Pacote {
         return this.nome;
     }
    
+    public Integer getNComp(){
+        return this.componentes.size();
+    }
+    
     public double getPreco(){
         return this.preco;
     }
     
-    public List<Componente> getComponentes(){
+    public List<String> getComponentes(){
         return this.componentes.stream().collect(Collectors.toList());
     }
     
@@ -57,9 +61,9 @@ public class Pacote {
         this.preco = p;
     }
     
-    public void setComponentes(List<Componente> comp){
-        for (Componente c : comp){
-           this.componentes.add(c);
+    public void setComponentes(List<String> comp){
+        for (String s : comp){
+           this.componentes.add(s);
         }
     }  
     

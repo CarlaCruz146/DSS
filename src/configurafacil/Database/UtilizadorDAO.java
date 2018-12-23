@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Database;
+package configurafacil.Database;
 
+import configurafacil.Business.Administrador;
+import configurafacil.Business.FuncFabrica;
 import configurafacil.Business.Utilizador;
 import configurafacil.Business.FuncStand;
 import java.sql.Connection;
@@ -23,6 +25,13 @@ import java.util.Set;
 public class UtilizadorDAO implements Map<String,Utilizador> {
     
     private Connection c;
+    private int stand;
+    private int fabrica;
+    
+    public UtilizadorDAO(int stant, int fabrica){
+        this.stand = stand;
+        this.fabrica = fabrica;
+    }
     
     @Override
     public int size() {
@@ -54,7 +63,7 @@ public class UtilizadorDAO implements Map<String,Utilizador> {
         boolean res = false;
         try {
             c = Connect.connect();
-            String sql = "SELECT Nome FROM Utilizador WHERE Nome = ?";
+            String sql = "SELECT * FROM Utilizador WHERE Nome = ?";
             PreparedStatement stm = c.prepareStatement(sql);
             stm.setString(1, (String)o);
             ResultSet rs = stm.executeQuery();
@@ -84,21 +93,54 @@ public class UtilizadorDAO implements Map<String,Utilizador> {
 
     @Override
     public Utilizador get(Object o) {
-        //ta mal, so pus assim para n dar erro a compilar
-        Utilizador u = new FuncStand();
+
+        Utilizador utilizador = null;
         
         try{
             c = Connect.connect();
             PreparedStatement ps = c.prepareStatement("SELECT * FROM Utilizador WHERE Nome = ?");
             ps.setString(1,(String) o);
             ResultSet rs = ps.executeQuery();
-            if(rs.next()){
-                u.setNome(rs.getNString("Nome"));
-                u.setPassword(rs.getNString("Password"));
-            } 
+             if(rs.next()){
+                String nome, password;
+                nome = rs.getString("Nome");
+                password = rs.getString("Password");
+                
+                PreparedStatement stmFF = c.prepareStatement("SELECT * FROM FuncFabrica WHERE Utilizador = ?");
+                stmFF.setString(1, nome);
+                ResultSet rsFF = stmFF.executeQuery();
+                if (rsFF.next()) {
+                   FuncFabrica f = new FuncFabrica();
+                   f.setNome(nome);
+                   f.setPassword(password);
+                   utilizador = f;
+                }
+                else{
+                    PreparedStatement stmFS = c.prepareStatement("SELECT * FROM FuncStand WHERE Utilizador = ?");
+                    stmFS.setString(1, nome);
+                    ResultSet rsFS = stmFS.executeQuery();
+                    if (rsFS.next()) {
+                       FuncStand f = new FuncStand();
+                       f.setNome(nome);
+                       f.setPassword(password); 
+                       utilizador = f;
+                    }
+                    else{
+                        PreparedStatement stmA = c.prepareStatement("SELECT * FROM Administrador WHERE Utilizador = ?");
+                        stmA.setString(1, nome);
+                        ResultSet rsA = stmA.executeQuery();
+                        if (rsA.next()) {
+                            Administrador a = new Administrador();
+                            a.setNome(nome);
+                            a.setPassword(password); 
+                            utilizador = a;
+                        }
+                    }
+                }
+             }
         }
         catch(Exception e){
-            System.out.printf(e.getMessage());
+            System.out.printf(e.getMessage() + "get");
         }
         finally{
             try{
@@ -108,7 +150,7 @@ public class UtilizadorDAO implements Map<String,Utilizador> {
                 System.out.printf(e.getMessage());
             }
         }
-        return u;
+        return utilizador;
     }
 
     @Override
@@ -122,21 +164,43 @@ public class UtilizadorDAO implements Map<String,Utilizador> {
         try{
             c = Connect.connect();
             
-            PreparedStatement ps = c.prepareStatement("INSERT INTO Utilizador (Nome,Password) VALUES (?,?)");
+            PreparedStatement ps = c.prepareStatement("INSERT INTO Utilizador (Nome,Password,Stand,Fabrica) VALUES (?,?,?,?)");
             ps.setString(1,k);
             ps.setString(2,v.getPassword());
+            ps.setInt(3,stand);
+            ps.setInt(4,fabrica);
             ps.executeUpdate();
+            
+             if(v instanceof FuncStand){
+                PreparedStatement stm = c.prepareStatement("INSERT INTO FuncStand (idFuncStant) VALUES (?)");
+                stm.setString(1, k);
+                stm.executeUpdate();
+            }
+            else{
+                if(v instanceof FuncFabrica){
+                    PreparedStatement stm = c.prepareStatement("INSERT INTO FuncFabrica (idFuncFabrica) VALUES (?)");
+                    stm.setString(1, k); 
+                    stm.executeUpdate();
+                }
+                else{
+                    if(v instanceof Administrador){
+                        PreparedStatement stm = c.prepareStatement("INSERT INTO Administrador (idAdmin) VALUES (?)");
+                    stm.setString(1, k);
+                    stm.executeUpdate();
+                    }
+                }
+            }
             
         }
         catch(Exception e){
-            System.out.printf(e.getMessage());
+            System.out.printf(e.getMessage() + "put1");
         }
         finally{
             try{
                 Connect.close(c);
             }
             catch(Exception e){
-                System.out.printf(e.getMessage());
+                System.out.printf(e.getMessage() + "put1");
             }
         }
         return u;
@@ -200,7 +264,7 @@ public class UtilizadorDAO implements Map<String,Utilizador> {
         try{
             c = Connect.connect();
             keys = new HashSet<>();
-            PreparedStatement ps = c.prepareStatement("SELECT Nome FROM Utilizador");
+            PreparedStatement ps = c.prepareStatement("SELECT * FROM Utilizador");
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 keys.add(rs.getString(1));

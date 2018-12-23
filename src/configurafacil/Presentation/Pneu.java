@@ -7,6 +7,7 @@ package configurafacil.Presentation;
 
 import configurafacil.Business.Componente;
 import configurafacil.Business.ConfiguraFacil;
+import configurafacil.Business.Encomenda;
 import java.util.List;
 
 /**
@@ -37,10 +38,10 @@ public class Pneu extends javax.swing.JDialog {
         String c3 = Pneu3.getText();
         String c4 = Pneu4.getText();
         
-        Double p1 = configura.getStand().getComponente(c1).getPreco();
-        Double p2 = configura.getStand().getComponente(c2).getPreco();
-        Double p3 = configura.getStand().getComponente(c3).getPreco();
-        Double p4 = configura.getStand().getComponente(c4).getPreco();
+        Double p1 = configura.getComponente(c1).getPreco();
+        Double p2 = configura.getComponente(c2).getPreco();
+        Double p3 = configura.getComponente(c3).getPreco();
+        Double p4 = configura.getComponente(c4).getPreco();
         preco1.setText(Double.toString(p1));
         preco2.setText(Double.toString(p2));
         preco3.setText(Double.toString(p3));
@@ -231,10 +232,11 @@ public class Pneu extends javax.swing.JDialog {
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor escolha um pneu","Pneu não selecionado", 0);
         }
         else {
-            Componente comp = configura.getStand().getComponente(this.pneu);
-            Componente c = this.parent2.encomenda.verificaTipo("Pneu");
-            List<String> listInc = this.parent2.encomenda.verificaIncomp(comp);
-            List<String> listObrig = this.parent2.encomenda.verificaObrig(comp);
+            Encomenda e = this.parent2.encomenda;
+            Componente comp = configura.getComponente(this.pneu);
+            Componente c = this.configura.verificaTipo("Pneu",e);
+            List<String> listInc = e.verificaIncomp(comp,this.configura.getPacote(e.getPacote()));
+            List<String> listObrig = e.verificaObrig(comp);
             StringBuilder sbInc = new StringBuilder();
             StringBuilder sbObrig = new StringBuilder();
             for (String i : listObrig){
@@ -253,9 +255,9 @@ public class Pneu extends javax.swing.JDialog {
             }
             else {
                 if(c != null){
-                    this.parent2.encomenda.removeDaConfiguracao(c);
+                    e.removeDaConfiguracao(c.getNome());
                 }
-                this.parent2.encomenda.addToConfiguracao(comp);
+                e.addToConfiguracao(comp.getNome());
             }
             this.setVisible(false);
         }

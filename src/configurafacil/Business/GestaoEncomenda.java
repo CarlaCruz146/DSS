@@ -5,6 +5,7 @@
  */
 package configurafacil.Business;
 
+import configurafacil.Database.EncomendaDAO;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,10 +14,10 @@ import java.util.Map;
  * @author utilizador
  */
 public class GestaoEncomenda {
-    private Map<Integer,Encomenda> encomendas;
+    private EncomendaDAO encomendas;
     
     public GestaoEncomenda(){
-        this.encomendas = new HashMap<>();
+        this.encomendas = new EncomendaDAO();
     }
     
     public Map<Integer,Encomenda> getEncomendas(){

@@ -36,8 +36,8 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
         int n = (Integer) this.parent.model.getValueAt(this.parent.row,0);  
         model =  (DefaultTableModel) jTable1.getModel();
         Object rowData[] = new Object[1];
-        for(Componente c: configura.getGestaoE().getEncomendas().get(n).getConfig()){
-            rowData[0] = c.getNome();
+        for(String c: configura.getGestaoE().getEncomendas().get(n).getConfig()){
+            rowData[0] = c;
             model.addRow(rowData);
         }
     }
@@ -140,8 +140,8 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
         Encomenda e = configura.getGestaoE().getEncomendas().get(n);
         Map<String,Integer> stockDisponivel = configura.getFabrica().getStock();
         boolean executavel = true;
-        for(Componente c: e.getConfig()){
-            if(stockDisponivel.get(c.getNome()) == 0){
+        for(String c: e.getConfig()){
+            if(stockDisponivel.get(c) == 0){
                executavel = false;
                javax.swing.JOptionPane.showMessageDialog(this, "Não há stock suficiente.", "Stock indisponivel", 0);
                this.setVisible(false);

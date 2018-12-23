@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Database;
+package configurafacil.Database;
 
 import configurafacil.Business.Componente;
 import configurafacil.Business.Encomenda;
@@ -91,28 +91,27 @@ public class EncomendaDAO implements Map<Integer,Encomenda> {
         
         try{
             c = Connect.connect();
-            PreparedStatement ps = c.prepareStatement("SELECT * FROM Encomenda WHERE idEncomenda = ?");
+            String sql = "SELECT * FROM Encomenda WHERE idEncomenda = ?";
+            PreparedStatement ps = c.prepareStatement(sql);
             ps.setString(1, Integer.toString((Integer) o));
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
                 e.setId(rs.getInt("idEncomenda"));
                 e.setCarro(rs.getString("Carro"));   
                 e.setEstado(rs.getInt("Estado"));
-                List<Componente> config = new ArrayList();
-                //DEVE ESTAR MAL :(
-                ps = c.prepareStatement("SELECT * FROM Componente "
-                        + "INNER JOIN Componente_has_Encomenda ON Componente.idComponente = Componente_has_Encomenda.idComponente"
-                        + "INNER JOIN Encomenda ON Componente_has_Encomenda.idEncomenda = ?");
-                ps.setString(1,Integer.toString((Integer) o));
+                e.setPacote(rs.getString("Pacote"));
+                e.setCliente(rs.getString("Cliente"));
+                sql = "SELECT Nome FROM Componente AS C\n" + 
+                        "JOIN Encomenda_Componente AS EC ON C.nome = EC.Componente" +
+                        "WHERE EC.Encomenda = ?;";
+                ps = c.prepareStatement(sql);
+                ps.setInt(1, (Integer) o);
                 rs = ps.executeQuery();
-                while(rs.next()){
-                    //mete se os incompativeis e obrigatorios a null???
-                    config.add(new Componente(rs.getString("Nome"),rs.getString("Tipo"),rs.getDouble("Preco"),null,null));
+                List<String> componentes = new ArrayList<>();
+                while (rs.next()) { 
+                        componentes.add(rs.getString("Componente"));
                 }
-                e.setConfig(config);
-                //Fazer o mesmo que no pacoteDAO?
-                Pacote p = new Pacote();
-                e.setPacote(p);
+                e.setConfig(componentes);
             } 
         }
         catch(Exception ex){
@@ -140,25 +139,27 @@ public class EncomendaDAO implements Map<Integer,Encomenda> {
         try{
             c = Connect.connect();
             
-            PreparedStatement ps = c.prepareStatement("INSERT INTO Encomenda (Id,Carro,Estado) VALUES (?,?,?)");
+            PreparedStatement ps = c.prepareStatement("INSERT INTO Encomenda (IdEncomenda,Carro,Estado,Cliente,Pacote,Fabrica) VALUES (?,?,?,?,?,?)");
             ps.setString(1,Integer.toString(k));
             ps.setString(2,v.getCarro());
             ps.setString(3,Integer.toString(v.getEstado()));
+            ps.setString(4, v.getCliente());
+            ps.setString(5, v.getPacote());
+            ps.setInt(6,1);
             ps.executeUpdate();
-           
-            List<Componente> config = v.getConfig();
-            //ESTA PARTE ESTA MAL!!!
-            if(config != null){
-                for(Componente c : config){
-                    //ps = c.prepareStatement("INSERT INTO Componente_has_Encomenda (idEnc,idComp) VALUES (?,?)");
-                    ps.setInt(1,k);
-                    //ps.setInt(2,c.getPreco());
-                    ps.executeUpdate();
+            
+            if(v.getNConfig()>0){
+                String sql = "INSERT INTO Encomenda_Componentes\n" +
+                      "VALUES (? ?)\n" +
+                      "ON DUPLICATE KEY UPDATE Componente = VALUES(Componente);";
+                ps = c.prepareStatement(sql);
+                for(String s : v.getConfig()){
+                    ps.setString(1, s);
                 }
             }
         }
         catch(Exception ex){
-            System.out.printf(ex.getMessage());
+            System.out.printf(ex.getMessage() + "memememem");
         }
         finally{
             try{
@@ -180,6 +181,13 @@ public class EncomendaDAO implements Map<Integer,Encomenda> {
             PreparedStatement ps = c.prepareStatement("DELETE FROM Encomenda WHERE idEncomenda = ?");
             ps.setString(1, Integer.toString((Integer) o));
             ps.executeUpdate();
+            
+            if(e.getNConfig()>0){
+                String sql = "DELETE FROM Encomenda WHERE idEncomenda = ?;";
+                ps = c.prepareStatement(sql);
+                ps.setString(1, (String) o);
+                ps.executeUpdate();
+            }
         }
         catch(Exception ex){
             System.out.printf(ex.getMessage());

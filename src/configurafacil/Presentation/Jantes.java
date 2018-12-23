@@ -7,6 +7,7 @@ package configurafacil.Presentation;
 
 import configurafacil.Business.Componente;
 import configurafacil.Business.ConfiguraFacil;
+import configurafacil.Business.Encomenda;
 import java.util.List;
 
 /**
@@ -36,9 +37,9 @@ public class Jantes extends javax.swing.JDialog {
         String c2 = Jante2.getText();
         String c3 = Jante3.getText();
         
-        Double p1 = configura.getStand().getComponente(c1).getPreco();
-        Double p2 = configura.getStand().getComponente(c2).getPreco();
-        Double p3 = configura.getStand().getComponente(c3).getPreco();
+        Double p1 = configura.getComponente(c1).getPreco();
+        Double p2 = configura.getComponente(c2).getPreco();
+        Double p3 = configura.getComponente(c3).getPreco();
         preco1.setText(Double.toString(p1));
         preco2.setText(Double.toString(p2));
         preco3.setText(Double.toString(p3));
@@ -203,10 +204,11 @@ public class Jantes extends javax.swing.JDialog {
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor escolha uma jantes","Jantes não selecionado", 0);
         }
         else {
-            Componente comp = configura.getStand().getComponente(this.jante);
-            Componente c = this.parent2.encomenda.verificaTipo("Jante");
-             List<String> listInc = this.parent2.encomenda.verificaIncomp(comp);
-            List<String> listObrig = this.parent2.encomenda.verificaObrig(comp);
+            Encomenda e = this.parent2.encomenda;
+            Componente comp = configura.getComponente(this.jante);
+            Componente c = this.configura.verificaTipo("Jante",e);
+             List<String> listInc = e.verificaIncomp(comp,this.configura.getPacote(e.getPacote()));
+            List<String> listObrig = e.verificaObrig(comp);
             StringBuilder sbInc = new StringBuilder();
             StringBuilder sbObrig = new StringBuilder();
             for (String i : listObrig){
@@ -225,9 +227,9 @@ public class Jantes extends javax.swing.JDialog {
             }
             else {
                 if(c != null){
-                    this.parent2.encomenda.removeDaConfiguracao(c);
+                    e.removeDaConfiguracao(c.getNome());
                 }
-                this.parent2.encomenda.addToConfiguracao(comp);
+                e.addToConfiguracao(comp.getNome());
             }
             this.setVisible(false);
         }

@@ -7,8 +7,11 @@ package configurafacil.Presentation;
 
 import configurafacil.Business.Componente;
 import configurafacil.Business.ConfiguraFacil;
+import configurafacil.Business.Pacote;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,10 +24,12 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
     private int row = 0;
     private Configuracao parent;
     private EscolherCarro parent2;
-    private Componente componente;
-    private String nomeComponente;
+    private String componente = "";
+    private String pacoteSelect = "";
+    private String pacote = "";
+    private String nome;
     private double preco = 0;
-    List<Componente> config = new ArrayList<>();
+    List<String> config = new ArrayList<>();
     
     /**
      * Creates new form ConfiguracaoFinal
@@ -36,6 +41,7 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
         this.parent = (Configuracao) parent;
         this.parent2 = (EscolherCarro) parent2;
         config = this.parent2.encomenda.getConfig();
+        pacote = this.parent2.encomenda.getPacote();
         insereConfigTabela();
         precoTotal.setText(Double.toString(preco));
         
@@ -44,17 +50,19 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
     public void insereConfigTabela(){
         model =  (DefaultTableModel) jTable1.getModel();
         Object rowData[] = new Object[2];
-        for(Componente s : config){
-            rowData[0] = s.getNome();
-            rowData[1] = s.getPreco();
+        for(String s : config){
+            Componente c = this.configura.getComponente(s);
+            rowData[0] = c.getNome();
+            rowData[1] = c.getPreco();
             model.addRow(rowData);
-            preco += s.getPreco();
+            preco += c.getPreco();
         }
-        if(this.parent2.encomenda.getPacote()!=null) { 
-            rowData[0] = this.parent2.encomenda.getPacote().getNome();
-            rowData[1] = this.parent2.encomenda.getPacote().getPreco();
+        String p = this.parent2.encomenda.getPacote();
+        if(!p.isEmpty()) { 
+            rowData[0] = this.configura.getPacote(p).getNome();
+            rowData[1] = this.configura.getPacote(p).getPreco();
             model.addRow(rowData);
-            preco += this.parent2.encomenda.getPacote().getPreco();
+            preco += this.configura.getPacote(p).getPreco();
         }
     }
     /**
@@ -176,17 +184,24 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         model =  (DefaultTableModel) jTable1.getModel();
-        this.parent2.encomenda.removeDaConfiguracao(componente);
-        if(this.parent2.encomenda.getPacote()!=null){
-            this.parent.setPacotes();
-            this.parent2.encomenda.setPacote(null);
+        Componente c = null;
+        Pacote p = null;
+        if (!componente.isEmpty()){
+            c = this.configura.getComponente(componente);
+            this.parent2.encomenda.removeDaConfiguracao(componente);
+            preco -= c.getPreco();
         }
-        else if(componente.getTipo().equals("Teto")) this.parent.setTeto();
-        else if(componente.getTipo().equals("Pára-choque")) this.parent.setParaChoques();
-        else if(componente.getTipo().equals("Luzes")) this.parent.setLuz();
-        else if(componente.getTipo().equals("Vidro")) this.parent.setVidro();
+        if (!pacoteSelect.isEmpty()){
+            p = this.configura.getPacote(pacoteSelect);
+            this.parent2.encomenda.setPacote("");
+            preco -= p.getPreco();
+            this.parent.setPacotes();
+        }
+        else if(c.getTipo().equals("Teto")) this.parent.setTeto();
+        else if(c.getTipo().equals("Pára-choque")) this.parent.setParaChoques();
+        else if(c.getTipo().equals("Luzes")) this.parent.setLuz();
+        else if(c.getTipo().equals("Vidro")) this.parent.setVidro();
         model.removeRow(row);
-        preco -= componente.getPreco();
         precoTotal.setText(Double.toString(preco));
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -198,10 +213,12 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
         row = jTable1.getSelectedRow();
-        nomeComponente = (String)model.getValueAt(row, 0);
-        for(Componente c : config)
-            if(c.getNome().equals(nomeComponente))
-                componente = c;
+        nome = (String)model.getValueAt(row, 0);
+        for(String c : config)
+            if(c.equals(nome))
+                this.componente = c;
+       if(pacote.equals(nome))
+                this.pacoteSelect = nome;
     }//GEN-LAST:event_jTable1MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

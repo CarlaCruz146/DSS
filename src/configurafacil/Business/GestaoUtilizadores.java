@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package configurafacil.Business;
+import configurafacil.Database.UtilizadorDAO;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -14,10 +14,10 @@ import java.util.stream.Collectors;
  * @author utilizador
  */
 public class GestaoUtilizadores {
-    private Map<String,Utilizador> utilizadores;
+    private UtilizadorDAO utilizadores;
     
     public GestaoUtilizadores(){
-        this.utilizadores = new HashMap<>();
+        this.utilizadores = new UtilizadorDAO(1,1);
     }
     
     public Utilizador verificaUtilizador(String nome, String password) throws PasswordInvalidaException, UtilizadorInvalidoException{

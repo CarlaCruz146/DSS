@@ -6,20 +6,21 @@
 package configurafacil.Business;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Cliente {
     private String nome;
     private String nif;
     private String contacto;
     private double limite;
-    private ArrayList<Integer> encomendas;
+   // private List<Integer> encomendas;
     
     public Cliente(){
         this.nome = "";
         this.nif = ""; 
         this.contacto = "";
         this.limite = 0;
-        this.encomendas = new ArrayList<>();
+     //   this.encomendas = new ArrayList<>();
     }
     
     public Cliente(String nome, String nif, String contacto, double limite, ArrayList<Integer> enc){
@@ -27,9 +28,9 @@ public class Cliente {
         this.nif = nif;
         this.contacto = contacto;
         this.limite = limite;
-        this.encomendas = new ArrayList<>();
-        if (enc == null) this.encomendas = null;
-        else enc.forEach(a->this.encomendas.add((Integer) a));
+      //  this.encomendas = new ArrayList<>();
+      //  if (enc == null) this.encomendas = null;
+      //  else enc.forEach(a->this.encomendas.add((Integer) a));
     }
     
     public Cliente(Cliente c){
@@ -37,7 +38,7 @@ public class Cliente {
         this.nif = c.getNif();
         this.contacto = c.getContacto();
         this.limite = c.getLimite();
-        this.encomendas = c.getEncomendas();
+      //  this.encomendas = c.getEncomendas();
     }
     
     public String getNome(){
@@ -55,10 +56,10 @@ public class Cliente {
     public double getLimite(){
         return this.limite;
     }
-    
-    public ArrayList<Integer> getEncomendas(){
+   /* 
+    public List<Integer> getEncomendas(){
         return this.encomendas;
-    }
+    }*/
     
     public void setNome(String nome){
         this.nome = nome;
@@ -75,7 +76,7 @@ public class Cliente {
     public void setLimite(double l){
         this.limite = l;
     }
-    
+    /*
     public void setEncomendas(ArrayList<Integer> enc){
         this.encomendas = new ArrayList<>();
         enc.forEach(a->this.encomendas.add(a));
@@ -84,7 +85,7 @@ public class Cliente {
     public void addEncomenda(Encomenda e){
         if (this.encomendas == null) this.encomendas = new ArrayList<>();
         this.encomendas.add(e.getId());
-    }
+    }*/
     
      public String toString(){
         StringBuilder sb = new StringBuilder();

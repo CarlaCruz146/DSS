@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Database;
+package configurafacil.Database;
 
-import configurafacil.Business.Componente;
 import configurafacil.Business.Pacote;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,7 +24,7 @@ import java.util.Set;
 public class PacoteDAO implements Map<String,Pacote> {
     
     private Connection con;
-        
+    
     @Override
     public int size() {
         int i = -1;
@@ -38,7 +37,7 @@ public class PacoteDAO implements Map<String,Pacote> {
             }
         }
         catch (Exception e) {
-            throw new NullPointerException(e.getMessage());
+            throw new NullPointerException(e.getMessage() + "Pacote");
         }
         finally {
             Connect.close(con);
@@ -62,7 +61,7 @@ public class PacoteDAO implements Map<String,Pacote> {
             ResultSet rs = stm.executeQuery();
             r = rs.next();
         } catch (Exception e) {
-            throw new NullPointerException(e.getMessage());
+            throw new NullPointerException(e.getMessage() + "Pacote");
         } finally {
             Connect.close(con);
         }
@@ -90,31 +89,35 @@ public class PacoteDAO implements Map<String,Pacote> {
         
         try{
             con = Connect.connect();
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM Pacote WHERE Nome = ?");
+            String sql = "SELECT * FROM Pacote WHERE Nome = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1,(String) key);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
-              //  p.setNome(rs.getString("Nome"));
+                p.setNome(rs.getString("Nome"));
                 p.setPreco(rs.getDouble("Preco"));   
-                List<Componente> componentes = new ArrayList();
-                ps = con.prepareStatement("SELECT * FROM Componente WHERE Pacote = ?");
-                ps.setString(1,(String) key);
+                sql = "SELECT Nome FROM Componente AS C\n" + 
+                        "JOIN Pacote_Componente AS PC ON C.nome = PC.Componente\n" +
+                        "WHERE PC.Pacote = ?;";
+                ps = con.prepareStatement(sql);
+                ps.setString(1, (String) key);
                 rs = ps.executeQuery();
-                while(rs.next()){
-                    componentes.add(new Componente(rs.getString("Nome"),rs.getString("Tipo"),rs.getDouble("Preco"),null,null));
+                List<String> componentes = new ArrayList<>();
+                while (rs.next()) { 
+                        componentes.add(rs.getString("Nome"));
                 }
                 p.setComponentes(componentes);
             } 
         }
         catch(Exception e){
-            System.out.printf(e.getMessage());
+            System.out.printf(e.getMessage() + "pacotemememe");
         }
         finally{
             try{
                Connect.close(con);
             }
             catch(Exception e){
-                System.out.printf(e.getMessage());
+                System.out.printf(e.getMessage() + "Pacote");
             }
         }
         return p;
@@ -133,29 +136,28 @@ public class PacoteDAO implements Map<String,Pacote> {
             
             PreparedStatement ps = con.prepareStatement("INSERT INTO Pacote (Nome,Preco) VALUES (?,?)");
             ps.setString(1,key);
-            ps.setDouble(2,value.getPreco());
+            ps.setString(2,Double.toString(value.getPreco()));
             ps.executeUpdate();
-           
-            List<Componente> list = value.getComponentes();
-            if(list!=null){
-                for(Componente c : list){
-                    ps = con.prepareStatement("INSERT INTO Componente (Nome,Tipo,Preco,null,null) VALUES (?,?,?,?,?)");
-                    ps.setString(1,key);
-                    ps.setString(3,c.getTipo());
-                    ps.setDouble(4,c.getPreco());
-                    ps.executeUpdate();
+            
+            if(value.getNComp()>0){
+                String sql = "INSERT INTO Encomenda_Componentes\n" +
+                      "VALUES (? ?)\n" +
+                      "ON DUPLICATE KEY UPDATE Componente = VALUES(Componente);";
+                ps = con.prepareStatement(sql);
+                for(String s : value.getComponentes()){
+                    ps.setString(1, s);
                 }
             }
         }
         catch(Exception e){
-            System.out.printf(e.getMessage());
+            System.out.printf(e.getMessage() + "Pacote2");
         }
         finally{
             try{
                 Connect.close(con);
             }
             catch(Exception e){
-                System.out.printf(e.getMessage());
+                System.out.printf(e.getMessage() + "Pacote");
             }
         }
         return p;
@@ -169,16 +171,23 @@ public class PacoteDAO implements Map<String,Pacote> {
             PreparedStatement ps = con.prepareStatement("DELETE FROM Pacote WHERE Nome = ?");
             ps.setString(1, (String) key);
             ps.executeUpdate();
+            
+            if(p.getNComp()>0){
+                String sql = "DELETE FROM Pacote WHERE Nome = ?;";
+                ps = con.prepareStatement(sql);
+                ps.setString(1, (String) key);
+                ps.executeUpdate();
+            }
         }
         catch(Exception e){
-            System.out.printf(e.getMessage());
+            System.out.printf(e.getMessage() + "Pacote");
         }
         finally{
             try{
                 Connect.close(con);
             }
             catch(Exception e){
-                System.out.printf(e.getMessage());
+                System.out.printf(e.getMessage() + "Pacote");
             }
         }
         return p;
@@ -200,14 +209,14 @@ public class PacoteDAO implements Map<String,Pacote> {
             ps.executeUpdate();
         }
         catch(Exception e){
-            System.out.printf(e.getMessage());
+            System.out.printf(e.getMessage() + "Pacote");
         }
         finally{
             try{
                 Connect.close(con);
             }
             catch(Exception e){
-                System.out.printf(e.getMessage());
+                System.out.printf(e.getMessage() + "Pacote");
             }
         }
     }
@@ -226,14 +235,14 @@ public class PacoteDAO implements Map<String,Pacote> {
             }   
         }
         catch(Exception e){
-            System.out.printf(e.getMessage());
+            System.out.printf(e.getMessage() + "Pacote");
         }
         finally{
             try{
                 Connect.close(con);
             }
             catch(Exception e){
-                System.out.printf(e.getMessage());
+                System.out.printf(e.getMessage() + "Pacote");
             }
         }
         return set;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Database;
+package configurafacil.Database;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -15,7 +15,7 @@ import java.sql.DriverManager;
  */
 public class Connect {
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "root";
+    private static final String PASSWORD = "jessicaandreia";
     private static final String URL = "localhost";
     private static final String SCHEMA = "mydb";
     

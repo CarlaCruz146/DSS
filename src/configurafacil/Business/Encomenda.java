@@ -11,30 +11,34 @@ package configurafacil.Business;
  */
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Encomenda {
     private int id;
     private String carro;
     private int estado;
-    private List <Componente> configuracao;
-    private Pacote pacote;
+    private List<String> configuracao;
+    private String pacote;
+    private String cliente;
     
     public Encomenda() {
         this.id = 0;
         this.carro = "";
         this.estado = 0; // 0 em espera
         this.configuracao = new ArrayList<>();
-        this.pacote = null;
+        this.pacote = "";
+        this.cliente = "";
     }
     
-    public Encomenda(int id, String carro, int estado, List<Componente> config, Pacote pacote){
+    public Encomenda(int id, String carro, int estado, List<String> config, String pacote, String cliente){
         this.id = id;
         this.carro = carro;
         this.estado = estado;
         this.configuracao = new ArrayList<>();
         if (config != null) this.configuracao = config.stream().collect(Collectors.toList());
         this.pacote = pacote;
+        this.cliente = cliente;
     }
     
     public Encomenda(Encomenda e){
@@ -43,6 +47,11 @@ public class Encomenda {
         this.estado = e.getEstado();
         this.configuracao = e.getConfig();
         this.pacote = e.getPacote();
+        this.cliente = e.getCliente();
+    }
+    
+    public String getCliente(){
+        return this.cliente;
     }
     
     public int getId(){
@@ -57,19 +66,22 @@ public class Encomenda {
         return this.estado;
     }
     
-    public List<Componente> getConfig(){
+    public List<String> getConfig(){
         return this.configuracao.stream().collect(Collectors.toList());
     }
     
-    public Pacote getPacote(){
+    public String getPacote(){
         return this.pacote;
     }
     
-    public void addToConfiguracao(Componente c){
+    public Integer getNConfig(){
+        return this.configuracao.size();
+    }
+    public void addToConfiguracao(String c){
         this.configuracao.add(c);
     }
     
-    public void removeDaConfiguracao(Componente c){
+    public void removeDaConfiguracao(String c){
         this.configuracao.remove(c);
     }
     
@@ -77,6 +89,9 @@ public class Encomenda {
         this.carro = carro;
     }
     
+    public void setCliente(String cliente){
+        this.cliente = cliente;
+    }
     public void setId(int id){
         this.id = id;
     }
@@ -89,17 +104,19 @@ public class Encomenda {
         this.estado = e;
     }
     
-    public void setPacote(Pacote pacote){
+    public void setPacote(String pacote){
         this.pacote = pacote;
     }
+   
     
-    public void setConfig(List<Componente> c){
+    public void setConfig(List<String> c){
         this.configuracao = c.stream().collect(Collectors.toList());
     }
     
-    public boolean verificaComponentes(){
+    public boolean verificaComponentes(Map<String,Componente> comp){
         int i = 0;
-        for(Componente c: this.configuracao){
+        for(String s: this.configuracao){
+            Componente c = comp.get(s);
             if(c.getTipo().equals("Pintura") || c.getTipo().equals("Motor") || c.getTipo().equals("Pneu") || c.getTipo().equals("Jante"))
                 i++;
         }
@@ -107,9 +124,10 @@ public class Encomenda {
         return n;
     }
     
-    public Componente verificaTipo(String tipo){
-        Componente comp = null;
-        for(Componente c: this.configuracao){
+    public Componente verificaTipo(String tipo, Map<String,Componente> componente){
+        Componente comp = null, c = null;
+        for(String s: this.configuracao){
+            c = componente.get(s);
             if(c.getTipo().equals(tipo)){
                 comp = c;
                 return comp;
@@ -118,18 +136,17 @@ public class Encomenda {
         return comp;
     }
         
-    public List<String> verificaIncomp(Componente c){
+    public List<String> verificaIncomp(Componente c, Pacote p){
         List<String> incomp = new ArrayList<String>();
         for(String i : c.getIncompativeis())
-            for(Componente j : this.configuracao){
-                if(i.equals(j.getNome()))
-                    incomp.add(i);
-                    
+            for(String j : this.configuracao){
+                if(i.equals(j))
+                    incomp.add(i); 
             }
         if(this.pacote!=null){
-            for(Componente comp : this.pacote.getComponentes())
+            for(String comp : p.getComponentes())
                 for(String i : c.getIncompativeis())
-                    if(i.equals(comp.getNome()))
+                    if(i.equals(comp))
                         incomp.add(i);
         }
         return incomp;
@@ -140,8 +157,8 @@ public class Encomenda {
         int flag = 0;
         for(String i : c.getObrigatorias()){
             if(this.configuracao.isEmpty()) obrig.add(i);
-            for(Componente j : this.configuracao){
-                if(i.equals(j.getNome()))
+            for(String j : this.configuracao){
+                if(i.equals(j))
                     flag = 1;
             }
             if(flag == 0) obrig.add(i);
@@ -150,13 +167,14 @@ public class Encomenda {
         return obrig;
     }
     
-    public List<String> verficicaObrigatoria(){
+    public List<String> verificaObrigatoria(Map<String,Componente> componente){
         List<String> obrigatorio = new ArrayList<>();
         int flag = 0;
-        for(Componente c : this.configuracao){
-            for(String s : c.getObrigatorias()){
-                for(Componente comp : this.configuracao)
-                    if(s.equals(comp.getNome()))
+        for(String c : this.configuracao){
+            Componente comp = componente.get(c);
+            for(String s : comp.getObrigatorias()){
+                for(String n : this.configuracao)
+                    if(s.equals(n))
                         flag = 1;
             if(flag == 0) obrigatorio.add(s);
             else flag = 0;
@@ -165,13 +183,15 @@ public class Encomenda {
         return obrigatorio;
     }
     
-    public List<String> verificaIncompativel(Pacote p){
+    public List<String> verificaIncompativel(Pacote p, Map<String,Componente> componentes){
         List<String> incomp = new ArrayList<String>();
-        for(Componente c : p.getComponentes())
+        for(String str : p.getComponentes()){
+            Componente c = componentes.get(str);
             for(String s : c.getIncompativeis())
-                for(Componente comp : this.configuracao)
-                    if(s.equals(comp.getNome()))
+                for(String comp : this.configuracao)
+                    if(s.equals(comp))
                         incomp.add(s);
+        }
         return incomp;
     }
 

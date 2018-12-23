@@ -161,6 +161,7 @@ public class DadosCliente extends javax.swing.JDialog {
             String contacto = this.contacto.getText();
             if(checkLimite.isSelected()) limite = Double.parseDouble(this.limite.getText());
             Cliente c = new Cliente(nome,nif,contacto,limite,null);
+            System.out.print(2);
             configura.getStand().addCliente(c);
             this.setVisible(false);
             new EscolherCarro(this, true, configura).setVisible(true); 

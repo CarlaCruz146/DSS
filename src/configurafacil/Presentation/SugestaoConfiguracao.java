@@ -65,9 +65,11 @@ public class SugestaoConfiguracao extends javax.swing.JDialog {
     
     public void obtemConfig(double limite){
         Encomenda e = this.configura.sugestao(limite);
-        for(Componente c :  e.getConfig())
+        for(String s :  e.getConfig()){
+            Componente c = this.configura.getComponente(s);
             sugestao.add(c);
-        pacote = e.getPacote();
+        }
+        pacote = this.configura.getPacote(e.getPacote());
     }
     
     /**
@@ -190,8 +192,8 @@ public class SugestaoConfiguracao extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         for(Componente c : this.sugestao)
-            this.parent2.encomenda.addToConfiguracao(c);
-        if(this.pacote!=null) this.parent2.encomenda.setPacote(this.pacote);
+            this.parent2.encomenda.addToConfiguracao(c.getNome());
+        if(this.pacote!=null) this.parent2.encomenda.setPacote(this.pacote.getNome());
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 

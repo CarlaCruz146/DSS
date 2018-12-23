@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Database;
+package configurafacil.Database;
 
 import java.util.Map;
 import configurafacil.Business.Cliente;
@@ -23,13 +23,19 @@ import java.util.Set;
  */
 public class ClienteDAO implements Map<String,Cliente>{
     private Connection c;
+    private int id;
+    
+    public ClienteDAO(int id){
+        this.id = id;
+    }
 
     @Override
     public int size() {
        int s = -1;
         try {
             c = Connect.connect();
-            PreparedStatement stm = c.prepareStatement("SELECT count(*) FROM Cliente");
+            PreparedStatement stm = c.prepareStatement("SELECT count(*) FROM Cliente WHERE Stand = ?");
+            stm.setInt(1,this.id);
             ResultSet rs = stm.executeQuery();
             if(rs.next()) {
                s = rs.getInt(1);
@@ -54,9 +60,10 @@ public class ClienteDAO implements Map<String,Cliente>{
         boolean res = false;
         try {
             c = Connect.connect();
-            String sql = "SELECT Nif FROM Cliente WHERE Nif = ?";
+            String sql = "SELECT Nif FROM Cliente WHERE Nif = ? AND Stand = ?";
             PreparedStatement stm = c.prepareStatement(sql);
-            stm.setString(1, (String)o);
+            stm.setString(1, (String) o);
+            stm.setInt(2,this.id);
             ResultSet rs = stm.executeQuery();
             res = rs.next();
         } catch (Exception e) {
@@ -88,35 +95,26 @@ public class ClienteDAO implements Map<String,Cliente>{
         
         try{
             c = Connect.connect();
-            PreparedStatement ps = c.prepareStatement("SELECT * FROM Cliente WHERE Nif = ?");
+            PreparedStatement ps = c.prepareStatement("SELECT * FROM Cliente WHERE Nif = ? AND Stand = ?");
             ps.setString(1,(String) o);
+            ps.setInt(2,this.id);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){ // se existir
                 cl.setNif(rs.getString("Nif"));
                 cl.setNome(rs.getNString("Nome"));
                 cl.setContacto(rs.getNString("Contacto"));
                 cl.setLimite(rs.getDouble("Limite"));
-                ArrayList<Integer> encomendas = new ArrayList();
-                
-                ps = c.prepareStatement("SELECT idEncomenda FROM Encomenda WHERE Nif = ?");
-                ps.setString(1,(String)o);
-                rs = ps.executeQuery();
-                while(rs.next()){
-                    encomendas.add(rs.getInt(1));
-                }
-                
-                cl.setEncomendas(encomendas);
             } 
         }
         catch(Exception e){
-            System.out.printf(e.getMessage());
+            System.out.printf(e.getMessage() + "Cliente");
         }
         finally{
             try{
                Connect.close(c);
             }
             catch(Exception e){
-                System.out.printf(e.getMessage());
+                System.out.printf(e.getMessage() + "Cliente");
             }
         }
         return cl;
@@ -133,28 +131,24 @@ public class ClienteDAO implements Map<String,Cliente>{
         try{
             c = Connect.connect();
             
-            PreparedStatement ps = c.prepareStatement("INSERT INTO Cliente (Nome,Nif,Contacto,Limite) VALUES (?,?,?,?)");
-            ps.setString(1,v.getNome());
-            ps.setString(2,k);
+            PreparedStatement ps = c.prepareStatement("INSERT INTO Cliente (Nif,Nome,Contacto,Limite,Stand) VALUES (?,?,?,?,?)");
+            ps.setString(1,k);
+            ps.setString(2,v.getNome());
             ps.setString(3,v.getContacto());
             ps.setString(4,Double.toString(v.getLimite()));
+            ps.setInt(5, this.id);
             ps.executeUpdate();
-           
-            ArrayList<Integer> encs = v.getEncomendas();
-            if(encs != null){
-                //n sei se tenho de fazer alguma coisa com as encomendas??
-                }
             
         }
         catch(Exception e){
-            System.out.printf(e.getMessage());
+            System.out.printf(e.getMessage() + "Cliente");
         }
         finally{
             try{
                 Connect.close(c);
             }
             catch(Exception e){
-                System.out.printf(e.getMessage());
+                System.out.printf(e.getMessage() + "Cliente");
             }
         }
         return cl;
@@ -170,14 +164,14 @@ public class ClienteDAO implements Map<String,Cliente>{
             ps.executeUpdate();
         }
         catch(Exception e){
-            System.out.printf(e.getMessage());
+            System.out.printf(e.getMessage() + "Cliente");
         }
         finally{
             try{
                 Connect.close(c);
             }
             catch(Exception e){
-                System.out.printf(e.getMessage());
+                System.out.printf(e.getMessage() + "Cliente");
             }
         }
         return cl;
@@ -198,14 +192,14 @@ public class ClienteDAO implements Map<String,Cliente>{
             ps.executeUpdate();
         }
         catch(Exception e){
-            System.out.printf(e.getMessage());
+            System.out.printf(e.getMessage() + "Cliente");
         }
         finally{
             try{
                 Connect.close(c);
             }
             catch(Exception e){
-                System.out.printf(e.getMessage());
+                System.out.printf(e.getMessage() + "Cliente");
             }
         }
     }
@@ -224,14 +218,14 @@ public class ClienteDAO implements Map<String,Cliente>{
             }   
         }
         catch(Exception e){
-            System.out.printf(e.getMessage());
+            System.out.printf(e.getMessage() + "Cliente");
         }
         finally{
             try{
                 Connect.close(c);
             }
             catch(Exception e){
-                System.out.printf(e.getMessage());
+                System.out.printf(e.getMessage() + "Cliente");
             }
         }
         return keys;
@@ -257,8 +251,5 @@ public class ClienteDAO implements Map<String,Cliente>{
         }
         return map.entrySet();
     }
-    
-    
-    
-    
+ 
 }

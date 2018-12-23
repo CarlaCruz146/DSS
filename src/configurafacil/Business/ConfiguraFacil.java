@@ -4,6 +4,10 @@
  * and open the template in the editor.
  */
 package configurafacil.Business;
+import configurafacil.Database.ComponenteDAO;
+import configurafacil.Database.FabricaDAO;
+import configurafacil.Database.PacoteDAO;
+import configurafacil.Database.StandDAO;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,25 +19,30 @@ import java.util.stream.Collectors;
  * @author mercy
  */
 public class ConfiguraFacil {
-    private Stand stand;
-    private Fabrica fabrica;
+    private StandDAO stand;
+    private FabricaDAO fabrica;
     private Utilizador utilizador;
     private GestaoUtilizadores gestaoU;
     private GestaoEncomenda gestaoE;
+    private ComponenteDAO componentes;
+    private PacoteDAO pacotes;
     
     public ConfiguraFacil(){
-        this.stand = new Stand();
-        this.fabrica = new Fabrica();
+        this.stand = new StandDAO();
+        this.fabrica = new FabricaDAO();
         this.utilizador = null;
         this.gestaoU = new GestaoUtilizadores();
         this.gestaoE = new GestaoEncomenda();
-        addFunc();
-        addComp();
-        addEnc();
-        addStock();
-        addPacote();
+        this.componentes = new ComponenteDAO();
+        this.pacotes = new PacoteDAO();
+
+       // addFunc();
+       // addComp();
+       // addEnc();
+      //  addStock();
+      //  addPacote();
     }
-    
+    /**
     public void addFunc() {
         FuncStand st = new FuncStand("João Silva","joao");
         gestaoU.addUtilizador(st);
@@ -94,123 +103,128 @@ public class ConfiguraFacil {
         Componente c29 = new Componente("Spoilers","Pacote",1000, null, null);
         Componente c30 = new Componente("Escape com 2 ponteiras","Pacote",800, null, null);
       
-        stand.addComponente(c1);
-        stand.addComponente(c2);
-        stand.addComponente(c3);
-        stand.addComponente(c4);
-        stand.addComponente(c5);
-        stand.addComponente(c6);
-        stand.addComponente(c7);
-        stand.addComponente(c8);
-        stand.addComponente(c9);
-        stand.addComponente(c10);
-        stand.addComponente(c11);
-        stand.addComponente(c12);
-        stand.addComponente(c13);
-        stand.addComponente(c14);
-        stand.addComponente(c15);
-        stand.addComponente(c16);
-        stand.addComponente(c17);
-        stand.addComponente(c18);
-        stand.addComponente(c19);
-        stand.addComponente(c20);
-        stand.addComponente(c21);
-        stand.addComponente(c22);
-        stand.addComponente(c23);
-        stand.addComponente(c24);
-        stand.addComponente(c25);
-        stand.addComponente(c26);
-        stand.addComponente(c27);
-        stand.addComponente(c28);
-        stand.addComponente(c29);
-        stand.addComponente(c30);
+        addComponente(c1);
+        addComponente(c2);
+        addComponente(c3);
+        addComponente(c4);
+        addComponente(c5);
+        addComponente(c6);
+        addComponente(c7);
+        addComponente(c8);
+        addComponente(c9);
+        addComponente(c10);
+        addComponente(c11);
+        addComponente(c12);
+        addComponente(c13);
+        addComponente(c14);
+        addComponente(c15);
+        addComponente(c16);
+        addComponente(c17);
+        addComponente(c18);
+        addComponente(c19);
+        addComponente(c20);
+        addComponente(c21);
+        addComponente(c22);
+        addComponente(c23);
+        addComponente(c24);
+        addComponente(c25);
+        addComponente(c26);
+        addComponente(c27);
+        addComponente(c28);
+        addComponente(c29);
+        addComponente(c30);
        
     }
       
     public void addPacote() {
-        ArrayList<Componente> componentesC = new ArrayList<>();
-        ArrayList<Componente> componentesS = new ArrayList<>();
+        Map<String,Componente> componentesC = new HashMap<>();
+        Map<String,Componente> componentesS = new HashMap<>();
 
-        Componente c1 = stand.getComponente("Bancos elétricos");
-        Componente c2 = stand.getComponente("Ar condicionado de 4 Zonas");
-        Componente c3 = stand.getComponente("Pacotes de Luzes Interiores");
-        Componente c4 = stand.getComponente("Espelhos Retrovisores com Mecanismo Anti-Encadeamento");
+        Componente c1 = getComponente("Bancos elétricos");
+        Componente c2 = getComponente("Ar condicionado de 4 Zonas");
+        Componente c3 = getComponente("Pacotes de Luzes Interiores");
+        Componente c4 = getComponente("Espelhos Retrovisores com Mecanismo Anti-Encadeamento");
         
-        Componente c5 = stand.getComponente("Jantes personalizadas");
-        Componente c6 = stand.getComponente("Amortecedores Resistentes");
-        Componente c7 = stand.getComponente("Spoilers");
-        Componente c8 = stand.getComponente("Escape com 2 ponteiras");
+        Componente c5 = getComponente("Jantes personalizadas");
+        Componente c6 = getComponente("Amortecedores Resistentes");
+        Componente c7 = getComponente("Spoilers");
+        Componente c8 = getComponente("Escape com 2 ponteiras");
         
-        componentesC.add(c1);
-        componentesC.add(c2);
-        componentesC.add(c3);
-        componentesC.add(c4);
-        componentesS.add(c5);
-        componentesS.add(c6);
-        componentesS.add(c7);
-        componentesS.add(c8);
+        componentesC.put(c1.getNome(),c1);
+        componentesC.put(c2.getNome(),c2);
+        componentesC.put(c3.getNome(),c3);
+        componentesC.put(c4.getNome(),c4);
+        componentesS.put(c5.getNome(),c5);
+        componentesS.put(c6.getNome(),c6);
+        componentesS.put(c7.getNome(),c7);
+        componentesS.put(c8.getNome(),c8);
         
-        Pacote p1 = new Pacote("Pacote Comfort",1800,componentesC);
-        Pacote p2 = new Pacote("Pacote Sport",2700,componentesS);
-        stand.addPacote(p1);
-        stand.addPacote(p2);
+        Pacote p1 = new Pacote("Pacote Comfort",1800);
+        p1.setComponentes(componentesC);
+        Pacote p2 = new Pacote("Pacote Sport",2700);
+        p2.setComponentes(componentesS);
+        addPacote(p1);
+        addPacote(p2);
     }
     
     public void addEnc() {
-        List<Componente> config1 = new ArrayList<>();
-        List<Componente> config2 = new ArrayList<>();
-        List<Componente> config3 = new ArrayList<>();
+        Map<String,Componente> config1 = new HashMap<>();
+        Map<String,Componente> config2 = new HashMap<>();
+        Map<String,Componente> config3 = new HashMap<>();
         //ENCOMENDA 1
-        Componente c1 = stand.getComponente("Azul");
-        Componente c2 = stand.getComponente("D4 190cv Man. 6 Vel.");
-        Componente c3 = stand.getComponente("Firestone Roadhawk 205/55 R16 91H");
-        Componente c4 = stand.getComponente("Jantes em liga leve 17''");
-        Componente c5 = stand.getComponente("Couro comfort carvão");
-        Componente c6 = stand.getComponente("Pára-choques");
-        config1.add(c1);
-        config1.add(c2);
-        config1.add(c3);
-        config1.add(c4);
-        config1.add(c5);
-        config1.add(c6);
+        Componente c1 = getComponente("Azul");
+        Componente c2 = getComponente("D4 190cv Man. 6 Vel.");
+        Componente c3 = getComponente("Firestone Roadhawk 205/55 R16 91H");
+        Componente c4 = getComponente("Jantes em liga leve 17''");
+        Componente c5 = getComponente("Couro comfort carvão");
+        Componente c6 = getComponente("Pára-choques");
+        config1.put(c1.getNome(),c1);
+        config1.put(c2.getNome(),c2);
+        config1.put(c3.getNome(),c3);
+        config1.put(c4.getNome(),c4);
+        config1.put(c5.getNome(),c5);
+        config1.put(c6.getNome(),c6);
         //ENCOMENDA 2
-        Componente c7 = stand.getComponente("Preto");
-        Componente c8 = stand.getComponente("D4 190cv Geatronic 8 Vel.");
-        Componente c9 = stand.getComponente("Continental ContiEcoContact 5 205/55 R16 91V");
-        Componente c10 = stand.getComponente("Jantes em liga leve 19'' 255/40 R19");
-        Componente c11 = stand.getComponente("Couro comfort blond");
-        Componente c12 = stand.getComponente("Pacotes de luz");
-        Componente c13 = stand.getComponente("Teto de abrir");
+        Componente c7 = getComponente("Preto");
+        Componente c8 = getComponente("D4 190cv Geatronic 8 Vel.");
+        Componente c9 = getComponente("Continental ContiEcoContact 5 205/55 R16 91V");
+        Componente c10 = getComponente("Jantes em liga leve 19'' 255/40 R19");
+        Componente c11 = getComponente("Couro comfort blond");
+        Componente c12 = getComponente("Pacotes de luz");
+        Componente c13 = getComponente("Teto de abrir");
         
-        config2.add(c7);
-        config2.add(c8);
-        config2.add(c9);
-        config2.add(c10);
-        config2.add(c11);
-        config2.add(c12);
-        config2.add(c13);
+        config2.put(c7.getNome(),c7);
+        config2.put(c8.getNome(),c8);
+        config2.put(c9.getNome(),c9);
+        config2.put(c10.getNome(),c10);
+        config2.put(c11.getNome(),c11);
+        config2.put(c12.getNome(),c12);
+        config2.put(c13.getNome(),c13);
         
         //ENCOMENDA 3
-        Componente c14 = stand.getComponente("Branco");
-        Componente c15 = stand.getComponente("D5 235cv Geatronic 8 Vel.");
-        Componente c16 = stand.getComponente("Continental PremiumContact 6 205/55 R16 91H");
-        Componente c17 = stand.getComponente("Jantes em liga leve 18'' 245/45 R18");
-        Componente c18 = stand.getComponente("Couro comfort maroon brown");
-        Componente c19 = stand.getComponente("Vidro Escurecido");
-        Pacote p = stand.getPacote("Pacote Comfort");
+        Componente c14 = getComponente("Branco");
+        Componente c15 = getComponente("D5 235cv Geatronic 8 Vel.");
+        Componente c16 = getComponente("Continental PremiumContact 6 205/55 R16 91H");
+        Componente c17 = getComponente("Jantes em liga leve 18'' 245/45 R18");
+        Componente c18 = getComponente("Couro comfort maroon brown");
+        Componente c19 = getComponente("Vidro Escurecido");
+        Pacote p = getPacote("Pacote Comfort");
         
-        config3.add(c14);
-        config3.add(c15);
-        config3.add(c16);
-        config3.add(c17);
-        config3.add(c18);
-        config3.add(c19);
+        config3.put(c14.getNome(),c14);
+        config3.put(c15.getNome(),c15);
+        config3.put(c16.getNome(),c16);
+        config3.put(c17.getNome(),c17);
+        config3.put(c18.getNome(),c18);
+        config3.put(c19.getNome(),c19);
         
-        Encomenda e1 = new Encomenda(1,"BMW", 1, config1,null);
+        Encomenda e1 = new Encomenda(1,"BMW", 1, null);
+        e1.setConfig(config1);
         gestaoE.addEncomenda(e1);
-        Encomenda e2 = new Encomenda(2,"Mercedes", 0, config2,null);
+        Encomenda e2 = new Encomenda(2,"Mercedes", 0, null);
+        e1.setConfig(config2);
         gestaoE.addEncomenda(e2);
-        Encomenda e3 = new Encomenda(3,"Volvo", 1, config3,p);
+        Encomenda e3 = new Encomenda(3,"Volvo", 1, p.getNome());
+        e1.setConfig(config3);
         gestaoE.addEncomenda(e3);
     }
     
@@ -264,15 +278,29 @@ public class ConfiguraFacil {
         fabrica.adicionaStock("Amortecedores Resistentes", 15);
         fabrica.adicionaStock("Spoilers", 8);
         fabrica.adicionaStock("Escape com 2 ponteiras", 10);   
+    }*/
+    public Map<String,Componente> getComponentes(){
+        return this.componentes.entrySet().stream().collect(Collectors.toMap(e->e.getKey(), e->e.getValue()));
     }
     
+    public Map<String,Pacote> getPacote(){
+        return this.pacotes.entrySet().stream().collect(Collectors.toMap(e->e.getKey(), e->e.getValue()));
+    }
+    
+    public Componente getComponente(String nome){
+        return this.componentes.get(nome);
+    }
+    
+    public Pacote getPacote(String nome){
+        return this.pacotes.get(nome);
+    }
         
     public Stand getStand(){
-        return this.stand;
+        return this.stand.get(1);
     }
     
     public Fabrica getFabrica(){
-        return this.fabrica;
+        return this.fabrica.get(1);
     }
     
     public Utilizador getUtilizador(){
@@ -286,7 +314,30 @@ public class ConfiguraFacil {
     public GestaoEncomenda getGestaoE(){
         return this.gestaoE;
     }
+        
+    public void addComponente(Componente c){
+        this.componentes.put(c.getNome(),c);
+    }
     
+    public void addPacote(Pacote p){
+        this.pacotes.put(p.getNome(),p);
+    }
+    
+    public boolean verificaComponentes(Encomenda e){
+        return e.verificaComponentes(this.componentes);
+    }
+    
+    public Componente verificaTipo(String tipo, Encomenda e){
+       return e.verificaTipo(tipo,this.componentes);
+    }
+    
+    public List<String> verificaObrigatoria(Encomenda e){
+        return e.verificaObrigatoria(this.componentes);
+    }
+    
+    public List<String> verificaIncompativel(Pacote p, Encomenda e){
+        return e.verificaIncompativel(p, this.componentes);
+     }
     public void login(String nome, String password){
         try{
             this.utilizador = gestaoU.verificaUtilizador(nome, password);
@@ -299,6 +350,70 @@ public class ConfiguraFacil {
     }
     
     public Encomenda sugestao(double limite){
-        return this.stand.sugestao(limite);
+        Encomenda e = new Encomenda();
+        double valor = 0;
+        if(limite >= 1800 && limite <2700) {
+            Pacote p = this.pacotes.get("Pacote Comfort");
+            valor = p.getPreco();
+            e.setPacote(p.getNome());
+            for(Componente c : this.componentes.values()){
+                boolean b = !c.getTipo().equals("Motor") && !c.getTipo().equals("Pintura") && 
+                        !c.getTipo().equals("Pneu") && !c.getTipo().equals("Jante");
+                double v = c.getPreco();
+                if(!c.getTipo().equals("Pacote") && b && valor + v <= limite && e.verificaIncomp(c,p).isEmpty()){
+                    e.addToConfiguracao(c.getNome());
+                    valor += v;
+                }
+            }   
+        }
+        else {
+            if (limite >= 2700) {
+                double max = 0;
+                Componente comp = null;
+                Pacote p = this.pacotes.get("Pacote Sport");
+                valor = p.getPreco();
+                e.setPacote(p.getNome());
+                for(Componente c : this.componentes.values()){
+                    boolean b = !c.getTipo().equals("Motor") && !c.getTipo().equals("Pintura") && 
+                        !c.getTipo().equals("Pneu") && !c.getTipo().equals("Jante");
+                    double v = c.getPreco();
+                    if(!c.getTipo().equals("Pacote") && b && valor + v <= limite && e.verificaIncomp(c,p).isEmpty()){
+                        if(c.getTipo().equals("Estofo")){
+                            if(max < v){
+                                max = v;
+                                if (comp == null){
+                                    e.addToConfiguracao(c.getNome());
+                                    comp = c;
+                                    valor += v;
+                                }
+                                else {
+                                    e.removeDaConfiguracao(comp.getNome());
+                                    e.addToConfiguracao(c.getNome());
+                                    valor -= comp.getPreco();
+                                    valor += v;
+                                    comp = c;
+                                }
+                            }
+                        }  
+                        else {
+                            valor += v;
+                            e.addToConfiguracao(c.getNome());
+                        }
+                    }
+                }
+            }
+            else {
+                for(Componente c : this.componentes.values()){
+                    boolean b = !c.getTipo().equals("Motor") && !c.getTipo().equals("Pintura") && 
+                        !c.getTipo().equals("Pneu") && !c.getTipo().equals("Jante");
+                    double v = c.getPreco();
+                    if(!c.getTipo().equals("Pacote") && b && valor + v <= limite && e.verificaIncomp(c,null).isEmpty()){
+                       e.addToConfiguracao(c.getNome());
+                       valor += v;
+                    }
+                }
+            }
+        }
+        return e;
     }
 }

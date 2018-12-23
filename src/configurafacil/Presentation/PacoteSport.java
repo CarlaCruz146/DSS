@@ -33,7 +33,7 @@ public class PacoteSport extends javax.swing.JDialog {
        this.parent2 = (EscolherCarro) parent2;
        inserePacoteS();
   
-       double p = this.configura.getStand().getPacote("Pacote Sport").getPreco();
+       double p = this.configura.getPacote("Pacote Sport").getPreco();
        preco.setText(Double.toString(p));
     }
 
@@ -41,8 +41,8 @@ public class PacoteSport extends javax.swing.JDialog {
     public void inserePacoteS(){
         model = (DefaultTableModel) jTable1.getModel();
         Object rowData[] = new Object[1];
-        for(Componente c : configura.getStand().getPacote("Pacote Sport").getComponentes()){
-            rowData[0] = c.getNome();
+        for(String c : configura.getPacote("Pacote Sport").getComponentes()){
+            rowData[0] = c;
             model.addRow(rowData);
         }
     }
@@ -177,10 +177,10 @@ public class PacoteSport extends javax.swing.JDialog {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-         Pacote pacote = configura.getStand().getPacote("Pacote Sport");
+         Pacote pacote = configura.getPacote("Pacote Sport");
         List<String> listInc = new ArrayList<String>();
-        for(Componente comp : pacote.getComponentes()){
-            listInc = this.parent2.encomenda.verificaIncompativel(pacote);
+        for(String comp : pacote.getComponentes()){
+            listInc = this.configura.verificaIncompativel(pacote, this.parent2.encomenda);
         }
         StringBuilder sbInc = new StringBuilder();
         for (String i : listInc){
@@ -190,7 +190,7 @@ public class PacoteSport extends javax.swing.JDialog {
         if(!listInc.isEmpty()){
             javax.swing.JOptionPane.showMessageDialog(this, "Incompatível com: " + sbInc , "Componentes incompatíveis",0);
         }
-        else this.parent2.encomenda.setPacote(pacote);
+        else this.parent2.encomenda.setPacote(pacote.getNome());
         this.setVisible(false);
     }//GEN-LAST:event_jButton1MouseClicked
 
