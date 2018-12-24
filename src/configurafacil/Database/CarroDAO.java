@@ -5,7 +5,7 @@
  */
 package configurafacil.Database;
 
-import configurafacil.Business.Pacote;
+import configurafacil.Business.Carro;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,8 +21,8 @@ import java.util.Set;
  *
  * @author jessica
  */
-public class PacoteDAO implements Map<String,Pacote> {
-    
+public class CarroDAO implements Map<String,Carro>{
+     
     private Connection con;
     
     @Override
@@ -30,14 +30,14 @@ public class PacoteDAO implements Map<String,Pacote> {
         int i = -1;
         try {
             con = Connect.connect();
-            PreparedStatement stm = con.prepareStatement("SELECT count(*) FROM Pacote");
+            PreparedStatement stm = con.prepareStatement("SELECT count(*) FROM Carro");
             ResultSet rs = stm.executeQuery();
             if(rs.next()) {
                 i = rs.getInt(1);
             }
         }
         catch (Exception e) {
-            throw new NullPointerException(e.getMessage() + "Pacote");
+            throw new NullPointerException(e.getMessage() + "Carro");
         }
         finally {
             Connect.close(con);
@@ -55,13 +55,13 @@ public class PacoteDAO implements Map<String,Pacote> {
         boolean r = false;
         try {
             con = Connect.connect();
-            String sql = "SELECT Nome FROM Pacote WHERE Nome = ?";
+            String sql = "SELECT Nome FROM Carro WHERE Nome = ?";
             PreparedStatement stm = con.prepareStatement(sql);
             stm.setString(1, (String)key);
             ResultSet rs = stm.executeQuery();
             r = rs.next();
         } catch (Exception e) {
-            throw new NullPointerException(e.getMessage() + "Pacote");
+            throw new NullPointerException(e.getMessage() + "Carro");
         } finally {
             Connect.close(con);
         }
@@ -72,10 +72,10 @@ public class PacoteDAO implements Map<String,Pacote> {
     public boolean containsValue(Object value) {
         boolean res = false;
         
-        if(value.getClass().getName().equals("configuraFacil.Business.Pacote")){
-            Pacote p = (Pacote)value;
+        if(value.getClass().getName().equals("configuraFacil.Business.Carro")){
+            Carro p = (Carro)value;
             String user = p.getNome();
-            Pacote p2 = this.get(user);
+            Carro p2 = this.get(user);
             if(p2.equals(p)){
                 res=true;
             }
@@ -84,29 +84,18 @@ public class PacoteDAO implements Map<String,Pacote> {
     }
     
     @Override
-    public Pacote get(Object key) {
-        Pacote p = new Pacote();
+    public Carro get(Object key) {
+        Carro p = new Carro();
         
         try{
             con = Connect.connect();
-            String sql = "SELECT * FROM Pacote WHERE Nome = ?";
+            String sql = "SELECT * FROM Carro WHERE Nome = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1,(String) key);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
                 p.setNome(rs.getString("Nome"));
                 p.setPreco(rs.getDouble("Preco"));   
-                sql = "SELECT Nome FROM Componente AS C\n" + 
-                        "JOIN Pacote_Componente AS PC ON C.nome = PC.Componente\n" +
-                        "WHERE PC.Pacote = ?;";
-                ps = con.prepareStatement(sql);
-                ps.setString(1, (String) key);
-                rs = ps.executeQuery();
-                List<String> componentes = new ArrayList<>();
-                while (rs.next()) { 
-                        componentes.add(rs.getString("Nome"));
-                }
-                p.setComponentes(componentes);
             } 
         }
         catch(Exception e){
@@ -117,15 +106,15 @@ public class PacoteDAO implements Map<String,Pacote> {
                Connect.close(con);
             }
             catch(Exception e){
-                System.out.printf(e.getMessage() + "Pacote");
+                System.out.printf(e.getMessage() + "Carro");
             }
         }
         return p;
     }
 
     @Override
-    public Pacote put(String key, Pacote value) {
-        Pacote p;
+    public Carro put(String key, Carro value) {
+        Carro p;
 
         if(this.containsKey(key)){
             p = this.get(key);
@@ -134,69 +123,51 @@ public class PacoteDAO implements Map<String,Pacote> {
         try{
             con = Connect.connect();
             
-            PreparedStatement ps = con.prepareStatement("INSERT INTO Pacote (Nome,Preco) VALUES (?,?)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO Carro (Nome,Preco) VALUES (?,?)");
             ps.setString(1,key);
             ps.setString(2,Double.toString(value.getPreco()));
             ps.executeUpdate();
-            String sql = "INSERT INTO Pacote_Componente (Pacote, Componente)" +
-                "VALUES (?, ?);";
-            PreparedStatement stm;         
-            stm = con.prepareStatement(sql);
-            for(String s : value.getComponentes()){
-                stm.setString(1,value.getNome());
-                stm.setString(2, s);
-                stm.addBatch();   
-            }
-            stm.executeBatch();
-            p = value;
         }
         catch(Exception e){
-            System.out.printf(e.getMessage() + "Pacote2");
+            System.out.printf(e.getMessage() + "Carro2");
         }
         finally{
             try{
                 Connect.close(con);
             }
             catch(Exception e){
-                System.out.printf(e.getMessage() + "Pacote");
+                System.out.printf(e.getMessage() + "Carro");
             }
         }
         return p;
     }
 
     @Override
-    public Pacote remove(Object key) {
-        Pacote p = this.get((String) key);
+    public Carro remove(Object key) {
+        Carro p = this.get((String) key);
         try{
             con = Connect.connect();
-            PreparedStatement ps = con.prepareStatement("DELETE FROM Pacote WHERE Nome = ?");
+            PreparedStatement ps = con.prepareStatement("DELETE FROM Carro WHERE Nome = ?");
             ps.setString(1, (String) key);
             ps.executeUpdate();
-            
-            if(p.getNComp()>0){
-                String sql = "DELETE FROM Pacote WHERE Nome = ?;";
-                ps = con.prepareStatement(sql);
-                ps.setString(1, (String) key);
-                ps.executeUpdate();
-            }
         }
         catch(Exception e){
-            System.out.printf(e.getMessage() + "Pacote");
+            System.out.printf(e.getMessage() + "Carro");
         }
         finally{
             try{
                 Connect.close(con);
             }
             catch(Exception e){
-                System.out.printf(e.getMessage() + "Pacote");
+                System.out.printf(e.getMessage() + "Carro");
             }
         }
         return p;
     }
 
     @Override
-    public void putAll(Map<? extends String, ? extends Pacote> m) {
-        for(Pacote pacote : m.values()) {
+    public void putAll(Map<? extends String, ? extends Carro> m) {
+        for(Carro pacote : m.values()) {
             put(pacote.getNome(), pacote);
         }
     }
@@ -206,18 +177,18 @@ public class PacoteDAO implements Map<String,Pacote> {
         
         try{
             con = Connect.connect();
-            PreparedStatement ps = con.prepareStatement("DELETE FROM Pacote");
+            PreparedStatement ps = con.prepareStatement("DELETE FROM Carro");
             ps.executeUpdate();
         }
         catch(Exception e){
-            System.out.printf(e.getMessage() + "Pacote");
+            System.out.printf(e.getMessage() + "Carro");
         }
         finally{
             try{
                 Connect.close(con);
             }
             catch(Exception e){
-                System.out.printf(e.getMessage() + "Pacote");
+                System.out.printf(e.getMessage() + "Carro");
             }
         }
     }
@@ -229,29 +200,29 @@ public class PacoteDAO implements Map<String,Pacote> {
         try{
             con = Connect.connect();
             set = new HashSet<>();
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM Pacote");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM Carro");
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 set.add(rs.getString("Nome"));
             }   
         }
         catch(Exception e){
-            System.out.printf(e.getMessage() + "Pacote");
+            System.out.printf(e.getMessage() + "Carro");
         }
         finally{
             try{
                 Connect.close(con);
             }
             catch(Exception e){
-                System.out.printf(e.getMessage() + "Pacote");
+                System.out.printf(e.getMessage() + "Carro");
             }
         }
         return set;
     }
     
     @Override
-    public Collection<Pacote> values() {
-        Set<Pacote> set = new HashSet<>();
+    public Collection<Carro> values() {
+        Set<Carro> set = new HashSet<>();
         Set<String> keys = new HashSet<>(this.keySet());
         for(String key : keys){
             set.add(this.get(key));
@@ -260,10 +231,10 @@ public class PacoteDAO implements Map<String,Pacote> {
     }
 
     @Override
-    public Set<Entry<String, Pacote>> entrySet() {
+    public Set<Map.Entry<String, Carro>> entrySet() {
         Set<String> keys = new HashSet<>(this.keySet());
         
-        HashMap<String,Pacote> map = new HashMap<>();
+        HashMap<String,Carro> map = new HashMap<>();
         for(String key : keys){
             map.put(key,this.get(key));
         }

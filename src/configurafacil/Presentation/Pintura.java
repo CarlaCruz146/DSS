@@ -219,6 +219,7 @@ public class Pintura extends javax.swing.JDialog {
         if(Cor2.isSelected()) this.pintura = "Preto";
         if(Cor3.isSelected()) this.pintura = "Branco";
         if(Cor4.isSelected()) this.pintura = "Azul";
+        System.out.println(this.parent2.encomenda.getPacote());
         if(this.pintura.equals("")){
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor escolha a pintura","Pintura não selecionada", 0);
         }

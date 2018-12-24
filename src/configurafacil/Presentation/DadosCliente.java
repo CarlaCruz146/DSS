@@ -15,6 +15,7 @@ import configurafacil.Business.ConfiguraFacil;
 public class DadosCliente extends javax.swing.JDialog {
     private ConfiguraFacil configura;
     private String cliente;
+    private double limiteEnc;
     
     /**
      * Creates new form DadosCliente
@@ -23,6 +24,7 @@ public class DadosCliente extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.configura = c;
+        this.limiteEnc = -1;
     }
     
     public DadosCliente(javax.swing.JDialog parent, boolean modal, ConfiguraFacil c) {
@@ -32,7 +34,11 @@ public class DadosCliente extends javax.swing.JDialog {
     }
     
     public String getCliente(){
-        return cliente;
+        return this.cliente;
+    }
+    
+    public double getLimite(){
+        return this.limiteEnc;
     }
     
     private boolean validaDados() {
@@ -159,10 +165,12 @@ public class DadosCliente extends javax.swing.JDialog {
             String nome = this.nome.getText();
             String nif = this.nif.getText();
             String contacto = this.contacto.getText();
-            if(checkLimite.isSelected()) limite = Double.parseDouble(this.limite.getText());
-            Cliente c = new Cliente(nome,nif,contacto,limite,null);
-            System.out.print(2);
-            configura.getStand().addCliente(c);
+            Cliente c = null;
+            if(checkLimite.isSelected()) limiteEnc = Double.parseDouble(this.limite.getText());
+            if(!this.configura.getStand().getClientes().containsKey(nif)){
+                c = new Cliente(nome,nif,contacto,null);
+                this.configura.getStand().addCliente(c);
+            }
             this.setVisible(false);
             new EscolherCarro(this, true, configura).setVisible(true); 
         }

@@ -11,6 +11,7 @@ import configurafacil.Business.Pacote;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -100,16 +101,17 @@ public class EncomendaDAO implements Map<Integer,Encomenda> {
                 e.setCarro(rs.getString("Carro"));   
                 e.setEstado(rs.getInt("Estado"));
                 e.setPacote(rs.getString("Pacote"));
+                e.setLimite(rs.getDouble("Limite"));
                 e.setCliente(rs.getString("Cliente"));
                 sql = "SELECT Nome FROM Componente AS C\n" + 
-                        "JOIN Encomenda_Componente AS EC ON C.nome = EC.Componente" +
+                        "JOIN Encomenda_Componente AS EC ON C.nome = EC.Componente\n" +
                         "WHERE EC.Encomenda = ?;";
                 ps = c.prepareStatement(sql);
                 ps.setInt(1, (Integer) o);
                 rs = ps.executeQuery();
                 List<String> componentes = new ArrayList<>();
                 while (rs.next()) { 
-                        componentes.add(rs.getString("Componente"));
+                        componentes.add(rs.getString("Nome"));
                 }
                 e.setConfig(componentes);
             } 
@@ -139,24 +141,37 @@ public class EncomendaDAO implements Map<Integer,Encomenda> {
         try{
             c = Connect.connect();
             
-            PreparedStatement ps = c.prepareStatement("INSERT INTO Encomenda (IdEncomenda,Carro,Estado,Cliente,Pacote,Fabrica) VALUES (?,?,?,?,?,?)");
-            ps.setString(1,Integer.toString(k));
-            ps.setString(2,v.getCarro());
-            ps.setString(3,Integer.toString(v.getEstado()));
+           
+           String sql = "INSERT INTO Encomenda (idEncomenda, Estado, Limite, Cliente, Pacote, Fabrica, Carro)" +
+                   "VALUES (?,?,?,?,?,?,?)\n" +
+                   "ON DUPLICATE KEY UPDATE idEncomenda = VALUES(idEncomenda),\n" +
+                   "Estado = VALUES(Estado),\n" +
+                   "Limite = VALUES(Limite),\n"+
+                   "Cliente = VALUES(Cliente),\n" +
+                   "Pacote = VALUES(Pacote),\n" +
+                   "Fabrica = VALUES(Fabrica),\n" +
+                   "Carro = VALUES(Carro);\n";
+            PreparedStatement ps = c.prepareStatement(sql);
+            ps.setInt(1,v.getId());
+            ps.setString(2,Integer.toString(v.getEstado()));
+            ps.setDouble(3, v.getLimite());
             ps.setString(4, v.getCliente());
             ps.setString(5, v.getPacote());
             ps.setInt(6,1);
+            ps.setString(7,v.getCarro());
             ps.executeUpdate();
-            
-            if(v.getNConfig()>0){
-                String sql = "INSERT INTO Encomenda_Componentes\n" +
-                      "VALUES (? ?)\n" +
-                      "ON DUPLICATE KEY UPDATE Componente = VALUES(Componente);";
-                ps = c.prepareStatement(sql);
-                for(String s : v.getConfig()){
-                    ps.setString(1, s);
-                }
+
+             sql = "INSERT INTO Encomenda_Componente (Encomenda, Componente)" +
+                      "VALUES (?, ?);";
+            PreparedStatement stm;         
+            stm = c.prepareStatement(sql);
+            for(String s : v.getConfig()){
+                stm.setInt(1,v.getId());
+                stm.setString(2, s);
+                stm.addBatch();   
             }
+            stm.executeBatch();
+            e = v;
         }
         catch(Exception ex){
             System.out.printf(ex.getMessage() + "memememem");
@@ -170,6 +185,21 @@ public class EncomendaDAO implements Map<Integer,Encomenda> {
             }
         }
         return e;
+    }
+    
+    private PreparedStatement updateConfiguracao(Encomenda v) throws Exception {
+        String sql = "INSERT INTO Encomenda_Componente (Encomenda, Componente)" +
+                      "VALUES (?, ?)," +
+                      "ON DUPLICATE KEY UPDATE Componente = VALUES(Componente);";
+             
+                       
+           PreparedStatement ps = c.prepareStatement(sql);
+                for(String s : v.getConfig()){
+                    ps.setInt(1,v.getId());
+                    ps.setString(2, s);
+                    ps.addBatch();   
+                }
+                return ps;
     }
 
     @Override

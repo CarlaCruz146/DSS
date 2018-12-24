@@ -25,8 +25,8 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
     private Configuracao parent;
     private EscolherCarro parent2;
     private String componente = "";
-    private String pacoteSelect = "";
-    private String pacote = "";
+    private String pacoteSelect = null;
+    private String pacote = null;
     private String nome;
     private double preco = 0;
     List<String> config = new ArrayList<>();
@@ -58,7 +58,7 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
             preco += c.getPreco();
         }
         String p = this.parent2.encomenda.getPacote();
-        if(!p.isEmpty()) { 
+        if(p!=null) { 
             rowData[0] = this.configura.getPacote(p).getNome();
             rowData[1] = this.configura.getPacote(p).getPreco();
             model.addRow(rowData);
@@ -190,8 +190,9 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
             c = this.configura.getComponente(componente);
             this.parent2.encomenda.removeDaConfiguracao(componente);
             preco -= c.getPreco();
+            System.out.println(c.getTipo());
         }
-        if (!pacoteSelect.isEmpty()){
+        if (pacoteSelect!=null){
             p = this.configura.getPacote(pacoteSelect);
             this.parent2.encomenda.setPacote("");
             preco -= p.getPreco();
@@ -217,7 +218,7 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
         for(String c : config)
             if(c.equals(nome))
                 this.componente = c;
-       if(pacote.equals(nome))
+       if(pacote!=null && pacote.equals(nome))
                 this.pacoteSelect = nome;
     }//GEN-LAST:event_jTable1MouseClicked
 

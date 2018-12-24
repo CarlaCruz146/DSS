@@ -3,7 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Presentation/ListaEncomendas.java</file>
+            <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Presentation/DadosCliente.java</file>
+            <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Database/Connect.java</file>
+            <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Business/Encomenda.java</file>
+            <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Database/ComponenteDAO.java</file>
+            <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Business/GestaoEncomenda.java</file>
+            <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Presentation/Jantes.java</file>
+            <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Business/ConfiguraFacil.java</file>
+            <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Presentation/Configuracao.java</file>
+            <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Database/PacoteDAO.java</file>
+            <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Presentation/EscolherCarro.java</file>
+            <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Database/CarroDAO.java</file>
+            <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Database/EncomendaDAO.java</file>
+            <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Database/ClienteDAO.java</file>
+            <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Business/Cliente.java</file>
+            <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Presentation/SugestaoConfiguracao.java</file>
             <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Presentation/DetalhesEncomenda.java</file>
         </group>
     </open-files>

@@ -21,17 +21,19 @@ public class Encomenda {
     private List<String> configuracao;
     private String pacote;
     private String cliente;
+    private double limite;
     
     public Encomenda() {
         this.id = 0;
         this.carro = "";
         this.estado = 0; // 0 em espera
         this.configuracao = new ArrayList<>();
-        this.pacote = "";
+        this.pacote = null;
         this.cliente = "";
+        this.limite = 0;
     }
     
-    public Encomenda(int id, String carro, int estado, List<String> config, String pacote, String cliente){
+    public Encomenda(int id, String carro, int estado, List<String> config, String pacote, String cliente, double limite){
         this.id = id;
         this.carro = carro;
         this.estado = estado;
@@ -39,6 +41,7 @@ public class Encomenda {
         if (config != null) this.configuracao = config.stream().collect(Collectors.toList());
         this.pacote = pacote;
         this.cliente = cliente;
+        this.limite = limite;
     }
     
     public Encomenda(Encomenda e){
@@ -48,10 +51,15 @@ public class Encomenda {
         this.configuracao = e.getConfig();
         this.pacote = e.getPacote();
         this.cliente = e.getCliente();
+        this.limite = e.getLimite();
     }
     
     public String getCliente(){
         return this.cliente;
+    }
+    
+    public double getLimite(){
+        return this.limite;
     }
     
     public int getId(){
@@ -96,6 +104,10 @@ public class Encomenda {
         this.id = id;
     }
     
+    public void setLimite(double l){
+        this.limite = l;
+    }
+        
     public void setCarro(String c){
         this.carro = c;
     }

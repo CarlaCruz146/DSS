@@ -40,6 +40,10 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
             rowData[0] = c;
             model.addRow(rowData);
         }
+        if(this.configura.getGestaoE().getEncomendas().get(n).getPacote()!=null){
+            rowData[0] = this.configura.getGestaoE().getEncomendas().get(n).getPacote();
+            model.addRow(rowData);
+        } 
     }
     /**
      * This method is called from within the constructor to initialize the form.

@@ -29,7 +29,10 @@ public class GestaoEncomenda {
     }
     
     public void addEncomenda(Encomenda e){
-        this.encomendas.put(e.getId(),e);
+        int i = encomendas.size()+1;
+        e.setId(i);
+        System.out.println("ss"+i);
+        this.encomendas.put(i,e);
     }
     
     public void removeEncomenda(Encomenda e){

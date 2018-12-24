@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package configurafacil.Business;
+import configurafacil.Database.CarroDAO;
 import configurafacil.Database.ComponenteDAO;
 import configurafacil.Database.FabricaDAO;
 import configurafacil.Database.PacoteDAO;
@@ -26,6 +27,7 @@ public class ConfiguraFacil {
     private GestaoEncomenda gestaoE;
     private ComponenteDAO componentes;
     private PacoteDAO pacotes;
+    private CarroDAO carro;
     
     public ConfiguraFacil(){
         this.stand = new StandDAO();
@@ -35,6 +37,7 @@ public class ConfiguraFacil {
         this.gestaoE = new GestaoEncomenda();
         this.componentes = new ComponenteDAO();
         this.pacotes = new PacoteDAO();
+        this.carro = new CarroDAO();
 
        // addFunc();
        // addComp();
@@ -294,7 +297,11 @@ public class ConfiguraFacil {
     public Pacote getPacote(String nome){
         return this.pacotes.get(nome);
     }
-        
+    
+    public Carro getCarro(String nome){
+        return this.carro.get(nome);
+    }
+           
     public Stand getStand(){
         return this.stand.get(1);
     }

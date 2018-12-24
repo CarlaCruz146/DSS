@@ -594,7 +594,8 @@ public class Configuracao extends javax.swing.JDialog {
             if(listObrig.isEmpty()){
               //  configura.getStand().addEncomendaCliente(c,this.parent.encomenda);
                 this.parent.encomenda.setCliente(c.getNif());
-                configura.getGestaoE().addEncomenda(this.parent.encomenda);
+                this.configura.getGestaoE().addEncomenda(this.parent.encomenda);
+                System.out.println(this.configura.getGestaoE().getEncomendas() + "sou burro");
                 this.setVisible(false);
                 new DadosCliente(this, true, configura).setVisible(true);
             }

@@ -40,8 +40,8 @@ public class SugestaoConfiguracao extends javax.swing.JDialog {
         this.parent = (Configuracao) parent;
         this.parent2 = (EscolherCarro) parent2;
         this.parent3 = (DadosCliente) parent3;
-        Cliente cliente = this.configura.getStand().getCliente(this.parent3.getCliente());
-        obtemConfig(cliente.getLimite());
+     //   Cliente cliente = this.configura.getStand().getCliente(this.parent3.getCliente());
+        obtemConfig(this.parent2.encomenda.getLimite());
         insereConfigTabela();
         jTextField1.setText(Double.toString(precoTotal));
     }   
@@ -64,8 +64,11 @@ public class SugestaoConfiguracao extends javax.swing.JDialog {
     }
     
     public void obtemConfig(double limite){
+        
         Encomenda e = this.configura.sugestao(limite);
+//        System.out.println("Enc"+e.getConfig());
         for(String s :  e.getConfig()){
+  //          System.out.println(s);
             Componente c = this.configura.getComponente(s);
             sugestao.add(c);
         }

@@ -103,7 +103,6 @@ public class ClienteDAO implements Map<String,Cliente>{
                 cl.setNif(rs.getString("Nif"));
                 cl.setNome(rs.getNString("Nome"));
                 cl.setContacto(rs.getNString("Contacto"));
-                cl.setLimite(rs.getDouble("Limite"));
             } 
         }
         catch(Exception e){
@@ -131,12 +130,11 @@ public class ClienteDAO implements Map<String,Cliente>{
         try{
             c = Connect.connect();
             
-            PreparedStatement ps = c.prepareStatement("INSERT INTO Cliente (Nif,Nome,Contacto,Limite,Stand) VALUES (?,?,?,?,?)");
+            PreparedStatement ps = c.prepareStatement("INSERT INTO Cliente (Nif,Nome,Contacto,Stand) VALUES (?,?,?,?)");
             ps.setString(1,k);
             ps.setString(2,v.getNome());
             ps.setString(3,v.getContacto());
-            ps.setString(4,Double.toString(v.getLimite()));
-            ps.setInt(5, this.id);
+            ps.setInt(4, this.id);
             ps.executeUpdate();
             
         }
