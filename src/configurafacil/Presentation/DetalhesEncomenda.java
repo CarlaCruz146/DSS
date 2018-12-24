@@ -21,7 +21,7 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
     DefaultTableModel model;
     int row = 0;
     /**
-     * Creates new form ConsultarStock2
+     * Creates new form DetalhesEncomenda
      */
     public DetalhesEncomenda(javax.swing.JDialog parent, boolean modal, ConfiguraFacil c) {
         super(parent, modal);
@@ -127,16 +127,6 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    /*
-    public void addRowQToJTable(){
-        model =  (DefaultTableModel) jTable1.getModel();
-        int n = (Integer) newe.model.getValueAt(newe.row,0);
-        HashMap<Integer,Encomenda> encomendas = newe.getFabrica().getEncomendas();
-        Object rowData[] = new Object[2];
-        for(Encomenda a: encomendas.values){
-            model.addRow(rowData);
-        }
-    }*/
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -154,7 +144,7 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
         }
         if(executavel){
             e.setEstado(1);
-            this.parent.alteraEstadoTab(e);
+            this.parent.alteraEstadoTab();
             this.setVisible(false);
         }
         else this.setVisible(false);
