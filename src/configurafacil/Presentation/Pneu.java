@@ -224,11 +224,11 @@ public class Pneu extends javax.swing.JDialog {
     }//GEN-LAST:event_Pneu4ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-         if(Pneu1.isSelected()) this.pneu = "Bridgestone Turanza T005 205/55 R16 91V";
-        if(Pneu2.isSelected()) this.pneu = "Continental ContiEcoContact 5 205/55 R16 91V";
-        if(Pneu3.isSelected()) this.pneu = "Continental PremiumContact 6 205/55 R16 91H";
-        if(Pneu4.isSelected()) this.pneu = "Firestone Roadhawk 205/55 R16 91H";
-        if(this.pneu.equals("")){
+         if(Pneu1.isSelected()) this.pneu = Pneu1.getText();
+        if(Pneu2.isSelected()) this.pneu = Pneu2.getText();
+        if(Pneu3.isSelected()) this.pneu = Pneu3.getText();
+        if(Pneu4.isSelected()) this.pneu = Pneu4.getText();
+        if(this.pneu.isEmpty()){
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor escolha um pneu","Pneu não selecionado", 0);
         }
         else {
@@ -237,18 +237,10 @@ public class Pneu extends javax.swing.JDialog {
             Componente c = this.configura.verificaTipo("Pneu",e);
             List<String> listInc = e.verificaIncomp(comp,this.configura.getPacote(e.getPacote()));
             List<String> listObrig = e.verificaObrig(comp);
-            StringBuilder sbInc = new StringBuilder();
-            StringBuilder sbObrig = new StringBuilder();
-            for (String i : listObrig){
-                sbObrig.append(i);
-                sbObrig.append("; ");
-            }
+            String sbInc = this.configura.listaComponentes(listInc);
+            String sbObrig = this.configura.listaComponentes(listObrig);
             if(!listObrig.isEmpty()){
                 javax.swing.JOptionPane.showMessageDialog(this, "Obrigatórias: " + sbObrig , "Componentes obrigatórias",0);
-            }
-            for (String i : listInc){
-                sbInc.append(i);
-                sbInc.append("; ");
             }
             if(!listInc.isEmpty()){
                 javax.swing.JOptionPane.showMessageDialog(this, "Incompatível com: " + sbInc , "Componentes incompatíveis",0);

@@ -271,13 +271,13 @@ public class EscolherCarro extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if(Carro1.isSelected()) this.carro = "Mazda CX-5";
-        if(Carro2.isSelected()) this.carro = "Seat Ibiza";
-        if(Carro3.isSelected()) this.carro = "Mercedes Benz";
-        if(Carro4.isSelected()) this.carro = "Volvo V40";
-        if(Carro5.isSelected()) this.carro = "Opel SUV";
-        if(Carro6.isSelected()) this.carro = "Renault Clio";
-        if(this.carro.equals("")){
+        if(Carro1.isSelected()) this.carro = Carro1.getText();
+        if(Carro2.isSelected()) this.carro = Carro2.getText();
+        if(Carro3.isSelected()) this.carro = Carro3.getText();
+        if(Carro4.isSelected()) this.carro = Carro4.getText();
+        if(Carro5.isSelected()) this.carro = Carro5.getText();
+        if(Carro6.isSelected()) this.carro = Carro6.getText();
+        if(this.carro.isEmpty()){
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor escolha um carro","Carro não selecionado", 0);
         }
         else {

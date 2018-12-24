@@ -194,30 +194,22 @@ public class Jantes extends javax.swing.JDialog {
     }//GEN-LAST:event_Jante3ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-       if(Jante1.isSelected()) this.jante = "Jantes em liga leve 17''";
-        if(Jante2.isSelected()) this.jante = "Jantes em liga leve 18'' 245/45 R18";
-        if(Jante3.isSelected()) this.jante = "Jantes em liga leve 19'' 255/40 R19";
-        if(this.jante.equals("")){
+        if(Jante1.isSelected()) this.jante = Jante1.getText();
+        if(Jante2.isSelected()) this.jante = Jante2.getText();
+        if(Jante3.isSelected()) this.jante = Jante3.getText();
+        if(this.jante.isEmpty()){
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor escolha uma jantes","Jantes não selecionado", 0);
         }
         else {
             Encomenda e = this.parent2.encomenda;
             Componente comp = configura.getComponente(this.jante);
             Componente c = this.configura.verificaTipo("Jante",e);
-             List<String> listInc = e.verificaIncomp(comp,this.configura.getPacote(e.getPacote()));
+            List<String> listInc = e.verificaIncomp(comp,this.configura.getPacote(e.getPacote()));
             List<String> listObrig = e.verificaObrig(comp);
-            StringBuilder sbInc = new StringBuilder();
-            StringBuilder sbObrig = new StringBuilder();
-            for (String i : listObrig){
-                sbObrig.append(i);
-                sbObrig.append("; ");
-            }
+            String sbInc = this.configura.listaComponentes(listInc);
+            String sbObrig = this.configura.listaComponentes(listObrig);
             if(!listObrig.isEmpty()){
                 javax.swing.JOptionPane.showMessageDialog(this, "Obrigatórias: " + sbObrig , "Componentes obrigatórias",0);
-            }
-            for (String i : listInc){
-                sbInc.append(i);
-                sbInc.append("; ");
             }
             if(!listInc.isEmpty()){
                 javax.swing.JOptionPane.showMessageDialog(this, "Incompatível com: " + sbInc , "Componentes incompatíveis",0);

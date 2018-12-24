@@ -42,10 +42,10 @@ public class DadosCliente extends javax.swing.JDialog {
     }
     
     private boolean validaDados() {
-        boolean vazio = this.nome.getText().equals("") || 
-                this.nif.getText().equals("")
-                || this.contacto.getText().equals("") || 
-                (checkLimite.isSelected() && this.limite.getText().equals(""));
+        boolean vazio = this.nome.getText().isEmpty() || 
+                this.nif.getText().isEmpty()
+                || this.contacto.getText().isEmpty() || 
+                (checkLimite.isSelected() && this.limite.getText().isEmpty());
         
         if (vazio)
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor preencha todos os dados.", "Dados incompletos", 0);

@@ -226,11 +226,11 @@ public class Estofos extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        if(Estofo1.isSelected()) this.estofo = "Couro comfort carvão";
-        if(Estofo2.isSelected()) this.estofo = "Couro comfort âmbar";
-        if(Estofo3.isSelected()) this.estofo = "Couro comfort maroon brown";
-        if(Estofo4.isSelected()) this.estofo = "Couro comfort blond";
-        if(this.estofo.equals("")){
+        if(Estofo1.isSelected()) this.estofo = Estofo1.getText();
+        if(Estofo2.isSelected()) this.estofo = Estofo2.getText();
+        if(Estofo3.isSelected()) this.estofo = Estofo3.getText();
+        if(Estofo4.isSelected()) this.estofo = Estofo4.getText();
+        if(this.estofo.isEmpty()){
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor escolha um estofo","Estofo não selecionado", 0);
         }
         else {
@@ -239,18 +239,10 @@ public class Estofos extends javax.swing.JDialog {
             Componente c = this.configura.verificaTipo("Estofo",e);
             List<String> listInc = e.verificaIncomp(comp,this.configura.getPacote(e.getPacote()));
             List<String> listObrig = e.verificaObrig(comp);
-            StringBuilder sbInc = new StringBuilder();
-            StringBuilder sbObrig = new StringBuilder();
-            for (String i : listObrig){
-                sbObrig.append(i);
-                sbObrig.append("; ");
-            }
+            String sbInc = this.configura.listaComponentes(listInc);
+            String sbObrig = this.configura.listaComponentes(listObrig);
             if(!listObrig.isEmpty()){
                 javax.swing.JOptionPane.showMessageDialog(this, "Obrigatórias: " + sbObrig , "Componentes obrigatórias",0);
-            }
-            for (String i : listInc){
-                sbInc.append(i);
-                sbInc.append("; ");
             }
             if(!listInc.isEmpty()){
                 javax.swing.JOptionPane.showMessageDialog(this, "Incompatível com: " + sbInc , "Componentes incompatíveis",0);

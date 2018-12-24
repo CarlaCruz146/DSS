@@ -306,6 +306,10 @@ public class ConfiguraFacil {
         return this.stand.get(1);
     }
     
+    public Cliente getCliente(String nif){
+        return this.stand.get(1).getCliente(nif);
+    }
+    
     public Fabrica getFabrica(){
         return this.fabrica.get(1);
     }
@@ -354,6 +358,15 @@ public class ConfiguraFacil {
     
     public void logout(){
         this.utilizador = null;
+    }
+    
+    public String listaComponentes(List<String> componentes){
+        StringBuilder sb = new StringBuilder();
+        for (String i : componentes){
+            sb.append(i);
+            sb.append("; ");
+        }
+        return sb.toString();
     }
     
     public Encomenda sugestao(double limite){

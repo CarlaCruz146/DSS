@@ -215,12 +215,12 @@ public class Pintura extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if(Cor1.isSelected()) this.pintura = "Cinzento";
-        if(Cor2.isSelected()) this.pintura = "Preto";
-        if(Cor3.isSelected()) this.pintura = "Branco";
-        if(Cor4.isSelected()) this.pintura = "Azul";
+        if(Cor1.isSelected()) this.pintura = Cor1.getText();
+        if(Cor2.isSelected()) this.pintura = Cor2.getText();
+        if(Cor3.isSelected()) this.pintura = Cor3.getText();
+        if(Cor4.isSelected()) this.pintura = Cor4.getText();
         System.out.println(this.parent2.encomenda.getPacote());
-        if(this.pintura.equals("")){
+        if(this.pintura.isEmpty()){
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor escolha a pintura","Pintura não selecionada", 0);
         }
         else {
@@ -229,18 +229,10 @@ public class Pintura extends javax.swing.JDialog {
             Componente c = this.configura.verificaTipo("Pintura",e);
             List<String> listInc = e.verificaIncomp(comp,this.configura.getPacote(e.getPacote()));
             List<String> listObrig = e.verificaObrig(comp);
-            StringBuilder sbInc = new StringBuilder();
-            StringBuilder sbObrig = new StringBuilder();
-            for (String i : listObrig){
-                sbObrig.append(i);
-                sbObrig.append("; ");
-            }
+            String sbInc = this.configura.listaComponentes(listInc);
+            String sbObrig = this.configura.listaComponentes(listObrig);
             if(!listObrig.isEmpty()){
                 javax.swing.JOptionPane.showMessageDialog(this, "Obrigatórias: " + sbObrig , "Componentes obrigatórias",0);
-            }
-            for (String i : listInc){
-                sbInc.append(i);
-                sbInc.append("; ");
             }
             if(!listInc.isEmpty()){
                 javax.swing.JOptionPane.showMessageDialog(this, "Incompatível com: " + sbInc , "Componentes incompatíveis",0);

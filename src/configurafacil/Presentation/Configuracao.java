@@ -499,18 +499,10 @@ public class Configuracao extends javax.swing.JDialog {
         Componente comp = configura.getComponente("Vidro Escurecido");
         List<String> listInc =  this.parent.encomenda.verificaIncomp(comp,this.configura.getPacote(this.parent.encomenda.getPacote()));
         List<String> listObrig =  this.parent.encomenda.verificaObrig(comp);
-        StringBuilder sbInc = new StringBuilder();
-        StringBuilder sbObrig = new StringBuilder();
-        for (String i : listObrig){
-            sbObrig.append(i);
-            sbObrig.append("; ");
-        }
+        String sbInc = this.configura.listaComponentes(listInc);
+        String sbObrig = this.configura.listaComponentes(listObrig);
         if(!listObrig.isEmpty()){
             javax.swing.JOptionPane.showMessageDialog(this, "Obrigatórias: " + sbObrig , "Componentes obrigatórias",0);
-        }
-        for (String i : listInc){
-            sbInc.append(i);
-            sbInc.append("; ");
         }
         if(!listInc.isEmpty()){
             javax.swing.JOptionPane.showMessageDialog(this, "Incompatível com: " + sbInc , "Componentes incompatíveis",0);
@@ -526,18 +518,10 @@ public class Configuracao extends javax.swing.JDialog {
         Componente comp = configura.getComponente("Pára-choques");
         List<String> listInc =  this.parent.encomenda.verificaIncomp(comp,this.configura.getPacote(this.parent.encomenda.getPacote()));
         List<String> listObrig =  this.parent.encomenda.verificaObrig(comp);
-        StringBuilder sbInc = new StringBuilder();
-        StringBuilder sbObrig = new StringBuilder();
-        for (String i : listObrig){
-            sbObrig.append(i);
-            sbObrig.append("; ");
-        }
+        String sbInc = this.configura.listaComponentes(listInc);
+        String sbObrig = this.configura.listaComponentes(listObrig);
         if(!listObrig.isEmpty()){
             javax.swing.JOptionPane.showMessageDialog(this, "Obrigatórias: " + sbObrig , "Componentes obrigatórias",0);
-        }
-        for (String i : listInc){
-            sbInc.append(i);
-            sbInc.append("; ");
         }
         if(!listInc.isEmpty()){
             javax.swing.JOptionPane.showMessageDialog(this, "Incompatível com: " + sbInc , "Componentes incompatíveis",0);
@@ -563,18 +547,10 @@ public class Configuracao extends javax.swing.JDialog {
         Componente comp = configura.getComponente("Teto de abrir");
         List<String> listInc =  this.parent.encomenda.verificaIncomp(comp,this.configura.getPacote(this.parent.encomenda.getPacote()));
         List<String> listObrig =  this.parent.encomenda.verificaObrig(comp);
-        StringBuilder sbInc = new StringBuilder();
-        StringBuilder sbObrig = new StringBuilder();
-        for (String i : listObrig){
-            sbObrig.append(i);
-            sbObrig.append("; ");
-        }
+        String sbInc = this.configura.listaComponentes(listInc);
+        String sbObrig = this.configura.listaComponentes(listObrig);
         if(!listObrig.isEmpty()){
             javax.swing.JOptionPane.showMessageDialog(this, "Obrigatórias: " + sbObrig , "Componentes obrigatórias",0);
-        }
-        for (String i : listInc){
-            sbInc.append(i);
-            sbInc.append("; ");
         }
         if(!listInc.isEmpty()){
             javax.swing.JOptionPane.showMessageDialog(this, "Incompatível com: " + sbInc , "Componentes incompatíveis",0);
@@ -590,18 +566,10 @@ public class Configuracao extends javax.swing.JDialog {
         Componente comp = configura.getComponente("Pacotes de luz");
         List<String> listInc =  this.parent.encomenda.verificaIncomp(comp,this.configura.getPacote(this.parent.encomenda.getPacote()));
         List<String> listObrig =  this.parent.encomenda.verificaObrig(comp);
-        StringBuilder sbInc = new StringBuilder();
-        StringBuilder sbObrig = new StringBuilder();
-        for (String i : listObrig){
-            sbObrig.append(i);
-            sbObrig.append("; ");
-        }
+        String sbInc = this.configura.listaComponentes(listInc);
+        String sbObrig = this.configura.listaComponentes(listObrig);
         if(!listObrig.isEmpty()){
             javax.swing.JOptionPane.showMessageDialog(this, "Obrigatórias: " + sbObrig , "Componentes obrigatórias",0);
-        }
-        for (String i : listInc){
-            sbInc.append(i);
-            sbInc.append("; ");
         }
         if(!listInc.isEmpty()){
             javax.swing.JOptionPane.showMessageDialog(this, "Incompatível com: " + sbInc , "Componentes incompatíveis",0);
@@ -615,16 +583,10 @@ public class Configuracao extends javax.swing.JDialog {
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
         if(this.configura.verificaComponentes(this.parent.encomenda)){
-            Cliente c = configura.getStand().getClientes().get(this.parent2.getCliente());
-            List<String> listObrig = new ArrayList<>();
-            listObrig = this.configura.verificaObrigatoria(this.parent.encomenda);
-            StringBuilder sb = new StringBuilder();
-            for(String i : listObrig){
-                sb.append(i);
-                sb.append("; ");
-            }
+            Cliente c = this.configura.getCliente(this.parent2.getCliente());
+            List<String> listObrig = this.configura.verificaObrigatoria(this.parent.encomenda);
+            String sb = this.configura.listaComponentes(listObrig);
             if(listObrig.isEmpty()){
-              //  configura.getStand().addEncomendaCliente(c,this.parent.encomenda);
                 this.parent.encomenda.setCliente(c.getNif());
                 this.configura.getGestaoE().addEncomenda(this.parent.encomenda);
                 this.setVisible(false);
