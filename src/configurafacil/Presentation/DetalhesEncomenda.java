@@ -5,10 +5,8 @@
  */
 package configurafacil.Presentation;
 
-import configurafacil.Business.Componente;
 import configurafacil.Business.ConfiguraFacil;
 import configurafacil.Business.Encomenda;
-import java.util.Map;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -36,14 +34,17 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
         int n = (Integer) this.parent.model.getValueAt(this.parent.row,0);  
         model =  (DefaultTableModel) jTable1.getModel();
         Object rowData[] = new Object[1];
-        for(String c: configura.getGestaoE().getEncomendas().get(n).getConfig()){
+        Encomenda e = this.configura.getEncomenda(n);
+        for(String c: e.getConfig()){
             rowData[0] = c;
             model.addRow(rowData);
         }
-        if(this.configura.getGestaoE().getEncomendas().get(n).getPacote()!=null){
-            rowData[0] = this.configura.getGestaoE().getEncomendas().get(n).getPacote();
+        if(e.getPacote()!=null){
+            rowData[0] = e.getPacote();
             model.addRow(rowData);
         } 
+        rowData[0] = e.getCarro();
+        model.addRow(rowData);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,6 +60,7 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -89,18 +91,26 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
 
         jLabel1.setText("Encomenda");
 
+        jButton2.setText("Finalizar encomenda");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1)
             .addGroup(layout.createSequentialGroup()
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 20, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -119,7 +129,9 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addGap(28, 28, 28))
         );
 
@@ -131,11 +143,10 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         int n = (Integer) this.parent.model.getValueAt(this.parent.row,0); 
-        Encomenda e = configura.getGestaoE().getEncomendas().get(n);
-        Map<String,Integer> stockDisponivel = configura.getFabrica().getStock();
+        Encomenda e =  this.configura.getEncomenda(n);
         boolean executavel = true;
         for(String c: e.getConfig()){
-            if(stockDisponivel.get(c) == 0){
+            if(this.configura.verificaStock(c) == 0){
                executavel = false;
                javax.swing.JOptionPane.showMessageDialog(this, "Não há stock suficiente.", "Stock indisponivel", 0);
                this.setVisible(false);
@@ -143,15 +154,28 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
             }
         }
         if(executavel){
-            e.setEstado(1);
-            this.parent.alteraEstadoTab();
+            this.configura.alterarEstado(e,1);
+            this.parent.alteraEstadoTab(1);
             this.setVisible(false);
         }
         else this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        int n = (Integer) this.parent.model.getValueAt(this.parent.row,0); 
+        Encomenda e =  this.configura.getEncomenda(n);
+        if(e.getEstado() == 1){
+            this.configura.alterarEstado(e,2);
+            this.parent.alteraEstadoTab(2);
+            this.setVisible(false);
+        }
+        else javax.swing.JOptionPane.showMessageDialog(this,"A encomenda não se encontra em execução.", "Encomenda não finalizada", 0);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;

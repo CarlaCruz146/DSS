@@ -5,6 +5,7 @@
  */
 package configurafacil.Business;
 
+import configurafacil.Database.StockDAO;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -14,10 +15,10 @@ import java.util.stream.Collectors;
  */
 public class Fabrica {
     private int id;
-    private Map<String,Integer> stock;
+    private StockDAO stock;
     
     public Fabrica(){
-        this.stock = new HashMap<>();
+        this.stock = new StockDAO();
     }
     
     public int getId(){
@@ -28,16 +29,20 @@ public class Fabrica {
         this.id = id;
     }
     
-    public Map<String, Integer> getStock(){
+    public Map<String, Stock> getStock(){
         return this.stock.entrySet().stream().collect(Collectors.toMap(e->e.getKey(), e->e.getValue()));    
     }
-        
-    public void setStock(Map<String, Integer> s){
-        this.stock = new HashMap<>();
-        this.stock = s.entrySet().stream().collect(Collectors.toMap(e->e.getKey(), e->e.getValue())); 
+    
+    public void adicionaStock(String c, Stock s){
+        this.stock.put(c, s);
     }
     
-    public void adicionaStock(String c, int valor){
-        this.stock.put(c, valor);
+    public int verificaStock(String s){
+        return this.stock.get(s).getQuantidade();
+    }
+    
+    public void atualizaStock(String s, int q){
+        Stock stock = new Stock(q,s);
+        this.stock.put(s, stock);
     }
 }

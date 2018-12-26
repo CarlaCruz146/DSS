@@ -15,8 +15,8 @@ public class FuncStand extends Utilizador { //FuncFabrica e Administrador
         super();
     }
     
-    public FuncStand(String nome, String pass){
-        super(nome,pass);
+    public FuncStand(String nome, String pass, int estado){
+        super(nome,pass,estado);
     }
     
     public FuncStand(FuncStand fs){

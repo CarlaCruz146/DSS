@@ -131,15 +131,15 @@ public class Login extends javax.swing.JFrame {
                 configura.login(nome, password);
             }
             catch (Exception e){}
-            if ((configura.getGestaoU().getUtilizador(nome)) instanceof FuncStand){
+            if ((configura.getUser(nome)) instanceof FuncStand){
                 this.setVisible(false);
-                new DadosCliente(this, true, configura).setVisible(true);
+                new MenuStand(this, true, configura).setVisible(true);
             }
-            else if ((configura.getGestaoU().getUtilizador(nome)) instanceof FuncFabrica){
+            else if ((configura.getUser(nome)) instanceof FuncFabrica){
                 this.setVisible(false);
                 new MenuFuncionario(this, true, configura).setVisible(true);
             }
-            else if ((configura.getGestaoU().getUtilizador(nome)) instanceof Administrador) {
+            else if (configura.getAdministrador()!=null) {
                 this.setVisible(false);
                 new MenuAdmin(this, true, configura).setVisible(true);
             }

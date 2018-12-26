@@ -6,6 +6,7 @@
 package configurafacil.Presentation;
 
 import configurafacil.Business.ConfiguraFacil;
+import configurafacil.Business.Stock;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.table.DefaultTableModel;
@@ -19,7 +20,7 @@ public class ConsultarStock extends javax.swing.JDialog {
     DefaultTableModel model;
     private int row = 0;
     private String componente= "";
-    private String valor;
+    private int valor;
     /**
      * Creates new form ConsultarStock
      */
@@ -33,27 +34,25 @@ public class ConsultarStock extends javax.swing.JDialog {
     
     public void insereStockTabela(){
         model =  (DefaultTableModel) jTable1.getModel();
-        Map<String,Integer> stockDisponivel = configura.getFabrica().getStock();
+        Map<String,Stock> stockDisponivel = configura.getFabrica().getStock();
         Object rowData[] = new Object[2];
-        for(Map.Entry s : stockDisponivel.entrySet()){
-            rowData[0] = s.getKey();
-            rowData[1] = s.getValue();
+        for(Stock s : stockDisponivel.values()){
+            rowData[0] = s.getComponente();
+            rowData[1] = s.getQuantidade();
             model.addRow(rowData);
         }
     }
     
-    public Map<String,Integer> leStock(){
+    public void leStock(){
         model =  (DefaultTableModel) jTable1.getModel();
-        Map<String,Integer> stockAtualizado = new HashMap<>();
         row = 0;
         while(row < model.getRowCount()){
             componente = (String) model.getValueAt(row, 0);
             Object v = model.getValueAt(row,1);
-            valor = v.toString();
-            stockAtualizado.put(componente, Integer.parseInt(valor));
+            valor = Integer.parseInt(v.toString());
+            this.configura.atualizaStock(componente, valor);
             row++;
         }
-        return stockAtualizado;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -153,9 +152,7 @@ public class ConsultarStock extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Map<String, Integer> s = new HashMap<>();
-        s = leStock();
-        configura.getFabrica().setStock(s);
+        leStock();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

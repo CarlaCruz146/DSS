@@ -30,7 +30,7 @@ public class GestaoEncomenda {
     
     public void addEncomenda(Encomenda e){
         int i = encomendas.size()+1;
-        e.setId(i);
+       // e.setId(i);
         this.encomendas.put(i,e);
     }
     
@@ -41,4 +41,12 @@ public class GestaoEncomenda {
         this.encomendas.remove(id);        
     }
     
+    public Encomenda getEncomenda(int id){
+        return this.encomendas.get(id);
+    }
+    
+    public void alterarEstado(Encomenda e, int estado){
+        e.setEstado(estado);
+        this.encomendas.put(e.getId(), e);
+    }
 }

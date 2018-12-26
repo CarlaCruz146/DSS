@@ -9,31 +9,19 @@ package configurafacil.Business;
  *
  * @author mercy
  */
-public class Administrador extends Utilizador {
+public class Administrador {
     
-    public Administrador(){
-        super();
+    private final String username = "Admin";
+    private final String password = "admin";
+    
+    public Administrador(){}
+    
+    public Administrador verificaAdmin(String nome, String password) throws PasswordInvalidaException, NomeInexistenteException{
+        Administrador a;
+        if(this.username.equals(nome)){
+            if(this.password.equals(password)) return this;
+            else throw new PasswordInvalidaException("Password inválida");
+        }
+        else throw new NomeInexistenteException("Utilizador inexistente");
     }
-    
-    public Administrador(String nome, String pass){
-        super(nome,pass);
-    }
-    
-    public Administrador(Administrador a){
-        super(a);
-    }
-    
-    public Administrador clone(){
-        return new Administrador(this);
-    }
-    
-    public boolean equals(Object o){
-       if(this == o) return true;
-       if(o == null || this.getClass() != o.getClass()) return false;
-
-       Administrador a = (Administrador) o;
-
-       return (super.equals(a));
-   } 
-    
 }

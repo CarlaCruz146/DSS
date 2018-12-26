@@ -15,8 +15,8 @@ public class FuncFabrica extends Utilizador {
         super();
     }
     
-    public FuncFabrica(String nome, String pass){
-        super(nome,pass);
+    public FuncFabrica(String nome, String pass, int estado){
+        super(nome,pass,estado);
     }
     
     public FuncFabrica(FuncFabrica f){

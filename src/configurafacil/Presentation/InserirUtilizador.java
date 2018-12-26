@@ -160,16 +160,19 @@ public class InserirUtilizador extends javax.swing.JDialog {
             if (checkFabrica.isSelected()) tipo = 2;
             
             if (validaDados()){
-                if(tipo == 1){
-                    FuncStand u = new FuncStand(nome,pass);
-                    configura.getGestaoU().addUtilizador(u);
+                if(this.configura.verificaUserName(nome))
+                    javax.swing.JOptionPane.showMessageDialog(this, "Nome de utilizador já existente.", "User inválido",0);
+                else{ if(tipo == 1){
+                        FuncStand u = new FuncStand(nome,pass,0);
+                        configura.addUtilizador(u);
+                    }
+                    else if (tipo == 2) {
+                        FuncFabrica u = new FuncFabrica(nome,pass,0);
+                        configura.addUtilizador(u);
+                    }
+                    this.setVisible(false);
+                    this.parent.addLine(nome);
                 }
-                else if (tipo == 2) {
-                    FuncFabrica u = new FuncFabrica(nome,pass);
-                    configura.getGestaoU().addUtilizador(u);
-                }
-                this.setVisible(false);
-                this.parent.addLine(nome);
             }
     }//GEN-LAST:event_jButton1ActionPerformed
 

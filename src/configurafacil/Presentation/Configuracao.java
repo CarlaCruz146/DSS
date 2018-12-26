@@ -590,7 +590,7 @@ public class Configuracao extends javax.swing.JDialog {
                 this.parent.encomenda.setCliente(c.getNif());
                 this.configura.getGestaoE().addEncomenda(this.parent.encomenda);
                 this.setVisible(false);
-                new DadosCliente(this, true, configura).setVisible(true);
+                new MenuStand(this, true, configura).setVisible(true);
             }
             else javax.swing.JOptionPane.showMessageDialog(this, "Obrigatória: " + sb,"Componente obrigatória não selecionada", 0);
         }

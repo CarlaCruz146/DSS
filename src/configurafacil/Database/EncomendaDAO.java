@@ -5,13 +5,10 @@
  */
 package configurafacil.Database;
 
-import configurafacil.Business.Componente;
 import configurafacil.Business.Encomenda;
-import configurafacil.Business.Pacote;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -144,15 +141,14 @@ public class EncomendaDAO implements Map<Integer,Encomenda> {
            
            String sql = "INSERT INTO Encomenda (idEncomenda, Estado, Limite, Cliente, Pacote, Fabrica, Carro)" +
                    "VALUES (?,?,?,?,?,?,?)\n" +
-                   "ON DUPLICATE KEY UPDATE idEncomenda = VALUES(idEncomenda),\n" +
-                   "Estado = VALUES(Estado),\n" +
+                   "ON DUPLICATE KEY UPDATE Estado = VALUES(Estado),\n" +
                    "Limite = VALUES(Limite),\n"+
                    "Cliente = VALUES(Cliente),\n" +
                    "Pacote = VALUES(Pacote),\n" +
                    "Fabrica = VALUES(Fabrica),\n" +
                    "Carro = VALUES(Carro);\n";
             PreparedStatement ps = c.prepareStatement(sql);
-            ps.setInt(1,v.getId());
+            ps.setInt(1,k);
             ps.setString(2,Integer.toString(v.getEstado()));
             ps.setDouble(3, v.getLimite());
             ps.setString(4, v.getCliente());
@@ -162,11 +158,12 @@ public class EncomendaDAO implements Map<Integer,Encomenda> {
             ps.executeUpdate();
 
              sql = "INSERT INTO Encomenda_Componente (Encomenda, Componente)" +
-                      "VALUES (?, ?);";
+                      "VALUES (?, ?)\n" + 
+                    "ON DUPLICATE KEY UPDATE Componente = VALUES(Componente);\n";
             PreparedStatement stm;         
             stm = c.prepareStatement(sql);
             for(String s : v.getConfig()){
-                stm.setInt(1,v.getId());
+                stm.setInt(1,k);
                 stm.setString(2, s);
                 stm.addBatch();   
             }
@@ -174,7 +171,7 @@ public class EncomendaDAO implements Map<Integer,Encomenda> {
             e = v;
         }
         catch(Exception ex){
-            System.out.printf(ex.getMessage() + "memememem");
+            System.out.printf(ex.getMessage());
         }
         finally{
             try{

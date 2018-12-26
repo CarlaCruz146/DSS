@@ -5,7 +5,6 @@
  */
 package configurafacil.Database;
 
-import configurafacil.Business.Administrador;
 import configurafacil.Business.FuncFabrica;
 import configurafacil.Business.Utilizador;
 import configurafacil.Business.FuncStand;
@@ -28,7 +27,7 @@ public class UtilizadorDAO implements Map<String,Utilizador> {
     private int stand;
     private int fabrica;
     
-    public UtilizadorDAO(int stant, int fabrica){
+    public UtilizadorDAO(int stand, int fabrica){
         this.stand = stand;
         this.fabrica = fabrica;
     }
@@ -103,8 +102,10 @@ public class UtilizadorDAO implements Map<String,Utilizador> {
             ResultSet rs = ps.executeQuery();
              if(rs.next()){
                 String nome, password;
+                int estado;
                 nome = rs.getString("Nome");
                 password = rs.getString("Password");
+                estado = rs.getInt("Estado");
                 
                 PreparedStatement stmFF = c.prepareStatement("SELECT * FROM FuncFabrica WHERE Utilizador = ?");
                 stmFF.setString(1, nome);
@@ -113,6 +114,7 @@ public class UtilizadorDAO implements Map<String,Utilizador> {
                    FuncFabrica f = new FuncFabrica();
                    f.setNome(nome);
                    f.setPassword(password);
+                   f.setEstado(estado);
                    utilizador = f;
                 }
                 else{
@@ -122,19 +124,9 @@ public class UtilizadorDAO implements Map<String,Utilizador> {
                     if (rsFS.next()) {
                        FuncStand f = new FuncStand();
                        f.setNome(nome);
-                       f.setPassword(password); 
+                       f.setPassword(password);
+                       f.setEstado(estado);
                        utilizador = f;
-                    }
-                    else{
-                        PreparedStatement stmA = c.prepareStatement("SELECT * FROM Administrador WHERE Utilizador = ?");
-                        stmA.setString(1, nome);
-                        ResultSet rsA = stmA.executeQuery();
-                        if (rsA.next()) {
-                            Administrador a = new Administrador();
-                            a.setNome(nome);
-                            a.setPassword(password); 
-                            utilizador = a;
-                        }
                     }
                 }
              }
@@ -164,47 +156,44 @@ public class UtilizadorDAO implements Map<String,Utilizador> {
         try{
             c = Connect.connect();
             
-            PreparedStatement ps = c.prepareStatement("INSERT INTO Utilizador (Nome,Password,Stand,Fabrica) VALUES (?,?,?,?)");
+            PreparedStatement ps = c.prepareStatement("INSERT INTO Utilizador (Nome,Password,Estado,Stand,Fabrica) VALUES (?,?,?,?,?)\n" +
+                                                     "ON DUPLICATE KEY UPDATE Estado = VALUES(Estado);\n");
             ps.setString(1,k);
             ps.setString(2,v.getPassword());
-            ps.setInt(3,stand);
-            ps.setInt(4,fabrica);
+            ps.setInt(3,v.getEstado());
+            ps.setInt(4,stand);
+            ps.setInt(5,fabrica);
+            
             ps.executeUpdate();
             
              if(v instanceof FuncStand){
-                PreparedStatement stm = c.prepareStatement("INSERT INTO FuncStand (idFuncStant) VALUES (?)");
-                stm.setString(1, k);
+                PreparedStatement stm = c.prepareStatement("INSERT INTO FuncStand (Utilizador) VALUES (?)\n" +
+                                                            "ON DUPLICATE KEY UPDATE Utilizador = VALUES(Utilizador);\n");
+                stm.setString(1, v.getNome());
                 stm.executeUpdate();
             }
             else{
                 if(v instanceof FuncFabrica){
-                    PreparedStatement stm = c.prepareStatement("INSERT INTO FuncFabrica (idFuncFabrica) VALUES (?)");
-                    stm.setString(1, k); 
+                    PreparedStatement stm = c.prepareStatement("INSERT INTO FuncFabrica (Utilizador) VALUES (?)\n" +
+                                                               "ON DUPLICATE KEY UPDATE Utilizador = VALUES(Utilizador);\n");
+                    stm.setString(1, v.getNome());
                     stm.executeUpdate();
-                }
-                else{
-                    if(v instanceof Administrador){
-                        PreparedStatement stm = c.prepareStatement("INSERT INTO Administrador (idAdmin) VALUES (?)");
-                    stm.setString(1, k);
-                    stm.executeUpdate();
-                    }
+                    System.out.print(v.getEstado());
                 }
             }
-            
         }
         catch(Exception e){
-            System.out.printf(e.getMessage() + "put1");
+            System.out.printf(e.getMessage());
         }
         finally{
             try{
                 Connect.close(c);
             }
             catch(Exception e){
-                System.out.printf(e.getMessage() + "put1");
+                System.out.printf(e.getMessage());
             }
         }
         return u;
-        
     }
 
     @Override

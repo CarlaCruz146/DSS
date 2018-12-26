@@ -130,9 +130,11 @@ public class ListaUtilizadores extends javax.swing.JDialog {
     public void apresentaFunc(){
         model =  (DefaultTableModel) jTable1.getModel();
         Object rowData[] = new Object[1];
-        for(Utilizador u: configura.getGestaoU().getUtilizadores().values()){
-            rowData[0] = u.getNome();
-            model.addRow(rowData);
+        for(Utilizador u: configura.getUtilizadores().values()){
+            if(u.getEstado() == 0){
+                rowData[0] = u.getNome();
+                model.addRow(rowData);
+            }
         }
     }
     
@@ -159,7 +161,8 @@ public class ListaUtilizadores extends javax.swing.JDialog {
         try{
             row = jTable1.getSelectedRow();
             nomeSel = (String)model.getValueAt(row, 0);
-            configura.getGestaoU().removeUtilizador(nomeSel);
+            Utilizador u = this.configura.getUser(nomeSel);
+            this.configura.setEstado(u, 1);
             model.removeRow(row);       
 
         } catch (Exception ex){

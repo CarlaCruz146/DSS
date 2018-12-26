@@ -7,10 +7,10 @@ package configurafacil.Business;
 
 /**
  *
- * @author utilizador
+ * @author jessica
  */
-public class UtilizadorInvalidoException extends Exception{
-    public UtilizadorInvalidoException(String msg){
+public class NomeInexistenteException extends Exception{
+    public NomeInexistenteException(String msg){
         super(msg);
     } 
 }

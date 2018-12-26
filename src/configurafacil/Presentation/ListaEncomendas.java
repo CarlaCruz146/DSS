@@ -44,7 +44,6 @@ public class ListaEncomendas extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -80,13 +79,6 @@ public class ListaEncomendas extends javax.swing.JDialog {
 
         jLabel1.setText("Encomendas");
 
-        jButton2.setText("Finalizar Encomenda");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -99,11 +91,8 @@ public class ListaEncomendas extends javax.swing.JDialog {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
@@ -117,9 +106,7 @@ public class ListaEncomendas extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -130,21 +117,27 @@ public class ListaEncomendas extends javax.swing.JDialog {
     public void apresentaEnc(){
         model =  (DefaultTableModel) jTable1.getModel();
         Object rowData[] = new Object[2];
-        for(Encomenda a: configura.getGestaoE().getEncomendas().values()){
+        for(Encomenda a: configura.getEncomendas().values()){
             rowData[0] = a.getId();
-            if(a.getEstado() == 0)
-                    rowData[1] = "Em espera";
-            else rowData[1] = "Em execução";
-            model.addRow(rowData);
+            if(a.getEstado() == 0){
+                rowData[1] = "Em espera";
+                model.addRow(rowData);
+            }
+            else if(a.getEstado() == 1){
+                   rowData[1] = "Em execução";
+                   model.addRow(rowData);
+                }
         }
     }   
     
-    public void alteraEstadoTab(){
-        model = (DefaultTableModel)jTable1.getModel();
+    public void alteraEstadoTab(int estado){
+        model = (DefaultTableModel) jTable1.getModel();
         row = jTable1.getSelectedRow();
-        String estado = "Em execução";
-
-        model.setValueAt(estado, row, 1);
+        if(estado == 1){
+            String s = "Em execução";
+            model.setValueAt(s, row, 1);
+        }   
+        else model.removeRow(row);
     }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -158,23 +151,8 @@ public class ListaEncomendas extends javax.swing.JDialog {
         new DetalhesEncomenda (this, true, configura).setVisible(true);
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        model = (DefaultTableModel)jTable1.getModel();
-        row = jTable1.getSelectedRow();
-        Object estado = model.getValueAt(row, 1);
-        if(estado == "Em execução"){
-            Object car = model.getValueAt(row, 0);
-            String carroN = car.toString();
-            configura.getGestaoE().removeEncomenda2(Integer.parseInt(carroN));
-            model.removeRow(row);
-        }
-        else javax.swing.JOptionPane.showMessageDialog(this,"A encomenda não se encontra em execução.", "Encomenda não finalizada", 0);  
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
