@@ -6,7 +6,7 @@
 package configurafacil.Business;
 
 import configurafacil.Database.StockDAO;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 /**
@@ -42,7 +42,7 @@ public class Fabrica {
     }
     
     public void atualizaStock(String s, int q){
-        Stock stock = new Stock(q,s);
-        this.stock.put(s, stock);
+        Stock st = new Stock(q,s);
+        this.stock.put(s, st);
     }
 }

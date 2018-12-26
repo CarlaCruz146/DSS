@@ -242,4 +242,21 @@ public class ConfiguraFacil {
         }
         return e;
     }
+    
+    
+    public void diminuiStock(Encomenda e){
+        List<String> config = e.getConfig();
+        String pacote = e.getPacote();
+        
+        for(String s : config){
+            int qt = fabrica.get(1).getStock().get(s).getQuantidade();
+            fabrica.get(1).atualizaStock(s, qt-1);
+        }
+        if(pacote != null){
+            for(String s : pacotes.get(pacote).getComponentes()){
+                int qt = fabrica.get(1).getStock().get(s).getQuantidade();
+                fabrica.get(1).atualizaStock(s, qt-1);
+            }
+        }
+    }
 }

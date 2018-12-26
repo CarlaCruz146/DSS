@@ -37,9 +37,6 @@ public class GestaoEncomenda {
     public void removeEncomenda(Encomenda e){
         this.encomendas.remove(e.getId());
     }
-    public void removeEncomenda2(int id){
-        this.encomendas.remove(id);        
-    }
     
     public Encomenda getEncomenda(int id){
         return this.encomendas.get(id);
