@@ -85,7 +85,6 @@ public class MenuAdmin extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        configura.logout();
         this.setVisible(false);
         new Login(configura).setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed

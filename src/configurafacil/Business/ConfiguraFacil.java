@@ -162,8 +162,7 @@ public class ConfiguraFacil {
     }
     
     public void logout(){
-        if(this.utilizador!=null) this.utilizador = null;
-        else this.administrador = null;
+        this.utilizador = null;
     }
     
     public String listaComponentes(List<String> componentes){

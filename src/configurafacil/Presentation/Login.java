@@ -27,7 +27,7 @@ public class Login extends javax.swing.JFrame {
     
     
     private boolean validaDados() {
-        boolean vazio = this.nome.getText().equals("") || 
+        boolean vazio = this.nome.getText().isEmpty() || 
                 this.password.getText().isEmpty();
         if (vazio)
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor preencha os dados.", "Dados incompletos", 0);

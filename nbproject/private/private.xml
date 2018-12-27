@@ -3,14 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/mercy/ConfiguraFacil/src/configurafacil/Business/Stock.java</file>
-            <file>file:/home/mercy/ConfiguraFacil/src/configurafacil/Business/Administrador.java</file>
-            <file>file:/home/mercy/ConfiguraFacil/src/configurafacil/Business/FuncFabrica.java</file>
-            <file>file:/home/mercy/ConfiguraFacil/src/configurafacil/Business/Encomenda.java</file>
-            <file>file:/home/mercy/ConfiguraFacil/src/configurafacil/Presentation/ListaUtilizadores.java</file>
-            <file>file:/home/mercy/ConfiguraFacil/src/configurafacil/Business/Fabrica.java</file>
-            <file>file:/home/mercy/ConfiguraFacil/src/configurafacil/Business/GestaoEncomenda.java</file>
-            <file>file:/home/mercy/ConfiguraFacil/src/configurafacil/Presentation/ListaEncomendas.java</file>
+            <file>file:/home/utilizador/ConfiguraFacil/src/configurafacil/Business/Utilizador.java</file>
+            <file>file:/home/utilizador/ConfiguraFacil/src/configurafacil/Database/Connect.java</file>
+            <file>file:/home/utilizador/ConfiguraFacil/src/configurafacil/Business/Administrador.java</file>
+            <file>file:/home/utilizador/ConfiguraFacil/src/configurafacil/Presentation/Login.java</file>
         </group>
     </open-files>
 </project-private>
