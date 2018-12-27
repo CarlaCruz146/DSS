@@ -164,7 +164,7 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
         if(executavel){
             this.configura.alterarEstado(e,1);
             this.parent.alteraEstadoTab(1);
-            this.configura.diminuiStock(e);
+            this.configura.diminuiStock(comps);
             this.setVisible(false);
         }
         else this.setVisible(false);
