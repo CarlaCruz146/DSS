@@ -144,11 +144,15 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
         // TODO add your handling code here:
         int n = (Integer) this.parent.model.getValueAt(this.parent.row,0); 
         Encomenda e =  this.configura.getEncomenda(n);
-        List<String> compPacote = e.getPacote().getComponentes();
+        List<String> compPacote = new ArrayList<>();
         List<String> comps = new ArrayList<>();
+        if(e.getPacote() != null){
+            compPacote = e.getPacote().getComponentes();
+            comps.addAll(compPacote);
+        }
         comps.addAll(e.getConfig());
-        comps.addAll(compPacote);
         boolean executavel = true;
+        
         for(String c: comps){
             if(this.configura.verificaStock(c) == 0){
                executavel = false;
