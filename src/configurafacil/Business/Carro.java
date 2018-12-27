@@ -73,4 +73,34 @@ public class Carro {
     public void setPreco(double preco){
         this.preco = preco;
     }
+    
+    /**
+     * Função equals da classe Carro.
+     * @param o Objecto
+     * @return boolean
+     */
+    public boolean equals (Object o) {
+        if (this == o)
+            return true;
+        if ((o == null) || (this.getClass() != o.getClass()))
+            return false;
+        Carro c = (Carro) o;
+        return c.getNome().equals(this.nome) 
+                && c.getPreco() == this.preco;
+    }
+    
+    /**
+     * Devolve String com a informação da classe Carro.
+     * @return String
+     */
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("O carro é ");
+        sb.append(this.nome);
+        sb.append(" com preço");
+        sb.append(this.preco);
+        sb.append(" .\n");
+
+        return sb.toString();
+    }
 }

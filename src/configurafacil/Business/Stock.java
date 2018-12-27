@@ -74,4 +74,34 @@ public class Stock {
         this.componente = c;
     }
     
+    /**
+     * Devolve String com a informação da classe Stock.
+     * @return String
+     */
+     public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("A componente ");
+        sb.append(this.componente);
+        sb.append(" tem quantidade ");
+        sb.append(this.quantidade);
+        sb.append(" .\n");
+
+        return sb.toString();
+    }
+    
+     /**
+     * Função equals da classe Stock.
+     * @param o Objecto
+     * @return boolean
+     */
+    public boolean equals (Object o) {
+        if (this == o)
+            return true;
+        if ((o == null) || (this.getClass() != o.getClass()))
+            return false;
+        Stock s = (Stock) o;
+        return s.getComponente().equals(this.componente)
+                && s.getQuantidade() == this.quantidade;
+    }
+   
 }

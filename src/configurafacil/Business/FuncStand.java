@@ -36,12 +36,12 @@ public class FuncStand extends Utilizador { //FuncFabrica e Administrador
         super(fs);
     }
     
-    /**
-     * Faz a cópia de um utilizador cuja natureza é FuncStand
-     * @return Cópia da fatura
-     */ 
-    public FuncStand clone(){
-        return new FuncStand(this);
+       /**
+     * Imprime a informação de um funcionário cuja natureza é um funcionario do stand
+     * @return String com a informação
+     */
+     public String toString(){
+        return super.toString();
     }
     
     /**

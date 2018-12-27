@@ -36,12 +36,12 @@ public class FuncFabrica extends Utilizador {
         super(f);
     }
     
-    /**
-     * Faz a cópia de um utilizador cuja natureza é FuncFabrica
-     * @return Cópia da fatura
-     */ 
-    public FuncFabrica clone(){
-        return new FuncFabrica(this);
+   /**
+     * Imprime a informação de um funcionário cuja natureza é um funcionario de fábrica
+     * @return String com a informação
+     */
+     public String toString(){
+        return super.toString();
     }
     
     /**
