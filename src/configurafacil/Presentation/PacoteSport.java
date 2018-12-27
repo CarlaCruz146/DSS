@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author mercy
+ * @author Grupo 30
  */
 public class PacoteSport extends javax.swing.JDialog {
     private ConfiguraFacil configura;

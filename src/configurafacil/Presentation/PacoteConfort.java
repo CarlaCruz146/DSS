@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author utilizador
+ * @author Grupo 30
  */
 public class PacoteConfort extends javax.swing.JDialog {
     private ConfiguraFacil configura;

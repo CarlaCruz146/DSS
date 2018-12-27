@@ -19,7 +19,7 @@ import java.util.Set;
 
 /**
  *
- * @author mercy
+ * @author Grupo 30
  */
 public class EncomendaDAO implements Map<Integer,Encomenda> {
     

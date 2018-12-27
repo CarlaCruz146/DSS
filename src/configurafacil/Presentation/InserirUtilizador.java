@@ -13,7 +13,7 @@ import configurafacil.Business.Utilizador;
 
 /**
  *
- * @author jessica
+ * @author Grupo 30
  */
 public class InserirUtilizador extends javax.swing.JDialog {
     private ConfiguraFacil configura;

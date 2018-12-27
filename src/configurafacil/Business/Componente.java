@@ -11,16 +11,20 @@ import java.util.stream.Collectors;
 
 /**
  *
- * @author mercy
+ * @author Grupo 30
  */
 public class Componente {
+    
+    //Variáveis de instância
     private String nome;
     private String tipo;
     private double preco;
     private List<String> compIncompativeis;
     private List<String> compObrigatorias;
     
-    
+    /**
+     * Construtor da classe Componente sem parâmetros.
+     */
     public Componente(){
         this.nome = "";
         this.tipo = "";
@@ -29,6 +33,14 @@ public class Componente {
         this.compObrigatorias = new ArrayList<>();  
     }
     
+    /**
+     * Construtor da classe Componente. 
+     * @param nome Nome da componente.
+     * @param tipo Tipo da componente.
+     * @param preco Preço da componente.
+     * @param incompativeis Lista de componentes incompativeis.
+     * @param obrigatorias Lista de componentes obrigatórias.
+     */
     public Componente(String nome, String tipo, double preco, List<String> incompativeis, List<String> obrigatorias){
         this.nome = nome;
         this.tipo = tipo;
@@ -39,6 +51,10 @@ public class Componente {
         if (obrigatorias!=null) setObrigatorias(obrigatorias);
     }
     
+    /**
+     * Construtor da classe Componente pela cópia de uma classe.
+     * @param c Componente.
+     */
     public Componente(Componente c){
         this.nome = c.getNome();
         this.tipo = c.getTipo();
@@ -47,17 +63,30 @@ public class Componente {
         this.compObrigatorias =  c.getObrigatorias();
     }
     
+    /**
+     * Devolve a nome da componente.
+     * @return String 
+     */
     public String getNome(){
         return this.nome;
     }
    
+    /**
+     * Devolve o tipo da componente.
+     * @return String 
+     */
     public String getTipo(){
         return this.tipo;
     }
     
+    /**
+     * Devolve o preço da componente.
+     * @return double 
+     */
     public double getPreco(){
         return this.preco;
     }
+    
     
     public List<String> getIncompativeis(){
         return this.compIncompativeis.stream().collect(Collectors.toList());
@@ -67,14 +96,26 @@ public class Componente {
         return this.compObrigatorias.stream().collect(Collectors.toList());
     }
     
+    /**
+     * Altera o nome da componente.
+     * @param nome Nome da componente.
+     */
     public void setNome(String nome){
         this.nome = nome;
     }
     
+    /**
+     * Altera o tipo da componente.
+     * @param tipo Tipo da componente.
+     */
     public void setTipo(String tipo){
         this.tipo = tipo;
     }
     
+    /**
+     * Altera o preço da componente.
+     * @param p Preço da componente.
+     */
     public void setPreco(double p){
         this.preco = p;
     }
@@ -89,6 +130,11 @@ public class Componente {
             this.compObrigatorias.add(s);
     }
     
+    /**
+     * Função equals da classe Componente.
+     * @param o Objecto
+     * @return boolean
+     */
     public boolean equals (Object o) {
         if (this == o)
             return true;
@@ -109,6 +155,10 @@ public class Componente {
         this.compIncompativeis.add(c);
     }
     
+    /**
+     * Devolve String com a informação da classe Componente.
+     * @return String
+     */
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append("A componente é ");

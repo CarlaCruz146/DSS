@@ -7,7 +7,7 @@ package configurafacil.Business;
 
 /**
  *
- * @author jessica
+ * @author Grupo 30
  */
 public class NomeInexistenteException extends Exception{
     public NomeInexistenteException(String msg){

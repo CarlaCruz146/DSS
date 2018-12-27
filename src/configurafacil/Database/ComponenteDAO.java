@@ -19,7 +19,7 @@ import java.util.Set;
 
 /**
  *
- * @author jessica
+ * @author Grupo 30
  */
 public class ComponenteDAO implements Map<String,Componente> {
         

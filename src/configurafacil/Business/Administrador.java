@@ -7,7 +7,7 @@ package configurafacil.Business;
 
 /**
  *
- * @author mercy
+ * @author Grupo 30
  */
 public class Administrador {
     

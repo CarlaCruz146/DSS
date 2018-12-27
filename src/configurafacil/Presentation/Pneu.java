@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  *
- * @author utilizador
+ * @author Grupo 30
  */
 public class Pneu extends javax.swing.JDialog {
     private ConfiguraFacil configura;

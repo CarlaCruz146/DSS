@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  *
- * @author jessica
+ * @author Grupo 30
  */
 public class Configuracao extends javax.swing.JDialog {
     private ConfiguraFacil configura;

@@ -12,7 +12,7 @@ import configurafacil.Business.FuncStand;
 
 /**
  *
- * @author jessica
+ * @author Grupo 30
  */
 public class Login extends javax.swing.JFrame {
     private ConfiguraFacil configura;

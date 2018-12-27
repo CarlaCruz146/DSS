@@ -9,7 +9,7 @@ import configurafacil.Business.Encomenda;
 
 /**
  *
- * @author jessica
+ * @author Grupo 30
  */
 public class EscolherCarro extends javax.swing.JDialog {
     private ConfiguraFacil configura;

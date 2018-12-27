@@ -19,7 +19,7 @@ import java.util.Set;
 
 /**
  *
- * @author mercy
+ * @author Grupo 30
  */
 public class ClienteDAO implements Map<String,Cliente>{
     private Connection c;

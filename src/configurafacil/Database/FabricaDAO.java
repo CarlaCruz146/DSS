@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 
 /**
  *
- * @author jessica
+ * @author Grupo 30
  */
 public class FabricaDAO {
     private Connection c;

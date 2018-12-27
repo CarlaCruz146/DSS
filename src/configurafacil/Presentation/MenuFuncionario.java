@@ -9,7 +9,7 @@ import configurafacil.Business.ConfiguraFacil;
 
 /**
  *
- * @author mercy
+ * @author Grupo 30
  */
 public class MenuFuncionario extends javax.swing.JDialog {
     private ConfiguraFacil configura;

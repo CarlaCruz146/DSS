@@ -19,7 +19,7 @@ import java.util.Set;
 
 /**
  *
- * @author mercy
+ * @author Grupo 30
  */
 public class UtilizadorDAO implements Map<String,Utilizador> {
     

@@ -11,7 +11,7 @@ import java.sql.DriverManager;
 
 /**
  *
- * @author jessica
+ * @author Grupo 30
  */
 public class Connect {
     private static final String USERNAME = "root";

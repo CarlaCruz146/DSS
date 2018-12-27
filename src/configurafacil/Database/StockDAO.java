@@ -17,7 +17,7 @@ import java.util.Set;
 
 /**
  *
- * @author jessica
+ * @author Grupo 30
  */
 public class StockDAO implements Map<String,Stock>{
      

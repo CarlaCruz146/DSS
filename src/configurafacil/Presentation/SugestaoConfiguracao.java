@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author mercy
+ * @author Grupo 30
  */
 public class SugestaoConfiguracao extends javax.swing.JDialog {
     private ConfiguraFacil configura;

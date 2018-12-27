@@ -7,7 +7,7 @@ package configurafacil.Business;
 
 /**
  *
- * @author utilizador
+ * @author Grupo 30
  */
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +15,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Encomenda {
+    
+    //Variáveis de instância
     private int id;
     private String carro;
     private int estado;
@@ -23,6 +25,9 @@ public class Encomenda {
     private String cliente;
     private double limite;
     
+    /**
+     * Construtor da classe Encomenda sem parâmetros.
+     */
     public Encomenda() {
         this.id = 0;
         this.carro = "";
@@ -33,6 +38,15 @@ public class Encomenda {
         this.limite = 0;
     }
     
+    /**
+     * Construtor da classe Encomenda. 
+     * @param id Id da encomenda.
+     * @param carro Carro da encomenda.
+     * @param config Configuração da encomenda.
+     * @param pacote Pacote da encomenda.
+     * @param cliente Cliente que pediu a encomenda.
+     * @param limite Limite de preço da encomenda.
+     */
     public Encomenda(int id, String carro, int estado, List<String> config, String pacote, String cliente, double limite){
         this.id = id;
         this.carro = carro;
@@ -44,6 +58,10 @@ public class Encomenda {
         this.limite = limite;
     }
     
+    /**
+     * Construtor da classe Encomenda pela cópia de uma classe.
+     * @param e Encomenda.
+     */
     public Encomenda(Encomenda e){
         this.id = e.getId();
         this.carro = e.getCarro();
@@ -54,77 +72,155 @@ public class Encomenda {
         this.limite = e.getLimite();
     }
     
+    /**
+     * Devolve o nome do cliente da encomenda.
+     * @return String
+     */
     public String getCliente(){
         return this.cliente;
     }
     
+    /**
+     * Devolve o limite do preço da encomenda.
+     * @return String
+     */
     public double getLimite(){
         return this.limite;
     }
     
+    /**
+     * Devolve o id da encomenda.
+     * @return String
+     */
     public int getId(){
         return this.id;
     }
     
+    /**
+     * Devolve o carro da encomenda.
+     * @return String
+     */
     public String getCarro(){
         return this.carro;
     }
     
+    /**
+     * Devolve o estado da encomenda.
+     * @return String
+     */
     public int getEstado(){
         return this.estado;
     }
     
+    /**
+     * Devolve a confiragação da encomenda.
+     * @return String
+     */
     public List<String> getConfig(){
         return this.configuracao.stream().collect(Collectors.toList());
     }
     
+    /**
+     * Devolve o pacote da encomenda.
+     * @return String
+     */
     public String getPacote(){
         return this.pacote;
     }
     
+    /**
+     * Devolve o tamanho da configuração da encomenda.
+     * @return String
+     */
     public Integer getNConfig(){
         return this.configuracao.size();
     }
+    
+    /**
+     * Devolve o nome do utilizador.
+     * @return String
+     */
     public void addToConfiguracao(String c){
         this.configuracao.add(c);
     }
     
+    /**
+     * Remove componente da configuração da encomenda.
+     * @param c Componente da configuração da encomenda
+     */
     public void removeDaConfiguracao(String c){
         this.configuracao.remove(c);
     }
     
+    /**
+     * Altera carro da encomenda.
+     * @param carro Carro da encomenda
+     */
     public void addCarro(String carro){
         this.carro = carro;
     }
     
+    /**
+     * Altera o nome do cliente.
+     * @param cliente Nome do cliente.
+     */
     public void setCliente(String cliente){
         this.cliente = cliente;
     }
+    
+    /**
+     * Altera o id do encomenda.
+     * @param id ID do encomenda.
+     */
     public void setId(int id){
         this.id = id;
     }
     
+    /**
+     * Altera o limite de preço da encomenda.
+     * @param l Limite de preço da nome.
+     */
     public void setLimite(double l){
         this.limite = l;
     }
-        
+    
+    /**
+     * Altera o carro da encomenda.
+     * @param c Carro da encomenda.
+     */    
     public void setCarro(String c){
         this.carro = c;
     }
     
+    /**
+     * Altera o estado da encomenda.
+     * @param e Estado da encomenda.
+     */
     public void setEstado(int e){
         this.estado = e;
     }
     
+    /**
+     * Altera o pacote da encomenda.
+     * @param pacote Pacote da encomenda.
+     */
     public void setPacote(String pacote){
         this.pacote = pacote;
     }
    
-    
+    /**
+     * Altera a configuração da encomenda.
+     * @param c Configuração da encomenda.
+     */
     public void setConfig(List<String> c){
         this.configuracao = c.stream().collect(Collectors.toList());
     }
     
+    /**
+     * Verifica componentes da configuração.
+     * @param comp Componentes da configuração.
+     * @return boolean
+     */
     public boolean verificaComponentes(Map<String,Componente> comp){
         int i = 0;
         for(String s: this.configuracao){
@@ -136,6 +232,11 @@ public class Encomenda {
         return n;
     }
     
+    /**
+     * Verifica o tipo das componentes da configuração.
+     * @param tipo Tipo da componente.
+     * @param comp Componentes da configuração.
+     */
     public Componente verificaTipo(String tipo, Map<String,Componente> componente){
         Componente comp = null, c = null;
         for(String s: this.configuracao){
@@ -147,7 +248,7 @@ public class Encomenda {
         }
         return comp;
     }
-        
+    
     public List<String> verificaIncomp(Componente c, Pacote p){
         List<String> incomp = new ArrayList<String>();
         for(String i : c.getIncompativeis())
@@ -207,7 +308,11 @@ public class Encomenda {
         return incomp;
     }
 
-    
+    /**
+     * Função equals da classe Encomenda.
+     * @param o Objecto
+     * @return boolean
+     */
     public boolean equals(Object o) {
         boolean b=false;
 
@@ -218,6 +323,10 @@ public class Encomenda {
         return b;
     }
 
+    /**
+     * Devolve String com a informação da classe Encomenda.
+     * @return String
+     */
     //Falta imprimir a lista dos arrays
     public String toString() {
         StringBuffer sb = new StringBuffer("Encomenda(");

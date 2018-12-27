@@ -20,7 +20,7 @@ import java.util.Set;
 
 /**
  *
- * @author jessica
+ * @author Grupo 30
  */
 public class StandDAO{
     private Connection c;

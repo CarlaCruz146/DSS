@@ -10,7 +10,7 @@ import configurafacil.Business.ConfiguraFacil;
 
 /**
  *
- * @author jessica
+ * @author Grupo 30
  */
 public class DadosCliente extends javax.swing.JDialog {
     private ConfiguraFacil configura;

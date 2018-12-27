@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  *
- * @author utilizador
+ * @author Grupo 30
  */
 public class Estofos extends javax.swing.JDialog {
     private ConfiguraFacil configura;

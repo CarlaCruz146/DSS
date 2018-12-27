@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author jessica
+ * @author Grupo 30
  */
 public class EncomendasProntas extends javax.swing.JDialog {
     private ConfiguraFacil configura;

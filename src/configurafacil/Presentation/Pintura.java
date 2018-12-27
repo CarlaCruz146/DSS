@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  *
- * @author jessica
+ * @author Grupo 30
  */
 public class Pintura extends javax.swing.JDialog {
     private ConfiguraFacil configura;

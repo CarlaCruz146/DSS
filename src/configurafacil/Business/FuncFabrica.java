@@ -7,26 +7,48 @@ package configurafacil.Business;
 
 /**
  *
- * @author mercy
+ * @author Grupo 30
  */
 public class FuncFabrica extends Utilizador {
     
+    /**
+     * Construtor vazio do Utilizador cuja natureza é FuncFabrica
+     */
     public FuncFabrica(){
         super();
     }
     
+    /**
+     * Constrói a partir dos parametros fornecidos um utilizador cuja natureza é FuncFabrica
+     * @param nome Nome do utilizador
+     * @param pass Password do utilizador
+     * @param estado Estado do utilizador
+     */
     public FuncFabrica(String nome, String pass, int estado){
         super(nome,pass,estado);
     }
     
+    /**
+     * Constroi um utilizador cuja natureza é FuncFabrica a partir de uma definida
+     * @param f
+     */
     public FuncFabrica(FuncFabrica f){
         super(f);
     }
     
+    /**
+     * Faz a cópia de um utilizador cuja natureza é FuncFabrica
+     * @return Cópia da fatura
+     */ 
     public FuncFabrica clone(){
         return new FuncFabrica(this);
     }
     
+    /**
+     * Compara dois utilizadores de FuncFabrica
+     * @param o Objeto
+     * @return boolean
+     */
     public boolean equals(Object o){
        if(this == o) return true;
        if(o == null || this.getClass() != o.getClass()) return false;

@@ -17,9 +17,11 @@ import java.util.stream.Collectors;
 
 /**
  *
- * @author mercy
+ * @author Grupo 30
  */
 public class ConfiguraFacil {
+    
+    //Variáveis de instância
     private Administrador administrador;
     private StandDAO stand;
     private FabricaDAO fabrica;
@@ -30,6 +32,9 @@ public class ConfiguraFacil {
     private PacoteDAO pacotes;
     private CarroDAO carro;
     
+    /**
+     * Construtor da classe ConfiguraFacil sem parâmetros.
+     */
     public ConfiguraFacil(){
         this.stand = new StandDAO();
         this.fabrica = new FabricaDAO();
@@ -42,46 +47,94 @@ public class ConfiguraFacil {
         this.carro = new CarroDAO();
     }
 
+    /**
+     * Devolve as componentes existente na aplicação.
+     * @return Map
+     */
     public Map<String,Componente> getComponentes(){
         return this.componentes.entrySet().stream().collect(Collectors.toMap(e->e.getKey(), e->e.getValue()));
     }
     
+    /**
+     * Devolve os pacotes existentes na aplicação.
+     * @return Map
+     */
     public Map<String,Pacote> getPacote(){
         return this.pacotes.entrySet().stream().collect(Collectors.toMap(e->e.getKey(), e->e.getValue()));
     }
     
+    /**
+     * Devolve uma das componentes da aplicação.
+     * @param nome Nome da componente
+     * @return Componente
+     */
     public Componente getComponente(String nome){
         return this.componentes.get(nome);
     }
     
+    /**
+     * Devolve um dos pacotes da aplicação.
+     * @param nome Nome do pacote
+     * @return Pacote
+     */
     public Pacote getPacote(String nome){
         return this.pacotes.get(nome);
     }
     
+    /**
+     * Devolve um carro da aplicação.
+     * @param nome Nome do carro
+     * @return Carro
+     */
     public Carro getCarro(String nome){
         return this.carro.get(nome);
     }
-           
+    
+    /**
+     * Devolve o stand da aplicação.
+     * @return Stand
+     */
     public Stand getStand(){
         return this.stand.get(1);
     }
     
+    /**
+     * Devolve um cliente da aplicação com dado nif.
+     * @param nif Nif do cliente
+     * @return Cliente
+     */
     public Cliente getCliente(String nif){
         return this.stand.get(1).getCliente(nif);
     }
     
+    /**
+     * Devolve a fabrica da aplicação.
+     * @return Fabrica
+     */
     public Fabrica getFabrica(){
         return this.fabrica.get(1);
     }
     
+    /**
+     * Devolve o adminstrador da aplicação.
+     * @return Administrador
+     */
     public Administrador getAdministrador(){
         return this.administrador;
     }
     
+    /**
+     * Devolve o utilizador da aplicação.
+     * @return Utilizador
+     */
     public Utilizador getUtilizador(){
         return this.utilizador;
     }
-    
+    /**
+     * Devolve o utilizador da aplicação com dado nome.
+     * @param nome Nome do utilizador
+     * @return Utilizador
+     */
     public Utilizador getUser(String nome){
         return this.gestaoU.getUtilizador(nome);
     }
@@ -94,6 +147,10 @@ public class ConfiguraFacil {
         return this.gestaoE;
     }
     
+    /**
+     * Devolve os utilizadores da aplicação.
+     * @return Map
+     */
     public Map<String,Utilizador> getUtilizadores(){
         return this.gestaoU.getUtilizadores();
     }

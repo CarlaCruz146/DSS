@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author jessica
+ * @author Grupo 30
  */
 public class DetalhesEncomenda extends javax.swing.JDialog {
     private ListaEncomendas parent;

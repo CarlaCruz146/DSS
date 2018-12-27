@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author jessica
+ * @author Grupo 30
  */
 public class ListaUtilizadores extends javax.swing.JDialog {
     public ConfiguraFacil configura;

@@ -7,7 +7,7 @@ package configurafacil.Business;
 
 /**
  *
- * @author utilizador
+ * @author Grupo 30
  */
 public class PasswordInvalidaException extends Exception{
     public PasswordInvalidaException(String msg){
