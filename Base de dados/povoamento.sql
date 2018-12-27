@@ -132,17 +132,33 @@ INSERT INTO Utilizador
 	(Nome, Password, Estado, Stand, Fabrica)
     VALUES
     ("João Silva","joao",0,1,1),
-    ("Carlos Costa","carlos",0,1,1);
+    ("Carlos Costa","carlos",0,1,1),
+    ("Roberto Leal","roberto",1,1,1),
+    ("Afonso Martins","afonso",0,1,1),
+    ("Mariana Fernandes","mariana",0,1,1),
+    ("Margarida Vasconcelos","margarida",1,1,1),
+    ("Diana Abreu","diana",0,1,1),
+    ("Rodrigo Nunes","rodrigo",0,1,1),
+    ("Cláudia Dias","claudia",0,1,1),
+    ("Marco Oliveira","marco",0,1,1);
 
 INSERT INTO FuncStand
 	(Utilizador)
     VALUES
-    ("João Silva");
+    ("João Silva"),
+    ("Mariana Fernandes"),
+	("Rodrigo Nunes");
 
 INSERT INTO FuncFabrica
 	(Utilizador)
 	VALUES
-    ("Carlos Costa");
+    ("Carlos Costa"),
+    ("Roberto Leal"),
+    ("Afonso Martins"),
+    ("Margarida Vasconcelos"),
+    ("Diana Abreu"),
+    ("Cláudia Dias"),
+    ("Marco Oliveira");
     
 INSERT INTO  Carro
 	(Nome, Preco)
@@ -165,13 +181,43 @@ INSERT INTO Cliente
 	(Nif,Nome, Contacto, Stand)
     VALUES
     ("123456789","JJ","123456789",1),
-    ("987654321","JA","987654321",1);
+    ("987654321","JA","987654321",1),
+    ("124549802","AR","124549802",1),
+    ("487242891","RR","487242891",1),
+    ("472847284","BV","472847284",1),
+    ("109382414","CC","109382414",1),
+    ("276474181","GF","276474181",1),
+    ("948714193","PP","948714193",1),
+    ("126366182","RP","126366182",1),
+    ("492482948","LF","492482948",1),
+    ("623726718","DP","623726718",1),
+    ("472827718","CT","472827718",1),
+    ("563526490","OL","563526490",1),
+    ("173621724","ES","173621724",1),
+	("428761748","VF","428761748",1);
+
     
 INSERT INTO Encomenda
 	(idEncomenda, Estado, Limite, Cliente, Pacote, Fabrica, Carro)
     VALUES
     (1,0,12342,"123456789","Pacote Comfort",1, "Mazda CX-5"),
-    (2,0,87457,"987654321","Pacote Sport",1, "Seat Ibiza");
+    (2,0,null,"987654321","Pacote Sport",1, "Seat Ibiza"),
+	(3,1,null,"124549802",null,1, "Mercedes Benz"),
+    (4,1,null,"487242891",null,1, "Renault Clio"),
+    (5,0,35000,"472847284","Pacote Sport",1, "Opel SUV"),
+    (6,1,21000,"109382414","Pacote Sport",1, "Opel SUV"),
+    (7,0,null,"276474181","Pacote Comfort",1, "Seat Ibiza"),
+    (8,0,31000,"948714193","Pacote Comfort",1, "Renault Clio"),
+    (9,1,41228,"126366182","Pacote Sport",1, "Seat Ibiza"),
+    (10,1,null,"276474181","Pacote Comfort",1, "Mazda CX-5"),
+    (11,0,60980,"492482948",null,1, "Seat Ibiza"),
+    (12,0,23134,"623726718",null,1, "Opel SUV"),
+    (13,1,null,"472827718","Pacote Sport",1, "Seat Ibiza"),
+    (14,1,null,"623726718","Pacote Sport",1, "Mercedes Benz"),
+    (15,0,48289,"563526490","Pacote Comfort",1, "Seat Ibiza"),
+    (16,0,null,"492482948",null,1, "Mercedes Benz"),
+    (17,1,null,"173621724","Pacote Comfort",1, "Mazda CX-5"),
+    (18,1,78920,"428761748","Pacote Sport",1, "Renault Clio");
 
 
 INSERT INTO ComponenteIncompativel
