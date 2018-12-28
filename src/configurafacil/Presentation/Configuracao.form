@@ -42,7 +42,7 @@
                               <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="584" max="32767" attributes="0"/>
+                      <EmptySpace pref="556" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -250,7 +250,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="7" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="Comfort" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Sport" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -398,49 +398,49 @@
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/configurafacil/pneu.png"/>
+          <Image iconType="3" name="/configurafacil/Presentation/img/pneu.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/configurafacil/jantes.png"/>
+          <Image iconType="3" name="/configurafacil/Presentation/img/jantes.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/configurafacil/motor.png"/>
+          <Image iconType="3" name="/configurafacil/Presentation/img/motor.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/configurafacil/pacoteLuz.png"/>
+          <Image iconType="3" name="/configurafacil/Presentation/img/pacoteLuz.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/configurafacil/tetoAbrir.png"/>
+          <Image iconType="3" name="/configurafacil/Presentation/img/tetoAbrir.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/configurafacil/estofos.png"/>
+          <Image iconType="3" name="/configurafacil/Presentation/img/estofos.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel11">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/configurafacil/paraChoques.png"/>
+          <Image iconType="3" name="/configurafacil/Presentation/img/paraChoques.png"/>
         </Property>
       </Properties>
     </Component>
@@ -480,14 +480,14 @@
     <Component class="javax.swing.JLabel" name="jLabel14">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/configurafacil/pintura.png"/>
+          <Image iconType="3" name="/configurafacil/Presentation/img/pintura.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel15">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/configurafacil/vidros.png"/>
+          <Image iconType="3" name="/configurafacil/Presentation/img/vidros.png"/>
         </Property>
       </Properties>
     </Component>

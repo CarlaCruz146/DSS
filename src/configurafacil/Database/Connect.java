@@ -15,7 +15,7 @@ import java.sql.DriverManager;
  */
 public class Connect {
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "jessicaandreia";
+    private static final String PASSWORD = "password";
     private static final String URL = "localhost";
     private static final String SCHEMA = "mydb";
     
