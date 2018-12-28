@@ -7,6 +7,8 @@ package configurafacil.Presentation;
 
 import configurafacil.Business.ConfiguraFacil;
 import configurafacil.Business.Encomenda;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -147,7 +149,8 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
         List<String> compPacote = new ArrayList<>();
         List<String> comps = new ArrayList<>();
         if(e.getPacote() != null){
-            compPacote = e.getPacote().getComponentes();
+            String pacote = e.getPacote();
+            compPacote = configura.getPacote(pacote).getComponentes();
             comps.addAll(compPacote);
         }
         comps.addAll(e.getConfig());

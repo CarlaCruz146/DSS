@@ -19,7 +19,6 @@ public class Cliente {
     private String nome;
     private String nif;
     private String contacto;
-   // private List<Integer> encomendas;
     
     /**
      * Construtor da classe Utilizador sem parâmetros.
@@ -28,7 +27,6 @@ public class Cliente {
         this.nome = "";
         this.nif = ""; 
         this.contacto = "";
-     //   this.encomendas = new ArrayList<>();
     }
     
     /**
@@ -42,9 +40,6 @@ public class Cliente {
         this.nome = nome;
         this.nif = nif;
         this.contacto = contacto;
-      //  this.encomendas = new ArrayList<>();
-      //  if (enc == null) this.encomendas = null;
-      //  else enc.forEach(a->this.encomendas.add((Integer) a));
     }
     
     /**
@@ -55,7 +50,6 @@ public class Cliente {
         this.nome = c.getNome();
         this.nif = c.getNif();
         this.contacto = c.getContacto();
-      //  this.encomendas = c.getEncomendas();
     }
     
     /**
@@ -110,18 +104,7 @@ public class Cliente {
     public void setContacto(String contacto){
         this.contacto = contacto;
     }
-    
-    /*
-    public void setEncomendas(ArrayList<Integer> enc){
-        this.encomendas = new ArrayList<>();
-        enc.forEach(a->this.encomendas.add(a));
-    }
-    
-    public void addEncomenda(Encomenda e){
-        if (this.encomendas == null) this.encomendas = new ArrayList<>();
-        this.encomendas.add(e.getId());
-    }*/
-    
+
     /**
      * Devolve String com a informação da classe Cliente.
      * @return String

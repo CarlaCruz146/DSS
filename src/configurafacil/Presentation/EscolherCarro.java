@@ -281,7 +281,7 @@ public class EscolherCarro extends javax.swing.JDialog {
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor escolha um carro","Carro não selecionado", 0);
         }
         else {
-            encomenda.addCarro(carro);
+            encomenda.setCarro(carro);
             encomenda.setLimite(this.parent.getLimite());
             this.setVisible(false);
             new Configuracao(this, parent, true, configura).setVisible(true);

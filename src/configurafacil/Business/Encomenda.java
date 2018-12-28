@@ -151,15 +151,7 @@ public class Encomenda {
     public void removeDaConfiguracao(String c){
         this.configuracao.remove(c);
     }
-    
-    /**
-     * Altera carro da encomenda.
-     * @param carro Carro da encomenda
-     */
-    public void addCarro(String carro){
-        this.carro = carro;
-    }
-    
+        
     /**
      * Altera o nome do cliente.
      * @param cliente Nome do cliente.
@@ -327,7 +319,6 @@ public class Encomenda {
      * Devolve String com a informação da classe Encomenda.
      * @return String
      */
-    //Falta imprimir a lista dos arrays
     public String toString() {
         StringBuffer sb = new StringBuffer("Encomenda(");
         sb.append(this.carro);
