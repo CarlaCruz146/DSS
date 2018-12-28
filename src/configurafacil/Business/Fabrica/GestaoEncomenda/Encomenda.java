@@ -209,8 +209,8 @@ public class Encomenda {
     }
     
     /**
-     * Verifica componentes da configuração.
-     * @param comp Componentes da configuração.
+     * Verifica se todas as componetes básicas obrigatórias foram escolhidas
+     * @param comp Componentes da configuração
      * @return boolean
      */
     public boolean verificaComponentes(Map<String,Componente> comp){
@@ -225,9 +225,9 @@ public class Encomenda {
     }
     
     /**
-     * Verifica o tipo das componentes da configuração.
-     * @param tipo Tipo da componente.
-     * @param comp Componentes da configuração.
+     * Devolve a componente de um determinado tipo
+     * @param tipo Tipo da componente
+     * @param comp Componentes da configuração
      */
     public Componente verificaTipo(String tipo, Map<String,Componente> componente){
         Componente comp = null, c = null;
@@ -240,7 +240,13 @@ public class Encomenda {
         }
         return comp;
     }
-    
+
+    /**
+     * Devolve a lista de componentes incompativeis de um componente selecionado com um pacote
+     * @param c Componente selecionado
+     * @param p Pacote selecionado
+     * @param Lista de componentes incompativeis
+     */    
     public List<String> verificaIncomp(Componente c, Pacote p){
         List<String> incomp = new ArrayList<String>();
         for(String i : c.getIncompativeis())
@@ -256,7 +262,12 @@ public class Encomenda {
         }
         return incomp;
     }
-    
+
+    /**
+     * Devolve a lista de componentes obrigatórias que ainda não se encontram na encomenda
+     * @param c Componente adicionada
+     * @return Lista de componentes obrigatórias
+     */    
     public List<String> verificaObrig(Componente c){
         List<String> obrig = new ArrayList<String>();
         int flag = 0;
@@ -271,7 +282,12 @@ public class Encomenda {
         } 
         return obrig;
     }
-    
+
+    /**
+     * Devolve a lista de componentes obrigatórias da encomenda não selecionadas
+     * @param tipo Tipo da componente
+     * @return Lista de componentes obrigatórias
+     */    
     public List<String> verificaObrigatoria(Map<String,Componente> componente){
         List<String> obrigatorio = new ArrayList<>();
         int flag = 0;
@@ -287,7 +303,13 @@ public class Encomenda {
         }
         return obrigatorio;
     }
-    
+
+    /**
+     * Devolve a lista de componentes incompativeis com um pacote
+     * @param p Pacote
+     * @param componentes Componentes da configuração
+     * @return lista de componentes incompativeis
+     */    
     public List<String> verificaIncompativel(Pacote p, Map<String,Componente> componentes){
         List<String> incomp = new ArrayList<String>();
         for(String str : p.getComponentes()){

@@ -9,8 +9,6 @@ import configurafacil.Database.ComponenteDAO;
 import configurafacil.Database.FabricaDAO;
 import configurafacil.Database.PacoteDAO;
 import configurafacil.Database.StandDAO;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -138,11 +136,19 @@ public class ConfiguraFacil {
     public Utilizador getUser(String nome){
         return this.gestaoU.getUtilizador(nome);
     }
-    
+
+    /**
+     * Devolve a gestão de utilizadores.
+     * @return GestaoU
+     */    
     public GestaoUtilizadores getGestaoU(){
         return this.gestaoU;
     }
-    
+
+     /**
+     * Devolve a gestão de encomendas.
+     * @return GestaoE
+     */   
     public GestaoEncomenda getGestaoE(){
         return this.gestaoE;
     }
@@ -154,62 +160,139 @@ public class ConfiguraFacil {
     public Map<String,Utilizador> getUtilizadores(){
         return this.gestaoU.getUtilizadores();
     }
-    
+
+    /**
+     * Devolve as componentes existente na aplicação. 
+     * @param u Utilizador
+     * @param estado Estado a alterar
+     * @return Map
+     */    
     public void setEstado(Utilizador u, int estado){
         this.gestaoU.setEstado(u, estado);
     }
-    
+
+    /**
+     * Adiciona uma componente.
+     * @param c Componente a adicionar
+     * @return Map
+     */    
     public void addComponente(Componente c){
         this.componentes.put(c.getNome(),c);
     }
-    
+
+    /**
+     * Devolve as componentes existente na aplicação.
+     * @param p Pacote a adicionar
+     * @return Map
+     */    
     public void addPacote(Pacote p){
         this.pacotes.put(p.getNome(),p);
     }
-    
+
+    /**
+     * Adiciona um utilizador.
+     * @param u Utilizador
+     */    
     public void addUtilizador(Utilizador u) {
         this.gestaoU.addUtilizador(u);
     }
-    
+
+    /**
+     * Verifica se é um utilizador.
+     * @param nome Nome a verificar
+     * @return Se existe ou não
+     */      
     public boolean verificaUserName(String nome){
         return this.gestaoU.verificaUserName(nome);
     }
+
+    /**
+     * Verifica se todas as componentes básicas obrigatórias foram escolhidas.
+     * @param e Encomenda
+     * @return Boolean
+     */
     public boolean verificaComponentes(Encomenda e){
         return e.verificaComponentes(this.componentes);
     }
     
+    /**
+     * Devolve uma componente de um determinado tipo na encomenda.
+     * @param tipo Tipo da componente
+     * @param e Encomenda
+     * @return Componente
+     */
     public Componente verificaTipo(String tipo, Encomenda e){
        return e.verificaTipo(tipo,this.componentes);
     }
     
+    /**
+     * Devolve a lista de todas as componentes obrigatórias não selecionadas.
+     * @param e Encomenda
+     * @return lista dos componentes obrigatórias
+     */
     public List<String> verificaObrigatoria(Encomenda e){
         return e.verificaObrigatoria(this.componentes);
     }
     
+    /**
+     * Devolve a lista de componentes incompativeis na encomenda com um pacote.
+     * @param p Pacote
+     * @param e Encomenda
+     * @return Se existe ou não
+     */
     public List<String> verificaIncompativel(Pacote p, Encomenda e){
         return e.verificaIncompativel(p, this.componentes);
     }
     
+    /**
+     * Verifica se existe stock de uma determinada componente.
+     * @param s Nome da componente
+     * @return Se existe ou não
+     */
     public int verificaStock(String s){
         return this.fabrica.get(1).verificaStock(s);
     } 
     
+    /**
+     * Devolve uma determinada encomenda.
+     * @param id Identificador da encomenda
+     * @return Encomenda
+     */
     public Encomenda getEncomenda(int id){
         return this.gestaoE.getEncomenda(id);
     }
     
+    /**
+     * Devolve todas as encomendas na aplicação.
+     * @return Map
+     */
     public Map<Integer,Encomenda> getEncomendas(){
         return this.gestaoE.getEncomendas();
     }
     
+    /**
+     * Atualiza o stock de uma determinada componente.
+     * @param s Nome da componente
+     * @param q Quantidade da componente
+     */
     public void atualizaStock(String s, int q){
         this.fabrica.get(1).atualizaStock(s,q);
     }
-    
+
+    /**
+     * Altera o estado de uma determinada encomenda.
+     * @param e Encomenda
+     * @param estado Estado da encomenda
+     */    
     public void alterarEstado(Encomenda e, int estado){
         this.gestaoE.alterarEstado(e, estado);
     }
-    
+
+    /**
+     * Inicia sessão de um utilizador.
+     * @param nome Nome do utilizador
+     * @param password Password do utilizador
+     */     
     public void login(String nome, String password){
         try{
             if(!nome.equals("Admin")) this.utilizador = this.gestaoU.verificaUtilizador(nome, password);
@@ -217,11 +300,19 @@ public class ConfiguraFacil {
         }
         catch(Exception e){}
     }
-    
+
+    /**
+     * Termina sessão de um utilizador.
+     */  
     public void logout(){
         this.utilizador = null;
     }
-    
+
+    /**
+     * Constroi uma string com a lista de componentes.
+     * @param componentes Lista dos nomes das componentes a listar
+     * @return string com as componentes
+     */  
     public String listaComponentes(List<String> componentes){
         StringBuilder sb = new StringBuilder();
         for (String i : componentes){
@@ -231,6 +322,11 @@ public class ConfiguraFacil {
         return sb.toString();
     }
     
+    /**
+     * Devolve uma encomenda constituída por componentes não obrigatorias dado um limite máximo a gastar.
+     * @param limite Limite máximo a gastar na configuração
+     * @return Encomenda
+     */  
     public Encomenda sugestao(double limite){
         Encomenda e = new Encomenda();
         double valor = 0;
@@ -299,6 +395,10 @@ public class ConfiguraFacil {
         return e;
     }
     
+    /**
+     * Atualiza o stock quando uma encomenda é colocada em execução.
+     * @param config Lista do nome das componentes a diminuir o stock
+     */  
     public void diminuiStock(List<String> config){        
         for(String s : config){
             int qt = fabrica.get(1).getStock().get(s).getQuantidade();

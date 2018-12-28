@@ -8,7 +8,6 @@ package configurafacil.Presentation;
 import configurafacil.Business.Componente;
 import configurafacil.Business.Cliente;
 import configurafacil.Business.ConfiguraFacil;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
