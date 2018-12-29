@@ -6,11 +6,10 @@
  */
 package configurafacil.Presentation;
 
-import configurafacil.Business.Cliente;
-import configurafacil.Business.Componente;
 import configurafacil.Business.ConfiguraFacil;
-import configurafacil.Business.Encomenda;
-import configurafacil.Business.Pacote;
+import configurafacil.Business.Fabrica.GestaoEncomenda.Componente;
+import configurafacil.Business.Fabrica.GestaoEncomenda.Encomenda;
+import configurafacil.Business.Fabrica.GestaoEncomenda.Pacote;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -66,9 +65,7 @@ public class SugestaoConfiguracao extends javax.swing.JDialog {
     public void obtemConfig(double limite){
         
         Encomenda e = this.configura.sugestao(limite);
-//        System.out.println("Enc"+e.getConfig());
         for(String s :  e.getConfig()){
-  //          System.out.println(s);
             Componente c = this.configura.getComponente(s);
             sugestao.add(c);
         }

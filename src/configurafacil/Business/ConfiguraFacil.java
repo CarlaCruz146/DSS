@@ -4,11 +4,16 @@
  * and open the template in the editor.
  */
 package configurafacil.Business;
-import configurafacil.Database.CarroDAO;
+
+import configurafacil.Business.Fabrica.Fabrica;
+import configurafacil.Business.Fabrica.GestaoEncomenda.*;
+import configurafacil.Business.GestaoUtilizadores.Administrador;
+import configurafacil.Business.GestaoUtilizadores.GestaoUtilizadores;
+import configurafacil.Business.GestaoUtilizadores.Utilizador;
+import configurafacil.Business.Stand.Cliente;
+import configurafacil.Business.Stand.Stand;
 import configurafacil.Database.ComponenteDAO;
-import configurafacil.Database.FabricaDAO;
 import configurafacil.Database.PacoteDAO;
-import configurafacil.Database.StandDAO;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -21,28 +26,26 @@ public class ConfiguraFacil {
     
     //Variáveis de instância
     private Administrador administrador;
-    private StandDAO stand;
-    private FabricaDAO fabrica;
+    private Stand stand;
+    private Fabrica fabrica;
     private Utilizador utilizador;
     private GestaoUtilizadores gestaoU;
     private GestaoEncomenda gestaoE;
     private ComponenteDAO componentes;
     private PacoteDAO pacotes;
-    private CarroDAO carro;
     
     /**
      * Construtor da classe ConfiguraFacil sem parâmetros.
      */
     public ConfiguraFacil(){
-        this.stand = new StandDAO();
-        this.fabrica = new FabricaDAO();
+        this.stand = new Stand();
+        this.fabrica = new Fabrica();
         this.utilizador = null;
         this.administrador = new Administrador();
         this.gestaoU = new GestaoUtilizadores();
         this.gestaoE = new GestaoEncomenda();
         this.componentes = new ComponenteDAO();
         this.pacotes = new PacoteDAO();
-        this.carro = new CarroDAO();
     }
 
     /**
@@ -80,20 +83,11 @@ public class ConfiguraFacil {
     }
     
     /**
-     * Devolve um carro da aplicação.
-     * @param nome Nome do carro
-     * @return Carro
-     */
-    public Carro getCarro(String nome){
-        return this.carro.get(nome);
-    }
-    
-    /**
      * Devolve o stand da aplicação.
      * @return Stand
      */
     public Stand getStand(){
-        return this.stand.get(1);
+        return this.stand;
     }
     
     /**
@@ -102,7 +96,7 @@ public class ConfiguraFacil {
      * @return Cliente
      */
     public Cliente getCliente(String nif){
-        return this.stand.get(1).getCliente(nif);
+        return this.stand.getCliente(nif);
     }
     
     /**
@@ -110,7 +104,7 @@ public class ConfiguraFacil {
      * @return Fabrica
      */
     public Fabrica getFabrica(){
-        return this.fabrica.get(1);
+        return this.fabrica;
     }
     
     /**
@@ -233,7 +227,18 @@ public class ConfiguraFacil {
     public List<String> verificaObrigatoria(Encomenda e){
         return e.verificaObrigatoria(this.componentes);
     }
-    
+    /*
+     public List<String> verificaIncomp(Encomenda e, Componente c, Pacote p){
+         return this.gestaoE.verificaIncomp(e,c,p);
+     }
+     
+    public void addToConfiguracao(Encomenda e, String c){
+         this.gestaoE.addToConfiguracao(e,c);
+    }
+     
+     public List<String> verificaObrig(Encomenda e, Componente c){
+        return this.gestaoE.verificaObrig(e, c);
+    }*/
     /**
      * Devolve a lista de componentes incompativeis na encomenda com um pacote.
      * @param p Pacote
@@ -250,7 +255,7 @@ public class ConfiguraFacil {
      * @return Se existe ou não
      */
     public int verificaStock(String s){
-        return this.fabrica.get(1).verificaStock(s);
+        return this.fabrica.verificaStock(s);
     } 
     
     /**
@@ -260,6 +265,10 @@ public class ConfiguraFacil {
      */
     public Encomenda getEncomenda(int id){
         return this.gestaoE.getEncomenda(id);
+    }
+    
+    public String getPacote(Encomenda e){
+        return this.gestaoE.getPacote(e);
     }
     
     /**
@@ -276,8 +285,12 @@ public class ConfiguraFacil {
      * @param q Quantidade da componente
      */
     public void atualizaStock(String s, int q){
-        this.fabrica.get(1).atualizaStock(s,q);
+        this.fabrica.atualizaStock(s,q);
     }
+    /*
+    public void setCliente(Encomenda e,String cliente){
+        e.setCliente(cliente);
+    }*/
 
     /**
      * Altera o estado de uma determinada encomenda.
@@ -401,8 +414,8 @@ public class ConfiguraFacil {
      */  
     public void diminuiStock(List<String> config){        
         for(String s : config){
-            int qt = fabrica.get(1).getStock().get(s).getQuantidade();
-            fabrica.get(1).atualizaStock(s, qt-1);
+            int qt = fabrica.getStock().get(s).getQuantidade();
+            fabrica.atualizaStock(s, qt-1);
         }
     }
 }

@@ -6,9 +6,7 @@
 package configurafacil.Presentation;
 
 import configurafacil.Business.ConfiguraFacil;
-import java.util.HashMap;
-import configurafacil.Business.Encomenda;
-import java.util.Map;
+import configurafacil.Business.Fabrica.GestaoEncomenda.Encomenda;
 import javax.swing.table.DefaultTableModel;
 
 /**

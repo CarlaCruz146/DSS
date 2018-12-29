@@ -5,8 +5,8 @@
  */
 package configurafacil.Presentation;
 
-import configurafacil.Business.Cliente;
 import configurafacil.Business.ConfiguraFacil;
+import configurafacil.Business.Stand.Cliente;
 
 /**
  *

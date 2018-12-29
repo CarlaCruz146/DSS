@@ -5,7 +5,7 @@
  */
 package configurafacil.Presentation;
 import configurafacil.Business.ConfiguraFacil;
-import configurafacil.Business.Encomenda;
+import configurafacil.Business.Fabrica.GestaoEncomenda.Encomenda;
 
 /**
  *

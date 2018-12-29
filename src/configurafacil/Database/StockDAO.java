@@ -5,7 +5,7 @@
  */
 package configurafacil.Database;
 
-import configurafacil.Business.Stock;
+import configurafacil.Business.Fabrica.Stock;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,7 +35,7 @@ public class StockDAO implements Map<String,Stock>{
             }
         }
         catch (Exception e) {
-            throw new NullPointerException(e.getMessage() + "Stock");
+            throw new NullPointerException(e.getMessage());
         }
         finally {
             Connect.close(con);
@@ -59,7 +59,7 @@ public class StockDAO implements Map<String,Stock>{
             ResultSet rs = stm.executeQuery();
             r = rs.next();
         } catch (Exception e) {
-            throw new NullPointerException(e.getMessage() + "Stock");
+            throw new NullPointerException(e.getMessage());
         } finally {
             Connect.close(con);
         }
@@ -70,7 +70,7 @@ public class StockDAO implements Map<String,Stock>{
     public boolean containsValue(Object value) {
         boolean res = false;
         
-        if(value.getClass().getName().equals("configuraFacil.Business.Stock")){
+        if(value.getClass().getName().equals("configuraFacil.Business.Fabrica.Stock")){
             Stock s = (Stock)value;
             String comp = s.getComponente();
             Stock s2 = this.get(comp);
@@ -104,7 +104,7 @@ public class StockDAO implements Map<String,Stock>{
                Connect.close(con);
             }
             catch(Exception e){
-                System.out.printf(e.getMessage() + "Stock");
+                System.out.printf(e.getMessage());
             }
         }
         return s;
@@ -128,14 +128,14 @@ public class StockDAO implements Map<String,Stock>{
             ps.executeUpdate();
         }
         catch(Exception e){
-            System.out.printf(e.getMessage() + "Stock2");
+            System.out.printf(e.getMessage());
         }
         finally{
             try{
                 Connect.close(con);
             }
             catch(Exception e){
-                System.out.printf(e.getMessage() + "Stock");
+                System.out.printf(e.getMessage());
             }
         }
         return p;
@@ -151,14 +151,14 @@ public class StockDAO implements Map<String,Stock>{
             ps.executeUpdate();
         }
         catch(Exception e){
-            System.out.printf(e.getMessage() + "Stock");
+            System.out.printf(e.getMessage());
         }
         finally{
             try{
                 Connect.close(con);
             }
             catch(Exception e){
-                System.out.printf(e.getMessage() + "Stock");
+                System.out.printf(e.getMessage());
             }
         }
         return p;
@@ -180,14 +180,14 @@ public class StockDAO implements Map<String,Stock>{
             ps.executeUpdate();
         }
         catch(Exception e){
-            System.out.printf(e.getMessage() + "Stock");
+            System.out.printf(e.getMessage());
         }
         finally{
             try{
                 Connect.close(con);
             }
             catch(Exception e){
-                System.out.printf(e.getMessage() + "Stock");
+                System.out.printf(e.getMessage());
             }
         }
     }
@@ -206,14 +206,14 @@ public class StockDAO implements Map<String,Stock>{
             }   
         }
         catch(Exception e){
-            System.out.printf(e.getMessage() + "Stock");
+            System.out.printf(e.getMessage());
         }
         finally{
             try{
                 Connect.close(con);
             }
             catch(Exception e){
-                System.out.printf(e.getMessage() + "Stock");
+                System.out.printf(e.getMessage());
             }
         }
         return set;

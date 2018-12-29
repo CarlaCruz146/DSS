@@ -6,9 +6,7 @@
 package configurafacil.Presentation;
 
 import configurafacil.Business.ConfiguraFacil;
-import configurafacil.Business.Utilizador;
-import java.util.List;
-import java.util.Map;
+import configurafacil.Business.GestaoUtilizadores.Utilizador;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 

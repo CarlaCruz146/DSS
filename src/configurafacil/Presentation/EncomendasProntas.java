@@ -5,9 +5,9 @@
  */
 package configurafacil.Presentation;
 
-import configurafacil.Business.Cliente;
 import configurafacil.Business.ConfiguraFacil;
-import configurafacil.Business.Encomenda;
+import configurafacil.Business.Fabrica.GestaoEncomenda.Encomenda;
+import configurafacil.Business.Stand.Cliente;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 

@@ -5,7 +5,7 @@
  */
 package configurafacil.Database;
 
-import configurafacil.Business.Encomenda;
+import configurafacil.Business.Fabrica.GestaoEncomenda.Encomenda;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -72,7 +72,7 @@ public class EncomendaDAO implements Map<Integer,Encomenda> {
     public boolean containsValue(Object o) {
         boolean res = false;
         
-        if(o.getClass().getName().equals("configuraFacil.Business.Encomenda")){
+        if(o.getClass().getName().equals("configuraFacil.Business.Fabrica.GestaoEncomenda.Encomenda")){
             Encomenda e = (Encomenda) o;
             int id = e.getId();
             Encomenda enc = this.get(id);
@@ -139,22 +139,20 @@ public class EncomendaDAO implements Map<Integer,Encomenda> {
             c = Connect.connect();
             
            
-           String sql = "INSERT INTO Encomenda (idEncomenda, Estado, Limite, Cliente, Pacote, Fabrica, Carro)" +
-                   "VALUES (?,?,?,?,?,?,?)\n" +
+           String sql = "INSERT INTO Encomenda (idEncomenda, Estado, Limite, Carro, Cliente, Pacote)" +
+                   "VALUES (?,?,?,?,?,?)\n" +
                    "ON DUPLICATE KEY UPDATE Estado = VALUES(Estado),\n" +
                    "Limite = VALUES(Limite),\n"+
+                   "Carro = VALUES(Carro),\n" +
                    "Cliente = VALUES(Cliente),\n" +
-                   "Pacote = VALUES(Pacote),\n" +
-                   "Fabrica = VALUES(Fabrica),\n" +
-                   "Carro = VALUES(Carro);\n";
+                   "Pacote = VALUES(Pacote);\n";
             PreparedStatement ps = c.prepareStatement(sql);
             ps.setInt(1,k);
             ps.setString(2,Integer.toString(v.getEstado()));
             ps.setDouble(3, v.getLimite());
-            ps.setString(4, v.getCliente());
-            ps.setString(5, v.getPacote());
-            ps.setInt(6,1);
-            ps.setString(7,v.getCarro());
+            ps.setString(4,v.getCarro());
+            ps.setString(5, v.getCliente());
+            ps.setString(6, v.getPacote());
             ps.executeUpdate();
 
              sql = "INSERT INTO Encomenda_Componente (Encomenda, Componente)" +

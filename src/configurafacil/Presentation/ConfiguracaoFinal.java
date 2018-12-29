@@ -5,13 +5,11 @@
  */
 package configurafacil.Presentation;
 
-import configurafacil.Business.Componente;
 import configurafacil.Business.ConfiguraFacil;
-import configurafacil.Business.Pacote;
+import configurafacil.Business.Fabrica.GestaoEncomenda.Componente;
+import configurafacil.Business.Fabrica.GestaoEncomenda.Pacote;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -190,18 +188,19 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
             c = this.configura.getComponente(componente);
             this.parent2.encomenda.removeDaConfiguracao(componente);
             preco -= c.getPreco();
-            System.out.println(c.getTipo());
+            if(c.getTipo().equals("Teto")) this.parent.setTeto();
+            else if(c.getTipo().equals("Pára-choque")) this.parent.setParaChoques();
+            else if(c.getTipo().equals("Luzes")) this.parent.setLuz();
+            else if(c.getTipo().equals("Vidro")) this.parent.setVidro();
         }
-        if (pacoteSelect!=null){
+        else if (pacoteSelect!=null){
             p = this.configura.getPacote(pacoteSelect);
-            this.parent2.encomenda.setPacote("");
+            this.parent2.encomenda.setPacote(null);
+            System.out.println("pa" + this.parent2.encomenda.getPacote());
             preco -= p.getPreco();
             this.parent.setPacotes();
+            pacoteSelect = null;
         }
-        else if(c.getTipo().equals("Teto")) this.parent.setTeto();
-        else if(c.getTipo().equals("Pára-choque")) this.parent.setParaChoques();
-        else if(c.getTipo().equals("Luzes")) this.parent.setLuz();
-        else if(c.getTipo().equals("Vidro")) this.parent.setVidro();
         model.removeRow(row);
         precoTotal.setText(Double.toString(preco));
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -215,6 +214,7 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
         // TODO add your handling code here:
         row = jTable1.getSelectedRow();
         nome = (String)model.getValueAt(row, 0);
+        System.out.println("nome" + nome);
         for(String c : config)
             if(c.equals(nome))
                 this.componente = c;

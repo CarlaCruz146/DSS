@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package configurafacil.Business;
+package configurafacil.Business.Stand;
 import configurafacil.Database.ClienteDAO;
 
 import java.util.Map;
@@ -23,7 +23,7 @@ public class Stand {
      * Construtor da classe Stand sem parâmetros.
      */
     public Stand() {
-        this.clientes = null;
+        this.clientes = new ClienteDAO();
     }
     
     /**

@@ -5,16 +5,14 @@
  */
 package configurafacil.Database;
 
+import configurafacil.Business.Stand.Cliente;
 import java.util.Map;
-import configurafacil.Business.Cliente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -23,19 +21,13 @@ import java.util.Set;
  */
 public class ClienteDAO implements Map<String,Cliente>{
     private Connection c;
-    private int id;
-    
-    public ClienteDAO(int id){
-        this.id = id;
-    }
 
     @Override
     public int size() {
        int s = -1;
         try {
             c = Connect.connect();
-            PreparedStatement stm = c.prepareStatement("SELECT count(*) FROM Cliente WHERE Stand = ?");
-            stm.setInt(1,this.id);
+            PreparedStatement stm = c.prepareStatement("SELECT count(*) FROM Cliente");
             ResultSet rs = stm.executeQuery();
             if(rs.next()) {
                s = rs.getInt(1);
@@ -60,10 +52,9 @@ public class ClienteDAO implements Map<String,Cliente>{
         boolean res = false;
         try {
             c = Connect.connect();
-            String sql = "SELECT Nif FROM Cliente WHERE Nif = ? AND Stand = ?";
+            String sql = "SELECT Nif FROM Cliente WHERE Nif = ?";
             PreparedStatement stm = c.prepareStatement(sql);
             stm.setString(1, (String) o);
-            stm.setInt(2,this.id);
             ResultSet rs = stm.executeQuery();
             res = rs.next();
         } catch (Exception e) {
@@ -78,7 +69,7 @@ public class ClienteDAO implements Map<String,Cliente>{
     public boolean containsValue(Object o) {
         boolean res = false;
         
-        if(o.getClass().getName().equals("configuraFacil.Business.Cliente")){
+        if(o.getClass().getName().equals("configuraFacil.Business.Stand.Cliente")){
             Cliente cl = (Cliente) o;
             String nif = cl.getNif();
             Cliente cliente = this.get(nif);
@@ -95,25 +86,24 @@ public class ClienteDAO implements Map<String,Cliente>{
         
         try{
             c = Connect.connect();
-            PreparedStatement ps = c.prepareStatement("SELECT * FROM Cliente WHERE Nif = ? AND Stand = ?");
+            PreparedStatement ps = c.prepareStatement("SELECT * FROM Cliente WHERE Nif = ?");
             ps.setString(1,(String) o);
-            ps.setInt(2,this.id);
             ResultSet rs = ps.executeQuery();
-            if(rs.next()){ // se existir
+            if(rs.next()){
                 cl.setNif(rs.getString("Nif"));
                 cl.setNome(rs.getNString("Nome"));
                 cl.setContacto(rs.getNString("Contacto"));
             } 
         }
         catch(Exception e){
-            System.out.printf(e.getMessage() + "Cliente");
+            System.out.printf(e.getMessage());
         }
         finally{
             try{
                Connect.close(c);
             }
             catch(Exception e){
-                System.out.printf(e.getMessage() + "Cliente");
+                System.out.printf(e.getMessage());
             }
         }
         return cl;
@@ -130,23 +120,22 @@ public class ClienteDAO implements Map<String,Cliente>{
         try{
             c = Connect.connect();
             
-            PreparedStatement ps = c.prepareStatement("INSERT INTO Cliente (Nif,Nome,Contacto,Stand) VALUES (?,?,?,?)");
+            PreparedStatement ps = c.prepareStatement("INSERT INTO Cliente (Nif,Nome,Contacto) VALUES (?,?,?)");
             ps.setString(1,k);
             ps.setString(2,v.getNome());
             ps.setString(3,v.getContacto());
-            ps.setInt(4, this.id);
             ps.executeUpdate();
             
         }
         catch(Exception e){
-            System.out.printf(e.getMessage() + "Cliente");
+            System.out.printf(e.getMessage());
         }
         finally{
             try{
                 Connect.close(c);
             }
             catch(Exception e){
-                System.out.printf(e.getMessage() + "Cliente");
+                System.out.printf(e.getMessage());
             }
         }
         return cl;
@@ -162,14 +151,14 @@ public class ClienteDAO implements Map<String,Cliente>{
             ps.executeUpdate();
         }
         catch(Exception e){
-            System.out.printf(e.getMessage() + "Cliente");
+            System.out.printf(e.getMessage());
         }
         finally{
             try{
                 Connect.close(c);
             }
             catch(Exception e){
-                System.out.printf(e.getMessage() + "Cliente");
+                System.out.printf(e.getMessage());
             }
         }
         return cl;
@@ -190,14 +179,14 @@ public class ClienteDAO implements Map<String,Cliente>{
             ps.executeUpdate();
         }
         catch(Exception e){
-            System.out.printf(e.getMessage() + "Cliente");
+            System.out.printf(e.getMessage());
         }
         finally{
             try{
                 Connect.close(c);
             }
             catch(Exception e){
-                System.out.printf(e.getMessage() + "Cliente");
+                System.out.printf(e.getMessage());
             }
         }
     }
@@ -216,14 +205,14 @@ public class ClienteDAO implements Map<String,Cliente>{
             }   
         }
         catch(Exception e){
-            System.out.printf(e.getMessage() + "Cliente");
+            System.out.printf(e.getMessage());
         }
         finally{
             try{
                 Connect.close(c);
             }
             catch(Exception e){
-                System.out.printf(e.getMessage() + "Cliente");
+                System.out.printf(e.getMessage());
             }
         }
         return keys;

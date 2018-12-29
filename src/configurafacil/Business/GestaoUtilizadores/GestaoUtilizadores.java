@@ -3,12 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package configurafacil.Business;
+package configurafacil.Business.GestaoUtilizadores;
 import configurafacil.Database.UtilizadorDAO;
 import java.util.HashMap;
 
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  *
@@ -23,7 +22,7 @@ public class GestaoUtilizadores {
      * Construtor da classe GestaoUtilizadores sem parâmetros.
      */
     public GestaoUtilizadores(){
-        this.utilizadores = new UtilizadorDAO(1,1);
+        this.utilizadores = new UtilizadorDAO();
     }
     
     /**

@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package configurafacil.Business;
+package configurafacil.Business.Fabrica.GestaoEncomenda;
 
 import configurafacil.Database.EncomendaDAO;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -37,13 +38,16 @@ public class GestaoEncomenda {
         return e;
     }
     
+    public String getPacote(Encomenda e){
+        return e.getPacote();
+    }
+    
     /**
      * Adiciona uma encomenda aos registos de encomendas.
      * @param e Encomenda.
      */
     public void addEncomenda(Encomenda e){
         int i = encomendas.size()+1;
-       // e.setId(i);
         this.encomendas.put(i,e);
     }
     
@@ -73,4 +77,24 @@ public class GestaoEncomenda {
         e.setEstado(estado);
         this.encomendas.put(e.getId(), e);
     }
+    /*
+    public List<String> verificaIncomp(Encomenda e, Componente c, Pacote p){
+         return e.verificaIncomp(c,p);
+     }
+    
+    public Componente verificaTipo(Encomenda e, String tipo, Map<String,Componente> componente){
+        return e.verificaTipo(tipo, componente);
+    }
+    
+    public List<String> verificaObrig(Encomenda e, Componente c){
+        return e.verificaObrig(c);
+    }
+    
+    public void addToConfiguracao(Encomenda e,String c){
+         e.addToConfiguracao(c);
+    }
+    
+    public void setCliente(Encomenda e,String cliente){
+        e.setCliente(cliente);
+    }*/
 }

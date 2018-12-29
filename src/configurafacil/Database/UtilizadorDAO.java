@@ -5,9 +5,11 @@
  */
 package configurafacil.Database;
 
-import configurafacil.Business.FuncFabrica;
-import configurafacil.Business.Utilizador;
-import configurafacil.Business.FuncStand;
+
+
+import configurafacil.Business.GestaoUtilizadores.FuncFabrica;
+import configurafacil.Business.GestaoUtilizadores.FuncStand;
+import configurafacil.Business.GestaoUtilizadores.Utilizador;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,14 +26,7 @@ import java.util.Set;
 public class UtilizadorDAO implements Map<String,Utilizador> {
     
     private Connection c;
-    private int stand;
-    private int fabrica;
-    
-    public UtilizadorDAO(int stand, int fabrica){
-        this.stand = stand;
-        this.fabrica = fabrica;
-    }
-    
+
     @Override
     public int size() {
          int s = -1;
@@ -79,7 +74,7 @@ public class UtilizadorDAO implements Map<String,Utilizador> {
     public boolean containsValue(Object o) {
         boolean res = false;
         
-        if(o.getClass().getName().equals("configuraFacil.Business.Utilizador")){
+        if(o.getClass().getName().equals("configuraFacil.Business.GestaoUtilizadores.Utilizador")){
             Utilizador u = (Utilizador) o;
             String nome = u.getNome();
             Utilizador utilizador = this.get(nome);
@@ -132,7 +127,7 @@ public class UtilizadorDAO implements Map<String,Utilizador> {
              }
         }
         catch(Exception e){
-            System.out.printf(e.getMessage() + "get");
+            System.out.printf(e.getMessage());
         }
         finally{
             try{
@@ -156,13 +151,11 @@ public class UtilizadorDAO implements Map<String,Utilizador> {
         try{
             c = Connect.connect();
             
-            PreparedStatement ps = c.prepareStatement("INSERT INTO Utilizador (Nome,Password,Estado,Stand,Fabrica) VALUES (?,?,?,?,?)\n" +
+            PreparedStatement ps = c.prepareStatement("INSERT INTO Utilizador (Nome,Password,Estado) VALUES (?,?,?)\n" +
                                                      "ON DUPLICATE KEY UPDATE Estado = VALUES(Estado);\n");
             ps.setString(1,k);
             ps.setString(2,v.getPassword());
             ps.setInt(3,v.getEstado());
-            ps.setInt(4,stand);
-            ps.setInt(5,fabrica);
             
             ps.executeUpdate();
             

@@ -5,7 +5,7 @@
  */
 package configurafacil.Database;
 
-import configurafacil.Business.Componente;
+import configurafacil.Business.Fabrica.GestaoEncomenda.Componente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -72,7 +72,7 @@ public class ComponenteDAO implements Map<String,Componente> {
     public boolean containsValue(Object value) {
         boolean res = false;
         
-        if(value.getClass().getName().equals("configuraFacil.Business.Componente")){
+        if(value.getClass().getName().equals("configuraFacil.Business.Fabrica.GestaoEncomenda.Componente")){
             Componente c = (Componente)value;
             String user = c.getNome();
             Componente c2 = this.get(user);

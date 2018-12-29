@@ -5,9 +5,9 @@
  */
 package configurafacil.Presentation;
 
-import configurafacil.Business.Componente;
-import configurafacil.Business.Cliente;
 import configurafacil.Business.ConfiguraFacil;
+import configurafacil.Business.Fabrica.GestaoEncomenda.Componente;
+import configurafacil.Business.Stand.Cliente;
 import java.util.List;
 
 /**

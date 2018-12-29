@@ -79,68 +79,20 @@ INSERT INTO Stock
     (400, "Amortecedores Resistentes"),
     (500, "Spoilers"),
 	(500,"Escape com 2 ponteiras");
-
-INSERT INTO Fabrica
-	(idFabrica, Stock)
-    VALUES
-        (1, "Preto"),
-	(1, "Branco"),
-	(1, "Cinzento"),
-    (1, "Azul"),
-
-    (1, "D4 190cv Man. 6 Vel."),
-    (1, "D4 190cv Geatronic 8 Vel."),
-    (1, "D5 235cv Geatronic 8 Vel."),
-
-	(1, "Bridgestone Turanza T005 205/55 R16 91V"),
-    (1, "Continental ContiEcoContact 5 205/55 R16 91V"),
-    (1, "Continental PremiumContact 6 205/55 R16 91H"),
-    (1, "Firestone Roadhawk 205/55 R16 91H"),
-    
-    (1, "Jantes em liga leve 17''"),
-    (1, "Jantes em liga leve 18'' 245/45 R18"),
-    (1, "Jantes em liga leve 19'' 255/40 R19"),
-    
-    (1, "Couro comfort carvão"),
-    (1, "Couro comfort âmbar"),
-    (1, "Couro comfort maroon brown"),
-    (1, "Couro comfort blond"),
-    
-    (1, "Pára-choques"),
-    (1, "Vidro Escurecido"),
-    (1, "Teto de abrir"),
-    (1, "Pacotes de luz"),
-    
-    (1, "Bancos elétricos"),
-    (1, "Ar condicionado de 4 Zonas"),
-    (1, "Pacotes de Luzes Interiores"),
-    (1, "Espelhos Retrovisores com Mecanismo Anti-Encadeamento"),
-
-    (1, "Jantes personalizadas"),
-    (1, "Amortecedores Resistentes"),
-    (1, "Spoilers"),
-	(1,"Escape com 2 ponteiras");
-    
-
-    
-INSERT INTO Stand
-	(idStand)
-    VALUES
-    (1);
     
 INSERT INTO Utilizador
-	(Nome, Password, Estado, Stand, Fabrica)
+	(Nome, Password, Estado)
     VALUES
-    ("João Silva","joao",0,1,1),
-    ("Carlos Costa","carlos",0,1,1),
-    ("Roberto Leal","roberto",1,1,1),
-    ("Afonso Martins","afonso",0,1,1),
-    ("Mariana Fernandes","mariana",0,1,1),
-    ("Margarida Vasconcelos","margarida",1,1,1),
-    ("Diana Abreu","diana",0,1,1),
-    ("Rodrigo Nunes","rodrigo",0,1,1),
-    ("Cláudia Dias","claudia",0,1,1),
-    ("Marco Oliveira","marco",0,1,1);
+    ("João Silva","joao",0),
+    ("Carlos Costa","carlos",0),
+    ("Roberto Leal","roberto",1),
+    ("Afonso Martins","afonso",0),
+    ("Mariana Fernandes","mariana",0),
+    ("Margarida Vasconcelos","margarida",1),
+    ("Diana Abreu","diana",0),
+    ("Rodrigo Nunes","rodrigo",0),
+    ("Cláudia Dias","claudia",0),
+    ("Marco Oliveira","marco",0);
 
 INSERT INTO FuncStand
 	(Utilizador)
@@ -160,16 +112,6 @@ INSERT INTO FuncFabrica
     ("Cláudia Dias"),
     ("Marco Oliveira");
     
-INSERT INTO  Carro
-	(Nome, Preco)
-    VALUES
-    ("Mazda CX-5", 11599),
-    ("Seat Ibiza", 12750),
-    ("Mercedes Benz", 15480),
-    ("Volvo V40", 13300),
-    ("Opel SUV", 11990),
-    ("Renault Clio", 10270);
-    
 INSERT INTO Pacote 
 	(Nome, Preco)
     VALUES
@@ -178,46 +120,46 @@ INSERT INTO Pacote
 
 
 INSERT INTO Cliente
-	(Nif,Nome, Contacto, Stand)
+	(Nif,Nome, Contacto)
     VALUES
-    ("123456789","João Delgado","123456789",1),
-    ("987654321","Joaquim Costa","987654321",1),
-    ("124549802","Arlindo Ramones","124549802",1),
-    ("487242891","Rui Ribeiro","487242891",1),
-    ("472847284","Bruno Vieira","472847284",1),
-    ("109382414","Carolina Costa","109382414",1),
-    ("276474181","Guilherme Fontes","276474181",1),
-    ("948714193","Paulo Pereira","948714193",1),
-    ("126366182","Ricardo Passos","126366182",1),
-    ("492482948","Luís Fernandes","492482948",1),
-    ("623726718","Diogo Pires","623726718",1),
-    ("472827718","Carlota Teixeira","472827718",1),
-    ("563526490","Olga Lamego","563526490",1),
-    ("173621724","Ester Sousa","173621724",1),
-	("428761748","Vitor Fonte","428761748",1);
+    ("123456789","João Delgado","123456789"),
+    ("987654321","Joaquim Costa","987654321"),
+    ("124549802","Arlindo Ramones","124549802"),
+    ("487242891","Rui Ribeiro","487242891"),
+    ("472847284","Bruno Vieira","472847284"),
+    ("109382414","Carolina Costa","109382414"),
+    ("276474181","Guilherme Fontes","276474181"),
+    ("948714193","Paulo Pereira","948714193"),
+    ("126366182","Ricardo Passos","126366182"),
+    ("492482948","Luís Fernandes","492482948"),
+    ("623726718","Diogo Pires","623726718"),
+    ("472827718","Carlota Teixeira","472827718"),
+    ("563526490","Olga Lamego","563526490"),
+    ("173621724","Ester Sousa","173621724"),
+	("428761748","Vitor Fonte","428761748");
 
     
 INSERT INTO Encomenda
-	(idEncomenda, Estado, Limite, Cliente, Pacote, Fabrica, Carro)
+	(idEncomenda, Estado, Limite, Carro, Cliente, Pacote)
     VALUES
-    (1,0,12342,"123456789","Pacote Comfort",1, "Mazda CX-5"),
-    (2,0,null,"987654321","Pacote Sport",1, "Seat Ibiza"),
-	(3,1,null,"124549802",null,1, "Mercedes Benz"),
-    (4,1,null,"487242891",null,1, "Renault Clio"),
-    (5,0,35000,"472847284","Pacote Sport",1, "Opel SUV"),
-    (6,1,21000,"109382414","Pacote Sport",1, "Opel SUV"),
-    (7,0,null,"276474181","Pacote Comfort",1, "Seat Ibiza"),
-    (8,0,31000,"948714193","Pacote Comfort",1, "Renault Clio"),
-    (9,1,41228,"126366182","Pacote Sport",1, "Seat Ibiza"),
-    (10,1,null,"276474181","Pacote Comfort",1, "Mazda CX-5"),
-    (11,0,60980,"492482948",null,1, "Seat Ibiza"),
-    (12,0,23134,"623726718",null,1, "Opel SUV"),
-    (13,1,null,"472827718","Pacote Sport",1, "Seat Ibiza"),
-    (14,1,null,"623726718","Pacote Sport",1, "Mercedes Benz"),
-    (15,0,48289,"563526490","Pacote Comfort",1, "Seat Ibiza"),
-    (16,0,null,"492482948",null,1, "Mercedes Benz"),
-    (17,1,null,"173621724","Pacote Comfort",1, "Mazda CX-5"),
-    (18,1,78920,"428761748","Pacote Sport",1, "Renault Clio");
+    (1,0,12342, "Mazda CX-5","123456789","Pacote Comfort"),
+    (2,0,null, "Seat Ibiza","987654321","Pacote Sport"),
+	(3,1,null, "Mercedes Benz","124549802",null),
+    (4,1,null,"Renault Clio","487242891",null),
+    (5,0,35000, "Opel SUV","472847284","Pacote Sport"),
+    (6,1,21000, "Opel SUV","109382414","Pacote Sport"),
+    (7,0,null, "Seat Ibiza","276474181","Pacote Comfort"),
+    (8,0,31000, "Renault Clio","948714193","Pacote Comfort"),
+    (9,1,41228, "Seat Ibiza","126366182","Pacote Sport"),
+    (10,1,null, "Mazda CX-5","276474181","Pacote Comfort"),
+    (11,0,60980, "Seat Ibiza","492482948",null),
+    (12,0,23134, "Opel SUV","623726718",null),
+    (13,1,null, "Seat Ibiza","472827718","Pacote Sport"),
+    (14,1,null, "Mercedes Benz","623726718","Pacote Sport"),
+    (15,0,48289, "Seat Ibiza","563526490","Pacote Comfort"),
+    (16,0,null, "Mercedes Benz","492482948",null),
+    (17,1,null, "Mazda CX-5","173621724","Pacote Comfort"),
+    (18,1,78920, "Renault Clio","428761748","Pacote Sport");
 
 
 INSERT INTO ComponenteIncompativel
@@ -227,8 +169,10 @@ INSERT INTO ComponenteIncompativel
     ("Bridgestone Turanza T005 205/55 R16 91V","Jantes em liga leve 17''"),
     ("Couro comfort carvão","Bancos elétricos"),
 	("Pacotes de luz","Pacotes de Luzes Interiores"),
+    ("Pacotes de Luzes Interiores","Pacotes de luz"),
     ("Bancos elétricos","Couro comfort carvão"),
     ("Pacotes de Luzes Interiores","Espelhos Retrovisores com Mecanismo Anti-Encadeamento");
+
     
 INSERT INTO ComponenteObrigatoria
 	(Nome, Componente)

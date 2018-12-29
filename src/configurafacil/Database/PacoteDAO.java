@@ -5,7 +5,7 @@
  */
 package configurafacil.Database;
 
-import configurafacil.Business.Pacote;
+import configurafacil.Business.Fabrica.GestaoEncomenda.Pacote;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -37,7 +37,7 @@ public class PacoteDAO implements Map<String,Pacote> {
             }
         }
         catch (Exception e) {
-            throw new NullPointerException(e.getMessage() + "Pacote");
+            throw new NullPointerException(e.getMessage());
         }
         finally {
             Connect.close(con);
@@ -61,7 +61,7 @@ public class PacoteDAO implements Map<String,Pacote> {
             ResultSet rs = stm.executeQuery();
             r = rs.next();
         } catch (Exception e) {
-            throw new NullPointerException(e.getMessage() + "Pacote");
+            throw new NullPointerException(e.getMessage());
         } finally {
             Connect.close(con);
         }
@@ -72,7 +72,7 @@ public class PacoteDAO implements Map<String,Pacote> {
     public boolean containsValue(Object value) {
         boolean res = false;
         
-        if(value.getClass().getName().equals("configuraFacil.Business.Pacote")){
+        if(value.getClass().getName().equals("configuraFacil.Business.Fabrica.GestaoEncomenda.Pacote")){
             Pacote p = (Pacote)value;
             String user = p.getNome();
             Pacote p2 = this.get(user);
@@ -110,14 +110,14 @@ public class PacoteDAO implements Map<String,Pacote> {
             } 
         }
         catch(Exception e){
-            System.out.printf(e.getMessage() + "pacotemememe");
+            System.out.printf(e.getMessage());
         }
         finally{
             try{
                Connect.close(con);
             }
             catch(Exception e){
-                System.out.printf(e.getMessage() + "Pacote");
+                System.out.printf(e.getMessage());
             }
         }
         return p;
@@ -151,14 +151,14 @@ public class PacoteDAO implements Map<String,Pacote> {
             p = value;
         }
         catch(Exception e){
-            System.out.printf(e.getMessage() + "Pacote2");
+            System.out.printf(e.getMessage());
         }
         finally{
             try{
                 Connect.close(con);
             }
             catch(Exception e){
-                System.out.printf(e.getMessage() + "Pacote");
+                System.out.printf(e.getMessage());
             }
         }
         return p;
@@ -181,14 +181,14 @@ public class PacoteDAO implements Map<String,Pacote> {
             }
         }
         catch(Exception e){
-            System.out.printf(e.getMessage() + "Pacote");
+            System.out.printf(e.getMessage());
         }
         finally{
             try{
                 Connect.close(con);
             }
             catch(Exception e){
-                System.out.printf(e.getMessage() + "Pacote");
+                System.out.printf(e.getMessage());
             }
         }
         return p;
@@ -210,14 +210,14 @@ public class PacoteDAO implements Map<String,Pacote> {
             ps.executeUpdate();
         }
         catch(Exception e){
-            System.out.printf(e.getMessage() + "Pacote");
+            System.out.printf(e.getMessage());
         }
         finally{
             try{
                 Connect.close(con);
             }
             catch(Exception e){
-                System.out.printf(e.getMessage() + "Pacote");
+                System.out.printf(e.getMessage());
             }
         }
     }
@@ -236,14 +236,14 @@ public class PacoteDAO implements Map<String,Pacote> {
             }   
         }
         catch(Exception e){
-            System.out.printf(e.getMessage() + "Pacote");
+            System.out.printf(e.getMessage());
         }
         finally{
             try{
                 Connect.close(con);
             }
             catch(Exception e){
-                System.out.printf(e.getMessage() + "Pacote");
+                System.out.printf(e.getMessage());
             }
         }
         return set;

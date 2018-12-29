@@ -5,9 +5,8 @@
  */
 package configurafacil.Presentation;
 
-import configurafacil.Business.Componente;
 import configurafacil.Business.ConfiguraFacil;
-import configurafacil.Business.Pacote;
+import configurafacil.Business.Fabrica.GestaoEncomenda.Pacote;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;

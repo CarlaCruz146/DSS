@@ -7,9 +7,8 @@ package configurafacil.Presentation;
 
 
 import configurafacil.Business.ConfiguraFacil;
-import configurafacil.Business.FuncFabrica;
-import configurafacil.Business.FuncStand;
-import configurafacil.Business.Utilizador;
+import configurafacil.Business.GestaoUtilizadores.FuncFabrica;
+import configurafacil.Business.GestaoUtilizadores.FuncStand;
 
 /**
  *
