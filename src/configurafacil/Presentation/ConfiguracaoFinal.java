@@ -192,6 +192,7 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
             else if(c.getTipo().equals("Pára-choque")) this.parent.setParaChoques();
             else if(c.getTipo().equals("Luzes")) this.parent.setLuz();
             else if(c.getTipo().equals("Vidro")) this.parent.setVidro();
+            componente = "";
         }
         else if (pacoteSelect!=null){
             p = this.configura.getPacote(pacoteSelect);
