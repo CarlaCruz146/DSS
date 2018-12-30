@@ -14,6 +14,8 @@ import configurafacil.Business.Stand.Cliente;
 import configurafacil.Business.Stand.Stand;
 import configurafacil.Database.ComponenteDAO;
 import configurafacil.Database.PacoteDAO;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -335,6 +337,56 @@ public class ConfiguraFacil {
         return sb.toString();
     }
     
+    public Encomenda sugestao2(double limite){
+        Encomenda e = new Encomenda();
+        Pacote pacote = null;
+        double valor = 0;
+        double v;
+        double max = 0;
+  
+        for(Pacote p: this.pacotes.values()){
+            v = p.getPreco();
+            if(valor+v<= limite && max<v){
+                pacote = p;
+                max = v;
+            }
+        }
+        if(pacote!=null){
+             e.setPacote(pacote.getNome());
+            valor+=pacote.getPreco();
+        }
+        List<Componente> cl = new ArrayList<>();       
+        if(valor<limite){
+            for(Componente c : this.componentes.values()){
+                boolean b = !c.getTipo().equals("Motor") && !c.getTipo().equals("Pintura") && 
+                 !c.getTipo().equals("Pneu") && !c.getTipo().equals("Jante") && !c.getTipo().equals("Pacote"); 
+                if(b) cl.add(c);
+            }
+             Collections.sort(cl, new ComponenteComparator());
+             for(Componente cp: cl){
+                 v = cp.getPreco();
+                 if(valor + v <= limite && e.verificaIncomp(cp, pacote).isEmpty() && e.verificaObrig(cp).isEmpty() && e.verificaTipo(cp.getTipo(), componentes)==null){
+                    valor+=v;
+                    e.addToConfiguracao(cp.getNome());
+                }
+                 else if(!e.verificaObrig(cp).isEmpty()){
+                     for(String s : e.verificaObrig(cp)){
+                        Componente componente = this.componentes.get(s);
+                        v = componente.getPreco();
+                        boolean b = !componente.getTipo().equals("Motor") && !componente.getTipo().equals("Pintura") && 
+                                    !componente.getTipo().equals("Pneu") && !componente.getTipo().equals("Jante"); 
+                        if(v+valor+cp.getPreco()<= limite && b && e.verificaTipo(cp.getTipo(), componentes)==null){
+                            valor+=cp.getPreco();
+                            e.addToConfiguracao(cp.getNome());
+                            valor+=v;
+                            e.addToConfiguracao(cp.getNome());
+                        }
+                     }
+                 }
+             }
+        }
+        return e;
+    }
     /**
      * Devolve uma encomenda constituída por componentes não obrigatorias dado um limite máximo a gastar.
      * @param limite Limite máximo a gastar na configuração

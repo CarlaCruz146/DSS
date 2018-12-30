@@ -241,6 +241,7 @@ public class Encomenda {
         return comp;
     }
 
+
     /**
      * Devolve a lista de componentes incompativeis de um componente selecionado com um pacote
      * @param c Componente selecionado
@@ -321,7 +322,7 @@ public class Encomenda {
         }
         return incomp;
     }
-
+    
     /**
      * Função equals da classe Encomenda.
      * @param o Objecto
