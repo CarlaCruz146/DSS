@@ -6,8 +6,6 @@
 package configurafacil.Presentation;
 
 import configurafacil.Business.ConfiguraFacil;
-import configurafacil.Business.Fabrica.GestaoEncomenda.Componente;
-import configurafacil.Business.Fabrica.GestaoEncomenda.Encomenda;
 import java.util.List;
 
 /**
@@ -234,11 +232,11 @@ public class Estofos extends javax.swing.JDialog {
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor escolha um estofo","Estofo não selecionado", 0);
         }
         else {
-            Encomenda e = this.parent2.encomenda;
-            Componente comp = configura.getComponente(this.estofo);
-            Componente c = this.configura.verificaTipo("Estofo",e);
-            List<String> listInc = e.verificaIncomp(comp,this.configura.getPacote(e.getPacote()));
-            List<String> listObrig = e.verificaObrig(comp);
+            List<String> componentes = this.parent.getComponentes();
+            String p = this.parent.getPacote(); 
+            String c = this.configura.verificaTipo("Estofo",this.parent.getComponentes());
+            List<String> listInc = this.configura.verificaIncomp(this.estofo,componentes,p);
+            List<String> listObrig =  this.configura.verificaObrig(this.estofo,componentes);
             String sbInc = this.configura.listaComponentes(listInc);
             String sbObrig = this.configura.listaComponentes(listObrig);
             if(!listObrig.isEmpty()){
@@ -249,9 +247,9 @@ public class Estofos extends javax.swing.JDialog {
             }
             else {
                 if(c != null){
-                    e.removeDaConfiguracao(c.getNome());
+                   this.parent.removeComponente(c);
                 }
-                e.addToConfiguracao(comp.getNome());
+                this.parent.addComponente(this.estofo);
             }
             this.setVisible(false);
         }

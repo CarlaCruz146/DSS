@@ -7,8 +7,6 @@ package configurafacil.Presentation;
 
 
 import configurafacil.Business.ConfiguraFacil;
-import configurafacil.Business.GestaoUtilizadores.FuncFabrica;
-import configurafacil.Business.GestaoUtilizadores.FuncStand;
 
 /**
  *
@@ -161,14 +159,8 @@ public class InserirUtilizador extends javax.swing.JDialog {
             if (validaDados()){
                 if(this.configura.verificaUserName(nome))
                     javax.swing.JOptionPane.showMessageDialog(this, "Nome de utilizador já existente.", "User inválido",0);
-                else{ if(tipo == 1){
-                        FuncStand u = new FuncStand(nome,pass,0);
-                        configura.addUtilizador(u);
-                    }
-                    else if (tipo == 2) {
-                        FuncFabrica u = new FuncFabrica(nome,pass,0);
-                        configura.addUtilizador(u);
-                    }
+                else{
+                    configura.adicionaUtilizador(nome,pass,0,tipo);
                     this.setVisible(false);
                     this.parent.addLine(nome);
                 }

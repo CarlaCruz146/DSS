@@ -6,8 +6,6 @@
 package configurafacil.Presentation;
 
 import configurafacil.Business.ConfiguraFacil;
-import configurafacil.Business.Fabrica.GestaoEncomenda.Componente;
-import configurafacil.Business.Fabrica.GestaoEncomenda.Pacote;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -38,8 +36,8 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
         this.configura = c;
         this.parent = (Configuracao) parent;
         this.parent2 = (EscolherCarro) parent2;
-        config = this.parent2.encomenda.getConfig();
-        pacote = this.parent2.encomenda.getPacote();
+        config = this.parent.getComponentes();
+        pacote = this.parent.getPacote();
         insereConfigTabela();
         precoTotal.setText(Double.toString(preco));
         
@@ -49,18 +47,19 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
         model =  (DefaultTableModel) jTable1.getModel();
         Object rowData[] = new Object[2];
         for(String s : config){
-            Componente c = this.configura.getComponente(s);
-            rowData[0] = c.getNome();
-            rowData[1] = c.getPreco();
+            double p = this.configura.getComponentePreco(s);
+            rowData[0] = s;
+            rowData[1] = p;
             model.addRow(rowData);
-            preco += c.getPreco();
+            preco += p;
         }
-        String p = this.parent2.encomenda.getPacote();
-        if(p!=null) { 
-            rowData[0] = this.configura.getPacote(p).getNome();
-            rowData[1] = this.configura.getPacote(p).getPreco();
+        String pnome = this.parent.getPacote();
+        if(pnome!=null) { 
+            double p = this.configura.getPacotePreco(pnome);
+            rowData[0] = pnome;
+            rowData[1] = p;
             model.addRow(rowData);
-            preco += this.configura.getPacote(p).getPreco();
+            preco += p;
         }
     }
     /**
@@ -182,23 +181,18 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         model =  (DefaultTableModel) jTable1.getModel();
-        Componente c = null;
-        Pacote p = null;
         if (!componente.isEmpty()){
-            c = this.configura.getComponente(componente);
-            this.parent2.encomenda.removeDaConfiguracao(componente);
-            preco -= c.getPreco();
-            if(c.getTipo().equals("Teto")) this.parent.setTeto();
-            else if(c.getTipo().equals("Pára-choque")) this.parent.setParaChoques();
-            else if(c.getTipo().equals("Luzes")) this.parent.setLuz();
-            else if(c.getTipo().equals("Vidro")) this.parent.setVidro();
+            this.parent.removeComponente(componente);
+            preco -= this.configura.getComponentePreco(componente);
+            if(this.configura.verificaTipo("Teto",componente)) this.parent.setTeto();
+            else if(this.configura.verificaTipo("Pára-choque",componente)) this.parent.setParaChoques();
+            else if(this.configura.verificaTipo("Luzes",componente)) this.parent.setLuz();
+            else if(this.configura.verificaTipo("Vidro",componente)) this.parent.setVidro();
             componente = "";
         }
         else if (pacoteSelect!=null){
-            p = this.configura.getPacote(pacoteSelect);
-            this.parent2.encomenda.setPacote(null);
-            System.out.println("pa" + this.parent2.encomenda.getPacote());
-            preco -= p.getPreco();
+            this.parent.setPacote(null);
+            preco -= this.configura.getPacotePreco(pacoteSelect);
             this.parent.setPacotes();
             pacoteSelect = null;
         }
@@ -215,7 +209,6 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
         // TODO add your handling code here:
         row = jTable1.getSelectedRow();
         nome = (String)model.getValueAt(row, 0);
-        System.out.println("nome" + nome);
         for(String c : config)
             if(c.equals(nome))
                 this.componente = c;

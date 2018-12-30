@@ -6,7 +6,6 @@
 package configurafacil.Presentation;
 
 import configurafacil.Business.ConfiguraFacil;
-import configurafacil.Business.Fabrica.GestaoEncomenda.Pacote;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -32,7 +31,7 @@ public class PacoteConfort extends javax.swing.JDialog {
        this.parent2 = (EscolherCarro) parent2;
        inserePacoteC();
 
-       double p = this.configura.getPacote("Pacote Comfort").getPreco();
+       double p = this.configura.getPacotePreco("Pacote Comfort");
        
        preco.setText(Double.toString(p));
     }
@@ -40,7 +39,7 @@ public class PacoteConfort extends javax.swing.JDialog {
     public void inserePacoteC(){
         model =  (DefaultTableModel) jTable1.getModel();
         Object rowData[] = new Object[1];
-        for(String c : configura.getPacote("Pacote Comfort").getComponentes()){
+        for(String c : this.configura.getComponentesPacote("Pacote Comfort")){
             rowData[0] = c;
             model.addRow(rowData);
         }
@@ -169,9 +168,11 @@ public class PacoteConfort extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        Pacote pacote = configura.getPacote("Pacote Comfort");
-        List<String> listInc = new ArrayList<>();
-        listInc = this.configura.verificaIncompativel(pacote, this.parent2.encomenda);
+        List<String> listInc = new ArrayList<String>();
+        String pnome = "Pacote Comfort";
+        for(String comp : this.configura.getComponentesPacote(pnome)){
+            listInc = this.configura.verificaIncompativel(pnome,this.parent.getComponentes());
+        }
         StringBuilder sbInc = new StringBuilder();
         for (String i : listInc){
             sbInc.append(i);
@@ -180,7 +181,7 @@ public class PacoteConfort extends javax.swing.JDialog {
         if(!listInc.isEmpty()){
             javax.swing.JOptionPane.showMessageDialog(this, "Incompatível com: " + sbInc , "Componentes incompatíveis",0);
         }
-        else this.parent2.encomenda.setPacote(pacote.getNome());
+        else this.parent.setPacote(pnome);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1MouseClicked
 

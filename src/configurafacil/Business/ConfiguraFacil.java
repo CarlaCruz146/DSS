@@ -163,8 +163,8 @@ public class ConfiguraFacil {
      * @param estado Estado a alterar
      * @return Map
      */    
-    public void setEstado(Utilizador u, int estado){
-        this.gestaoU.setEstado(u, estado);
+    public void setEstado(String nome, int estado){
+        this.gestaoU.setEstado(nome,estado);
     }
 
     /**
@@ -184,6 +184,10 @@ public class ConfiguraFacil {
     public void addPacote(Pacote p){
         this.pacotes.put(p.getNome(),p);
     }
+    
+    public void addCliente(String nome, String nif, String contacto){
+        this.stand.addCliente(nome,nif,contacto);
+    }
 
     /**
      * Adiciona um utilizador.
@@ -192,6 +196,22 @@ public class ConfiguraFacil {
     public void addUtilizador(Utilizador u) {
         this.gestaoU.addUtilizador(u);
     }
+    
+    public void adicionaUtilizador(String nome, String password, int estado, int tipo){
+            this.gestaoU.adicionaUtilizador(nome, password, estado, tipo);
+    }
+    
+    public List<String> getAtivos(){
+        return this.gestaoU.getAtivos();
+    }
+    
+    public void geraEncomenda(String nif, String carro, List<String> comp, String pacote, double limite){
+        this.gestaoE.geraEncomenda(nif, carro, comp, pacote, limite);
+    }
+    
+   public List<String> getComponentesPacote(String nome){
+       return this.pacotes.get(nome).getComponentes();
+   }
 
     /**
      * Verifica se é um utilizador.
@@ -203,52 +223,139 @@ public class ConfiguraFacil {
     }
 
     /**
-     * Verifica se todas as componentes básicas obrigatórias foram escolhidas.
-     * @param e Encomenda
-     * @return Boolean
+     * Verifica se todas as componetes básicas obrigatórias foram escolhidas
+     * @param comp Componentes da configuração
+     * @return boolean
      */
-    public boolean verificaComponentes(Encomenda e){
-        return e.verificaComponentes(this.componentes);
+    public boolean verificaComponentes(List<String> comp){
+        int i = 0;
+        for(String s: comp){
+            Componente c = this.componentes.get(s);
+            if(c.getTipo().equals("Pintura") || c.getTipo().equals("Motor") || c.getTipo().equals("Pneu") || c.getTipo().equals("Jante"))
+                i++;
+        }
+        boolean n = i == 4;
+        return n;
     }
     
     /**
      * Devolve uma componente de um determinado tipo na encomenda.
      * @param tipo Tipo da componente
-     * @param e Encomenda
+     * @param comp Componentes da configuração
      * @return Componente
      */
-    public Componente verificaTipo(String tipo, Encomenda e){
-       return e.verificaTipo(tipo,this.componentes);
+    public boolean verificaTipo(String tipo, String c){
+       Componente comp = this.componentes.get(c);
+       if(comp.getTipo().equals(tipo)) return true;
+       return false;
     }
     
+    
     /**
-     * Devolve a lista de todas as componentes obrigatórias não selecionadas.
-     * @param e Encomenda
-     * @return lista dos componentes obrigatórias
+     * Devolve a componente de um determinado tipo
+     * @param tipo Tipo da componente
+     * @param comp Componentes da configuração
      */
-    public List<String> verificaObrigatoria(Encomenda e){
-        return e.verificaObrigatoria(this.componentes);
+    public String verificaTipo(String tipo, List<String> componente){
+        String comp = null;
+        Componente c = null;
+        for(String s: componente){
+            c = this.componentes.get(s);
+            if(c.getTipo().equals(tipo)){
+                comp = c.getNome();
+                return comp;
+            }       
+        }
+        return comp;
     }
-    /*
-     public List<String> verificaIncomp(Encomenda e, Componente c, Pacote p){
-         return this.gestaoE.verificaIncomp(e,c,p);
-     }
-     
-    public void addToConfiguracao(Encomenda e, String c){
-         this.gestaoE.addToConfiguracao(e,c);
-    }
-     
-     public List<String> verificaObrig(Encomenda e, Componente c){
-        return this.gestaoE.verificaObrig(e, c);
-    }*/
+
+    
     /**
-     * Devolve a lista de componentes incompativeis na encomenda com um pacote.
+     * Devolve a lista de componentes obrigatórias da encomenda não selecionadas
+     * @param tipo Tipo da componente
+     * @return Lista de componentes obrigatórias
+     */    
+    public List<String> verificaObrigatoria(List<String> componente){
+        List<String> obrigatorio = new ArrayList<>();
+        int flag = 0;
+        for(String string : componente){
+            Componente c = this.componentes.get(string);
+            for(String s : c.getObrigatorias()){
+                for(String n : componente)
+                    if(s.equals(n))
+                        flag = 1;
+            if(flag == 0) obrigatorio.add(s);
+            else flag = 0;
+            }
+        }
+        return obrigatorio;
+    }
+
+    /**
+     * Devolve a lista de componentes incompativeis de um componente e um pacote
+     * @param c Componente selecionado 
+     * @param comp Componentes a serem adicionadas na configuracao
+     * @param p Pacote selecionado
+     * @param Lista de componentes incompativeis
+     */    
+    public List<String> verificaIncomp(String componente, List<String> comp, String p){
+        List<String> incomp = new ArrayList<String>();
+        Componente c = this.componentes.get(componente);
+        for(String i : c.getIncompativeis())
+            for(String j : comp){
+                if(i.equals(j))
+                    incomp.add(i); 
+            }
+        if(p!=null){
+            Pacote pacote = this.pacotes.get(p);
+            for(String s : pacote.getComponentes())
+                for(String i : c.getIncompativeis())
+                    if(i.equals(s))
+                        incomp.add(i);
+        }
+        return incomp;
+    }
+    
+    
+    /**
+     * Devolve a lista de componentes obrigatórias que ainda não se encontram na encomenda
+     * @param cnome Componente adicionada
+     * @param comp Componentes a serem adicionadas na configuracao
+     * @return Lista de componentes obrigatórias
+     */    
+    public List<String> verificaObrig(String cnome, List<String> comp){
+        List<String> obrig = new ArrayList<String>();
+        Componente componente = this.componentes.get(cnome);
+        int flag = 0;
+        for(String i : componente.getObrigatorias()){
+            if(comp.isEmpty()) obrig.add(i);
+            for(String j : comp){
+                if(i.equals(j))
+                    flag = 1;
+            }
+            if(flag == 0) obrig.add(i);
+            else flag = 0;
+        } 
+        return obrig;
+    }
+
+    /**
+     * Devolve a lista de componentes incompativeis com um pacote presentes na configuração
      * @param p Pacote
-     * @param e Encomenda
-     * @return Se existe ou não
-     */
-    public List<String> verificaIncompativel(Pacote p, Encomenda e){
-        return e.verificaIncompativel(p, this.componentes);
+     * @param componente Componentes da configuração
+     * @return lista de componentes incompativeis
+     */    
+    public List<String> verificaIncompativel(String pacote, List<String> componente){
+        List<String> incomp = new ArrayList<String>();
+        Pacote p = this.pacotes.get(pacote);
+        for(String str : p.getComponentes()){
+            Componente c = componentes.get(str);
+            for(String s : c.getIncompativeis())
+                for(String comp : componente)
+                    if(s.equals(comp))
+                        incomp.add(s);
+        }
+        return incomp;
     }
     
     /**
@@ -302,6 +409,18 @@ public class ConfiguraFacil {
     public void alterarEstado(Encomenda e, int estado){
         this.gestaoE.alterarEstado(e, estado);
     }
+    
+    public double getComponentePreco(String nome){
+        return this.componentes.get(nome).getPreco();
+    }
+    
+    public double getPacotePreco(String nome){
+        return this.pacotes.get(nome).getPreco();
+    }
+    
+    public boolean isPacote(String nome){
+        return this.pacotes.containsKey(nome);
+    }
 
     /**
      * Inicia sessão de um utilizador.
@@ -337,9 +456,9 @@ public class ConfiguraFacil {
         return sb.toString();
     }
     
-    public Encomenda sugestao2(double limite){
-        Encomenda e = new Encomenda();
-        Pacote pacote = null;
+    public List<String> sugestao2(double limite){
+        List<String> l = new ArrayList<>();
+        String pacote = null;
         double valor = 0;
         double v;
         double max = 0;
@@ -347,13 +466,12 @@ public class ConfiguraFacil {
         for(Pacote p: this.pacotes.values()){
             v = p.getPreco();
             if(valor+v<= limite && max<v){
-                pacote = p;
+                pacote = p.getNome();
                 max = v;
             }
         }
         if(pacote!=null){
-             e.setPacote(pacote.getNome());
-            valor+=pacote.getPreco();
+            valor+=max;
         }
         List<Componente> cl = new ArrayList<>();       
         if(valor<limite){
@@ -365,99 +483,32 @@ public class ConfiguraFacil {
              Collections.sort(cl, new ComponenteComparator());
              for(Componente cp: cl){
                  v = cp.getPreco();
-                 if(valor + v <= limite && e.verificaIncomp(cp, pacote).isEmpty() && e.verificaObrig(cp).isEmpty() && e.verificaTipo(cp.getTipo(), componentes)==null){
+                 if(valor + v <= limite && verificaIncomp(cp.getNome(), l, pacote).isEmpty() && verificaObrig(cp.getNome(),l).isEmpty() && verificaTipo(cp.getTipo(), l)==null){
                     valor+=v;
-                    e.addToConfiguracao(cp.getNome());
+                    l.add(cp.getNome());
                 }
-                 else if(!e.verificaObrig(cp).isEmpty()){
-                     for(String s : e.verificaObrig(cp)){
+                 else if(!verificaObrig(cp.getNome(),l).isEmpty()){
+                     int flag = 1;
+                     for(String s : verificaObrig(cp.getNome(),l)){
                         Componente componente = this.componentes.get(s);
                         v = componente.getPreco();
                         boolean b = !componente.getTipo().equals("Motor") && !componente.getTipo().equals("Pintura") && 
                                     !componente.getTipo().equals("Pneu") && !componente.getTipo().equals("Jante"); 
-                        if(v+valor+cp.getPreco()<= limite && b && e.verificaTipo(cp.getTipo(), componentes)==null){
-                            valor+=cp.getPreco();
-                            e.addToConfiguracao(cp.getNome());
+                        if(v+valor+cp.getPreco()<= limite && b && verificaTipo(cp.getTipo(), l)==null){
                             valor+=v;
-                            e.addToConfiguracao(cp.getNome());
+                            l.add(cp.getNome());
                         }
-                     }
+                        else {flag = 0; break;}
+                    }
+                    if(flag == 1){
+                        valor+=cp.getPreco();
+                        l.add(cp.getNome());
+                    }
                  }
              }
+             if(pacote != null) l.add(pacote);
         }
-        return e;
-    }
-    /**
-     * Devolve uma encomenda constituída por componentes não obrigatorias dado um limite máximo a gastar.
-     * @param limite Limite máximo a gastar na configuração
-     * @return Encomenda
-     */  
-    public Encomenda sugestao(double limite){
-        Encomenda e = new Encomenda();
-        double valor = 0;
-        if(limite >= 1800 && limite <2700) {
-            Pacote p = this.pacotes.get("Pacote Comfort");
-            valor = p.getPreco();
-            e.setPacote(p.getNome());
-            for(Componente c : this.componentes.values()){
-                boolean b = !c.getTipo().equals("Motor") && !c.getTipo().equals("Pintura") && 
-                        !c.getTipo().equals("Pneu") && !c.getTipo().equals("Jante");
-                double v = c.getPreco();
-                if(!c.getTipo().equals("Pacote") && b && valor + v <= limite && e.verificaIncomp(c,p).isEmpty()){
-                    e.addToConfiguracao(c.getNome());
-                    valor += v;
-                }
-            }   
-        }
-        else {
-            if (limite >= 2700) {
-                double max = 0;
-                Componente comp = null;
-                Pacote p = this.pacotes.get("Pacote Sport");
-                valor = p.getPreco();
-                e.setPacote(p.getNome());
-                for(Componente c : this.componentes.values()){
-                    boolean b = !c.getTipo().equals("Motor") && !c.getTipo().equals("Pintura") && 
-                        !c.getTipo().equals("Pneu") && !c.getTipo().equals("Jante");
-                    double v = c.getPreco();
-                    if(!c.getTipo().equals("Pacote") && b && valor + v <= limite && e.verificaIncomp(c,p).isEmpty()){
-                        if(c.getTipo().equals("Estofo")){
-                            if(max < v){
-                                max = v;
-                                if (comp == null){
-                                    e.addToConfiguracao(c.getNome());
-                                    comp = c;
-                                    valor += v;
-                                }
-                                else {
-                                    e.removeDaConfiguracao(comp.getNome());
-                                    e.addToConfiguracao(c.getNome());
-                                    valor -= comp.getPreco();
-                                    valor += v;
-                                    comp = c;
-                                }
-                            }
-                        }  
-                        else {
-                            valor += v;
-                            e.addToConfiguracao(c.getNome());
-                        }
-                    }
-                }
-            }
-            else {
-                for(Componente c : this.componentes.values()){
-                    boolean b = !c.getTipo().equals("Motor") && !c.getTipo().equals("Pintura") && 
-                        !c.getTipo().equals("Pneu") && !c.getTipo().equals("Jante");
-                    double v = c.getPreco();
-                    if(!c.getTipo().equals("Pacote") && b && valor + v <= limite && e.verificaIncomp(c,null).isEmpty()){
-                       e.addToConfiguracao(c.getNome());
-                       valor += v;
-                    }
-                }
-            }
-        }
-        return e;
+        return l;
     }
     
     /**

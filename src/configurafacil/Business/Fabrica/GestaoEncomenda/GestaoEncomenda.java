@@ -38,17 +38,14 @@ public class GestaoEncomenda {
         return e;
     }
     
-    public String getPacote(Encomenda e){
-        return e.getPacote();
+    public void geraEncomenda(String nif, String carro, List<String> comp, String pacote, double limite){
+        int id = encomendas.size()+1;
+        Encomenda e = new Encomenda(id, carro, 0, comp, pacote, nif, limite);
+        this.encomendas.put(id,e);
     }
     
-    /**
-     * Adiciona uma encomenda aos registos de encomendas.
-     * @param e Encomenda.
-     */
-    public void addEncomenda(Encomenda e){
-        int i = encomendas.size()+1;
-        this.encomendas.put(i,e);
+    public String getPacote(Encomenda e){
+        return e.getPacote();
     }
     
     /**
@@ -77,24 +74,4 @@ public class GestaoEncomenda {
         e.setEstado(estado);
         this.encomendas.put(e.getId(), e);
     }
-    /*
-    public List<String> verificaIncomp(Encomenda e, Componente c, Pacote p){
-         return e.verificaIncomp(c,p);
-     }
-    
-    public Componente verificaTipo(Encomenda e, String tipo, Map<String,Componente> componente){
-        return e.verificaTipo(tipo, componente);
-    }
-    
-    public List<String> verificaObrig(Encomenda e, Componente c){
-        return e.verificaObrig(c);
-    }
-    
-    public void addToConfiguracao(Encomenda e,String c){
-         e.addToConfiguracao(c);
-    }
-    
-    public void setCliente(Encomenda e,String cliente){
-        e.setCliente(cliente);
-    }*/
 }

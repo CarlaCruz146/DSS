@@ -83,8 +83,10 @@ public class Stand {
     public void addCliente(Cliente c){
         this.clientes.put(c.getNif(),c);
     }
-    /*
-    public void addEncomendaCliente(Cliente c, Encomenda e) {
-        this.clientes.get(c.getNif()).addEncomenda(e);
-    }*/
+    public void addCliente(String nome, String nif, String contacto){
+        if(!this.clientes.containsKey(nif)){
+            Cliente c = new Cliente(nome,nif,contacto);
+            this.clientes.put(c.getNif(),c);
+        }
+    }
 }

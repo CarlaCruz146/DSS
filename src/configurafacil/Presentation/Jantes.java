@@ -201,11 +201,11 @@ public class Jantes extends javax.swing.JDialog {
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor escolha uma jantes","Jantes não selecionado", 0);
         }
         else {
-            Encomenda e = this.parent2.encomenda;
-            Componente comp = configura.getComponente(this.jante);
-            Componente c = this.configura.verificaTipo("Jante",e);
-            List<String> listInc = e.verificaIncomp(comp,this.configura.getPacote(e.getPacote()));
-            List<String> listObrig = e.verificaObrig(comp);
+            List<String> componentes = this.parent.getComponentes();
+            String p = this.parent.getPacote(); 
+            String c = this.configura.verificaTipo("Jante",this.parent.getComponentes());
+            List<String> listInc = this.configura.verificaIncomp(this.jante,componentes,p);
+            List<String> listObrig =  this.configura.verificaObrig(this.jante,componentes);
             String sbInc = this.configura.listaComponentes(listInc);
             String sbObrig = this.configura.listaComponentes(listObrig);
             if(!listObrig.isEmpty()){
@@ -216,9 +216,9 @@ public class Jantes extends javax.swing.JDialog {
             }
             else {
                 if(c != null){
-                    e.removeDaConfiguracao(c.getNome());
+                   this.parent.removeComponente(c);
                 }
-                e.addToConfiguracao(comp.getNome());
+                this.parent.addComponente(this.jante);
             }
             this.setVisible(false);
         }

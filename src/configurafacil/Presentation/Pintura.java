@@ -219,16 +219,15 @@ public class Pintura extends javax.swing.JDialog {
         if(Cor2.isSelected()) this.pintura = Cor2.getText();
         if(Cor3.isSelected()) this.pintura = Cor3.getText();
         if(Cor4.isSelected()) this.pintura = Cor4.getText();
-        System.out.println(this.parent2.encomenda.getPacote());
         if(this.pintura.isEmpty()){
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor escolha a pintura","Pintura não selecionada", 0);
         }
         else {
-            Encomenda e = this.parent2.encomenda;
-            Componente comp = configura.getComponente(this.pintura);
-            Componente c = this.configura.verificaTipo("Pintura",e);
-            List<String> listInc = e.verificaIncomp(comp,this.configura.getPacote(e.getPacote()));
-            List<String> listObrig = e.verificaObrig(comp);
+            List<String> componentes = this.parent.getComponentes();
+            String p = this.parent.getPacote(); 
+            String c = this.configura.verificaTipo("Pintura",this.parent.getComponentes());
+            List<String> listInc = this.configura.verificaIncomp(this.pintura,componentes,p);
+            List<String> listObrig =  this.configura.verificaObrig(this.pintura,componentes);
             String sbInc = this.configura.listaComponentes(listInc);
             String sbObrig = this.configura.listaComponentes(listObrig);
             if(!listObrig.isEmpty()){
@@ -239,9 +238,9 @@ public class Pintura extends javax.swing.JDialog {
             }
             else {
                 if(c != null){
-                    e.removeDaConfiguracao(c.getNome());
+                   this.parent.removeComponente(c);
                 }
-                e.addToConfiguracao(comp.getNome());
+                this.parent.addComponente(this.pintura);
             }
             this.setVisible(false);
         }

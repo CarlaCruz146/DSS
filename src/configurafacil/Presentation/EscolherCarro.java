@@ -5,7 +5,6 @@
  */
 package configurafacil.Presentation;
 import configurafacil.Business.ConfiguraFacil;
-import configurafacil.Business.Fabrica.GestaoEncomenda.Encomenda;
 
 /**
  *
@@ -15,7 +14,7 @@ public class EscolherCarro extends javax.swing.JDialog {
     private ConfiguraFacil configura;
     private String carro = "";
     private DadosCliente parent;
-    Encomenda encomenda = new Encomenda();
+    
     /**
      * Creates new form EscolherCarro
      */
@@ -24,6 +23,10 @@ public class EscolherCarro extends javax.swing.JDialog {
         initComponents();
         this.configura = c;
         this.parent = (DadosCliente) parent;
+    }
+    
+    public String getCarro(){
+        return this.carro;
     }
 
     /**
@@ -281,8 +284,6 @@ public class EscolherCarro extends javax.swing.JDialog {
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor escolha um carro","Carro não selecionado", 0);
         }
         else {
-            encomenda.setCarro(carro);
-            encomenda.setLimite(this.parent.getLimite());
             this.setVisible(false);
             new Configuracao(this, parent, true, configura).setVisible(true);
         }

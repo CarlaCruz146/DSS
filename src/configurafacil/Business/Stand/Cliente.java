@@ -33,9 +33,8 @@ public class Cliente {
      * @param nome Nome do cliente.
      * @param nif Nif do cliente.
      * @param contacto Contacto do cliente.
-     * @param enc Encomendas do cliente.
      */
-    public Cliente(String nome, String nif, String contacto, ArrayList<Integer> enc){
+    public Cliente(String nome, String nif, String contacto){
         this.nome = nome;
         this.nif = nif;
         this.contacto = contacto;

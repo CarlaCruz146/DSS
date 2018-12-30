@@ -202,11 +202,11 @@ public class Motor extends javax.swing.JDialog {
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor escolha um motor","Motor não selecionado", 0);
         }
         else {
-            Encomenda e = this.parent2.encomenda;
-            Componente comp = configura.getComponente(this.motor);
-            Componente c = this.configura.verificaTipo("Motor",e);
-            List<String> listInc = e.verificaIncomp(comp, this.configura.getPacote(e.getPacote()));
-            List<String> listObrig = e.verificaObrig(comp);
+             List<String> componentes = this.parent.getComponentes();
+            String p = this.parent.getPacote(); 
+            String c = this.configura.verificaTipo("Motor",this.parent.getComponentes());
+            List<String> listInc = this.configura.verificaIncomp(this.motor,componentes,p);
+            List<String> listObrig =  this.configura.verificaObrig(this.motor,componentes);
             String sbInc = this.configura.listaComponentes(listInc);
             String sbObrig = this.configura.listaComponentes(listObrig);
             if(!listObrig.isEmpty()){
@@ -217,9 +217,9 @@ public class Motor extends javax.swing.JDialog {
             }
             else {
                 if(c != null){
-                    e.removeDaConfiguracao(c.getNome());
+                   this.parent.removeComponente(c);
                 }
-                e.addToConfiguracao(comp.getNome());
+                this.parent.addComponente(this.motor);
             }
             this.setVisible(false);
         }

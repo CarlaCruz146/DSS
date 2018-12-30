@@ -6,7 +6,6 @@
 package configurafacil.Presentation;
 
 import configurafacil.Business.ConfiguraFacil;
-import configurafacil.Business.Stand.Cliente;
 
 /**
  *
@@ -146,12 +145,8 @@ public class DadosCliente extends javax.swing.JDialog {
             String nome = this.nome.getText();
             String nif = this.nif.getText();
             String contacto = this.contacto.getText();
-            Cliente c = null;
             if(checkLimite.isSelected()) limiteEnc = Double.parseDouble(this.limite.getText());
-            if(!this.configura.getStand().getClientes().containsKey(nif)){
-                c = new Cliente(nome,nif,contacto,null);
-                this.configura.getStand().addCliente(c);
-            }
+            this.configura.addCliente(nome, nif, contacto);
             this.setVisible(false);
             new EscolherCarro(this, true, configura).setVisible(true); 
         }

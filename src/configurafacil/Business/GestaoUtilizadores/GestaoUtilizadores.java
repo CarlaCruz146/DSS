@@ -5,7 +5,9 @@
  */
 package configurafacil.Business.GestaoUtilizadores;
 import configurafacil.Database.UtilizadorDAO;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import java.util.Map;
 
@@ -51,21 +53,32 @@ public class GestaoUtilizadores {
     public boolean verificaUserName(String nome){
         return this.utilizadores.containsKey(nome);
     }
-    /*
-    public int tipoFuncionario(String nome, String password) {
-        for(Utilizador u : this.utilizadores.values()){
-            if(u.getNome().equals(nome) && u.getPassword().equals(password))
-                return u.getTipo();
-        }
-        return -1;
-    }*/
-    
+
     /**
      * Adiciona um utilizador aos registos de utilizadores.
      * @param u Utilizador.
      */
     public void addUtilizador(Utilizador u){
         utilizadores.put(u.getNome(),u);
+    }
+    
+    public void adicionaUtilizador(String nome, String password, int estado, int tipo){
+        if(tipo == 1){
+            FuncStand f  = new FuncStand(nome, password, estado);
+            utilizadores.put(f.getNome(),f);
+        }
+        else{
+            FuncFabrica f = new FuncFabrica(nome, password, estado);
+            utilizadores.put(f.getNome(),f);
+        }
+    }
+    
+    public List<String> getAtivos(){
+        List<String> list = new ArrayList<>();
+        for(Utilizador u : this.utilizadores.values())
+            if(u.getEstado() == 0)
+                list.add(u.getNome());
+        return list;
     }
     
     /**
@@ -94,7 +107,8 @@ public class GestaoUtilizadores {
      * @param u Utilizador.
      * @param estado Estado do utilizador.
      */
-    public void setEstado(Utilizador u, int estado){
+    public void setEstado(String nome, int estado){
+        Utilizador u = this.getUtilizador(nome);
         u.setEstado(estado);
         this.utilizadores.put(u.getNome(), u);
     }

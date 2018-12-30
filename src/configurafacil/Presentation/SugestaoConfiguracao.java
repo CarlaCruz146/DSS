@@ -7,9 +7,6 @@
 package configurafacil.Presentation;
 
 import configurafacil.Business.ConfiguraFacil;
-import configurafacil.Business.Fabrica.GestaoEncomenda.Componente;
-import configurafacil.Business.Fabrica.GestaoEncomenda.Encomenda;
-import configurafacil.Business.Fabrica.GestaoEncomenda.Pacote;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -26,8 +23,8 @@ public class SugestaoConfiguracao extends javax.swing.JDialog {
     DefaultTableModel model;
     private String nomeComponente = "";
     private double precoTotal = 0;
-    private List<Componente> sugestao = new ArrayList<>();
-    private Pacote pacote;
+    private List<String> sugestao = new ArrayList<>();
+    private String pacote = null;
     private int row = 0;
     /**
      * Creates new form SugestaoConfiguracao2
@@ -39,8 +36,7 @@ public class SugestaoConfiguracao extends javax.swing.JDialog {
         this.parent = (Configuracao) parent;
         this.parent2 = (EscolherCarro) parent2;
         this.parent3 = (DadosCliente) parent3;
-     //   Cliente cliente = this.configura.getStand().getCliente(this.parent3.getCliente());
-        obtemConfig(this.parent2.encomenda.getLimite());
+        obtemConfig(this.parent3.getLimite());
         insereConfigTabela();
         jTextField1.setText(Double.toString(precoTotal));
     }   
@@ -48,28 +44,30 @@ public class SugestaoConfiguracao extends javax.swing.JDialog {
     public void insereConfigTabela(){
         model =  (DefaultTableModel) jTable1.getModel();
         Object rowData[] = new Object[2];
-        for(Componente s : sugestao){
-            rowData[0] = s.getNome();
-            rowData[1] = s.getPreco();
-            this.precoTotal += s.getPreco();
+        for(String s : sugestao){
+            double p = this.configura.getComponentePreco(s);
+            rowData[0] = s;
+            rowData[1] = p;
+            this.precoTotal += p;
             model.addRow(rowData);
         }
         if(pacote!=null) { 
-            rowData[0] = pacote.getNome();
-            rowData[1] = pacote.getPreco();
-            this.precoTotal += pacote.getPreco();
+            double p = this.configura.getPacotePreco(pacote);
+            rowData[0] = pacote;
+            rowData[1] = p;
+            this.precoTotal += p;
             model.addRow(rowData);
         }
     }
     
     public void obtemConfig(double limite){
         
-        Encomenda e = this.configura.sugestao2(limite);
-        for(String s :  e.getConfig()){
-            Componente c = this.configura.getComponente(s);
-            sugestao.add(c);
+        List<String> sgt = this.configura.sugestao2(limite);
+        for(String s : sgt){
+            if(!this.configura.isPacote(s))
+                sugestao.add(s);
+            else pacote = s;
         }
-        pacote = this.configura.getPacote(e.getPacote());
     }
     
     /**
@@ -191,9 +189,9 @@ public class SugestaoConfiguracao extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        for(Componente c : this.sugestao)
-            this.parent2.encomenda.addToConfiguracao(c.getNome());
-        if(this.pacote!=null) this.parent2.encomenda.setPacote(this.pacote.getNome());
+        for(String c : this.sugestao)
+            this.parent.addComponente(c);
+        if(this.pacote!=null) this.parent.setPacote(pacote);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 

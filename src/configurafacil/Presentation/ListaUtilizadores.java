@@ -6,7 +6,7 @@
 package configurafacil.Presentation;
 
 import configurafacil.Business.ConfiguraFacil;
-import configurafacil.Business.GestaoUtilizadores.Utilizador;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -128,11 +128,10 @@ public class ListaUtilizadores extends javax.swing.JDialog {
     public void apresentaFunc(){
         model =  (DefaultTableModel) jTable1.getModel();
         Object rowData[] = new Object[1];
-        for(Utilizador u: configura.getUtilizadores().values()){
-            if(u.getEstado() == 0){
-                rowData[0] = u.getNome();
+        List<String> utilizadores = this.configura.getAtivos();
+        for(String u: utilizadores){
+                rowData[0] = u;
                 model.addRow(rowData);
-            }
         }
     }
     
@@ -159,8 +158,7 @@ public class ListaUtilizadores extends javax.swing.JDialog {
         try{
             row = jTable1.getSelectedRow();
             nomeSel = (String)model.getValueAt(row, 0);
-            Utilizador u = this.configura.getUser(nomeSel);
-            this.configura.setEstado(u, 1);
+            this.configura.setEstado(nomeSel,1);
             model.removeRow(row);       
 
         } catch (Exception ex){

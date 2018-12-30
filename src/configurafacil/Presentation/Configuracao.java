@@ -6,8 +6,7 @@
 package configurafacil.Presentation;
 
 import configurafacil.Business.ConfiguraFacil;
-import configurafacil.Business.Fabrica.GestaoEncomenda.Componente;
-import configurafacil.Business.Stand.Cliente;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +17,8 @@ public class Configuracao extends javax.swing.JDialog {
     private ConfiguraFacil configura;
     private EscolherCarro parent;
     private DadosCliente parent2;
+    private String pacote;
+    private List<String> componentes;
     
     /**
      * Creates new form Configuracao
@@ -28,7 +29,21 @@ public class Configuracao extends javax.swing.JDialog {
        initComponents();
        this.parent = (EscolherCarro) parent;
        this.parent2 = (DadosCliente) parent2;
+       this.pacote = null;
+       this.componentes = new ArrayList<>();
        escrevePrecos();
+    }
+    
+    public String getPacote(){
+        return this.pacote;
+    }
+    
+    public List<String> getComponentes(){
+        return this.componentes;
+    }
+    
+    public void setPacote(String p){
+        this.pacote = p;
     }
     
     public void setPacotes(){
@@ -66,6 +81,14 @@ public class Configuracao extends javax.swing.JDialog {
         pchoquePreco.setText(Double.toString(p2));
         vidroPreco.setText(Double.toString(p3));
         luzesPreco.setText(Double.toString(p4));
+    }
+    
+     public void addComponente(String c){
+        this.componentes.add(c);
+    }
+    
+    public void removeComponente(String c){
+        this.componentes.remove(c);
     }
     
     /**
@@ -462,7 +485,7 @@ public class Configuracao extends javax.swing.JDialog {
     private void ComfortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComfortActionPerformed
         // TODO add your handling code here:
         new PacoteConfort(this,this.parent, true, configura).setVisible(true);
-        if(this.parent.encomenda.getPacote()!=null) {
+        if(pacote!=null) {
             this.Comfort.setEnabled(false);
             this.Sport.setEnabled(false);
         }
@@ -471,7 +494,7 @@ public class Configuracao extends javax.swing.JDialog {
     private void SportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SportActionPerformed
         // TODO add your handling code here:
         new PacoteSport(this,this.parent, true, configura).setVisible(true);
-        if(this.parent.encomenda.getPacote()!=null) {
+        if(pacote!=null) {
             this.Comfort.setEnabled(false);
             this.Sport.setEnabled(false);
         }
@@ -494,9 +517,9 @@ public class Configuracao extends javax.swing.JDialog {
 
     private void VidroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VidroActionPerformed
         // TODO add your handling code here:
-        Componente comp = configura.getComponente("Vidro Escurecido");
-        List<String> listInc =  this.parent.encomenda.verificaIncomp(comp,this.configura.getPacote(this.parent.encomenda.getPacote()));
-        List<String> listObrig =  this.parent.encomenda.verificaObrig(comp);
+        String comp = "Vidro Escurecido";
+        List<String> listInc =  this.configura.verificaIncomp(comp,this.componentes,this.pacote);
+        List<String> listObrig =  this.configura.verificaObrig(comp,this.componentes);
         String sbInc = this.configura.listaComponentes(listInc);
         String sbObrig = this.configura.listaComponentes(listObrig);
         if(!listObrig.isEmpty()){
@@ -506,16 +529,16 @@ public class Configuracao extends javax.swing.JDialog {
             javax.swing.JOptionPane.showMessageDialog(this, "Incompatível com: " + sbInc , "Componentes incompatíveis",0);
         }
         else {
-            this.parent.encomenda.addToConfiguracao(comp.getNome());
+            this.componentes.add(comp);
             this.Vidro.setEnabled(false);
         }
     }//GEN-LAST:event_VidroActionPerformed
 
     private void ParachoquesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ParachoquesActionPerformed
         // TODO add your handling code here:
-        Componente comp = configura.getComponente("Pára-choques");
-        List<String> listInc =  this.parent.encomenda.verificaIncomp(comp,this.configura.getPacote(this.parent.encomenda.getPacote()));
-        List<String> listObrig =  this.parent.encomenda.verificaObrig(comp);
+        String comp = "Pára-choques";
+        List<String> listInc =  this.configura.verificaIncomp(comp,this.componentes,this.pacote);
+        List<String> listObrig =  this.configura.verificaObrig(comp,this.componentes);
         String sbInc = this.configura.listaComponentes(listInc);
         String sbObrig = this.configura.listaComponentes(listObrig);
         if(!listObrig.isEmpty()){
@@ -525,7 +548,7 @@ public class Configuracao extends javax.swing.JDialog {
             javax.swing.JOptionPane.showMessageDialog(this, "Incompatível com: " + sbInc , "Componentes incompatíveis",0);
         }
         else {
-            this.parent.encomenda.addToConfiguracao(comp.getNome());
+            this.componentes.add(comp);
             this.Parachoques.setEnabled(false);
         }
     }//GEN-LAST:event_ParachoquesActionPerformed
@@ -542,9 +565,9 @@ public class Configuracao extends javax.swing.JDialog {
 
     private void TetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TetoActionPerformed
         // TODO add your handling code here:
-        Componente comp = configura.getComponente("Teto de abrir");
-        List<String> listInc =  this.parent.encomenda.verificaIncomp(comp,this.configura.getPacote(this.parent.encomenda.getPacote()));
-        List<String> listObrig =  this.parent.encomenda.verificaObrig(comp);
+        String comp = "Teto de abrir";
+        List<String> listInc =  this.configura.verificaIncomp(comp,this.componentes,this.pacote);
+        List<String> listObrig =  this.configura.verificaObrig(comp,this.componentes);
         String sbInc = this.configura.listaComponentes(listInc);
         String sbObrig = this.configura.listaComponentes(listObrig);
         if(!listObrig.isEmpty()){
@@ -554,16 +577,16 @@ public class Configuracao extends javax.swing.JDialog {
             javax.swing.JOptionPane.showMessageDialog(this, "Incompatível com: " + sbInc , "Componentes incompatíveis",0);
         }
         else{
-            this.parent.encomenda.addToConfiguracao(comp.getNome());
+            this.componentes.add(comp);
             this.Teto.setEnabled(false);
         }
     }//GEN-LAST:event_TetoActionPerformed
 
     private void LuzActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LuzActionPerformed
         // TODO add your handling code here:
-        Componente comp = configura.getComponente("Pacotes de luz");
-        List<String> listInc =  this.parent.encomenda.verificaIncomp(comp,this.configura.getPacote(this.parent.encomenda.getPacote()));
-        List<String> listObrig =  this.parent.encomenda.verificaObrig(comp);
+        String comp = "Pacotes de luz";
+        List<String> listInc =  this.configura.verificaIncomp(comp,this.componentes,this.pacote);
+        List<String> listObrig =  this.configura.verificaObrig(comp,this.componentes);
         String sbInc = this.configura.listaComponentes(listInc);
         String sbObrig = this.configura.listaComponentes(listObrig);
         if(!listObrig.isEmpty()){
@@ -573,20 +596,18 @@ public class Configuracao extends javax.swing.JDialog {
             javax.swing.JOptionPane.showMessageDialog(this, "Incompatível com: " + sbInc , "Componentes incompatíveis",0);
         }
         else{
-            this.parent.encomenda.addToConfiguracao(comp.getNome());
+            this.componentes.add(comp);
             this.Luz.setEnabled(false);
         }
     }//GEN-LAST:event_LuzActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
-        if(this.configura.verificaComponentes(this.parent.encomenda)){
-            Cliente c = this.configura.getCliente(this.parent2.getCliente());
-            List<String> listObrig = this.configura.verificaObrigatoria(this.parent.encomenda);
+        if(this.configura.verificaComponentes(this.componentes)){
+            List<String> listObrig = this.configura.verificaObrigatoria(this.componentes);
             String sb = this.configura.listaComponentes(listObrig);
             if(listObrig.isEmpty()){
-                this.parent.encomenda.setCliente(c.getNif());
-                this.configura.getGestaoE().addEncomenda(this.parent.encomenda);
+                this.configura.geraEncomenda(this.parent2.getCliente(),this.parent.getCarro(),this.componentes,this.pacote,this.parent2.getLimite());
                 this.setVisible(false);
                 new MenuStand(this, true, configura).setVisible(true);
             }
@@ -601,7 +622,6 @@ public class Configuracao extends javax.swing.JDialog {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        this.parent.encomenda = null;
         this.setVisible(false);
         new DadosCliente(this, true, configura).setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
