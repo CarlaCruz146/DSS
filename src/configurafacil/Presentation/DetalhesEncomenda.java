@@ -6,8 +6,6 @@
 package configurafacil.Presentation;
 
 import configurafacil.Business.ConfiguraFacil;
-import configurafacil.Business.Fabrica.GestaoEncomenda.Encomenda;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -36,17 +34,11 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
         int n = (Integer) this.parent.model.getValueAt(this.parent.row,0);  
         model =  (DefaultTableModel) jTable1.getModel();
         Object rowData[] = new Object[1];
-        Encomenda e = this.configura.getEncomenda(n);
-        for(String c: e.getConfig()){
+        List<String> list = this.configura.getCompEncomenda(n);
+        for(String c: list){
             rowData[0] = c;
             model.addRow(rowData);
         }
-        if(e.getPacote()!=null){
-            rowData[0] = e.getPacote();
-            model.addRow(rowData);
-        } 
-        rowData[0] = e.getCarro();
-        model.addRow(rowData);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -145,17 +137,8 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         int n = (Integer) this.parent.model.getValueAt(this.parent.row,0); 
-        Encomenda e =  this.configura.getEncomenda(n);
-        List<String> compPacote = new ArrayList<>();
-        List<String> comps = new ArrayList<>();
-        if(e.getPacote() != null){
-            String pacote = e.getPacote();
-            compPacote = configura.getPacote(pacote).getComponentes();
-            comps.addAll(compPacote);
-        }
-        comps.addAll(e.getConfig());
+        List<String> comps = this.configura.getAllCompEncomenda(n);
         boolean executavel = true;
-        
         for(String c: comps){
             if(this.configura.verificaStock(c) == 0){
                executavel = false;
@@ -165,7 +148,7 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
             }
         }
         if(executavel){
-            this.configura.alterarEstado(e,1);
+            this.configura.alterarEstado(n,1);
             this.parent.alteraEstadoTab(1);
             this.configura.diminuiStock(comps);
             this.setVisible(false);
@@ -176,9 +159,8 @@ public class DetalhesEncomenda extends javax.swing.JDialog {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         int n = (Integer) this.parent.model.getValueAt(this.parent.row,0); 
-        Encomenda e =  this.configura.getEncomenda(n);
-        if(e.getEstado() == 1){
-            this.configura.alterarEstado(e,2);
+        if(configura.estadoEnc(n) == 1){
+            this.configura.alterarEstado(n,2);
             this.parent.alteraEstadoTab(2);
             this.setVisible(false);
         }

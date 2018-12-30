@@ -191,6 +191,14 @@ public class ConfiguraFacil {
         return this.gestaoU.getAtivos();
     }
     
+    public List<String> getCompEncomenda(int id){
+        return this.gestaoE.getCompEncomenda(id);
+    }
+    
+    public List<String> getAllCompEncomenda(int id){
+        return this.gestaoE.getAllCompEncomenda(id,this.pacotes);
+    }
+    
     public void geraEncomenda(String nif, String carro, List<String> comp, String pacote, double limite){
         this.gestaoE.geraEncomenda(nif, carro, comp, pacote, limite);
     }
@@ -381,11 +389,15 @@ public class ConfiguraFacil {
     
     /**
      * Altera o estado de uma determinada encomenda.
-     * @param e Encomenda
+     * @param id Identificador encomenda
      * @param estado Estado da encomenda
      */    
-    public void alterarEstado(Encomenda e, int estado){
-        this.gestaoE.alterarEstado(e, estado);
+    public void alterarEstado(int id, int estado){
+        this.gestaoE.alterarEstado(id, estado);
+    }
+    
+    public int estadoEnc(int id){
+        return this.gestaoE.estadoEnc(id);
     }
     
     public double getComponentePreco(String nome){

@@ -6,6 +6,7 @@
 package configurafacil.Business.Fabrica.GestaoEncomenda;
 
 import configurafacil.Database.EncomendaDAO;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -65,13 +66,42 @@ public class GestaoEncomenda {
         return this.encomendas.get(id);
     }
     
+    public List<String> getCompEncomenda(int id){
+        Encomenda e = this.encomendas.get(id);
+        List<String> comp = new ArrayList<>();
+        for(String s : e.getConfig())
+            comp.add(s);
+        String pacote = e.getPacote();
+        if(pacote!=null) comp.add(pacote);
+        comp.add(e.getCarro());
+        return comp;
+    }
+    
+    public List<String> getAllCompEncomenda(int id, Map<String,Pacote> pacotes){
+        Encomenda e = this.encomendas.get(id);
+        List<String> comp = new ArrayList<>();
+        for(String s : e.getConfig())
+            comp.add(s);
+        String pacote = e.getPacote();
+        if(pacote!=null){
+            for(String ss : pacotes.get(pacote).getComponentes())
+                comp.add(ss);
+        }
+        return comp;
+    }
+    
     /**
      * Altera o estado de uma encomenda.
-     * @param e Encomenda.
+     * @param id Identificador encomenda.
      * @param estado Estado da encomenda.
      */
-    public void alterarEstado(Encomenda e, int estado){
+    public void alterarEstado(int id, int estado){
+        Encomenda e = this.encomendas.get(id);
         e.setEstado(estado);
-        this.encomendas.put(e.getId(), e);
+        this.encomendas.put(id, e);
+    }
+    
+    public int estadoEnc(int id){
+        return this.encomendas.get(id).getEstado();
     }
 }

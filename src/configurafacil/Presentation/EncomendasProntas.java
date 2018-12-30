@@ -127,8 +127,7 @@ public class EncomendasProntas extends javax.swing.JDialog {
         try{
             row = jTable1.getSelectedRow();
             int id = (Integer) model.getValueAt(row, 0);
-            Encomenda e = this.configura.getEncomenda(id);
-            this.configura.alterarEstado(e, 3);
+            this.configura.alterarEstado(id, 3);
             model.removeRow(row);       
 
         } catch (Exception ex){
