@@ -80,9 +80,9 @@ public class Stand {
      * Adiciona um cliente ao stand.
      * @param c Cliente do stand.
      */
-    public void addCliente(Cliente c){
+   /* public void addCliente(Cliente c){
         this.clientes.put(c.getNif(),c);
-    }
+    }*/
     public void addCliente(String nome, String nif, String contacto){
         if(!this.clientes.containsKey(nif)){
             Cliente c = new Cliente(nome,nif,contacto);

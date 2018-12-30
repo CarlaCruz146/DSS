@@ -62,7 +62,7 @@ public class SugestaoConfiguracao extends javax.swing.JDialog {
     
     public void obtemConfig(double limite){
         
-        List<String> sgt = this.configura.sugestao2(limite);
+        List<String> sgt = this.configura.sugestao(limite);
         for(String s : sgt){
             if(!this.configura.isPacote(s))
                 sugestao.add(s);

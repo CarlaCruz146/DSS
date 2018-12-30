@@ -51,7 +51,7 @@ public class ConfiguraFacil {
     }
 
     /**
-     * Devolve as componentes existente na aplicação.
+     * Devolve as componentes existentes na aplicação.
      * @return Map
      */
     public Map<String,Componente> getComponentes(){
@@ -158,45 +158,31 @@ public class ConfiguraFacil {
     }
 
     /**
-     * Devolve as componentes existente na aplicação. 
-     * @param u Utilizador
+     * Atualiza o estado de um utilizador
+     * @param nome Nome do utilizador
      * @param estado Estado a alterar
-     * @return Map
      */    
     public void setEstado(String nome, int estado){
         this.gestaoU.setEstado(nome,estado);
     }
 
     /**
-     * Adiciona uma componente.
-     * @param c Componente a adicionar
-     * @return Map
-     */    
-    public void addComponente(Componente c){
-        this.componentes.put(c.getNome(),c);
-    }
-
-    /**
-     * Devolve as componentes existente na aplicação.
-     * @param p Pacote a adicionar
-     * @return Map
-     */    
-    public void addPacote(Pacote p){
-        this.pacotes.put(p.getNome(),p);
-    }
-    
+     * Adiciona um cliente
+     * @param nome Nome do cliente
+     * @param nif Nif do cliente
+     * @param contacto Contacto do cliente
+     */ 
     public void addCliente(String nome, String nif, String contacto){
         this.stand.addCliente(nome,nif,contacto);
     }
 
     /**
      * Adiciona um utilizador.
-     * @param u Utilizador
-     */    
-    public void addUtilizador(Utilizador u) {
-        this.gestaoU.addUtilizador(u);
-    }
-    
+     * @param nome Nome do utilizador
+     * @param password Password do utilizador
+     * @param estado Estado do utilizador
+     * @param tipo Tipo de utilizador
+     */
     public void adicionaUtilizador(String nome, String password, int estado, int tipo){
             this.gestaoU.adicionaUtilizador(nome, password, estado, tipo);
     }
@@ -209,7 +195,7 @@ public class ConfiguraFacil {
         this.gestaoE.geraEncomenda(nif, carro, comp, pacote, limite);
     }
     
-   public List<String> getComponentesPacote(String nome){
+    public List<String> getComponentesPacote(String nome){
        return this.pacotes.get(nome).getComponentes();
    }
 
@@ -244,7 +230,7 @@ public class ConfiguraFacil {
      * @param comp Componentes da configuração
      * @return Componente
      */
-    public boolean verificaTipo(String tipo, String c){
+    public boolean verificaTipoComp(String tipo, String c){
        Componente comp = this.componentes.get(c);
        if(comp.getTipo().equals(tipo)) return true;
        return false;
@@ -375,11 +361,7 @@ public class ConfiguraFacil {
     public Encomenda getEncomenda(int id){
         return this.gestaoE.getEncomenda(id);
     }
-    
-    public String getPacote(Encomenda e){
-        return this.gestaoE.getPacote(e);
-    }
-    
+
     /**
      * Devolve todas as encomendas na aplicação.
      * @return Map
@@ -396,11 +378,7 @@ public class ConfiguraFacil {
     public void atualizaStock(String s, int q){
         this.fabrica.atualizaStock(s,q);
     }
-    /*
-    public void setCliente(Encomenda e,String cliente){
-        e.setCliente(cliente);
-    }*/
-
+    
     /**
      * Altera o estado de uma determinada encomenda.
      * @param e Encomenda
@@ -446,7 +424,7 @@ public class ConfiguraFacil {
      * Constroi uma string com a lista de componentes.
      * @param componentes Lista dos nomes das componentes a listar
      * @return string com as componentes
-     */  
+     */ 
     public String listaComponentes(List<String> componentes){
         StringBuilder sb = new StringBuilder();
         for (String i : componentes){
@@ -456,7 +434,7 @@ public class ConfiguraFacil {
         return sb.toString();
     }
     
-    public List<String> sugestao2(double limite){
+    public List<String> sugestao(double limite){
         List<String> l = new ArrayList<>();
         String pacote = null;
         double valor = 0;

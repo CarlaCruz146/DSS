@@ -54,14 +54,6 @@ public class GestaoUtilizadores {
         return this.utilizadores.containsKey(nome);
     }
 
-    /**
-     * Adiciona um utilizador aos registos de utilizadores.
-     * @param u Utilizador.
-     */
-    public void addUtilizador(Utilizador u){
-        utilizadores.put(u.getNome(),u);
-    }
-    
     public void adicionaUtilizador(String nome, String password, int estado, int tipo){
         if(tipo == 1){
             FuncStand f  = new FuncStand(nome, password, estado);
@@ -113,20 +105,4 @@ public class GestaoUtilizadores {
         this.utilizadores.put(u.getNome(), u);
     }
     
-    /**
-     * Altera o nome de um utilizador.
-     * @param nome Nome do utilizador.
-     * @param u Utilizador.
-    */
-    public void setUtilizador(String nome, Utilizador u){
-       this.utilizadores.replace(nome,u);
-   }
-    
-    /**
-     * Remove um utilizador da lista de utilizadores.
-     * @param nome Nome do utilizador.
-     */
-    public void removeUtilizador(String nome){
-        this.utilizadores.remove(nome);
-    }
 }

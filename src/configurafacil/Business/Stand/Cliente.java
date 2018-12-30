@@ -5,8 +5,6 @@
  */
 package configurafacil.Business.Stand;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author Grupo 30

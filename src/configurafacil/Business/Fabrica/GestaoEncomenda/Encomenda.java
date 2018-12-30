@@ -11,7 +11,6 @@ package configurafacil.Business.Fabrica.GestaoEncomenda;
  */
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Encomenda {
@@ -132,24 +131,8 @@ public class Encomenda {
      * Devolve o tamanho da configuração da encomenda.
      * @return String
      */
-    public Integer getNConfig(){
+    public int getNConfig(){
         return this.configuracao.size();
-    }
-    
-    /**
-     * Devolve o nome do utilizador.
-     * @return String
-     */
-    public void addToConfiguracao(String c){
-        this.configuracao.add(c);
-    }
-    
-    /**
-     * Remove componente da configuração da encomenda.
-     * @param c Componente da configuração da encomenda
-     */
-    public void removeDaConfiguracao(String c){
-        this.configuracao.remove(c);
     }
         
     /**

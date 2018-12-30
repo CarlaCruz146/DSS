@@ -184,10 +184,10 @@ public class ConfiguracaoFinal extends javax.swing.JDialog {
         if (!componente.isEmpty()){
             this.parent.removeComponente(componente);
             preco -= this.configura.getComponentePreco(componente);
-            if(this.configura.verificaTipo("Teto",componente)) this.parent.setTeto();
-            else if(this.configura.verificaTipo("Pára-choque",componente)) this.parent.setParaChoques();
-            else if(this.configura.verificaTipo("Luzes",componente)) this.parent.setLuz();
-            else if(this.configura.verificaTipo("Vidro",componente)) this.parent.setVidro();
+            if(this.configura.verificaTipoComp("Teto",componente)) this.parent.setTeto();
+            else if(this.configura.verificaTipoComp("Pára-choque",componente)) this.parent.setParaChoques();
+            else if(this.configura.verificaTipoComp("Luzes",componente)) this.parent.setLuz();
+            else if(this.configura.verificaTipoComp("Vidro",componente)) this.parent.setVidro();
             componente = "";
         }
         else if (pacoteSelect!=null){

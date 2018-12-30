@@ -64,7 +64,7 @@ public class Pacote {
      * Devolve o número de componentes do pacote.
      * @return Integer
      */
-    public Integer getNComp(){
+    public int getNComp(){
         return this.componentes.size();
     }
     
