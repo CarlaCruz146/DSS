@@ -6,8 +6,7 @@
 package configurafacil.Presentation;
 
 import configurafacil.Business.ConfiguraFacil;
-import configurafacil.Business.Fabrica.Stock;
-import java.util.Map;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -33,11 +32,12 @@ public class ConsultarStock extends javax.swing.JDialog {
     
     public void insereStockTabela(){
         model =  (DefaultTableModel) jTable1.getModel();
-        Map<String,Stock> stockDisponivel = configura.getFabrica().getStock();
         Object rowData[] = new Object[2];
-        for(Stock s : stockDisponivel.values()){
-            rowData[0] = s.getComponente();
-            rowData[1] = s.getQuantidade();
+        List<Integer> quantidades = this.configura.obtemQuantidadeS();
+        List<String> nomes = this.configura.obtemNomeC();
+        for(int i=0;i<quantidades.size();i++){
+            rowData[0] = nomes.get(i);
+            rowData[1] = quantidades.get(i);
             model.addRow(rowData);
         }
     }

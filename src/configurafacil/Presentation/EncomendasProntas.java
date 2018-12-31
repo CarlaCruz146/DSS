@@ -6,8 +6,7 @@
 package configurafacil.Presentation;
 
 import configurafacil.Business.ConfiguraFacil;
-import configurafacil.Business.Fabrica.GestaoEncomenda.Encomenda;
-import configurafacil.Business.Stand.Cliente;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -33,13 +32,13 @@ public class EncomendasProntas extends javax.swing.JDialog {
     public void apresentaEnc(){
         model =  (DefaultTableModel) jTable1.getModel();
         Object rowData[] = new Object[2];
-        for(Encomenda e: configura.getEncomendas().values()){
-            if(e.getEstado() == 2){
-                Cliente c = this.configura.getCliente(e.getCliente());
-                rowData[0] = e.getId();
-                rowData[1] = c.getNome();
-                model.addRow(rowData);
-            }
+        List<Integer> ids = this.configura.obtemIdEncProntas();
+        List<String> nomes = this.configura.obtemClienteEncProntas();
+        
+        for(int i=0;i<ids.size();i++){
+            rowData[0] = ids.get(i);
+            rowData[1] = nomes.get(i);
+            model.addRow(rowData);
         }
     }
 

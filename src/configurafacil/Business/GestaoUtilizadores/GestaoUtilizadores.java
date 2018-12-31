@@ -105,4 +105,9 @@ public class GestaoUtilizadores {
         this.utilizadores.put(u.getNome(), u);
     }
     
+    public int getUserTipo(String nome){
+        if(this.utilizadores.get(nome) instanceof FuncStand) return 0;
+        else if (this.utilizadores.get(nome) instanceof FuncFabrica) return 1;
+        return -1;
+    }
 }

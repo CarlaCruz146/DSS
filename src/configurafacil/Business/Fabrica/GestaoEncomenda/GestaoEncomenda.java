@@ -8,8 +8,10 @@ package configurafacil.Business.Fabrica.GestaoEncomenda;
 import configurafacil.Database.EncomendaDAO;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  *
@@ -103,5 +105,47 @@ public class GestaoEncomenda {
     
     public int estadoEnc(int id){
         return this.encomendas.get(id).getEstado();
+    }
+    
+    public List<Integer> obtemIdEncProntas(){
+        List<Integer> ids = new ArrayList<>();
+        Set<Integer> chaves = this.encomendas.keySet();
+        for(Iterator<Integer> iterator = chaves.iterator(); iterator.hasNext();){
+            int chave = iterator.next();
+            if(chave>=0){
+                Encomenda e = this.encomendas.get(chave);
+                if(e.getEstado() == 2)  
+                    ids.add(e.getId());
+            }           
+        }
+        return ids;
+    }
+    
+    public List<String> obtemClienteEncProntas(){
+        List<String> nomes = new ArrayList<>();
+        Set<Integer> chaves = this.encomendas.keySet();
+        for(Iterator<Integer> iterator = chaves.iterator(); iterator.hasNext();){
+            int chave = iterator.next();
+            if(chave>=0){
+                Encomenda e = this.encomendas.get(chave);
+                if(e.getEstado() == 2)  
+                    nomes.add(e.getCliente());
+            }           
+        }
+        return nomes;
+    }
+    
+    public List<Integer> getEncEstado(int estado){
+        List<Integer> ids = new ArrayList<>();
+        Set<Integer> chaves = this.encomendas.keySet();
+        for(Iterator<Integer> iterator = chaves.iterator(); iterator.hasNext();){
+            int chave = iterator.next();
+            if(chave>=0){
+                Encomenda e = this.encomendas.get(chave);
+                if(e.getEstado() == estado)  
+                    ids.add(e.getId());
+            }           
+        }
+        return ids;
     }
 }

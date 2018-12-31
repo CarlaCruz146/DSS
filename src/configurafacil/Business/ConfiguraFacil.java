@@ -9,6 +9,7 @@ import configurafacil.Business.Fabrica.Fabrica;
 import configurafacil.Business.Fabrica.GestaoEncomenda.*;
 import configurafacil.Business.GestaoUtilizadores.Administrador;
 import configurafacil.Business.GestaoUtilizadores.GestaoUtilizadores;
+import configurafacil.Business.GestaoUtilizadores.NomeInexistenteException;
 import configurafacil.Business.GestaoUtilizadores.Utilizador;
 import configurafacil.Business.Stand.Cliente;
 import configurafacil.Business.Stand.Stand;
@@ -411,18 +412,43 @@ public class ConfiguraFacil {
     public boolean isPacote(String nome){
         return this.pacotes.containsKey(nome);
     }
-
+    
+    public List<Integer> obtemIdEncProntas(){
+        return this.gestaoE.obtemIdEncProntas();
+    }
+    
+    public List<String> obtemClienteEncProntas(){
+        return this.gestaoE.obtemClienteEncProntas();
+    }
+    
+    public List<Integer> obtemQuantidadeS(){
+        return this.fabrica.obtemQuantidadeS();
+    }
+    
+    public List<Integer> getEncEstado(int estado){
+        return this.gestaoE.getEncEstado(estado);
+    }
+    
+    public int getUserTipo(String nome){
+       return this.gestaoU.getUserTipo(nome);
+    }
+    
+    public List<String> obtemNomeC(){
+        return this.fabrica.obtemNomeC();
+    }
     /**
      * Inicia sessão de um utilizador.
      * @param nome Nome do utilizador
      * @param password Password do utilizador
      */     
-    public void login(String nome, String password){
+    public void login(String nome, String password) throws NomeInexistenteException{
         try{
             if(!nome.equals("Admin")) this.utilizador = this.gestaoU.verificaUtilizador(nome, password);
             else this.administrador = this.administrador.verificaAdmin(nome,password);
         }
-        catch(Exception e){}
+        catch(Exception e){
+            throw new NomeInexistenteException(e.getMessage());
+        }
     }
 
     /**
