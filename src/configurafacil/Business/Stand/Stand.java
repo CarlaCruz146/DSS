@@ -5,6 +5,8 @@
  */
 package configurafacil.Business.Stand;
 import configurafacil.Database.ClienteDAO;
+import java.util.ArrayList;
+import java.util.List;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -88,5 +90,14 @@ public class Stand {
             Cliente c = new Cliente(nome,nif,contacto);
             this.clientes.put(c.getNif(),c);
         }
+    }
+    
+    public List<String> getNomesClientes(List<String> nifs){
+        List<String> nomes = new ArrayList<>();
+        for(String nif : nifs){
+            Cliente c = clientes.get(nif);
+            nomes.add(c.getNome());
+        }
+        return nomes;
     }
 }

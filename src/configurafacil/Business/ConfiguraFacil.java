@@ -414,11 +414,12 @@ public class ConfiguraFacil {
     }
     
     public List<Integer> obtemIdEncProntas(){
-        return this.gestaoE.obtemIdEncProntas();
+        return this.getEncEstado(2);
     }
     
     public List<String> obtemClienteEncProntas(){
-        return this.gestaoE.obtemClienteEncProntas();
+        List<String> nifs = this.gestaoE.obtemClienteEncProntas();
+        return this.stand.getNomesClientes(nifs);
     }
     
     public List<Integer> obtemQuantidadeS(){

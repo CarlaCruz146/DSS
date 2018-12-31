@@ -106,7 +106,7 @@ public class GestaoEncomenda {
     public int estadoEnc(int id){
         return this.encomendas.get(id).getEstado();
     }
-    
+    /*
     public List<Integer> obtemIdEncProntas(){
         List<Integer> ids = new ArrayList<>();
         Set<Integer> chaves = this.encomendas.keySet();
@@ -147,5 +147,21 @@ public class GestaoEncomenda {
             }           
         }
         return ids;
+    }
+    */
+    public List<Integer> getEncEstado(int estado){
+        List<Integer> ids = new ArrayList<>();
+        for(Encomenda e : this.encomendas.values())
+            if(e.getEstado() == estado)
+                ids.add(e.getId());
+        return ids;
+    }
+    
+    public List<String> obtemClienteEncProntas(){
+        List<String> nifs = new ArrayList<>();
+        for(Encomenda e : this.encomendas.values())
+            if(e.getEstado() == 2)
+                nifs.add(e.getCliente());
+        return nifs;
     }
 }
