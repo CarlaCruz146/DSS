@@ -6,7 +6,7 @@
 package configurafacil.Presentation;
 
 import configurafacil.Business.ConfiguraFacil;
-import configurafacil.Business.Fabrica.GestaoEncomenda.Encomenda;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -115,16 +115,17 @@ public class ListaEncomendas extends javax.swing.JDialog {
     public void apresentaEnc(){
         model =  (DefaultTableModel) jTable1.getModel();
         Object rowData[] = new Object[2];
-        for(Encomenda a: configura.getEncomendas().values()){
-            rowData[0] = a.getId();
-            if(a.getEstado() == 0){
-                rowData[1] = "Em espera";
-                model.addRow(rowData);
+        List<Integer> idsE = this.configura.getEncEstado(0);
+        List<Integer> idsExec = this.configura.getEncEstado(1);
+        for(int id : idsE){
+            rowData[0] = id;
+            rowData[1] = "Em espera";
+            model.addRow(rowData);
             }
-            else if(a.getEstado() == 1){
-                   rowData[1] = "Em execução";
-                   model.addRow(rowData);
-                }
+        for(int id : idsExec){
+            rowData[0] = id;
+            rowData[1] = "Em execução";
+            model.addRow(rowData);
         }
     }   
     

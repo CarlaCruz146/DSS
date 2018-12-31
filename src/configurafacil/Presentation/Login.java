@@ -6,8 +6,7 @@
 package configurafacil.Presentation;
 
 import configurafacil.Business.ConfiguraFacil;
-import configurafacil.Business.GestaoUtilizadores.FuncFabrica;
-import configurafacil.Business.GestaoUtilizadores.FuncStand;
+
 
 
 /**
@@ -129,21 +128,21 @@ public class Login extends javax.swing.JFrame {
             String password = this.password.getText();
             try{
                 configura.login(nome, password);
+                int tipo = this.configura.getUserTipo(nome);
+                if (tipo == 0){
+                    this.setVisible(false);
+                    new MenuStand(this, true, configura).setVisible(true);
+                }
+                else if (tipo == 1){
+                    this.setVisible(false);
+                    new MenuFuncionario(this, true, configura).setVisible(true);
+                }
+                else if (configura.getAdministrador()!=null) {
+                    this.setVisible(false);
+                    new MenuAdmin(this, true, configura).setVisible(true);
+                }
             }
-            catch (Exception e){}
-            if ((configura.getUser(nome)) instanceof FuncStand){
-                this.setVisible(false);
-                new MenuStand(this, true, configura).setVisible(true);
-            }
-            else if ((configura.getUser(nome)) instanceof FuncFabrica){
-                this.setVisible(false);
-                new MenuFuncionario(this, true, configura).setVisible(true);
-            }
-            else if (configura.getAdministrador()!=null) {
-                this.setVisible(false);
-                new MenuAdmin(this, true, configura).setVisible(true);
-            }
-            else{
+            catch (Exception e){
                 javax.swing.JOptionPane.showMessageDialog(this, "Por favor preencha os dados.", "Dados incorretos", 0);
                 this.nome.setText("");
                 this.password.setText("");

@@ -6,8 +6,6 @@
 package configurafacil.Presentation;
 
 import configurafacil.Business.ConfiguraFacil;
-import configurafacil.Business.Fabrica.GestaoEncomenda.Componente;
-import configurafacil.Business.Fabrica.GestaoEncomenda.Encomenda;
 import java.util.List;
 
 /**

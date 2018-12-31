@@ -6,8 +6,11 @@
 package configurafacil.Business.Fabrica;
 
 import configurafacil.Database.StockDAO;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 /**
  *
@@ -48,6 +51,29 @@ public class Fabrica {
      */
     public Map<String, Stock> getStock(){
         return this.stock.entrySet().stream().collect(Collectors.toMap(e->e.getKey(), e->e.getValue()));    
+    }
+    
+    public List<Integer> obtemQuantidadeS(){
+        List<Integer> quantidades = new ArrayList<>();
+        Set<String> chaves = this.stock.keySet();
+        for(Iterator<String> iterator = chaves.iterator(); iterator.hasNext();){
+            String chave = iterator.next();
+            if(chave != null)
+                quantidades.add(this.stock.get(chave).getQuantidade());
+           
+        }
+        return quantidades;
+    }
+    
+    public List<String> obtemNomeC(){
+        List<String> nomes = new ArrayList<>();
+         Set<String> chaves = this.stock.keySet();
+        for(Iterator<String> iterator = chaves.iterator(); iterator.hasNext();){
+            String chave = iterator.next();
+            if(chave != null)
+                nomes.add(this.stock.get(chave).getComponente());
+        }
+        return nomes;
     }
     
      /**
