@@ -29,17 +29,17 @@ public class PacoteSport extends javax.swing.JDialog {
        this.configura = c;
        this.parent = (Configuracao) parent;
        this.parent2 = (EscolherCarro) parent2;
-       inserePacoteS();
+       inserePacote("Pacote Sport");
   
        double p = this.configura.getPacotePreco("Pacote Sport");
        preco.setText(Double.toString(p));
     }
 
     
-    public void inserePacoteS(){
+    public void inserePacote(String nome){
         model = (DefaultTableModel) jTable1.getModel();
         Object rowData[] = new Object[1];
-        for(String c : this.configura.getComponentesPacote("Pacote Sport")){
+        for(String c : this.configura.getComponentesPacote(nome)){
             rowData[0] = c;
             model.addRow(rowData);
         }
@@ -177,10 +177,9 @@ public class PacoteSport extends javax.swing.JDialog {
         // TODO add your handling code here:
         List<String> listInc = new ArrayList<String>();
         String pnome = "Pacote Sport";
-        for(String comp : this.configura.getComponentesPacote(pnome)){
-            listInc = this.configura.verificaIncompativel(pnome,this.parent.getComponentes());
-        }
+        listInc = this.configura.verificaIncompativel(pnome,this.parent.getComponentes());
         StringBuilder sbInc = new StringBuilder();
+        
         for (String i : listInc){
             sbInc.append(i);
             sbInc.append("; ");

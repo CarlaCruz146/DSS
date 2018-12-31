@@ -29,17 +29,17 @@ public class PacoteConfort extends javax.swing.JDialog {
        this.configura = c;
        this.parent = (Configuracao) parent;
        this.parent2 = (EscolherCarro) parent2;
-       inserePacoteC();
+       inserePacote("Pacote Comfort");
 
        double p = this.configura.getPacotePreco("Pacote Comfort");
        
        preco.setText(Double.toString(p));
     }
     
-    public void inserePacoteC(){
+    public void inserePacote(String nome){
         model =  (DefaultTableModel) jTable1.getModel();
         Object rowData[] = new Object[1];
-        for(String c : this.configura.getComponentesPacote("Pacote Comfort")){
+        for(String c : this.configura.getComponentesPacote(nome)){
             rowData[0] = c;
             model.addRow(rowData);
         }
@@ -170,9 +170,7 @@ public class PacoteConfort extends javax.swing.JDialog {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         List<String> listInc = new ArrayList<String>();
         String pnome = "Pacote Comfort";
-        for(String comp : this.configura.getComponentesPacote(pnome)){
-            listInc = this.configura.verificaIncompativel(pnome,this.parent.getComponentes());
-        }
+        listInc = this.configura.verificaIncompativel(pnome,this.parent.getComponentes());
         StringBuilder sbInc = new StringBuilder();
         for (String i : listInc){
             sbInc.append(i);
