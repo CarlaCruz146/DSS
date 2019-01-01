@@ -39,6 +39,7 @@ public class GestaoUtilizadores {
         Utilizador u;
         if(this.utilizadores.containsKey(nome)){
             u = this.utilizadores.get(nome);
+            if (u.getEstado()!=0) throw new NomeInexistenteException("Utilizador inativo");
             if (u.getPassword().equals(password)) return u;
             else throw new PasswordInvalidaException("Password inválida");
         }
