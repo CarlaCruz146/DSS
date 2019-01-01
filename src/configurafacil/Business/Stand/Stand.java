@@ -90,18 +90,4 @@ public class Stand {
             this.clientes.put(c.getNif(),c);
         }
     }
-    
-    /**
-     * Devolve a lista dos nomes dos clientes com encomendas prontas.
-     * @param nifs Lista dos nifs dos clientes com encomendas prontas
-     * @return List
-     */
-    public List<String> getNomesClientes(List<String> nifs){
-        List<String> nomes = new ArrayList<>();
-        for(String nif : nifs){
-            Cliente c = clientes.get(nif);
-            nomes.add(c.getNome());
-        }
-        return nomes;
-    }
 }

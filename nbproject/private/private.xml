@@ -4,11 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/lipav/OneDrive/Documentos/GitHub/ConfiguraFacil/src/configurafacil/Business/Fabrica/GestaoEncomenda/GestaoEncomenda.java</file>
-            <file>file:/C:/Users/lipav/OneDrive/Documentos/GitHub/ConfiguraFacil/src/configurafacil/Business/Fabrica/GestaoEncomenda/Encomenda.java</file>
             <file>file:/C:/Users/lipav/OneDrive/Documentos/GitHub/ConfiguraFacil/src/configurafacil/Business/Stand/Stand.java</file>
-            <file>file:/C:/Users/lipav/OneDrive/Documentos/GitHub/ConfiguraFacil/src/configurafacil/Presentation/EncomendasProntas.java</file>
             <file>file:/C:/Users/lipav/OneDrive/Documentos/GitHub/ConfiguraFacil/src/configurafacil/Business/ConfiguraFacil.java</file>
-            <file>file:/C:/Users/lipav/OneDrive/Documentos/GitHub/ConfiguraFacil/src/configurafacil/Presentation/ListaEncomendas.java</file>
+            <file>file:/C:/Users/lipav/OneDrive/Documentos/GitHub/ConfiguraFacil/src/configurafacil/Business/Fabrica/Fabrica.java</file>
         </group>
     </open-files>
 </project-private>

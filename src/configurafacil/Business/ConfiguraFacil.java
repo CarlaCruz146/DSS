@@ -446,12 +446,11 @@ public class ConfiguraFacil {
     }
     
     /**
-     * Devolve a lista dos nomes dos clientes com encomendas prontas.
+     * Devolve a lista dos nifs dos clientes com encomendas prontas.
      * @return List
      */    
     public List<String> obtemClienteEncProntas(){
-        List<String> nifs = this.gestaoE.obtemClienteEncProntas();
-        return this.stand.getNomesClientes(nifs);
+        return this.gestaoE.obtemClienteEncProntas();
     }
     
     /**
