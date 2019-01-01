@@ -8,10 +8,8 @@ package configurafacil.Business.Fabrica.GestaoEncomenda;
 import configurafacil.Database.EncomendaDAO;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  *
@@ -143,15 +141,9 @@ public class GestaoEncomenda {
      */
     public List<Integer> getEncEstado(int estado){
         List<Integer> ids = new ArrayList<>();
-        Set<Integer> chaves = this.encomendas.keySet();
-        for(Iterator<Integer> iterator = chaves.iterator(); iterator.hasNext();){
-            int chave = iterator.next();
-            if(chave>=0){
-                Encomenda e = this.encomendas.get(chave);
-                if(e.getEstado() == estado)  
-                    ids.add(e.getId());
-            }           
-        }
+        for(Encomenda e : this.encomendas.values())
+            if(e.getEstado() == estado)
+                ids.add(e.getId());
         return ids;
     }
     
@@ -161,15 +153,9 @@ public class GestaoEncomenda {
      */    
     public List<String> obtemClienteEncProntas(){
         List<String> nifs = new ArrayList<>();
-        Set<Integer> chaves = this.encomendas.keySet();
-        for(Iterator<Integer> iterator = chaves.iterator(); iterator.hasNext();){
-            int chave = iterator.next();
-            if(chave>=0){
-                Encomenda e = this.encomendas.get(chave);
-                if(e.getEstado() == 2)  
-                    nifs.add(e.getCliente());
-            }           
-        }
+        for(Encomenda e : this.encomendas.values())
+            if(e.getEstado() == 2)
+                nifs.add(e.getCliente());
         return nifs;
     }
 }
