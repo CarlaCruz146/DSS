@@ -63,7 +63,7 @@ public class ConfiguraFacil {
      * Devolve os pacotes existentes na aplicação.
      * @return Map
      */
-    public Map<String,Pacote> getPacote(){
+    public Map<String,Pacote> getPacotes(){
         return this.pacotes.entrySet().stream().collect(Collectors.toMap(e->e.getKey(), e->e.getValue()));
     }
     
@@ -111,7 +111,7 @@ public class ConfiguraFacil {
     }
     
     /**
-     * Devolve o adminstrador da aplicação.
+     * Devolve o administrador da aplicação.
      * @return Administrador
      */
     public Administrador getAdministrador(){
@@ -151,24 +151,16 @@ public class ConfiguraFacil {
     }
     
     /**
-     * Devolve os utilizadores da aplicação.
-     * @return Map
-     */
-    public Map<String,Utilizador> getUtilizadores(){
-        return this.gestaoU.getUtilizadores();
-    }
-
-    /**
-     * Atualiza o estado de um utilizador
+     * Atualiza o estado de um utilizador.
      * @param nome Nome do utilizador
-     * @param estado Estado a alterar
+     * @param estado Novo estado
      */    
     public void setEstado(String nome, int estado){
         this.gestaoU.setEstado(nome,estado);
     }
 
     /**
-     * Adiciona um cliente
+     * Adiciona um cliente.
      * @param nome Nome do cliente
      * @param nif Nif do cliente
      * @param contacto Contacto do cliente
@@ -188,22 +180,49 @@ public class ConfiguraFacil {
             this.gestaoU.adicionaUtilizador(nome, password, estado, tipo);
     }
     
+    
+    /**
+     * Devolve a lista dos nomes dos utilizadores ativos.
+     * @return List
+     */
     public List<String> getAtivos(){
         return this.gestaoU.getAtivos();
     }
     
+    /**
+     * Devolve a lista dos nomes das componentes de uma encomenda com um certo id.
+     * @param id Id da encomenda
+     * @return List
+     */
     public List<String> getCompEncomenda(int id){
         return this.gestaoE.getCompEncomenda(id);
     }
     
+     /**
+     * Devolve a lista dos nomes de todas as componentes de uma encomenda com um certo id.
+     * @param id Id da encomenda
+     * @return List
+     */
     public List<String> getAllCompEncomenda(int id){
         return this.gestaoE.getAllCompEncomenda(id,this.pacotes);
     }
-    
+     /**
+     * Cria uma nova encomenda.
+     * @param nif Nif do cliente que fez a encomenda
+     * @param carro Carro encomendado
+     * @param comp Nomes das componentes da configuração da encomenda
+     * @param pacote Nome do pacote da encomenda
+     * @param limite Limite de preço da encomenda
+     */
     public void geraEncomenda(String nif, String carro, List<String> comp, String pacote, double limite){
         this.gestaoE.geraEncomenda(nif, carro, comp, pacote, limite);
     }
     
+     /**
+     * Devolve a lista dos nomes das componentes de um pacote com dado nome.
+     * @param nome Nome do pacote
+     * @return List
+     */
     public List<String> getComponentesPacote(String nome){
        return this.pacotes.get(nome).getComponentes();
    }
@@ -218,8 +237,8 @@ public class ConfiguraFacil {
     }
 
     /**
-     * Verifica se todas as componetes básicas obrigatórias foram escolhidas
-     * @param comp Componentes da configuração
+     * Verifica se todas as componetes básicas obrigatórias foram escolhidas.
+     * @param comp Nomes das componentes da configuração
      * @return boolean
      */
     public boolean verificaComponentes(List<String> comp){
@@ -234,10 +253,10 @@ public class ConfiguraFacil {
     }
     
     /**
-     * Devolve uma componente de um determinado tipo na encomenda.
-     * @param tipo Tipo da componente
-     * @param comp Componentes da configuração
-     * @return Componente
+     * Verifica se uma componente é de um determinado tipo.
+     * @param tipo Tipo 
+     * @param c Nome da componente a verifica
+     * @return boolean
      */
     public boolean verificaTipoComp(String tipo, String c){
        Componente comp = this.componentes.get(c);
@@ -247,9 +266,10 @@ public class ConfiguraFacil {
     
     
     /**
-     * Devolve a componente de um determinado tipo
-     * @param tipo Tipo da componente
-     * @param comp Componentes da configuração
+     * Devolve a componente de um determinado tipo presente numa dada lista de componentes.
+     * @param tipo Tipo
+     * @param componente Lista dos nomes das componentes
+     * @return Nome da componente do tipo dado
      */
     public String verificaTipo(String tipo, List<String> componente){
         String comp = null;
@@ -266,9 +286,9 @@ public class ConfiguraFacil {
 
     
     /**
-     * Devolve a lista de componentes obrigatórias da encomenda não selecionadas
-     * @param tipo Tipo da componente
-     * @return Lista de componentes obrigatórias
+     * Devolve a lista de componentes obrigatórias da encomenda não selecionadas.
+     * @param componente Lista dos nomes das componentes
+     * @return List
      */    
     public List<String> verificaObrigatoria(List<String> componente){
         List<String> obrigatorio = new ArrayList<>();
@@ -287,14 +307,14 @@ public class ConfiguraFacil {
     }
 
     /**
-     * Devolve a lista de componentes incompativeis de um componente e um pacote
-     * @param c Componente selecionado 
-     * @param comp Componentes a serem adicionadas na configuracao
-     * @param p Pacote selecionado
-     * @param Lista de componentes incompativeis
+     * Devolve a lista dos nomes das componentes incompativeis de dada componente e pacote.
+     * @param componente Nome da componente
+     * @param comp Nomes das componentes a serem adicionadas na configuracao
+     * @param p Nome do pacote selecionado
+     * @return List
      */    
     public List<String> verificaIncomp(String componente, List<String> comp, String p){
-        List<String> incomp = new ArrayList<String>();
+        List<String> incomp = new ArrayList<>();
         Componente c = this.componentes.get(componente);
         for(String i : c.getIncompativeis())
             for(String j : comp){
@@ -313,13 +333,13 @@ public class ConfiguraFacil {
     
     
     /**
-     * Devolve a lista de componentes obrigatórias que ainda não se encontram na encomenda
-     * @param cnome Componente adicionada
-     * @param comp Componentes a serem adicionadas na configuracao
-     * @return Lista de componentes obrigatórias
+     * Devolve a lista dos nomes das componentes obrigatórias ao escolher certa componente.
+     * @param cnome Nome da componente adicionada
+     * @param comp Nomes das componentes a serem adicionadas na configuracao
+     * @return List
      */    
     public List<String> verificaObrig(String cnome, List<String> comp){
-        List<String> obrig = new ArrayList<String>();
+        List<String> obrig = new ArrayList<>();
         Componente componente = this.componentes.get(cnome);
         int flag = 0;
         for(String i : componente.getObrigatorias()){
@@ -335,13 +355,13 @@ public class ConfiguraFacil {
     }
 
     /**
-     * Devolve a lista de componentes incompativeis com um pacote presentes na configuração
-     * @param p Pacote
-     * @param componente Componentes da configuração
-     * @return lista de componentes incompativeis
+     * Devolve a lista dos nomes das componentes incompativeis com um pacote presentes na configuração.
+     * @param pacote Nome do pacote
+     * @param componente Nomes das componentes da configuração
+     * @return List
      */    
     public List<String> verificaIncompativel(String pacote, List<String> componente){
-        List<String> incomp = new ArrayList<String>();
+        List<String> incomp = new ArrayList<>();
         Pacote p = this.pacotes.get(pacote);
         for(String str : p.getComponentes()){
             Componente c = componentes.get(str);
@@ -354,31 +374,23 @@ public class ConfiguraFacil {
     }
     
     /**
-     * Verifica se existe stock de uma determinada componente.
+     * Devolve a quantidade em stock de uma determinada componente.
      * @param s Nome da componente
-     * @return Se existe ou não
+     * @return quantidade em stock da componente
      */
     public int verificaStock(String s){
         return this.fabrica.verificaStock(s);
     } 
     
     /**
-     * Devolve uma determinada encomenda.
-     * @param id Identificador da encomenda
+     * Devolve encomenda com certo id
+     * @param id Id da encomenda
      * @return Encomenda
      */
     public Encomenda getEncomenda(int id){
         return this.gestaoE.getEncomenda(id);
     }
-
-    /**
-     * Devolve todas as encomendas na aplicação.
-     * @return Map
-     */
-    public Map<Integer,Encomenda> getEncomendas(){
-        return this.gestaoE.getEncomendas();
-    }
-    
+   
     /**
      * Atualiza o stock de uma determinada componente.
      * @param s Nome da componente
@@ -391,56 +403,96 @@ public class ConfiguraFacil {
     /**
      * Altera o estado de uma determinada encomenda.
      * @param id Identificador encomenda
-     * @param estado Estado da encomenda
+     * @param estado Novo estado da encomenda
      */    
     public void alterarEstado(int id, int estado){
         this.gestaoE.alterarEstado(id, estado);
     }
     
+    /**
+     * Devolve o estado de dada encomenda.
+     * @param id Identificador encomenda
+     * @return estado da encomenda
+     */
     public int estadoEnc(int id){
         return this.gestaoE.estadoEnc(id);
     }
     
+    /**
+     * Devolve o preço de dada componente.
+     * @param nome Nome da componente
+     * @return preço
+     */
     public double getComponentePreco(String nome){
         return this.componentes.get(nome).getPreco();
     }
     
+    /**
+     * Devolve o preço de determinado pacote.
+     * @param nome Nome do pacote
+     * @return preço
+     */
     public double getPacotePreco(String nome){
         return this.pacotes.get(nome).getPreco();
     }
     
+    /**
+     * Verifica se é pacote.
+     * @param nome Nome do pacote a verificar
+     * @return se é pacote ou nao
+     */
     public boolean isPacote(String nome){
         return this.pacotes.containsKey(nome);
     }
     
-    public List<Integer> obtemIdEncProntas(){
-        return this.getEncEstado(2);
-    }
-    
+    /**
+     * Devolve a lista dos nomes dos clientes com encomendas prontas.
+     * @return List
+     */    
     public List<String> obtemClienteEncProntas(){
         List<String> nifs = this.gestaoE.obtemClienteEncProntas();
         return this.stand.getNomesClientes(nifs);
     }
     
+    /**
+     * Devolve a lista das quantidades em stock.
+     * @return List
+     */
     public List<Integer> obtemQuantidadeS(){
         return this.fabrica.obtemQuantidadeS();
     }
     
+    /**
+     * Devolve a lista dos ids das encomendas com determindado estado.
+     * @param estado Estado da encomenda
+     * @return List
+     */
     public List<Integer> getEncEstado(int estado){
         return this.gestaoE.getEncEstado(estado);
     }
     
+    /**
+     * Devolve o tipo de utilizador dado o nome.
+     * @param nome Nome do utilizador
+     * @return tipo
+     */
     public int getUserTipo(String nome){
        return this.gestaoU.getUserTipo(nome);
     }
     
+    /**
+     * Devolve a lista dos nomes das componentes.
+     * @return List
+     */
     public List<String> obtemNomeC(){
         return this.fabrica.obtemNomeC();
     }
+    
     /**
      * Inicia sessão de um utilizador.
      * @param nome Nome do utilizador
      * @param password Password do utilizador
+     * @throws NomeInexistenteException
      */     
     public void login(String nome, String password) throws NomeInexistenteException{
         try{
@@ -460,9 +512,9 @@ public class ConfiguraFacil {
     }
 
     /**
-     * Constroi uma string com a lista de componentes.
+     * Constrói uma string com a lista dos nomes das componentes.
      * @param componentes Lista dos nomes das componentes a listar
-     * @return string com as componentes
+     * @return string 
      */ 
     public String listaComponentes(List<String> componentes){
         StringBuilder sb = new StringBuilder();
@@ -473,6 +525,11 @@ public class ConfiguraFacil {
         return sb.toString();
     }
     
+    /**
+     * Devolve a lista dos nomes das componentes da configuração sugerida dado um limite de preço.
+     * @param limite Limite de preço da encomenda
+     * @return List
+     */
     public List<String> sugestao(double limite){
         List<String> l = new ArrayList<>();
         String pacote = null;
@@ -530,7 +587,7 @@ public class ConfiguraFacil {
     
     /**
      * Atualiza o stock quando uma encomenda é colocada em execução.
-     * @param config Lista do nome das componentes a diminuir o stock
+     * @param config Lista do nome das componentes a diminuir em stock
      */  
     public void diminuiStock(List<String> config){        
         for(String s : config){

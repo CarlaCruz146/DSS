@@ -32,7 +32,7 @@ public class EncomendasProntas extends javax.swing.JDialog {
     public void apresentaEnc(){
         model =  (DefaultTableModel) jTable1.getModel();
         Object rowData[] = new Object[2];
-        List<Integer> ids = this.configura.obtemIdEncProntas();
+        List<Integer> ids = this.configura.getEncEstado(2);
         List<String> nomes = this.configura.obtemClienteEncProntas();
         
         for(int i=0;i<ids.size();i++){

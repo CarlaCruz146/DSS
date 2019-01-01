@@ -29,8 +29,8 @@ public class GestaoUtilizadores {
     
     /**
      * Verifica o login de um dado utilizador.
-     * @param nome Nome do utilizador.
-     * @param password Password do utilizador.
+     * @param nome Nome do utilizador
+     * @param password Password do utilizador
      * @return Utilizador
      * @throws PasswordInvalidaException Exception
      * @throws NomeInexistenteException Exception
@@ -46,7 +46,7 @@ public class GestaoUtilizadores {
     }
     
     /**
-     * Verfica a existência do nome de um utilizador.
+     * Verifica a existência do nome de um utilizador.
      * @param nome Nome do utilizador.
      * @return boolean
      */
@@ -54,6 +54,13 @@ public class GestaoUtilizadores {
         return this.utilizadores.containsKey(nome);
     }
 
+    /**
+     * Adiciona um utilizador.
+     * @param nome Nome do utilizador
+     * @param password Password do utilizador
+     * @param estado Estado do utilizador
+     * @param tipo Tipo de utilizador
+     */
     public void adicionaUtilizador(String nome, String password, int estado, int tipo){
         if(tipo == 1){
             FuncStand f  = new FuncStand(nome, password, estado);
@@ -65,6 +72,10 @@ public class GestaoUtilizadores {
         }
     }
     
+    /**
+     * Devolve a lista dos nomes dos utilizadores ativos.
+     * @return List
+     */
     public List<String> getAtivos(){
         List<String> list = new ArrayList<>();
         for(Utilizador u : this.utilizadores.values())
@@ -96,8 +107,8 @@ public class GestaoUtilizadores {
     
     /**
      * Altera o estado de um utilizador.
-     * @param u Utilizador.
-     * @param estado Estado do utilizador.
+     * @param nome Nome do utilizador
+     * @param estado Novo estado do utilizador.
      */
     public void setEstado(String nome, int estado){
         Utilizador u = this.getUtilizador(nome);
@@ -105,6 +116,11 @@ public class GestaoUtilizadores {
         this.utilizadores.put(u.getNome(), u);
     }
     
+    /**
+     * Devolve o tipo de utilizador
+     * @param nome Nome do utilizador
+     * @return tipo
+     */
     public int getUserTipo(String nome){
         if(this.utilizadores.get(nome) instanceof FuncStand) return 0;
         else if (this.utilizadores.get(nome) instanceof FuncFabrica) return 1;

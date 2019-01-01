@@ -38,12 +38,12 @@ public class Pacote {
     public Pacote(String nome, double preco, List<String> componentes){
         this.nome = nome;
         this.preco = preco;
-        this.componentes = new ArrayList<String>();
+        this.componentes = new ArrayList<>();
         if(componentes!=null) setComponentes(componentes);
     }
    
     /**
-     * Construtor da classe Pacote pela cópia de uma classe.
+     * Construtor por cópia da classe Pacote.
      * @param c Pacote.
      */
     public Pacote(Pacote c){
@@ -54,7 +54,7 @@ public class Pacote {
     
     /**
      * Devolve o nome do pacote.
-     * @return String
+     * @return nome
      */
     public String getNome(){
         return this.nome;
@@ -62,7 +62,7 @@ public class Pacote {
    
     /**
      * Devolve o número de componentes do pacote.
-     * @return Integer
+     * @return número de componentes
      */
     public int getNComp(){
         return this.componentes.size();
@@ -70,14 +70,14 @@ public class Pacote {
     
     /**
      * Devolve o preço do pacote.
-     * @return double
+     * @return preço
      */
     public double getPreco(){
         return this.preco;
     }
     
     /**
-     * Devolve as componentes do pacote.
+     * Devolve os nomes das componentes do pacote.
      * @return List
      */
     public List<String> getComponentes(){
@@ -86,7 +86,7 @@ public class Pacote {
     
     /**
      * Altera o nome do pacote.
-     * @param nome Nome do pacote.
+     * @param nome Novo nome do pacote
      */
     public void setNome(String nome){
         this.nome = nome;
@@ -94,7 +94,7 @@ public class Pacote {
     
     /**
      * Altera o preço do pacote.
-     * @param p Preço do pacote.
+     * @param p Novo preço do pacote
      */
     public void setPreco(double p){
         this.preco = p;
@@ -102,7 +102,7 @@ public class Pacote {
     
     /**
      * Altera as componentes do pacote.
-     * @param comp Componentes do pacote.
+     * @param comp Lista dos nomes das novas componentes do pacote
      */
     public void setComponentes(List<String> comp){
         for (String s : comp){

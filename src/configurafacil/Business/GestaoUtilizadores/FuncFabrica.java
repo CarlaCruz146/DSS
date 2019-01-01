@@ -12,14 +12,14 @@ package configurafacil.Business.GestaoUtilizadores;
 public class FuncFabrica extends Utilizador {
     
     /**
-     * Construtor vazio do Utilizador cuja natureza é FuncFabrica
+     * Construtor vazio do Utilizador cuja natureza é FuncFabrica.
      */
     public FuncFabrica(){
         super();
     }
     
     /**
-     * Constrói a partir dos parametros fornecidos um utilizador cuja natureza é FuncFabrica
+     * Constrói a partir dos parâmetros fornecidos um utilizador cuja natureza é FuncFabrica.
      * @param nome Nome do utilizador
      * @param pass Password do utilizador
      * @param estado Estado do utilizador
@@ -29,7 +29,7 @@ public class FuncFabrica extends Utilizador {
     }
     
     /**
-     * Constroi um utilizador cuja natureza é FuncFabrica a partir de uma definida
+     * Constrói por cópia um utilizador cuja natureza é FuncFabrica.
      * @param f
      */
     public FuncFabrica(FuncFabrica f){
@@ -37,7 +37,7 @@ public class FuncFabrica extends Utilizador {
     }
     
    /**
-     * Imprime a informação de um funcionário cuja natureza é um funcionario de fábrica
+     * Imprime a informação de um funcionário cuja natureza é um funcionario de fábrica.
      * @return String com a informação
      */
      public String toString(){
@@ -45,7 +45,7 @@ public class FuncFabrica extends Utilizador {
     }
     
     /**
-     * Compara dois utilizadores de FuncFabrica
+     * Compara dois utilizadores de FuncFabrica.
      * @param o Objeto
      * @return boolean
      */

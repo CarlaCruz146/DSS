@@ -34,7 +34,7 @@ public class Stock {
     }
     
     /**
-     * Construtor da classe Stock pela cópia de uma classe.
+     * Construtor por cópia da classe Stock
      * @param c Stock.
      */
     public Stock(Stock c){
@@ -44,15 +44,15 @@ public class Stock {
     
     /**
      * Devolve a quantidade de stock.
-     * @return int
+     * @return quantidade
      */
     public int getQuantidade(){
         return this.quantidade;
     }
     
     /**
-     * Devolve a componente do stock.
-     * @return String
+     * Devolve o nome da componente do stock.
+     * @return nome
      */
     public String getComponente(){
         return this.componente;
@@ -60,7 +60,7 @@ public class Stock {
     
     /**
      * Altera o quantidade do stock.
-     * @param q Quantidade do stock.
+     * @param q Nova quantidade
      */
     public void setQuantidade(int q){
         this.quantidade = q;

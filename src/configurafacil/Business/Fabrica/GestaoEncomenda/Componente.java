@@ -38,21 +38,21 @@ public class Componente {
      * @param nome Nome da componente.
      * @param tipo Tipo da componente.
      * @param preco Preço da componente.
-     * @param incompativeis Lista de componentes incompativeis.
-     * @param obrigatorias Lista de componentes obrigatórias.
+     * @param incompativeis Lista dos nomes das componentes incompativeis.
+     * @param obrigatorias Lista dos nomes das componentes obrigatórias.
      */
     public Componente(String nome, String tipo, double preco, List<String> incompativeis, List<String> obrigatorias){
         this.nome = nome;
         this.tipo = tipo;
         this.preco = preco;
-        this.compIncompativeis = new ArrayList<String>();
+        this.compIncompativeis = new ArrayList<>();
         if (incompativeis!=null) setIncompativeis(incompativeis);
-        this.compObrigatorias = new ArrayList<String>();
+        this.compObrigatorias = new ArrayList<>();
         if (obrigatorias!=null) setObrigatorias(obrigatorias);
     }
     
     /**
-     * Construtor da classe Componente pela cópia de uma classe.
+     * Construtor por cópia da classe Componente.
      * @param c Componente.
      */
     public Componente(Componente c){
@@ -64,8 +64,8 @@ public class Componente {
     }
     
     /**
-     * Devolve a nome da componente.
-     * @return String 
+     * Devolve o nome da componente.
+     * @return nome
      */
     public String getNome(){
         return this.nome;
@@ -73,7 +73,7 @@ public class Componente {
    
     /**
      * Devolve o tipo da componente.
-     * @return String 
+     * @return tipo
      */
     public String getTipo(){
         return this.tipo;
@@ -81,24 +81,31 @@ public class Componente {
     
     /**
      * Devolve o preço da componente.
-     * @return double 
+     * @return preço 
      */
     public double getPreco(){
         return this.preco;
     }
     
-    
+     /**
+     * Devolve a lista dos nomes das componentes incompatíveis.
+     * @return List
+     */   
     public List<String> getIncompativeis(){
         return this.compIncompativeis.stream().collect(Collectors.toList());
     }
     
+    /**
+     * Devolve a lista dos nomes das componentes obrigatórias.
+     * @return List
+     */
     public List<String> getObrigatorias(){
         return this.compObrigatorias.stream().collect(Collectors.toList());
     }
     
     /**
      * Altera o nome da componente.
-     * @param nome Nome da componente.
+     * @param nome Novo nome da componente
      */
     public void setNome(String nome){
         this.nome = nome;
@@ -106,7 +113,7 @@ public class Componente {
     
     /**
      * Altera o tipo da componente.
-     * @param tipo Tipo da componente.
+     * @param tipo Novo tipo da componente
      */
     public void setTipo(String tipo){
         this.tipo = tipo;
@@ -114,17 +121,25 @@ public class Componente {
     
     /**
      * Altera o preço da componente.
-     * @param p Preço da componente.
+     * @param p Novo preço da componente
      */
     public void setPreco(double p){
         this.preco = p;
     }
     
+    /**
+     * Altera as componentes incompatíveis da componente.
+     * @param incomp Nomes das novas componentes incompatíveis
+     */
     public void setIncompativeis(List<String> incomp){
         for(String s : incomp)
             this.compIncompativeis.add(s);
     }
     
+    /**
+     * Altera as componentes obrigatórias da componente.
+     * @param obrig Nomes das novas componentes obrigatórias
+     */
     public void setObrigatorias(List<String> obrig){
         for(String s : obrig)
             this.compObrigatorias.add(s);
@@ -146,11 +161,18 @@ public class Componente {
                 && c.getIncompativeis().equals(this.compIncompativeis)
                 && c.getObrigatorias().equals(this.compObrigatorias);
     }
-    
+    /**
+     * Insere o nome de dada componente obrigatória.
+     * @param c Nome da componente obrigatória a adicionar
+     */
     public void insereObrigatoria(String c){
         this.compObrigatorias.add(c);
     }
     
+    /**
+     * Insere o nome de dada componente incompatível.
+     * @param c Nome da componente incompatível a adicionar
+     */
     public void insereIncompativel(String c){
         this.compIncompativeis.add(c);
     }

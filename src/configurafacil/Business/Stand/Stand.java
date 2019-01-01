@@ -30,7 +30,7 @@ public class Stand {
     
     /**
      * Devolve o id do stand.
-     * @return int
+     * @return id
      */
     public int getId(){
         return this.id;
@@ -45,9 +45,9 @@ public class Stand {
     }
     
     /**
-     * Devolve um cliente do stando com certo nif.
-     * @param nif String.
-     * @return int
+     * Devolve o cliente do stand com determinado nif.
+     * @param nif Nif do cliente
+     * @return Cliente
      */
     public Cliente getCliente(String nif){
         return this.clientes.get(nif);
@@ -55,7 +55,7 @@ public class Stand {
     
     /**
      * Altera o id do stand.
-     * @param id Id do stand.
+     * @param id Novo id do stand
      */
     public void setId(int id){
         this.id = id;
@@ -63,7 +63,7 @@ public class Stand {
     
     /**
      * Altera os clientes do stand.
-     * @param c ClienteDAO do stand.
+     * @param c ClienteDAO do stand
      */
     public void setClientes(ClienteDAO c){
         this.clientes = c;
@@ -71,8 +71,8 @@ public class Stand {
     
     /**
      * Altera um cliente do stand.
-     * @param nif Nif do cliente do stand.
-     * @param c Cliente do stand.
+     * @param nif Nif do cliente
+     * @param c Cliente do stand
      */
     public void setCliente(String nif, Cliente c){
        this.clientes.replace(nif,c);
@@ -80,11 +80,10 @@ public class Stand {
 
     /**
      * Adiciona um cliente ao stand.
-     * @param c Cliente do stand.
+     * @param nome Nome do cliente
+     * @param nif Nif do cliente
+     * @param contacto Contacto do cliente
      */
-   /* public void addCliente(Cliente c){
-        this.clientes.put(c.getNif(),c);
-    }*/
     public void addCliente(String nome, String nif, String contacto){
         if(!this.clientes.containsKey(nif)){
             Cliente c = new Cliente(nome,nif,contacto);
@@ -92,6 +91,11 @@ public class Stand {
         }
     }
     
+    /**
+     * Devolve a lista dos nomes dos clientes com encomendas prontas.
+     * @param nifs Lista dos nifs dos clientes com encomendas prontas
+     * @return List
+     */
     public List<String> getNomesClientes(List<String> nifs){
         List<String> nomes = new ArrayList<>();
         for(String nif : nifs){

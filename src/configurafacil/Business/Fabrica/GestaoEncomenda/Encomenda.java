@@ -41,6 +41,7 @@ public class Encomenda {
      * Construtor da classe Encomenda. 
      * @param id Id da encomenda.
      * @param carro Carro da encomenda.
+     * @param estado Estado da encomenda.
      * @param config Configuração da encomenda.
      * @param pacote Pacote da encomenda.
      * @param cliente Cliente que pediu a encomenda.
@@ -58,7 +59,7 @@ public class Encomenda {
     }
     
     /**
-     * Construtor da classe Encomenda pela cópia de uma classe.
+     * Construtor por cópia da classe Encomenda.
      * @param e Encomenda.
      */
     public Encomenda(Encomenda e){
@@ -73,7 +74,7 @@ public class Encomenda {
     
     /**
      * Devolve o nome do cliente da encomenda.
-     * @return String
+     * @return nome
      */
     public String getCliente(){
         return this.cliente;
@@ -81,7 +82,7 @@ public class Encomenda {
     
     /**
      * Devolve o limite do preço da encomenda.
-     * @return String
+     * @return limite de preço
      */
     public double getLimite(){
         return this.limite;
@@ -89,15 +90,15 @@ public class Encomenda {
     
     /**
      * Devolve o id da encomenda.
-     * @return String
+     * @return id
      */
     public int getId(){
         return this.id;
     }
     
     /**
-     * Devolve o carro da encomenda.
-     * @return String
+     * Devolve o nome do carro da encomenda.
+     * @return carro
      */
     public String getCarro(){
         return this.carro;
@@ -105,15 +106,15 @@ public class Encomenda {
     
     /**
      * Devolve o estado da encomenda.
-     * @return String
+     * @return estado
      */
     public int getEstado(){
         return this.estado;
     }
     
     /**
-     * Devolve a confiragação da encomenda.
-     * @return String
+     * Devolve a configuração da encomenda.
+     * @return List
      */
     public List<String> getConfig(){
         return this.configuracao.stream().collect(Collectors.toList());
@@ -121,15 +122,15 @@ public class Encomenda {
     
     /**
      * Devolve o pacote da encomenda.
-     * @return String
+     * @return nome do pacote
      */
     public String getPacote(){
         return this.pacote;
     }
     
     /**
-     * Devolve o tamanho da configuração da encomenda.
-     * @return String
+     * Devolve o número de componentes da encomenda.
+     * @return número de componentes
      */
     public int getNConfig(){
         return this.configuracao.size();
@@ -137,7 +138,7 @@ public class Encomenda {
         
     /**
      * Altera o nome do cliente.
-     * @param cliente Nome do cliente.
+     * @param cliente Novo nome do cliente
      */
     public void setCliente(String cliente){
         this.cliente = cliente;
@@ -145,7 +146,7 @@ public class Encomenda {
     
     /**
      * Altera o id do encomenda.
-     * @param id ID do encomenda.
+     * @param id Novo id da encomenda
      */
     public void setId(int id){
         this.id = id;
@@ -153,7 +154,7 @@ public class Encomenda {
     
     /**
      * Altera o limite de preço da encomenda.
-     * @param l Limite de preço da nome.
+     * @param l Novo limite de preço da encomenda
      */
     public void setLimite(double l){
         this.limite = l;
@@ -161,7 +162,7 @@ public class Encomenda {
     
     /**
      * Altera o carro da encomenda.
-     * @param c Carro da encomenda.
+     * @param c Novo carro da encomenda
      */    
     public void setCarro(String c){
         this.carro = c;
@@ -169,7 +170,7 @@ public class Encomenda {
     
     /**
      * Altera o estado da encomenda.
-     * @param e Estado da encomenda.
+     * @param e Novo estado da encomenda
      */
     public void setEstado(int e){
         this.estado = e;
@@ -177,7 +178,7 @@ public class Encomenda {
     
     /**
      * Altera o pacote da encomenda.
-     * @param pacote Pacote da encomenda.
+     * @param pacote Novo pacote da encomenda
      */
     public void setPacote(String pacote){
         this.pacote = pacote;
@@ -185,7 +186,7 @@ public class Encomenda {
    
     /**
      * Altera a configuração da encomenda.
-     * @param c Configuração da encomenda.
+     * @param c Nova configuração da encomenda
      */
     public void setConfig(List<String> c){
         this.configuracao = c.stream().collect(Collectors.toList());

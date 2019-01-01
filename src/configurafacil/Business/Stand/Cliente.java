@@ -39,7 +39,7 @@ public class Cliente {
     }
     
     /**
-     * Construtor da classe Cliente pela cópia de uma classe.
+     * Construtor por cópia da classe Cliente.
      * @param c Cliente.
      */
     public Cliente(Cliente c){
@@ -50,7 +50,7 @@ public class Cliente {
     
     /**
      * Devolve o nome do cliente.
-     * @return String 
+     * @return nome
      */
     public String getNome(){
         return this.nome;
@@ -58,7 +58,7 @@ public class Cliente {
     
     /**
      * Devolve o nif do cliente.
-     * @return String 
+     * @return nif
      */
     public String getNif(){
         return this.nif;
@@ -66,20 +66,15 @@ public class Cliente {
     
     /**
      * Devolve o contacto do cliente.
-     * @return String 
+     * @return contacto
      */
     public String getContacto(){
         return this.contacto;
     }
     
-   /* 
-    public List<Integer> getEncomendas(){
-        return this.encomendas;
-    }*/
-    
     /**
      * Altera o nome do cliente.
-     * @param nome Nome do cliente.
+     * @param nome Novo nome do cliente
      */
     public void setNome(String nome){
         this.nome = nome;
@@ -87,7 +82,7 @@ public class Cliente {
     
     /**
      * Altera o nif do cliente.
-     * @param nif Nif do cliente.
+     * @param nif Novo nif do cliente
      */
     public void setNif(String nif){
         this.nif = nif;
@@ -95,7 +90,7 @@ public class Cliente {
     
     /**
      * Altera o contacto do cliente.
-     * @param contacto Contacto do cliente.
+     * @param contacto Novo contacto do cliente
      */
     public void setContacto(String contacto){
         this.contacto = contacto;

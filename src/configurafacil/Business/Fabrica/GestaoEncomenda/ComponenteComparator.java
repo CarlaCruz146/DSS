@@ -14,10 +14,10 @@ import java.util.Comparator;
 public class ComponenteComparator implements Comparator<Componente> {
 
 	/**
-     * Compara duas maxPosts consoante o contador
-     * @param c1 maxPosts 1
-     * @param c2 maxPosts 2
-     * @return O contador da maxPosts 1 é maior (-1); O contador da maxPosts 2 é maior (1); São iguais (0);
+     * Compara duas Componentes consoante o seu preço
+     * @param c1 componente 1
+     * @param c2 componente 2
+     * @return O preço da componente 1 é maior (-1); O contador da componente 2 é maior (1); São iguais (0);
      */
     public int compare(Componente c1, Componente c2) {
         if (c1.getPreco()< c2.getPreco()) return 1;

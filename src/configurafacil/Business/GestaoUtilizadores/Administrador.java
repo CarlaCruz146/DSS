@@ -10,14 +10,23 @@ package configurafacil.Business.GestaoUtilizadores;
  * @author Grupo 30
  */
 public class Administrador {
-    
+
     private final String username = "Admin";
     private final String password = "admin";
     
+    /**
+     * Construtor da classe Administrador sem parâmetros.
+     */
     public Administrador(){}
     
+    /**
+     * Verifica o login do administrador.
+     * @param nome Nome do administrador
+     * @param password Password do administrador
+     * @throws PasswordInvalidaException Exception
+     * @throws NomeInexistenteException Exception
+     */
     public Administrador verificaAdmin(String nome, String password) throws PasswordInvalidaException, NomeInexistenteException{
-        Administrador a;
         if(this.username.equals(nome)){
             if(this.password.equals(password)) return this;
             else throw new PasswordInvalidaException("Password inválida");

@@ -38,8 +38,8 @@ public abstract class Utilizador {
     }
     
     /**
-     * Construtor da classe Utilizador pela cópia de uma classe.
-     * @param u Utilizador.
+     * Construtor por cópia da classe Utilizador.
+     * @param u Utilizador
      */
     public Utilizador(Utilizador u){
         this.nome = u.getNome();
@@ -49,7 +49,7 @@ public abstract class Utilizador {
     
     /**
      * Devolve o nome do utilizador.
-     * @return String
+     * @return nome
      */
     public String getNome(){
         return this.nome;
@@ -57,7 +57,7 @@ public abstract class Utilizador {
     
     /**
      * Devolve a password do utilizador.
-     * @return String 
+     * @return password
      */
     public String getPassword(){
         return this.password;
@@ -65,7 +65,7 @@ public abstract class Utilizador {
     
     /**
      * Devolve a estado do utilizador.
-     * @return int 
+     * @return estado
      */
     public int getEstado(){
         return this.estado;
@@ -73,7 +73,7 @@ public abstract class Utilizador {
     
     /**
      * Altera o nome do utilizador.
-     * @param nome Nome do utilizador.
+     * @param nome Novo nome do utilizador
      */
     public void setNome(String nome){
         this.nome = nome;
@@ -81,7 +81,7 @@ public abstract class Utilizador {
     
     /**
      * Altera o estado do utilizador.
-     * @param estado Estado do utilizador.
+     * @param estado Novo estado do utilizador
      */
     public void setEstado(int estado){
         this.estado = estado;
@@ -89,7 +89,7 @@ public abstract class Utilizador {
     
     /**
      * Altera a password do utilizador.
-     * @param password Password do utilizador.
+     * @param password Nova password do utilizador
      */
     public void setPassword(String password){
         this.password = password;

@@ -7,10 +7,8 @@ package configurafacil.Business.Fabrica;
 
 import configurafacil.Database.StockDAO;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 /**
  *
@@ -23,7 +21,7 @@ public class Fabrica {
     private StockDAO stock;
     
     /**
-     * Construtor da classe Stock sem parâmetros.
+     * Construtor da classe Fabrica sem parâmetros.
      */
     public Fabrica(){
         this.stock = new StockDAO();
@@ -31,7 +29,7 @@ public class Fabrica {
     
     /**
      * Devolve o id da fábrica.
-     * @return int
+     * @return id
      */
     public int getId(){
         return this.id;
@@ -39,7 +37,7 @@ public class Fabrica {
     
     /**
      * Altera o id da fábrica.
-     * @param id Id do fábrica.
+     * @param id Novo id da fábrica
      */
     public void setId(int id){
         this.id = id;
@@ -53,51 +51,52 @@ public class Fabrica {
         return this.stock.entrySet().stream().collect(Collectors.toMap(e->e.getKey(), e->e.getValue()));    
     }
     
+     /**
+     * Devolve a lista das quantidades em stock.
+     * @return List
+     */
     public List<Integer> obtemQuantidadeS(){
         List<Integer> quantidades = new ArrayList<>();
-        Set<String> chaves = this.stock.keySet();
-        for(Iterator<String> iterator = chaves.iterator(); iterator.hasNext();){
-            String chave = iterator.next();
-            if(chave != null)
-                quantidades.add(this.stock.get(chave).getQuantidade());
-           
-        }
+        for(Stock s : this.stock.values())
+            quantidades.add(s.getQuantidade());
         return quantidades;
+        
     }
     
+    /**
+     * Devolve a lista dos nomes das componentes.
+     * @return List
+     */
     public List<String> obtemNomeC(){
         List<String> nomes = new ArrayList<>();
-         Set<String> chaves = this.stock.keySet();
-        for(Iterator<String> iterator = chaves.iterator(); iterator.hasNext();){
-            String chave = iterator.next();
-            if(chave != null)
-                nomes.add(this.stock.get(chave).getComponente());
+        for(Stock s : this.stock.values()){
+            nomes.add(s.getComponente());
         }
         return nomes;
     }
     
      /**
      * Adiciona stock à fábrica.
-     * @param c Compenente a adiconar ao stock.
-     * @param s Stock da fábrica.
+     * @param c Componente a adicionar ao stock
+     * @param s Novo stock a adicionar
      */
     public void adicionaStock(String c, Stock s){
         this.stock.put(c, s);
     }
     
      /**
-     * Verifica quantidade de stock da fábrica.
-     * @param s Stock da fábrica.
-     * @return int 
+     * Devolve a quantidade em stock de uma determinada componente.
+     * @param s Nome da componente
+     * @return quantidade em stock da componente
      */
     public int verificaStock(String s){
         return this.stock.get(s).getQuantidade();
     }
     
     /**
-     * Atualiza stock da fábrica.
-     * @param s Componente do stock a atualizar da fábrica.
-     * @param q Quantidade de stock 
+     * Atualiza o stock de uma determinada componente.
+     * @param s Nome da componente
+     * @param q Quantidade da componente
      */
     public void atualizaStock(String s, int q){
         Stock st = new Stock(q,s);

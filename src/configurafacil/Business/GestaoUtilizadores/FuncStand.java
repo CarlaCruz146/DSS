@@ -9,17 +9,17 @@ package configurafacil.Business.GestaoUtilizadores;
  *
  * @author Grupo 30
  */
-public class FuncStand extends Utilizador { //FuncFabrica e Administrador
+public class FuncStand extends Utilizador { 
     
     /**
-     * Construtor vazio do Utilizador cuja natureza é FuncStand
+     * Construtor vazio do Utilizador cuja natureza é FuncStand.
      */
     public FuncStand(){
         super();
     }
     
     /**
-     * Constrói a partir dos parametros fornecidos um utilizador cuja natureza é FuncStand
+     * Constrói a partir dos parametros fornecidos um utilizador cuja natureza é FuncStand.
      * @param nome Nome do utilizador
      * @param pass Password do utilizador
      * @param estado Estado do utilizador
@@ -29,7 +29,7 @@ public class FuncStand extends Utilizador { //FuncFabrica e Administrador
     }
     
     /**
-     * Constroi um utilizador cuja natureza é FuncStand a partir de uma definida
+     * Constrói por cópia um utilizador cuja natureza é FuncStand.
      * @param fs
      */
     public FuncStand(FuncStand fs){
@@ -37,7 +37,7 @@ public class FuncStand extends Utilizador { //FuncFabrica e Administrador
     }
     
        /**
-     * Imprime a informação de um funcionário cuja natureza é um funcionario do stand
+     * Imprime a informação de um funcionário cuja natureza é um funcionario do stand.
      * @return String com a informação
      */
      public String toString(){
@@ -45,7 +45,7 @@ public class FuncStand extends Utilizador { //FuncFabrica e Administrador
     }
     
     /**
-     * Compara dois utilizadores de FuncStand
+     * Compara dois utilizadores de FuncStand.
      * @param o Objeto
      * @return boolean
      */
