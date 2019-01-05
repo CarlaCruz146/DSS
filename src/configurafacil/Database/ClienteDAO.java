@@ -143,25 +143,7 @@ public class ClienteDAO implements Map<String,Cliente>{
 
     @Override
     public Cliente remove(Object o) {
-        Cliente cl = this.get((String) o);
-        try{
-            c = Connect.connect();
-            PreparedStatement ps = c.prepareStatement("DELETE FROM Cliente WHERE Nif = ?");
-            ps.setString(1, (String) o);
-            ps.executeUpdate();
-        }
-        catch(Exception e){
-            System.out.printf(e.getMessage());
-        }
-        finally{
-            try{
-                Connect.close(c);
-            }
-            catch(Exception e){
-                System.out.printf(e.getMessage());
-            }
-        }
-        return cl;
+       throw new UnsupportedOperationException("Não implementado");
     }
 
     @Override

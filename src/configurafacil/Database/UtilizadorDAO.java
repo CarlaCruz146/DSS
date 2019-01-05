@@ -191,25 +191,7 @@ public class UtilizadorDAO implements Map<String,Utilizador> {
 
     @Override
     public Utilizador remove(Object o) {
-        Utilizador u = this.get((String) o);
-        try{
-            c = Connect.connect();
-            PreparedStatement ps = c.prepareStatement("DELETE FROM Utilizador WHERE Nome = ?");
-            ps.setString(1, (String) o);
-            ps.executeUpdate();
-        }
-        catch(Exception e){
-            System.out.printf(e.getMessage());
-        }
-        finally{
-            try{
-                Connect.close(c);
-            }
-            catch(Exception e){
-                System.out.printf(e.getMessage());
-            }
-        }
-        return u;
+        throw new UnsupportedOperationException("Não implementado");
     }
 
     @Override

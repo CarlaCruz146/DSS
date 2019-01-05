@@ -21,6 +21,7 @@
             <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Business/GestaoUtilizadores/GestaoUtilizadores.java</file>
             <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Business/Fabrica/Fabrica.java</file>
             <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Business/Stand/Stand.java</file>
+            <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Database/ComponenteDAO.java</file>
             <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Presentation/ListaUtilizadores.java</file>
             <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Presentation/Jantes.java</file>
             <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Business/ConfiguraFacil.java</file>
@@ -32,6 +33,7 @@
             <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Presentation/MenuAdmin.java</file>
             <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Database/UtilizadorDAO.java</file>
             <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Database/EncomendaDAO.java</file>
+            <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Database/ClienteDAO.java</file>
             <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Presentation/SugestaoConfiguracao.java</file>
             <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Business/Fabrica/GestaoEncomenda/GestaoEncomenda.java</file>
             <file>file:/home/jessica/ConfiguraFacil/src/configurafacil/Presentation/DetalhesEncomenda.java</file>

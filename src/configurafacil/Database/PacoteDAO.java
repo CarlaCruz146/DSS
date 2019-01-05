@@ -166,32 +166,7 @@ public class PacoteDAO implements Map<String,Pacote> {
 
     @Override
     public Pacote remove(Object key) {
-        Pacote p = this.get((String) key);
-        try{
-            con = Connect.connect();
-            PreparedStatement ps = con.prepareStatement("DELETE FROM Pacote WHERE Nome = ?");
-            ps.setString(1, (String) key);
-            ps.executeUpdate();
-            
-            if(p.getNComp()>0){
-                String sql = "DELETE FROM Pacote WHERE Nome = ?;";
-                ps = con.prepareStatement(sql);
-                ps.setString(1, (String) key);
-                ps.executeUpdate();
-            }
-        }
-        catch(Exception e){
-            System.out.printf(e.getMessage());
-        }
-        finally{
-            try{
-                Connect.close(con);
-            }
-            catch(Exception e){
-                System.out.printf(e.getMessage());
-            }
-        }
-        return p;
+       throw new UnsupportedOperationException("Não implementado");
     }
 
     @Override

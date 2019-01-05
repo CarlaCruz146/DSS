@@ -177,25 +177,7 @@ public class ComponenteDAO implements Map<String,Componente> {
 
     @Override
     public Componente remove(Object key) {
-        Componente c = this.get((String) key);
-        try{
-            con = Connect.connect();
-            PreparedStatement ps = con.prepareStatement("DELETE FROM Componente WHERE Nome = ?");
-            ps.setString(1, (String) key);
-            ps.executeUpdate();
-        }
-        catch(Exception e){
-            System.out.printf(e.getMessage());
-        }
-        finally{
-            try{
-                Connect.close(con);
-            }
-            catch(Exception e){
-                System.out.printf(e.getMessage());
-            }
-        }
-        return c;
+        throw new UnsupportedOperationException("Não implementado");
     }
 
     @Override

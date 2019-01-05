@@ -143,25 +143,7 @@ public class StockDAO implements Map<String,Stock>{
 
     @Override
     public Stock remove(Object key) {
-        Stock p = this.get((String) key);
-        try{
-            con = Connect.connect();
-            PreparedStatement ps = con.prepareStatement("DELETE FROM Stock WHERE Componente = ?");
-            ps.setString(1, (String) key);
-            ps.executeUpdate();
-        }
-        catch(Exception e){
-            System.out.printf(e.getMessage());
-        }
-        finally{
-            try{
-                Connect.close(con);
-            }
-            catch(Exception e){
-                System.out.printf(e.getMessage());
-            }
-        }
-        return p;
+        throw new UnsupportedOperationException("Não implementado");
     }
 
     @Override

@@ -199,33 +199,7 @@ public class EncomendaDAO implements Map<Integer,Encomenda> {
 
     @Override
     public Encomenda remove(Object o) {
-        Encomenda e = this.get((Integer) o);
-        
-        try{
-            c = Connect.connect();
-            PreparedStatement ps = c.prepareStatement("DELETE FROM Encomenda WHERE idEncomenda = ?");
-            ps.setString(1, Integer.toString((Integer) o));
-            ps.executeUpdate();
-            
-            if(e.getNConfig()>0){
-                String sql = "DELETE FROM Encomenda WHERE idEncomenda = ?;";
-                ps = c.prepareStatement(sql);
-                ps.setString(1, (String) o);
-                ps.executeUpdate();
-            }
-        }
-        catch(Exception ex){
-            System.out.printf(ex.getMessage());
-        }
-        finally{
-            try{
-                Connect.close(c);
-            }
-            catch(Exception ex){
-                System.out.printf(ex.getMessage());
-            }
-        }
-        return e;
+        throw new UnsupportedOperationException("Não implementado");
     }
 
     @Override
