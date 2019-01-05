@@ -5,8 +5,7 @@
  */
 package configurafacil.Business.Stand;
 import configurafacil.Database.ClienteDAO;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -18,7 +17,6 @@ import java.util.stream.Collectors;
 public class Stand {
 
     //Variáveis de intância    
-    private int id;
     private ClienteDAO clientes;
 
     /**
@@ -27,15 +25,7 @@ public class Stand {
     public Stand() {
         this.clientes = new ClienteDAO();
     }
-    
-    /**
-     * Devolve o id do stand.
-     * @return id
-     */
-    public int getId(){
-        return this.id;
-    }
-    
+
     /**
      * Devolve os clientes do stand.
      * @return Map 
@@ -51,14 +41,6 @@ public class Stand {
      */
     public Cliente getCliente(String nif){
         return this.clientes.get(nif);
-    }
-    
-    /**
-     * Altera o id do stand.
-     * @param id Novo id do stand
-     */
-    public void setId(int id){
-        this.id = id;
     }
     
     /**

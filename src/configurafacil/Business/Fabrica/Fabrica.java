@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 public class Fabrica {
     
     //Variáveis de instância
-    private int id;
     private StockDAO stock;
     
     /**
@@ -27,22 +26,6 @@ public class Fabrica {
      */
     public Fabrica(){
         this.stock = new StockDAO();
-    }
-    
-    /**
-     * Devolve o id da fábrica.
-     * @return id
-     */
-    public int getId(){
-        return this.id;
-    }
-    
-    /**
-     * Altera o id da fábrica.
-     * @param id Novo id da fábrica
-     */
-    public void setId(int id){
-        this.id = id;
     }
     
     /**
