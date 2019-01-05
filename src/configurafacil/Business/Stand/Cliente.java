@@ -12,9 +12,11 @@ package configurafacil.Business.Stand;
 
 public class Cliente {
     
-    //Variáveis de instância
+    /** Nome do cliente */
     private String nome;
+    /** Nif do cliente */
     private String nif;
+    /** Contacto do cliente */
     private String contacto;
     
     /**
@@ -27,7 +29,7 @@ public class Cliente {
     }
     
     /**
-     * Construtor da classe Cliente. 
+     * Construtor da classe Cliente com paramêtros. 
      * @param nome Nome do cliente.
      * @param nif Nif do cliente.
      * @param contacto Contacto do cliente.

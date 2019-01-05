@@ -15,11 +15,15 @@ import java.util.stream.Collectors;
  */
 public class Componente {
     
-    //Variáveis de instância
+    /** Nome da componente */
     private String nome;
+    /** Tipo da componente */
     private String tipo;
+    /** Preço da componente */
     private double preco;
+    /** Lista das componentes incompatíveis da componente */
     private List<String> compIncompativeis;
+    /** Lista das componentes obrigatórias da componente */
     private List<String> compObrigatorias;
     
     /**
@@ -34,11 +38,11 @@ public class Componente {
     }
     
     /**
-     * Construtor da classe Componente. 
+     * Construtor da classe Componente com paramêtros. 
      * @param nome Nome da componente.
      * @param tipo Tipo da componente.
      * @param preco Preço da componente.
-     * @param incompativeis Lista dos nomes das componentes incompativeis.
+     * @param incompativeis Lista dos nomes das componentes incompatíveis.
      * @param obrigatorias Lista dos nomes das componentes obrigatórias.
      */
     public Componente(String nome, String tipo, double preco, List<String> incompativeis, List<String> obrigatorias){

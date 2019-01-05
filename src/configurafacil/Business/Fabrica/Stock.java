@@ -11,8 +11,9 @@ package configurafacil.Business.Fabrica;
  */
 public class Stock {
     
-    //Variáveis de intância
+    /** Qunatidade de stock */
     private int quantidade;
+    /** Nome da componente do stock */
     private String componente;
     
     /**
@@ -24,7 +25,7 @@ public class Stock {
     }
     
     /**
-     * Construtor da classe Stock. 
+     * Construtor da classe Stock com paramêtros. 
      * @param q Quantidade de stock.
      * @param c Componente do stock.
      */
@@ -68,7 +69,7 @@ public class Stock {
     
     /**
      * Altera a componente do stock.
-     * @param c Componente do stock.
+     * @param c Nova componente do stock.
      */
     public void setComponente(String c){
         this.componente = c;

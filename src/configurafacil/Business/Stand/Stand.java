@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  */
 public class Stand {
 
-    //Variáveis de intância    
+    /** Clientes da aplicação */  
     private ClienteDAO clientes;
 
     /**

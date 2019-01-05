@@ -11,10 +11,12 @@ package configurafacil.Business.GestaoUtilizadores;
  */
 public abstract class Utilizador {
     
-    //Variáveis de intância
+    /** Nome do utilizador */
     private String nome;
+    /** Password do utilizador */
     private String password;
-    private int estado; //0 - ativo
+    /** Estado do utilizador */
+    private int estado; 
     
     /**
      * Construtor da classe Utilizador sem parâmetros.
@@ -26,7 +28,7 @@ public abstract class Utilizador {
     }
     
     /**
-     * Construtor da classe Utilizador. 
+     * Construtor da classe Utilizador com paramêtros. 
      * @param nome Nome do utilizador.
      * @param password Password do utilizador.
      * @param estado Estado do utilizador.

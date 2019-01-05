@@ -17,7 +17,7 @@ import java.util.Map;
  */
 public class GestaoUtilizadores {
     
-    //Variáveis de instância
+    /** Utilizadores da aplicação */
     private UtilizadorDAO utilizadores;
     
     /**
@@ -49,7 +49,7 @@ public class GestaoUtilizadores {
     /**
      * Verifica a existência do nome de um utilizador.
      * @param nome Nome do utilizador.
-     * @return boolean
+     * @return Se existe ou não
      */
     public boolean verificaUserName(String nome){
         return this.utilizadores.containsKey(nome);
@@ -86,7 +86,7 @@ public class GestaoUtilizadores {
     }
     
     /**
-     * Devolve o Utilizador com dado nome.
+     * Devolve o utilizador com dado nome.
      * @param nome Nome do utilizador.
      * @return Utilizador
      */

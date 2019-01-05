@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  */
 public class Fabrica {
     
-    //Variáveis de instância
+    /** Stock da fábrica */
     private StockDAO stock;
     
     /**

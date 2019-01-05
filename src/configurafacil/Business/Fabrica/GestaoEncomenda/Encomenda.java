@@ -15,13 +15,19 @@ import java.util.stream.Collectors;
 
 public class Encomenda {
     
-    //Variáveis de instância
+    /** Id da encomenda */
     private int id;
+    /** Nome do carro da encomenda */
     private String carro;
+    /** Estado da encomenda */
     private int estado;
+    /** Configuração da encomenda */
     private List<String> configuracao;
+    /** Nome do pacote da encomenda */
     private String pacote;
+    /** Nif do cliente que fez a encomenda */
     private String cliente;
+    /** Limite de preço estabelecido para a encomenda */
     private double limite;
     
     /**
@@ -38,7 +44,7 @@ public class Encomenda {
     }
     
     /**
-     * Construtor da classe Encomenda. 
+     * Construtor da classe Encomenda com paramêtros. 
      * @param id Id da encomenda.
      * @param carro Carro da encomenda.
      * @param estado Estado da encomenda.

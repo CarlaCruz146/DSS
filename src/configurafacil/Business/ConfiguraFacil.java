@@ -27,14 +27,21 @@ import java.util.stream.Collectors;
  */
 public class ConfiguraFacil {
     
-    //Variáveis de instância
+    /** Administrador da aplicação */
     private Administrador administrador;
+    /** Stand da aplicação */
     private Stand stand;
+    /** Fábrica da aplicação */
     private Fabrica fabrica;
+    /** Utilizador que está a usar a aplicação */
     private Utilizador utilizador;
+    /** Gestão dos utilizadores da aplicação */
     private GestaoUtilizadores gestaoU;
+    /** Gestão das encomendas da aplicação */
     private GestaoEncomenda gestaoE;
+    /** Componentes disponíveis na aplicação */
     private ComponenteDAO componentes;
+    /** Pacotes disponíveis na aplicação */
     private PacoteDAO pacotes;
     
     /**
@@ -103,7 +110,7 @@ public class ConfiguraFacil {
     }
     
     /**
-     * Devolve a fabrica da aplicação.
+     * Devolve a fábrica da aplicação.
      * @return Fabrica
      */
     public Fabrica getFabrica(){
@@ -237,9 +244,9 @@ public class ConfiguraFacil {
     }
 
     /**
-     * Verifica se todas as componetes básicas obrigatórias foram escolhidas.
+     * Verifica se todas as componentes básicas obrigatórias foram escolhidas.
      * @param comp Nomes das componentes da configuração
-     * @return boolean
+     * @return Se foram escolhidas ou não
      */
     public boolean verificaComponentes(List<String> comp){
         int i = 0;
@@ -255,8 +262,8 @@ public class ConfiguraFacil {
     /**
      * Verifica se uma componente é de um determinado tipo.
      * @param tipo Tipo 
-     * @param c Nome da componente a verifica
-     * @return boolean
+     * @param c Nome da componente a verificar
+     * @return Se é ou não do tipo fornecido
      */
     public boolean verificaTipoComp(String tipo, String c){
        Componente comp = this.componentes.get(c);
@@ -286,7 +293,7 @@ public class ConfiguraFacil {
 
     
     /**
-     * Devolve a lista de componentes obrigatórias da encomenda não selecionadas.
+     * Devolve a lista dos nomes das componentes obrigatórias da encomenda não selecionadas.
      * @param componente Lista dos nomes das componentes
      * @return List
      */    
@@ -309,7 +316,7 @@ public class ConfiguraFacil {
     /**
      * Devolve a lista dos nomes das componentes incompativeis de dada componente e pacote.
      * @param componente Nome da componente
-     * @param comp Nomes das componentes a serem adicionadas na configuracao
+     * @param comp Nomes das componentes a serem adicionadas na configuração
      * @param p Nome do pacote selecionado
      * @return List
      */    
@@ -335,7 +342,7 @@ public class ConfiguraFacil {
     /**
      * Devolve a lista dos nomes das componentes obrigatórias ao escolher certa componente.
      * @param cnome Nome da componente adicionada
-     * @param comp Nomes das componentes a serem adicionadas na configuracao
+     * @param comp Nomes das componentes a serem adicionadas na configuração
      * @return List
      */    
     public List<String> verificaObrig(String cnome, List<String> comp){
@@ -383,7 +390,7 @@ public class ConfiguraFacil {
     } 
     
     /**
-     * Devolve encomenda com certo id
+     * Devolve encomenda com certo id.
      * @param id Id da encomenda
      * @return Encomenda
      */
@@ -402,7 +409,7 @@ public class ConfiguraFacil {
     
     /**
      * Altera o estado de uma determinada encomenda.
-     * @param id Identificador encomenda
+     * @param id Id da encomenda
      * @param estado Novo estado da encomenda
      */    
     public void alterarEstado(int id, int estado){
@@ -411,7 +418,7 @@ public class ConfiguraFacil {
     
     /**
      * Devolve o estado de dada encomenda.
-     * @param id Identificador encomenda
+     * @param id Id da encomenda
      * @return estado da encomenda
      */
     public int estadoEnc(int id){
@@ -471,7 +478,7 @@ public class ConfiguraFacil {
     }
     
     /**
-     * Devolve o tipo de utilizador dado o nome.
+     * Devolve o tipo de utilizador com determinado nome.
      * @param nome Nome do utilizador
      * @return tipo
      */

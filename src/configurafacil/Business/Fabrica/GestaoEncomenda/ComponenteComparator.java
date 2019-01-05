@@ -9,11 +9,11 @@ import java.util.Comparator;
 
 /**
  *
- * @author utilizador
+ * @author Grupo30
  */
 public class ComponenteComparator implements Comparator<Componente> {
 
-	/**
+    /**
      * Compara duas Componentes consoante o seu preço
      * @param c1 componente 1
      * @param c2 componente 2

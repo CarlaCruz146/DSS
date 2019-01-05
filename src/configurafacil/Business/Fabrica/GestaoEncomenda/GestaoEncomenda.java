@@ -19,7 +19,7 @@ import java.util.Set;
  */
 public class GestaoEncomenda {
     
-    //Variáveis de instância
+    /** Encomendas da aplicação */
     private EncomendaDAO encomendas;
     
     /**
@@ -73,7 +73,7 @@ public class GestaoEncomenda {
     }
     
     /**
-     * Devolve o Encomenda com dado id.
+     * Devolve a encomenda com dado id.
      * @param id Id da encomenda
      * @return Encomenda
      */
@@ -118,7 +118,7 @@ public class GestaoEncomenda {
     
     /**
      * Altera o estado de uma encomenda.
-     * @param id Identificador encomenda
+     * @param id Id da encomenda
      * @param estado Novo estado da encomenda
      */
     public void alterarEstado(int id, int estado){
@@ -129,7 +129,7 @@ public class GestaoEncomenda {
     
     /**
      * Devolve o estado de dada encomenda.
-     * @param id Identificador encomenda
+     * @param id Id da encomenda
      * @return estado da encomenda
      */
     public int estadoEnc(int id){

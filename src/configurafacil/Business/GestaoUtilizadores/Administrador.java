@@ -10,8 +10,9 @@ package configurafacil.Business.GestaoUtilizadores;
  * @author Grupo 30
  */
 public class Administrador {
-
+    /** Username do administrador */
     private final String username = "Admin";
+    /** Password do administrador */
     private final String password = "admin";
     
     /**
@@ -23,6 +24,7 @@ public class Administrador {
      * Verifica o login do administrador.
      * @param nome Nome do administrador
      * @param password Password do administrador
+     * @return Administrador autenticado
      * @throws PasswordInvalidaException Exception
      * @throws NomeInexistenteException Exception
      */

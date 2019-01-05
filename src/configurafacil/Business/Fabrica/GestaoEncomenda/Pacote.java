@@ -15,9 +15,11 @@ import java.util.stream.Collectors;
  */
 public class Pacote {
     
-    //Variáveis de instância
+    /** Nome do pacote */
     private String nome;
+    /** Preço do pacote */
     private double preco;
+    /** Lista das componentes que pertencem ao pacote */
     private List<String> componentes;
     
     /**
@@ -30,7 +32,7 @@ public class Pacote {
     }
     
     /**
-     * Construtor da classe Pacote. 
+     * Construtor da classe Pacote com paramêtros. 
      * @param nome Nome do pacote.
      * @param preco Preço do pacote.
      * @param componentes Componentes do pacote.
@@ -77,7 +79,7 @@ public class Pacote {
     }
     
     /**
-     * Devolve os nomes das componentes do pacote.
+     * Devolve a lista com os nomes das componentes do pacote.
      * @return List
      */
     public List<String> getComponentes(){
