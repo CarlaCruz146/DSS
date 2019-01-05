@@ -10,7 +10,7 @@ import configurafacil.Presentation.Login;
 
 /**
  *
- * @author jessica
+ * @author Grupo 30
  */
 public class ConfiguraFacilApp {
     public static void main(String[] args){
