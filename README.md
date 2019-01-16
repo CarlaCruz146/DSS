@@ -3,7 +3,7 @@ University project for Development of Software Systems Project
 
 ## What is it?
 Application to set up cars, which can be used in a car stand or in the factory where they are configured. 
-It was done in Java and with the implementation of a database.
+It was done in Swing(Java) and with the implementation of a database.
 
 ## Contributors
 Made by:
